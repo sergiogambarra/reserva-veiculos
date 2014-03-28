@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : 28/03/2014, 08:12:28
-    Author     : DTI
+    Created on : 20/05/2013, 20:47:48
+    Author     : fernando
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,10 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>page</title>
+	<link href="estilos.css" rel="stylesheet" type="text/css">
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello Kitty!</h1>
-        <p>Fernando CARECA.....</p>
+	     <IMG SRC=imagem1.jpg style="width:1400px;height:550px;"> 
+        
+        <h1>Escolha seu produto</h1>
+        
+        <!--<input type="button" value="inicio" class="MeuBotao">-->
+		<input type="button" value="Cadastro de Clientes" onClick="location. href= 'cadastrocompra.jsp' ">&nbsp;&nbsp;
+		<input type="button" value="Cadastro de Produtos" onClick="location. href= 'cadastrocompraPedido.jsp' ">
+                <input type="button" value="Lista de Produtos" onClick="location. href= 'comprovantedepagamento?action=listar_clientes' ">
     </body>
 </html>
