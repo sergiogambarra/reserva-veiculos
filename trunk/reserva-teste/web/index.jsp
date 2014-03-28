@@ -19,7 +19,7 @@
         
         <!--<input type="button" value="inicio" class="MeuBotao">-->
 		<input type="button" value="Cadastro de Clientes" onClick="location. href= 'cadastrocompra.jsp' ">&nbsp;&nbsp;
-		
+		<input type="button" value="Cadastro de Produtos" onClick="location. href= 'cadastrocompraPedido.jsp' ">
                 <input type="button" value="Lista de Produtos" onClick="location. href= 'comprovantedepagamento?action=listar_clientes' ">
         <p>Alteracao ana</p>
     </body>
