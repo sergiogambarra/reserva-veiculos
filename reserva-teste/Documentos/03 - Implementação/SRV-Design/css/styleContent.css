@@ -1,0 +1,170 @@
+.cabecalho {
+    position: relative;
+    background-color: rgba(86, 167, 62, .1);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 40px;
+    width: 100%;
+}
+
+.cabecalhoImagem{
+  height: 40px;
+  width: 80px;
+  margin: auto;
+  background: url("../imagens/srv.png") no-repeat transparent scroll;
+  background-size: 100% 100%;
+}
+
+.containerLogado{
+  width: 100%;
+  height: auto;
+}
+
+.containerLogadoMenu{
+  width: 100%;
+  height: 40px; 
+  background-color: rgba(139, 137, 137, .5);
+  background: -webkit-gradient(linear, right top, left bottom, from(rgba(139, 137, 137, .5)), to(rgba( 50,200,50, .0))) repeat-X;
+}
+
+
+.containerLogadoMenu .menuAcoes{
+  float:left;
+  font-size: 14px;
+}
+/* Limpando a lista */
+.containerLogadoMenu .menuAcoes ul{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  height: auto;
+}
+
+.containerLogadoMenu .menuAcoes ul li{
+  display: inline;
+}
+
+.containerLogadoMenu .menuAcoes ul li a{
+  padding: 10px;
+  width: auto;
+  display: inline-block;
+  /*visual do link*/
+  border-radius: 4px;
+  color: blue;
+  text-decoration: none;
+}
+
+.containerLogadoMenu .menuAcoes ul li a:hover{
+  background-color: rgba(139, 137, 137, .4);
+  color: blue;
+}
+
+.containerLogadoMenu .menuAcoes ul li a:active{
+  background-color: rgba(139, 137, 137, 1);
+}
+
+.containerLogadoBorda{
+  width: 100%;
+  height: auto; 
+  background-color: rgba(86, 167, 62, .2);
+}
+
+.containerLogadoCabecalhoDados{
+  width: 100%;
+  height: 10px; 
+ background-color: rgba(86, 167, 62, .2);
+}
+
+.containerLogadoDados{
+  margin-left: 7px;
+  width: 99%;
+  height: auto;
+  background-color: rgba(86, 167, 62, .0);
+}
+
+.tabelaListaVeiculos {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tabelaListaVeiculos thead{
+  background-color: rgba(139, 137, 137, .2);
+  text-align: center;
+  color: rgba(86, 167, 62, 1);
+  font-weight: bold;
+}
+
+.tabelaListaVeiculos tbody, .colunaAcoes{
+  background-color: rgba(139, 137, 137, .0);
+  height: 30px;
+}
+.tabelaListaVeiculos tbody{
+  text-align: left;
+}
+.colunaAcoes{
+  text-align: right;
+}
+
+.tabelaListaVeiculos thead tr td, .tabelaListaVeiculos tbody tr td{
+  border: 1px solid rgba(139, 200, 200, .7);
+}
+
+.tabelaListaVeiculos tbody tr:nth-child(2n+2) {
+  background-color:lightgray;
+}
+
+.tabelaListaVeiculos tbody tr:hover{
+  background-color: rgba(139, 200, 200, .5);
+}
+
+.tabelaListaVeiculos tbody tr:hover{
+  background-color: rgba(139, 200, 200, .5);
+}
+
+.tabelaListaVeiculos thead tr .colunaAcoesHead{
+  width: 100px;
+}
+
+.tabelaListaVeiculos tbody tr .divColunaAcoes{
+  height: 25px;
+  float:right;
+}
+
+.divColunaAcoes ul{
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  height: auto;
+}
+
+.divColunaAcoes ul li{
+  display: inline;
+}
+
+.divColunaAcoes ul li a{
+  margin-top:5px;
+  margin-right: 5px;
+  width: auto;
+  display: inline-block;
+  /*visual do link*/
+  text-decoration: none;
+}
+
+.iconeEditar, .iconeVisualizar, .iconeDeletar{
+  height: 15px;
+  width: 15px;
+  margin: auto;
+}
+
+.iconeEditar{
+  background: url("imagens/botaoEditar.png") no-repeat;
+}
+
+.iconeVisualizar{
+  background: url("imagens/botaoVisualizar.png") no-repeat;
+}
+
+.iconeDeletar{
+  background: url("imagens/botaoDeletar.png") no-repeat;
+}
