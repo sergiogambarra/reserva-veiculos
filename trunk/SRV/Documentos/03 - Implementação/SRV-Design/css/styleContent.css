@@ -158,13 +158,13 @@
 }
 
 .iconeEditar{
-  background: url("imagens/botaoEditar.png") no-repeat;
+  background: url("../imagens/botaoEditar.png") no-repeat;
 }
 
 .iconeVisualizar{
-  background: url("imagens/botaoVisualizar.png") no-repeat;
+  background: url("../imagens/botaoVisualizar.png") no-repeat;
 }
 
 .iconeDeletar{
-  background: url("imagens/botaoDeletar.png") no-repeat;
+  background: url("../imagens/botaoDeletar.png") no-repeat;
 }
