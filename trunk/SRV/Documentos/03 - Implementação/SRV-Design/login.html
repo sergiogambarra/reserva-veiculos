@@ -9,19 +9,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Login SRV</title>
   <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
+  <script type="text/javascript" src="js/validacoesJs.js"></script>
 </head>
 <body>
   <section class="container">
     <div class="containerLogin">
     <div class="login">
       <h1>Login no SRV</h1>
-      <form method="post" action="#">
-          <p><input type="text" name="inputMatricula" value="" placeholder="Matricula"></p>
-          <p><input type="password" name="inputSenha" value="" placeholder="Password"></p>
+      <form name="formLogin" method="post" action="listaReservas.html" onsubmit="return validarMatricula()" >
+          <p><input type="text" name="inputMatricula"  placeholder="Matricula"></p>
+          <p><input type="password" name="inputSenha"  placeholder="Password"></p>
       	<p class="submit"><input type="submit" name="buttonLogin" value="Login" class="formLoginBotao"></p>
       </form>
       <div class="login-help">
-      <p> <a href="#">Esqueci a senha</a></p>
+      <p> <a href="enviarSenha.html">Esqueci a senha</a></p>
     </div>
     </div>
   </div>
