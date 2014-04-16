@@ -9,9 +9,8 @@ perfil TINYINT(1),
 email VARCHAR(50),
 PRIMARY KEY (matricula_siape));
 
-insert into funcionario (matricula_siape, senha, perfil)
-values ('admin', '1234', '1'), 
-('serv', '5678', '0');
+insert into funcionario (matricula_siape, senha, perfil, email)
+values ('admin', '1234', '1', 'erpeck@restinga.ifrs.edu.br'), 
+('serv', '5678', '0', 'erpeck@restinga.ifrs.edu.br');
 
 drop database SRV;
-

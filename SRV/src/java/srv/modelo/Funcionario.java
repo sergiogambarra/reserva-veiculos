@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import srv.dao.FuncionarioDAO;
 
 /**
@@ -20,13 +22,14 @@ import srv.dao.FuncionarioDAO;
 @SuppressWarnings("serial")
 public class Funcionario implements java.io.Serializable
 {
-    private String login;
+    private String matriculaSIAPE;
     private String senha;
-    private int administrador;
+    private int perfil;
+    private String email;
     
     public Funcionario()
     {
-        this.administrador = administrador;
+        this.perfil = perfil;
     }
     
     public int VerificarLogin()
@@ -37,14 +40,14 @@ public class Funcionario implements java.io.Serializable
          * -1 para senha incorreta
          */
         FuncionarioDAO fdao = new FuncionarioDAO();
-        List l = fdao.buscarFuncionario(login);
+        List l = fdao.buscarFuncionario(matriculaSIAPE);
         
         if (!l.isEmpty())
         {
             Funcionario func = (Funcionario) l.get(0);
             if (func.senha.equals(senha))
             {
-                if (func.administrador == 1)
+                if (func.perfil == 1)
                 {    
                     return 1;
                 }
@@ -57,16 +60,45 @@ public class Funcionario implements java.io.Serializable
         return -1;
     }
     
-    @Id
-    @Column(name="login")
-    public String getLogin() 
+    public void EnviarSenha()
     {
-        return login;
+        FuncionarioDAO fdao = new FuncionarioDAO();
+        List l = fdao.buscarFuncionario(matriculaSIAPE);
+        if (!l.isEmpty())
+        {
+            Funcionario func = (Funcionario) l.get(0);
+            SimpleEmail simplemail = new SimpleEmail();  
+  
+        try {  
+        simplemail.setDebug(true);  
+        simplemail.setSmtpPort(465);
+        simplemail.setHostName("smtp.gmail.com");  
+        simplemail.setAuthentication("erickrpeck@gmail.com","!*)%!(($");  
+        simplemail.setSSL(true);
+        simplemail.addTo(func.getEmail()); //pode ser qualquer um email  
+        simplemail.setFrom("erickrpeck@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao  
+        simplemail.setSubject("Senha do SRV");  
+        simplemail.setMsg("Sua senha é: "+func.getSenha());  
+        simplemail.send();  
+  
+        } catch (EmailException e) {  
+  
+        System.out.println(e.getMessage());  
+  
+        }
+        }
+    }
+    
+    @Id
+    @Column(name="matricula_siape")
+    public String getMatriculaSIAPE() 
+    {
+        return matriculaSIAPE;
     }
 
-    public void setLogin(String login) 
+    public void setMatriculaSIAPE(String matriculaSIAPE) 
     {
-        this.login = login;
+        this.matriculaSIAPE = matriculaSIAPE;
     }
     
     @Column(name="senha")
@@ -80,16 +112,26 @@ public class Funcionario implements java.io.Serializable
         this.senha = senha;
     }
     
-    @Column(name="administrador")
-    public int getAdministrador() 
+    @Column(name="perfil")
+    public int getPerfil() 
     {
-        return administrador;
+        return perfil;
     }
 
-    public void setAdministrador(int administrador) 
+    public void setPerfil(int perfil) 
     {
-        this.administrador = administrador;
+        this.perfil = perfil;
     }
     
+    @Column(name="email")
+    public String getEmail() 
+    {
+        return email;
+    }
+
+    public void setEmail(String email) 
+    {
+        this.email = email;
+    }
    
 }

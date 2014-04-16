@@ -19,10 +19,10 @@ public class FuncionarioDAO{
      private Session session;
 
 
-    public List buscarFuncionario(String login) {
+    public List buscarFuncionario(String matriculaSIAPE) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Funcionario l where l.login like :login");
-        List list = query.setString("login", login).list();
+        Query query = session.createQuery("from Funcionario l where l.matriculaSIAPE like :matricula_siape");
+        List list = query.setString("matricula_siape", matriculaSIAPE).list();
         
         return list;
     }
