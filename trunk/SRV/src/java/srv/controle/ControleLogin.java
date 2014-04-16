@@ -42,12 +42,12 @@ public class ControleLogin extends HttpServlet {
             {
                 try 
                 {
-                    String login = request.getParameter("login");
-                    String senha = request.getParameter("senha");
+                    String matriculaSIAPE = request.getParameter("inputMatricula");
+                    String senha = request.getParameter("inputSenha");
 
 
                     Funcionario f = new Funcionario();
-                    f.setLogin(login);
+                    f.setMatriculaSIAPE(matriculaSIAPE);
                     f.setSenha(senha);
 
                     if (f.VerificarLogin() == 0) 
@@ -75,6 +75,24 @@ public class ControleLogin extends HttpServlet {
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
             }
+            else if (acao.equals("EnviarSenha"))
+            {
+                try 
+                {
+                    String matriculaSIAPE = request.getParameter("inputMatricula");
+                    
+                    Funcionario f = new Funcionario();
+                    f.setMatriculaSIAPE(matriculaSIAPE);
+                    
+                    f.EnviarSenha();
+                    
+                }
+                catch (Exception e) 
+                {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+            }
             else if (acao.equals("deslogar")) 
             {
                 if (request.getSession().getAttribute("funcionario") != null)
@@ -89,7 +107,7 @@ public class ControleLogin extends HttpServlet {
                 
                 HttpSession session = request.getSession(); 
                 
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
                 session.invalidate();
 
             }
