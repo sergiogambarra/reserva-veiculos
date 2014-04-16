@@ -23,7 +23,7 @@
       	<p class="submit"><input type="submit" name="buttonLogin" value="Login" class="formLoginBotao"></p>
       </form>
       <div class="login-help">
-      <p> <a href="enviarSenha.html">Esqueci a senha</a></p>
+      <p> <a href="enviarSenha.jsp">Esqueci a senha</a></p>
     </div>
     </div>
   </div>
