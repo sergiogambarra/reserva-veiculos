@@ -15,13 +15,13 @@
     <div class="containerLogin">
     <div class="login">
       <h1>Login no SRV</h1>
-      <form method="post" action="COntroleLogin" name="">
+      <form method="post" action="ControleLogin" name="">
           <input type="hidden" name="action" value="EnviarSenha"/>
           <p><input type="text" name="inputMatricula" value="" placeholder="Matricula"></p>
       	<p class="submit"><input type="submit" name="buttonLogin" value="Enviar Senha" class="formLoginBotao"></p>
       </form>
       <div class="login-help">
-      <p> <a href="login.html">Login</a></p>
+      <p> <a href="login.jsp">Login</a></p>
     </div>
     </div>
   </div>

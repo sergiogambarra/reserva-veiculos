@@ -86,6 +86,7 @@ public class ControleLogin extends HttpServlet {
                     
                     f.EnviarSenha();
                     
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
                 catch (Exception e) 
                 {
