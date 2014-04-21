@@ -20,6 +20,13 @@
           <input type="hidden" name="action" value="Entrar"/>
           <p><input type="text" name="inputMatricula"  placeholder="Matricula"></p>
           <p><input type="password" name="inputSenha"  placeholder="Password"></p>
+          <%
+            if (request.getAttribute("mensagem") != null) {
+          %>
+          <p><%= request.getAttribute("mensagem")%> </p>
+          <%
+                     }
+          %>
       	<p class="submit"><input type="submit" name="buttonLogin" value="Login" class="formLoginBotao"></p>
       </form>
       <div class="login-help">
