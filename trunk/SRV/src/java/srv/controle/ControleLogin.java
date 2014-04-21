@@ -4,6 +4,7 @@
  */
 package srv.controle;
 
+import com.mysql.jdbc.Util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import srv.modelo.Funcionario;
+import srv.modelo.Servidor;
+import srv.util.Validacoes;
 
 /**
  *
@@ -45,14 +47,15 @@ public class ControleLogin extends HttpServlet {
                     String matriculaSIAPE = request.getParameter("inputMatricula");
                     String senha = request.getParameter("inputSenha");
 
-
-                    Funcionario f = new Funcionario();
+                    if (!Validacoes.ValidarLogin(matriculaSIAPE, senha)) throw new Exception(Validacoes.getMensagemErro());
+                    
+                    Servidor f = new Servidor();
                     f.setMatriculaSIAPE(matriculaSIAPE);
                     f.setSenha(senha);
 
                     if (f.VerificarLogin() == 0) 
                     {
-                        request.getSession().setAttribute("funcionario", f);
+                        request.getSession().setAttribute("servidor", f);
 
                         request.getRequestDispatcher("pag1.jsp").forward(request, response);
 
@@ -60,19 +63,20 @@ public class ControleLogin extends HttpServlet {
                     else if (f.VerificarLogin() == 1) 
                     {
                         request.getSession().setAttribute("administrador", f);
-
+                        
                         request.getRequestDispatcher("pag1.jsp").forward(request, response);
 
                     } 
                     else 
                     {
+                       if (!Validacoes.ValidarUsuarioLogin(matriculaSIAPE)) throw new Exception(Validacoes.getMensagemErro());
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
                 } 
                 catch (Exception e) 
                 {
                     request.setAttribute("mensagem", e.getMessage());
-                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
             else if (acao.equals("EnviarSenha"))
@@ -81,24 +85,28 @@ public class ControleLogin extends HttpServlet {
                 {
                     String matriculaSIAPE = request.getParameter("inputMatricula");
                     
-                    Funcionario f = new Funcionario();
+                    if (!Validacoes.ValidarEnviarSenha(matriculaSIAPE)) throw new Exception(Validacoes.getMensagemErro());
+                    
+                    Servidor f = new Servidor();
                     f.setMatriculaSIAPE(matriculaSIAPE);
-                    
+                    if (!Validacoes.ValidarUsuarioEnviarSenha(matriculaSIAPE)) throw new Exception(Validacoes.getMensagemErro());
                     f.EnviarSenha();
+                    request.setAttribute("mensagem", "Senha enviada com sucesso!");
+                    request.getRequestDispatcher("enviarSenha.jsp").forward(request, response);
                     
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
                 catch (Exception e) 
                 {
+                    
                     request.setAttribute("mensagem", e.getMessage());
-                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                    request.getRequestDispatcher("enviarSenha.jsp").forward(request, response);
                 }
             }
             else if (acao.equals("deslogar")) 
             {
-                if (request.getSession().getAttribute("funcionario") != null)
+                if (request.getSession().getAttribute("servidor") != null)
                 {
-                    request.getSession().setAttribute("funcionario", null);
+                    request.getSession().setAttribute("servidor", null);
                 }
                 if (request.getSession().getAttribute("administrador") != null)
                 {

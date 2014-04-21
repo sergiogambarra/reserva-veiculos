@@ -18,6 +18,13 @@
       <form method="post" action="ControleLogin" name="">
           <input type="hidden" name="action" value="EnviarSenha"/>
           <p><input type="text" name="inputMatricula" value="" placeholder="Matricula"></p>
+          <%
+            if (request.getAttribute("mensagem") != null) {
+          %>
+          <p><%= request.getAttribute("mensagem")%> </p>
+          <%
+                     }
+          %>
       	<p class="submit"><input type="submit" name="buttonLogin" value="Enviar Senha" class="formLoginBotao"></p>
       </form>
       <div class="login-help">
@@ -29,7 +36,7 @@
   <section class="about">
     <p class="about-links">
       &copy; 2014&ndash;2014 
-      <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5ยบ semestre 2014 - IFRS Campus Restinga</a>
+      <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5บ semestre 2014 - IFRS Campus Restinga</a>
     </p>
   </section>
 </body>
