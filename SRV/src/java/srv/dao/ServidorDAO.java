@@ -5,8 +5,10 @@
 package srv.dao;
 
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import srv.modelo.Servidor;
 import srv.util.Conexao;
 
@@ -25,5 +27,52 @@ public class ServidorDAO implements InterfaceServidorDAO{
         List list = query.setString("matricula_siape", matriculaSIAPE).list();
         
         return list;
+    }
+    
+    public void salvar(Servidor serv) {
+        session = Conexao.getInstance();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.save(serv);
+            tx.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void excluir(Servidor serv) {
+        session = Conexao.getInstance();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.delete(serv);
+            tx.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void atualizar(Servidor serv) {
+        session = Conexao.getInstance();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.update(serv);
+            tx.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            session.close();
+        }
     }
 }
