@@ -64,7 +64,7 @@ public class ControleLogin extends HttpServlet {
                     {
                         request.getSession().setAttribute("administrador", f);
                         
-                        request.getRequestDispatcher("pag1.jsp").forward(request, response);
+                        request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
 
                     } 
                     else 
