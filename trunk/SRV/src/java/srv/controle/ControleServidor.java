@@ -10,12 +10,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import srv.dao.InterfaceServidorDAO;
 import srv.dao.ServidorDAO;
 import srv.modelo.Servidor;
 
@@ -127,8 +129,25 @@ public class ControleServidor extends HttpServlet {
                     }
 
                     request.getSession().setAttribute("administrador", serv);
-                    request.getRequestDispatcher("pag1.jsp").forward(request, response);
+                    request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
 
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+            }else if (acao.equals("Visualizar")) {
+                ServidorDAO sdao = new ServidorDAO();
+                Servidor serv = new Servidor();
+                sdao.visualizar(serv);
+                request.getSession().setAttribute("administrador", serv);
+                request.getRequestDispatcher("visualizarServidor.jsp").forward(request, response);
+            }else if (acao.equals("listaServidores")) {
+                 try {
+                    InterfaceServidorDAO sdao = new ServidorDAO();
+                    List<Servidor> lista = sdao.todosServidor();
+                    
+                    request.setAttribute("listaserv", lista);
+                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
@@ -180,4 +199,5 @@ public class ControleServidor extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

@@ -35,7 +35,7 @@
           <ul>
             <li><a href="listaReservas.jsp">Lista de Reservas</a></li>
             <li><a href="#">Lista de Veículos</a></li>
-            <li><a href="#">Lista de Servidores</a></li>
+            <li><a href="ControleServidor?action=listaServidores">Lista de Servidores</a></li>
             <li><a href="#">Novo Veículo</a></li>
             <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
           </li>

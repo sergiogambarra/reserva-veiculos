@@ -1,3 +1,9 @@
+<%-- 
+    Document   : visualizarServidor
+    Created on : 21/04/2014, 22:14:59
+    Author     : Paula
+--%>
+
 
 <%
 
@@ -10,7 +16,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Novo Servidor</title>
+        <title>Visualizar Servidor</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
@@ -32,7 +38,7 @@
                         <ul>
                             <li><a href="listaReservas.jsp">Lista de Reservas</a></li>
                             <li><a href="#">Lista de Veículos</a></li>
-                            <li><a href="ControleServidor?action=listaServidores">Lista de Servidores</a></li>
+                            <li><a href="#">Lista de Servidores</a></li>
                             <li><a href="#">Novo Veículo</a></li>
                             <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
                           </li>
