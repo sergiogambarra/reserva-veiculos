@@ -75,4 +75,18 @@ public class ServidorDAO implements InterfaceServidorDAO{
             session.close();
         }
     }
+
+    public List visualizar(Servidor serv) {
+        session = Conexao.getInstance();
+        List list = session.createQuery("from Servidor").list();
+        return list;
+    }
+
+   public List todosServidor() {
+        session = Conexao.getInstance();
+        List list = session.createQuery("from Servidor").list();
+        return list;
+    }
+    
+    
 }
