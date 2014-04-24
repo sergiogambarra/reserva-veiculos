@@ -19,4 +19,6 @@ public interface InterfaceServidorDAO {
     public abstract void atualizar(Servidor serv);
     public abstract List visualizar(Servidor serv);
     public abstract List todosServidor();
+
+    public List<Servidor> consultarMatricula(String parameter);
 }

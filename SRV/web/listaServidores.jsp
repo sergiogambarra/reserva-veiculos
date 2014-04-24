@@ -37,7 +37,7 @@
           <ul>
             <li><a href="listaReservas.jsp">Lista de Reservas</a></li>
             <li><a href="#">Lista de Veículos</a></li>
-            <li><a href="listaServidores.jsp">Lista de Servidores</a></li>
+            <li><a href="ControleServidor?action=listaServidores">Lista de Servidores</a></li>
             <li><a href="#">Novo Veículo</a></li>
             <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
           </li>
@@ -85,10 +85,13 @@
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>
-                        <li><a href="#" ><div class="iconeEditar" alt="Editar veículo com a placa X." title="Editar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações do veículo com a placa X." title="Visualizar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar veículo com a placa X." title="Deletar veículo"></div></a></li>
+                        <li><a href="ControleServidor?action=editarServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
+                        <li><a href="ControleServidor?action=visualizarServidor" ><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
+                        <li><a href="ControleServidor?action=excluirServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor"></div></a></li>
                       </ul>
+                                    
+
+                       
                     </div>
                 </td>
               </tr>
