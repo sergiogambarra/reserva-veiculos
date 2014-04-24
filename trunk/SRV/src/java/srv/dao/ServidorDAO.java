@@ -88,5 +88,13 @@ public class ServidorDAO implements InterfaceServidorDAO{
         return list;
     }
     
+   
+    public List<Servidor> consultarMatricula(String matriculaSIAPE) {
+        session = Conexao.getInstance();
+        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE like :matricula_siape");
+        List list = query.setString("matricula_siape", matriculaSIAPE).list();
+        
+        return list;
+    }
     
 }

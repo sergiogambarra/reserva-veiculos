@@ -5,9 +5,6 @@
 package srv.controle;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import srv.dao.InterfaceServidorDAO;
 import srv.dao.ServidorDAO;
 import srv.modelo.Servidor;
@@ -42,7 +38,8 @@ public class ControleServidor extends HttpServlet {
             throws ServletException, IOException {
         try {
             String acao = request.getParameter("action");
-            if (acao.equals("Cadastrar") || acao.equals("Atualizar")) {
+            //Se for CADASTRAR ou ATUALIZAR
+            if (acao.equals("cadastrarServidor") || acao.equals("atualizarServidor")) {
                 try {
                     String matricula_siape = request.getParameter("iMatriculaSiape");
                     String nome = request.getParameter("sNomeCompleto");
@@ -76,6 +73,7 @@ public class ControleServidor extends HttpServlet {
                     }
                     serv.setRg(rg);
                     serv.setOrgao_expedidor(orgao_expedidor);
+                    
                     if (!estado_civil.equalsIgnoreCase("0")) {
                         if (estado_civil.equalsIgnoreCase("1")) {
                             serv.setEstado_civil("Solteiro");
@@ -96,7 +94,7 @@ public class ControleServidor extends HttpServlet {
                     serv.setNacionalidade(nacionalidade);
                     serv.setInformacoes(informacoes);
                     serv.setSexo(sexo);
-                    serv.setSenha(senha);
+                    
                     //Ativo ou Inativo
                     if (status_serv.equalsIgnoreCase("a")) {
                         serv.setStatus_serv(true);
@@ -104,6 +102,7 @@ public class ControleServidor extends HttpServlet {
                         serv.setStatus_serv(false);
                     }
 
+                    //A DATA SERÁ A SENHA
                     /*Date DataNascFr = null;
                     String DataNascDb = null;
                     try {
@@ -120,27 +119,46 @@ public class ControleServidor extends HttpServlet {
 
                     ServidorDAO sdao = new ServidorDAO();
 
-                    if (acao.equals("Cadastrar")) {
+                    if (acao.equals("cadastrarServidor")) {
+                        //Senha só pode ser alterada pelo próprio servidor
+                        serv.setSenha(senha);
                         sdao.salvar(serv);
-                    } else if (acao.equals("Atualizar")) {
+                        
+                        InterfaceServidorDAO idao = new ServidorDAO();
+                        List<Servidor> lista = idao.todosServidor();
+
+                        request.setAttribute("listaserv", lista);
+                        
+                        request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                    } else if (acao.equals("atualizarServidor")) {
+                        serv.setSenha("1234");
                         sdao.atualizar(serv);
-                    } else {
-                        sdao.excluir(serv);
+                        InterfaceServidorDAO idao = new ServidorDAO();
+                        List<Servidor> lista = idao.todosServidor();
+
+                        request.setAttribute("listaserv", lista);
+                        request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                     }
-
-                    request.getSession().setAttribute("administrador", serv);
-                    request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
-
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }else if (acao.equals("Visualizar")) {
-                ServidorDAO sdao = new ServidorDAO();
-                Servidor serv = new Servidor();
-                sdao.visualizar(serv);
-                request.getSession().setAttribute("administrador", serv);
-                request.getRequestDispatcher("visualizarServidor.jsp").forward(request, response);
+            }else if (acao.equalsIgnoreCase("editarServidor")){
+                InterfaceServidorDAO idao = new ServidorDAO();
+                List<Servidor> list = idao.consultarMatricula(request.getParameter("matricula"));
+                Servidor matricula = list.get(0);
+                request.setAttribute("matricula", matricula);
+                request.getRequestDispatcher("/formAtualizarServidor.jsp").forward(request, response);
+            }else if (acao.equals("excluirServidor")) {
+                InterfaceServidorDAO idao = new ServidorDAO();
+                List<Servidor> list = idao.consultarMatricula(request.getParameter("matricula"));
+                Servidor servidor = list.get(0);
+                idao.excluir(servidor);
+                
+                List<Servidor> lista = idao.todosServidor();
+
+                request.setAttribute("listaserv", lista);
+                request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
             }else if (acao.equals("listaServidores")) {
                  try {
                     InterfaceServidorDAO sdao = new ServidorDAO();
