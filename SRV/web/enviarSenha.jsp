@@ -9,15 +9,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Login SRV</title>
   <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
+  <script type="text/javascript" src="js/validacoesMascara.js" charset="UTF-8"></script>
 </head>
 <body>
   <section class="container">
     <div class="containerLogin">
     <div class="login">
       <h1>Login no SRV</h1>
-      <form method="post" action="ControleLogin" name="">
+      <form method="post" action="ControleLogin" onSubmit="validarMatSiap(document.forms['formEnviarSenha']['inputMatricula'].value)" name="formEnviarSenha">
           <input type="hidden" name="action" value="EnviarSenha"/>
-          <p><input type="text" name="inputMatricula" value="" placeholder="Matricula"></p>
+          <p><input type="text" name="inputMatricula" value="" placeholder="Matricula" onKeyPress="return mascaraMatSiap(event);" maxlength="7"></p>
           <%
             if (request.getAttribute("mensagem") != null) {
           %>
