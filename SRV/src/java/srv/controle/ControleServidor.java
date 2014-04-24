@@ -73,8 +73,9 @@ public class ControleServidor extends HttpServlet {
                     }
                     serv.setRg(rg);
                     serv.setOrgao_expedidor(orgao_expedidor);
+                    serv.setEstado_civil(estado_civil);
                     
-                    if (!estado_civil.equalsIgnoreCase("0")) {
+                    /*if (!estado_civil.equalsIgnoreCase("0")) {
                         if (estado_civil.equalsIgnoreCase("1")) {
                             serv.setEstado_civil("Solteiro");
                         } else if (estado_civil.equalsIgnoreCase("2")) {
@@ -84,7 +85,7 @@ public class ControleServidor extends HttpServlet {
                         } else if (estado_civil.equalsIgnoreCase("4")) {
                             serv.setEstado_civil("Separado");
                         }
-                    }
+                    }*/
 
                     serv.setEmail(email);
                     serv.setTelefone_comer(telefone_comer);

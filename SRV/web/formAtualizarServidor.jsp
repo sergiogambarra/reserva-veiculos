@@ -136,17 +136,17 @@
                                             <div class="formCadastroInput">
                                                 <select id="estadoCivil" name="estadoCivil">
                                                     <% if (!((Servidor)request.getAttribute("matricula")).getEstado_civil().equals(null)) { %>
-                                                        <option selected>${matricula.estado_civil}</option>
-                                                        <option value="1">Solteiro</option>
-                                                        <option value="2">Casado</option>
-                                                        <option value="3">Viúvo</option>
-                                                        <option value="4">Separado</option>
+                                                        <option value ="${matricula.estado_civil}" selected>${matricula.estado_civil}</option>
+                                                        <option value="Solteiro">Solteiro</option>
+                                                        <option value="Casado">Casado</option>
+                                                        <option value="Viúvo">Viúvo</option>
+                                                        <option value="Separado">Separado</option>
                                                     <% } else { %>    
-                                                        <option value="0">Estado Civil:</option>
-                                                        <option value="1">Solteiro</option>
-                                                        <option value="2">Casado</option>
-                                                        <option value="3">Viúvo</option>
-                                                        <option value="4">Separado</option>
+                                                        <option value="">Estado Civil:</option>
+                                                        <option value="Solteiro">Solteiro</option>
+                                                        <option value="Casado">Casado</option>
+                                                        <option value="Viúvo">Viúvo</option>
+                                                        <option value="Separado">Separado</option>
                                                     <% } %>
                                                 </select>
                                             </div>
