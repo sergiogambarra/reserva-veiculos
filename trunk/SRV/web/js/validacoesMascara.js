@@ -1,3 +1,22 @@
+function validarMatSiap(mat){
+	
+	if ((mat.length <= 0) || (mat.length !== 7) || (isNaN(mat))){
+		alert("Matricula inválida. Digite 7 números.");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function mascaraMatSiap(e){
+	var digito = (window.event)?event.keyCode:e.which;
+	if((digito > 47) && (digito < 58)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 //adiciona mascara de cep
 function MascaraCep(cep){
 		if(mascaraInteiro(cep)==false){
