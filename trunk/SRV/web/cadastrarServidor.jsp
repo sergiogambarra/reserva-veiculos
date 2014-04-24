@@ -59,14 +59,15 @@
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMatriculaSiape">Matricula SIAPE</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="iMatriculaSiape" name="iMatriculaSiape" placeholder="SIAPE" size="7" maxlength="7"/></div>
+                                            <div class="formCadastroInput">
+                                                <input type="text" id="iMatriculaSiape" name="iMatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv">Status</label> </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioStatus" for="Status">Ativo</label>
-                                                <input type="radio" id="status_serv" name="status_serv" value="a"/>
+                                                <label class="radioStatus" for="Status" >Ativo</label>
+                                                <input type="radio" id="status_serv" name="status_serv" value="a" checked/>
                                                 <label class="radioStatus" for="Status">Inativo<label>
                                                 <input type="radio" id="status_serv" name="status_serv" value="i"/>
                                             </div>
