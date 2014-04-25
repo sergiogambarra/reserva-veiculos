@@ -1,8 +1,3 @@
-
-<%
-
-
-%>    
 <%@include file="ValidarLoginAdministrador.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
@@ -31,9 +26,9 @@
                     <nav class="menuAcoes">
                         <ul>
                             <li><a href="listaReservas.jsp">Lista de Reservas</a></li>
-                            <li><a href="#">Lista de Veículos</a></li>
+                            <li><a href="ControleVeiculo?action=listaVeiculos">Lista de Veículos</a></li>
                             <li><a href="ControleServidor?action=listaServidores">Lista de Servidores</a></li>
-                            <li><a href="#">Novo Veículo</a></li>
+                            <li><a href="cadastrarVeiculo.jsp">Novo Veículo</a></li>
                             <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
                           </li>
                     </nav>
@@ -80,7 +75,7 @@
                                             <div class="formCadastroLabel"><label for="sexo">Sexo</label> </div>
                                             <div class="formCadastroInput"><label class="radioSexo" for="Sexo" >Masculino</label>
                                                 <input type="radio" id="sexo" name="sexo" value="m"/>
-                                                <label class="radioSexo" for="Sexo">Feminino<lable><input type="radio" id="sexo" name="sexo" value="f"/></div>
+                                                <label class="radioSexo" for="Sexo">Feminino</label><input type="radio" id="sexo" name="sexo" value="f"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
@@ -90,7 +85,7 @@
                                             <div class="formCadastroLabel"><label for="bMotorista">Motorista</label> </div>
                                             <div class="formCadastroInput"><label class="radioMotorista" for="bMotoristaTrue" >Sim</label>
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="t"/>
-                                                <label class="radioMotorista" for="bMotorista">Não<lable><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
+                                                <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">CPF</label> </div>
@@ -175,7 +170,7 @@
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
                                         </li>
-<!--                                        <li>
+                                    <!--<li>
                                             <div class="formCadastroLabel"><label for="sSenha">Senha</label> </div>
                                             <div class="formCadastroInput"><input type="password" name="sSenha" placeholder="Senha"/></div>
                                         </li>-->
