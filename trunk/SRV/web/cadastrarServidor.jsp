@@ -109,10 +109,10 @@
                                             <div class="formCadastroInput">
                                                 <select id="estadoCivil" name="estadoCivil">
                                                     <option value="">Estado Civil:</option>
-                                                        <option value="Solteiro">Solteiro</option>
-                                                        <option value="Casado">Casado</option>
-                                                        <option value="Viúvo">Viúvo</option>
-                                                        <option value="Separado">Separado</option>
+                                                        <option value="sol">Solteiro</option>
+                                                        <option value="cas">Casado</option>
+                                                        <option value="viu">Viúvo</option>
+                                                        <option value="sep">Separado</option>
                                                 </select>
                                             </div>
                                         </li>
