@@ -21,6 +21,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
 
     private Session session;
 
+    @Override
     public List buscarServidor(String matriculaSIAPE) {
         session = Conexao.getInstance();
         Query query = session.createQuery("from Servidor l where l.matriculaSIAPE like :matricula_siape");
@@ -45,6 +46,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
         }
     }
 
+    @Override
     public void excluir(Servidor serv) {
         session = Conexao.getInstance();
         Transaction tx = null;
@@ -60,6 +62,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
         }
     }
 
+    @Override
     public void atualizar(Servidor serv) {
         session = Conexao.getInstance();
         Transaction tx = null;
@@ -76,18 +79,21 @@ public class ServidorDAO implements InterfaceServidorDAO {
         }
     }
 
+    @Override
     public List visualizar(Servidor serv) {
         session = Conexao.getInstance();
         List list = session.createQuery("from Servidor").list();
         return list;
     }
 
+    @Override
     public List todosServidor() {
         session = Conexao.getInstance();
         List list = session.createQuery("from Servidor").list();
         return list;
     }
 
+    @Override
     public List<Servidor> consultarMatricula(String matriculaSIAPE) {
         session = Conexao.getInstance();
         Query query = session.createQuery("from Servidor l where l.matriculaSIAPE like :matricula_siape");
@@ -155,45 +161,44 @@ public class ServidorDAO implements InterfaceServidorDAO {
         listAux.add("sp");
         listAux.add("se");
         listAux.add("to");
-        
+
         for (int i = 0; i < listAux.size(); i++) {
-            if(listAux.get(i).equals(ufAtual)){
+            if (listAux.get(i).equals(ufAtual)) {
                 String test = comboBox.get(i).replaceFirst("\\\">", "\\\" selected>");
-                comboBox.add(i+1, test);
+                comboBox.add(i + 1, test);
                 comboBox.remove(i);
                 break;
             }
         }
-       
+
         return comboBox;
     }
-    
+
     @Override
     public List<String> editarEstadoCivil(String ecAtual) {
         List<String> comboBox = new ArrayList<String>();
-        
+
         comboBox.add("<option value=\"sol\">Solteiro</option>");
         comboBox.add("<option value=\"cas\">Casado</option>");
         comboBox.add("<option value=\"viu\">Viúvo</option>");
         comboBox.add("<option value=\"sep\">Separado</option>");
 
         List<String> listAux = new ArrayList<String>();
-        
+
         listAux.add("sol");
         listAux.add("cas");
         listAux.add("viu");
         listAux.add("sep");
-        
+
         for (int i = 0; i < listAux.size(); i++) {
-            if(listAux.get(i).equals(ecAtual)){
+            if (listAux.get(i).equals(ecAtual)) {
                 String test = comboBox.get(i).replaceFirst("\\\">", "\\\" selected>");
-                comboBox.add(i+1, test);
+                comboBox.add(i + 1, test);
                 comboBox.remove(i);
                 break;
             }
         }
-       
+
         return comboBox;
     }
-    
 }

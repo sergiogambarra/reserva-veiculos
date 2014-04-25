@@ -1,5 +1,5 @@
 <%-- 
-    Document   : listaServidores
+    Document   : listaVeiculos
     Created on : 21/04/2014, 18:38:38
     Author     : Paula
 --%>
@@ -8,7 +8,7 @@
 
 
 %>
-<%@page import="srv.modelo.Servidor"%>
+<%@page import="srv.modelo.Veiculo"%>
 <%@page import="java.util.List"%>
 <%@include file="ValidarLoginAdministrador.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Lista de Servidores</title>
+  <title>Lista de Veículos</title>
   <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
   <link rel="stylesheet" href="css/styleContent.css" type='text/css'>
 </head>
@@ -65,33 +65,30 @@
         
           <table class="tabelaListaVeiculos">
             <thead>
-              <td id="Matricula" class="colunaDuzentos">Matrícula</td>
-              <td id="Servidor">Nome</td>
-              <td id="CNH" class="colunaDuzentos">CNH</td>
-              <td id="Telefone" class="colunaDuzentos">Telefone</td>
+              <td id="Placa" class="colunaDuzentos">Placa</td>
+              <td id="Modelo">Modelo</td>
+              <td id="Marca" class="colunaDuzentos">Marca</td>
+              <td id="Renavam" class="colunaDuzentos">Renavam</td>
               <td id="Acoes" class="colunaAcoesHead" >Ações</td>
             </thead>
             <tbody>
                 <%
-                    List<Servidor> lista = (List<Servidor>) request.getAttribute("listaserv");
+                    List<Veiculo> lista = (List<Veiculo>) request.getAttribute("listaveic");
                     for (int i = 0; i < lista.size(); i++) {
-                        Servidor serv = lista.get(i);
+                        Veiculo veic = lista.get(i);
                 %>
               <tr>
-                <td headers="Matricula"><%= serv.getMatriculaSIAPE() %></td>
-                <td headers="Servidor"><% out.print(serv.getNome());%></td>
-                <td headers="CNH"><% out.print(serv.getCnh());%></td>
-                <td headers="Telefone"><% out.print(serv.getTelefone_cel());%></td>
+                <td headers="Placa"><%= veic.getPlaca() %></td>
+                <td headers="Modelo"><% out.print(veic.getModelo());%></td>
+                <td headers="Marca"><% out.print(veic.getMarca());%></td>
+                <td headers="Renavam"><% out.print(veic.getRenavam());%></td>
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>
-                        <li><a href="ControleServidor?action=editarServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
-                        <li><a href="ControleServidor?action=visualizarServidor" ><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
-                        <li><a href="ControleServidor?action=excluirServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor"></div></a></li>
-                      </ul>
-                                    
-
-                       
+                        <li><a href="ControleVeiculo?action=editarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
+                        <li><a href="ControleVeiculo?action=visualizarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
+                        <li><a href="ControleVeiculo?action=excluirVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor"></div></a></li>
+                      </ul>                       
                     </div>
                 </td>
               </tr>

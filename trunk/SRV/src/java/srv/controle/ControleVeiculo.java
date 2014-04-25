@@ -41,26 +41,33 @@ public class ControleVeiculo extends HttpServlet {
             //Se for CADASTRAR ou ATUALIZAR
             if (acao.equals("cadastrarVeiculo") || acao.equals("atualizarVeiculo")) {
                 try {
-                    String placa = request.getParameter("placa");
-                    String ano = request.getParameter("ano");
-                    String marca = request.getParameter("marca");
-                    int capacidade = Integer.parseInt(request.getParameter("capacidade"));
-                    String modelo = request.getParameter("modelo");
-                    String combustivel = request.getParameter("combustivel");
-                    String renavam = request.getParameter("renavam");
+                    String placa = request.getParameter("iPlaca");
+                    String ano = request.getParameter("iAno");
+                    String marca = request.getParameter("iMarca");
+                    int capacidade = Integer.parseInt(request.getParameter("iCapacidade"));
+                    String modelo = request.getParameter("iModelo");
+                    String renavam = request.getParameter("iRenavam");
                     String manutencao = request.getParameter("manutencao");
-                    String manutencao_data_inicial = request.getParameter("manutencao_data_inicial");
-                    String manutencao_data_final = request.getParameter("manutencao_data_final");
-
+                    String manutencao_data_inicial = request.getParameter("sManDataInicial");
+                    String manutencao_data_final = request.getParameter("sManDataFinal");
+                    
+                    //COMBUSTIVEL
+                    String gasolina = request.getParameter("gasolina");
+                    String diesel = request.getParameter("diesel");
+                    String alcool = request.getParameter("alcool");
+                    String gnv = request.getParameter("gnv");
+                    
                     Veiculo veiculo = new Veiculo();
                     veiculo.setPlaca(placa);
                     veiculo.setAno(ano);
                     veiculo.setMarca(marca);
                     veiculo.setCapacidade(capacidade);
                     veiculo.setModelo(modelo);
-                    veiculo.setCombustivel(combustivel);
                     veiculo.setRenavam(renavam);
 
+                    //FALTA VALIDAR TODOS OS CHECKBOX
+                    veiculo.setCombustivel(gasolina);
+                    
                     if (manutencao.equals("t")) {
                         veiculo.setManutencao(true);
                     } else {
