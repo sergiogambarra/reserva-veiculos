@@ -22,8 +22,8 @@ import srv.dao.ServidorDAO;
 @Entity
 @Table(name = "servidor")
 @SuppressWarnings("serial")
-public class Servidor implements java.io.Serializable
-{
+public class Servidor implements java.io.Serializable {
+
     private String matriculaSIAPE;
     private String senha;
     private int perfil;
@@ -71,10 +71,8 @@ public class Servidor implements java.io.Serializable
     public Servidor() {
         this.matriculaSIAPE = matriculaSIAPE;
     }
-    
-    
-    
-    public int VerificarLogin(){
+
+    public int VerificarLogin() {
         /*
          * 1 para administrador
          * 0 para Servidor normal
@@ -82,97 +80,82 @@ public class Servidor implements java.io.Serializable
          */
         ServidorDAO fdao = new ServidorDAO();
         List l = fdao.buscarServidor(matriculaSIAPE);
-        
-        if (!l.isEmpty())
-        {
+
+        if (!l.isEmpty()) {
             Servidor func = (Servidor) l.get(0);
-            if (func.senha.equals(senha))
-            {
-                if (func.perfil == 1)
-                {    
+            if (func.senha.equals(senha)) {
+                if (func.perfil == 1) {
                     return 1;
-                }
-                else
-                {
+                } else {
                     return 0;
                 }
             }
         }
         return -1;
     }
-    
-    public void EnviarSenha()
-    {
+
+    public void EnviarSenha() {
         ServidorDAO fdao = new ServidorDAO();
         List l = fdao.buscarServidor(matriculaSIAPE);
-        if (!l.isEmpty())
-        {
+        if (!l.isEmpty()) {
             Servidor func = (Servidor) l.get(0);
-            SimpleEmail simplemail = new SimpleEmail();  
-  
-        try {  
-        simplemail.setDebug(true);  
-        simplemail.setSmtpPort(465);
-        simplemail.setHostName("smtp.gmail.com");  
-        simplemail.setAuthentication("erickrpeck@gmail.com","!*)%!(($");  
-        simplemail.setSSL(true);
-        simplemail.addTo(func.getEmail()); //pode ser qualquer um email  
-        simplemail.setFrom("erickrpeck@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao  
-        simplemail.setSubject("Senha do SRV");  
-        simplemail.setMsg("Sua senha é: "+func.getSenha());  
-        simplemail.send();  
-  
-        } catch (EmailException e) {  
-  
-        }
+            SimpleEmail simplemail = new SimpleEmail();
+
+            try {
+                simplemail.setDebug(true);
+                simplemail.setSmtpPort(465);
+                simplemail.setHostName("smtp.gmail.com");
+                simplemail.setAuthentication("erickrpeck@gmail.com", "!*)%!(($");
+                simplemail.setSSL(true);
+                simplemail.addTo(func.getEmail()); //pode ser qualquer um email  
+                simplemail.setFrom("erickrpeck@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao  
+                simplemail.setSubject("Senha do SRV");
+                simplemail.setMsg("Sua senha é: " + func.getSenha());
+                simplemail.send();
+
+            } catch (EmailException e) {
+            }
         }
     }
-    
+
     @Id
-    @Column(name="matricula_siape")
-    public String getMatriculaSIAPE() 
-    {
+    @Column(name = "matricula_siape")
+    public String getMatriculaSIAPE() {
         return matriculaSIAPE;
     }
 
-    public void setMatriculaSIAPE(String matriculaSIAPE) 
-    {
+    public void setMatriculaSIAPE(String matriculaSIAPE) {
         this.matriculaSIAPE = matriculaSIAPE;
     }
-    
-    @Column(name="senha")
-    public String getSenha() 
-    {
+
+    @Column(name = "senha")
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) 
-    {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    @Column(name="perfil")
-    public int getPerfil() 
-    {
+
+    @Column(name = "perfil")
+    public int getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(int perfil) 
-    {
+    public void setPerfil(int perfil) {
         this.perfil = perfil;
     }
-    
-    @Column(name="email")
-    public String getEmail() 
-    {
+
+    @Column(name = "email")
+    public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
-     
-    @Column(name="nome")
+
+    @Column(name = "nome")
     public String getNome() {
         return nome;
     }
@@ -181,7 +164,7 @@ public class Servidor implements java.io.Serializable
         this.nome = nome;
     }
 
-    @Column(name="cpf")
+    @Column(name = "cpf")
     public String getCpf() {
         return cpf;
     }
@@ -190,7 +173,7 @@ public class Servidor implements java.io.Serializable
         this.cpf = cpf;
     }
 
-    @Column(name="cnh")
+    @Column(name = "cnh")
     public int getCnh() {
         return cnh;
     }
@@ -199,7 +182,7 @@ public class Servidor implements java.io.Serializable
         this.cnh = cnh;
     }
 
-    @Column(name="motorista")
+    @Column(name = "motorista")
     public boolean isMotorista() {
         return motorista;
     }
@@ -208,7 +191,7 @@ public class Servidor implements java.io.Serializable
         this.motorista = motorista;
     }
 
-    @Column(name="rg")
+    @Column(name = "rg")
     public String getRg() {
         return rg;
     }
@@ -217,7 +200,7 @@ public class Servidor implements java.io.Serializable
         this.rg = rg;
     }
 
-    @Column(name="orgao_expedidor")
+    @Column(name = "orgao_expedidor")
     public String getOrgao_expedidor() {
         return orgao_expedidor;
     }
@@ -226,7 +209,7 @@ public class Servidor implements java.io.Serializable
         this.orgao_expedidor = orgao_expedidor;
     }
 
-    @Column(name="telefone_comer")
+    @Column(name = "telefone_comer")
     public String getTelefone_comer() {
         return telefone_comer;
     }
@@ -235,7 +218,7 @@ public class Servidor implements java.io.Serializable
         this.telefone_comer = telefone_comer;
     }
 
-    @Column(name="telefone_cel")
+    @Column(name = "telefone_cel")
     public String getTelefone_cel() {
         return telefone_cel;
     }
@@ -244,7 +227,7 @@ public class Servidor implements java.io.Serializable
         this.telefone_cel = telefone_cel;
     }
 
-    @Column(name="estado")
+    @Column(name = "estado")
     public String getEstado() {
         return estado;
     }
@@ -253,7 +236,7 @@ public class Servidor implements java.io.Serializable
         this.estado = estado;
     }
 
-    @Column(name="cidade")
+    @Column(name = "cidade")
     public String getCidade() {
         return cidade;
     }
@@ -262,7 +245,7 @@ public class Servidor implements java.io.Serializable
         this.cidade = cidade;
     }
 
-    @Column(name="informacoes")
+    @Column(name = "informacoes")
     public String getInformacoes() {
         return informacoes;
     }
@@ -271,7 +254,7 @@ public class Servidor implements java.io.Serializable
         this.informacoes = informacoes;
     }
 
-    @Column(name="data_nascimento")
+    @Column(name = "data_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getData_nascimento() {
         return data_nascimento;
@@ -280,8 +263,8 @@ public class Servidor implements java.io.Serializable
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
-    
-    @Column(name="sexo")
+
+    @Column(name = "sexo")
     public String getSexo() {
         return sexo;
     }
@@ -289,8 +272,8 @@ public class Servidor implements java.io.Serializable
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
-    @Column(name="status_serv")
+
+    @Column(name = "status_serv")
     public boolean isStatus_serv() {
         return status_serv;
     }
@@ -298,16 +281,17 @@ public class Servidor implements java.io.Serializable
     public void setStatus_serv(boolean status_serv) {
         this.status_serv = status_serv;
     }
-    
-    @Column(name="estado_civil")
+
+    @Column(name = "estado_civil")
     public String getEstado_civil() {
         return estado_civil;
-    }    
+    }
+
     public void setEstado_civil(String estado_civil) {
         this.estado_civil = estado_civil;
     }
 
-    @Column(name="nacionalidade")
+    @Column(name = "nacionalidade")
     public String getNacionalidade() {
         return nacionalidade;
     }
@@ -315,5 +299,4 @@ public class Servidor implements java.io.Serializable
     public void setNacionalidade(String nacionalidade) {
         this.nacionalidade = nacionalidade;
     }
-   
 }

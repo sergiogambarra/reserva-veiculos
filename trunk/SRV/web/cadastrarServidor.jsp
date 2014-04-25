@@ -175,10 +175,10 @@
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
                                         </li>
-                                        <li>
+<!--                                        <li>
                                             <div class="formCadastroLabel"><label for="sSenha">Senha</label> </div>
                                             <div class="formCadastroInput"><input type="password" name="sSenha" placeholder="Senha"/></div>
-                                        </li>
+                                        </li>-->
                                         <li class="liTextArea">
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>

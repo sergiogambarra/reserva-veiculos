@@ -55,7 +55,6 @@ public class ControleServidor extends HttpServlet {
                     String estado = request.getParameter("estado");
                     String cidade = request.getParameter("sCidade");
                     String nacionalidade = request.getParameter("sNacionalidade");
-                    String senha = request.getParameter("sSenha");
                     String informacoes = request.getParameter("sInfoComplementar");
                     String status_serv = request.getParameter("status_serv");
                     String sexo = request.getParameter("sexo");
@@ -74,19 +73,6 @@ public class ControleServidor extends HttpServlet {
                     serv.setRg(rg);
                     serv.setOrgao_expedidor(orgao_expedidor);
                     serv.setEstado_civil(estado_civil);
-                    
-                    /*if (!estado_civil.equalsIgnoreCase("0")) {
-                        if (estado_civil.equalsIgnoreCase("1")) {
-                            serv.setEstado_civil("Solteiro");
-                        } else if (estado_civil.equalsIgnoreCase("2")) {
-                            serv.setEstado_civil("Casado");
-                        } else if (estado_civil.equalsIgnoreCase("3")) {
-                            serv.setEstado_civil("Viúvo");
-                        } else if (estado_civil.equalsIgnoreCase("4")) {
-                            serv.setEstado_civil("Separado");
-                        }
-                    }*/
-
                     serv.setEmail(email);
                     serv.setTelefone_comer(telefone_comer);
                     serv.setTelefone_cel(telefone_cel);
@@ -103,21 +89,15 @@ public class ControleServidor extends HttpServlet {
                         serv.setStatus_serv(false);
                     }
 
-                    //A DATA SERÁ A SENHA
-                    /*Date DataNascFr = null;
-                    String DataNascDb = null;
-                    try {
-                        DataNascFr = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
-                        DataNascDb = new SimpleDateFormat("dddd-MM-yyyy").format(DataNascFr);
-                        DataNascFr = new SimpleDateFormat("dddd-MM-yyyy").parse(DataNascDb);
-                    } catch (java.text.ParseException e) {
-                        e.printStackTrace();
-                    }*/
-                    
-                    Date date = new Date();
+                    //A DATA SERÁ A SENHA INICIAL
+                    Date date;
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
                     serv.setData_nascimento(date);
-
+                    
+                    //PEGA DIA E ANO PARA GERAR A SENHA
+                    SimpleDateFormat dataSenha = new SimpleDateFormat("ddyyyy");  
+                    dataSenha.format(date);
+                    String senha = dataSenha.format(date);
                     ServidorDAO sdao = new ServidorDAO();
 
                     if (acao.equals("cadastrarServidor")) {
@@ -132,7 +112,6 @@ public class ControleServidor extends HttpServlet {
                         
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                     } else if (acao.equals("atualizarServidor")) {
-                        serv.setSenha("1234");
                         sdao.atualizar(serv);
                         InterfaceServidorDAO idao = new ServidorDAO();
                         List<Servidor> lista = idao.todosServidor();
