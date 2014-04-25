@@ -8,5 +8,6 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">korg</property>
     <mapping class="srv.modelo.Servidor" />
+    <mapping class="srv.modelo.Veiculo" />
   </session-factory>
 </hibernate-configuration>
