@@ -149,6 +149,7 @@ public class ControleServidor extends HttpServlet {
                 List<Servidor> list = idao.consultarMatricula(request.getParameter("matricula"));
                 Servidor matricula = list.get(0);
                 request.setAttribute("matricula", matricula);
+                request.setAttribute("dao", idao);
                 request.getRequestDispatcher("/formAtualizarServidor.jsp").forward(request, response);
             }else if (acao.equals("excluirServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
