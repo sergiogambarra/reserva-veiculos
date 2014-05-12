@@ -53,6 +53,19 @@ values ('ana', '7654321', '123456', 'anapgsilva@restinga.ifrs.edu.br', '0', 'mas
 '2010/09/12', '13131313131', '2424242424', 'stjrs', 'porto alegre', 'rs', 'brasileiro', 
 'feminino', '5144444444', '5166666666', '0','1', null);
 
+USE SRV;
+insert into veiculo (placa, ano, marca, modelo, combustivel, renavam, 
+capacidade, manutencao, manutencao_data_inicial, manutencao_data_final)
+values ('AAA2323', '2012', 'vw', 'corsa gsi 1.0', 'gasolina', '2233445566',
+ 5, '1', '2014/05/12', '2014/05/13');
+insert into veiculo (placa, ano, marca, modelo, combustivel, renavam, 
+capacidade, manutencao)
+values ('BBB3434', '2014', 'fiat', 'siena epf 1.0', 'gnv', '7878787878',
+ 5, '0');
+
+select * from veiculo;
+
 select * from servidor;
 
 drop database SRV;
+
