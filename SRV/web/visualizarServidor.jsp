@@ -33,17 +33,7 @@
                 </div>
             </div>
             <div class="containerLogado">
-                <div class="containerLogadoMenu">
-                    <nav class="menuAcoes">
-                        <ul>
-                            <li><a href="listaReservas.jsp">Lista de Reservas</a></li>
-                            <li><a href="#">Lista de Veículos</a></li>
-                            <li><a href="#">Lista de Servidores</a></li>
-                            <li><a href="#">Novo Veículo</a></li>
-                            <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
-                          </li>
-                    </nav>
-                </div>
+                <%@include file="menu.jsp" %>
                 <!-- A próxima div poderia servir para controle de permissões? -->
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
