@@ -57,7 +57,7 @@ public class ControleLogin extends HttpServlet {
                     {
                         request.getSession().setAttribute("servidor", f);
 
-                        request.getRequestDispatcher("pag1.jsp").forward(request, response);
+                        request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
 
                     } 
                     else if (f.VerificarLogin() == 1) 
