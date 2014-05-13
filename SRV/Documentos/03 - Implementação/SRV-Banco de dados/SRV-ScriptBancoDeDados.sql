@@ -49,9 +49,9 @@ values ('asdf', '1234567', '123456', 'erpeck@restinga.ifrs.edu.br', '1', 'mascul
 insert into servidor (nome, matricula_siape, senha, email, perfil, sexo,
 data_nascimento, cpf, rg, orgao_expedidor, cidade, estado, nacionalidade,
 estado_civil, telefone_comer, telefone_cel, motorista, status_serv, informacoes)
-values ('ana', '7654321', '123456', 'anapgsilva@restinga.ifrs.edu.br', '0', 'masculino', 
+values ('ana', '7654321', '123456', 'anapgsilva@restinga.ifrs.edu.br', '0', 'feminino', 
 '2010/09/12', '13131313131', '2424242424', 'stjrs', 'porto alegre', 'rs', 'brasileiro', 
-'feminino', '5144444444', '5166666666', '0','1', null);
+'casado', '5144444444', '5166666666', '0','1', null);
 
 USE SRV;
 insert into veiculo (placa, ano, marca, modelo, combustivel, renavam, 
