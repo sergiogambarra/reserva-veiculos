@@ -4,11 +4,7 @@
     Author     : Paula
 --%>
 
-<%
-
-
-%>    
-<%@include file="ValidarLoginAdministrador.jsp" %>
+<%@include file="ValidarLogin.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html lang="pt-br">
@@ -53,88 +49,81 @@
         
           <table class="tabelaListaVeiculos">
             <thead>
+              <p>Minhas Reservas</p>
+              <td id="Responsavel" class="colunaDuzentos">Responsável</td>
+              <td id="DataSaida" class="colunaDuzentos">Data de saída</td>
+              <td id="HorarioSaida" class="colunaDuzentos">Horário de saída</td>
+              <td id="Destino" class="colunaDuzentos">Destino</td>
               <td id="Placa" class="colunaDuzentos">Placa</td>
-              <td id="Servidor">Servidor</td>
-              <td id="Saida" class="colunaDuzentos">Saída</td>
-              <td id="Retorno" class="colunaDuzentos">Retorno</td>
+              <td id="Modelo" class="colunaDuzentos">Modelo</td>
               <td id="Acoes" class="colunaAcoesHead" >Ações</td>
             </thead>
             <tbody>
               <tr>
+                <td headers="Responsavel">Responsável</td>
+                <td headers="DataSaida">Data de saída</td>
+                <td headers="HorarioSaida">Horário de saída</td>
+                <td headers="Destino">Destino</td>
                 <td headers="Placa">Placa</td>
-                <td headers="Veiculo">Veículo</td>
-                <td headers="Saida">Saída</td>
-                <td headers="Retorno">Retorno</td>
+                <td headers="Modelo">Modelo</td>
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>
-                        <li><a href="#" ><div class="iconeEditar" alt="Editar veículo com a placa X." title="Editar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações do veículo com a placa X." title="Visualizar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar veículo com a placa X." title="Deletar veículo"></div></a></li>
+                        <li><a href="#" ><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
+                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
+                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
                       </ul>
                     </div>
                 </td>
               </tr>
+              
+        <table class="tabelaListaVeiculos">
+            <thead>
+                
+              <br><br><p>Outras Reservas</p>
+              <td id="Responsavel" class="colunaDuzentos">Responsável</td>
+              <td id="DataSaida" class="colunaDuzentos">Data de saída</td>
+              <td id="HorarioSaida" class="colunaDuzentos">Horário de saída</td>
+              <td id="Destino" class="colunaDuzentos">Destino</td>
+              <td id="Placa" class="colunaDuzentos">Placa</td>
+              <td id="Modelo" class="colunaDuzentos">Modelo</td>
+              <td id="Acoes" class="colunaAcoesHead" >Ações</td>
+            </thead>
+            <tbody>
               <tr>
+                <td headers="Responsavel">Responsável</td>
+                <td headers="DataSaida">Data de saída</td>
+                <td headers="HorarioSaida">Horário de saída</td>
+                <td headers="Destino">Destino</td>
                 <td headers="Placa">Placa</td>
-                <td headers="Veiculo">Veículo</td>
-                <td headers="Saida">Saída</td>
-                <td headers="Retorno">Retorno</td>
+                <td headers="Modelo">Modelo</td>
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>
-                        <li><a href="#" ><div class="iconeEditar" alt="Editar veículo com a placa X." title="Editar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações do veículo com a placa X." title="Visualizar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar veículo com a placa X." title="Deletar veículo"></div></a></li>
+                        <%
+                            if (request.getSession().getAttribute("administrador") != null) {
+                        %>  
+                        <li><a href="#" ><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
+                        <%
+                        }
+                        %>
+                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
+                        <%
+                            if (request.getSession().getAttribute("administrador") != null) {
+                        %>  
+                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
+                        <%
+                        }
+                        %>
+                        
                       </ul>
                     </div>
                 </td>
               </tr>
-              <tr>
-                <td headers="Placa">Placa</td>
-                <td headers="Veiculo">Veículo</td>
-                <td headers="Saida">Saída</td>
-                <td headers="Retorno">Retorno</td>
-                <td headers="Acoes" class="colunaAcoes">
-                    <div class="divColunaAcoes">
-                      <ul>
-                        <li><a href="#" ><div class="iconeEditar" alt="Editar veículo com a placa X." title="Editar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações do veículo com a placa X." title="Visualizar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar veículo com a placa X." title="Deletar veículo"></div></a></li>
-                      </ul>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td headers="Placa">Placa</td>
-                <td headers="Veiculo">Veículo</td>
-                <td headers="Saida">Saída</td>
-                <td headers="Retorno">Retorno</td>
-                <td headers="Acoes" class="colunaAcoes">
-                    <div class="divColunaAcoes">
-                      <ul>
-                        <li><a href="#" ><div class="iconeEditar" alt="Editar veículo com a placa X." title="Editar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações do veículo com a placa X." title="Visualizar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar veículo com a placa X." title="Deletar veículo"></div></a></li>
-                      </ul>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td headers="Placa">Placa</td>
-                <td headers="Veiculo">Veículo</td>
-                <td headers="Saida">Saída</td>
-                <td headers="Retorno">Retorno</td>
-                <td headers="Acoes" class="colunaAcoes">
-                    <div class="divColunaAcoes">
-                      <ul>
-                        <li><a href="#" ><div class="iconeEditar" alt="Editar veículo com a placa X." title="Editar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações do veículo com a placa X." title="Visualizar veículo"></div></a></li>
-                        <li><a href="#" ><div class="iconeDeletar" alt="Deletar veículo com a placa X." title="Deletar veículo"></div></a></li>
-                      </ul>
-                    </div>
-                </td>
-              </tr>
+              
+            </tbody>
+          </table>
+            
             </tbody>
           </table>
         </div>
