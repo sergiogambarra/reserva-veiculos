@@ -49,7 +49,7 @@
                                 document.write(pagina);
                             </script>
                         </div>
-                        <div class="formularioCadastrarVeiculo">            
+                        <div class="formularioCadastrarServidor">            
                             <h2>Cadastrar Novo Veículo</h2>
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
@@ -99,13 +99,14 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" maxlength="2"/></div>
+                                                <input type="number" id="iCapacidade" name="iCapacidade" value="5" min="1" max="50">
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="Manutencao">Manutenção</label> </div>
                                             <div class="formCadastroInput"><label class="radioManutencao" for="manutencao" >Sim</label>
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t"/>
-                                                <label class="radioManutencao" for="Manutencao">Não</label><input type="radio" id="manutencaoN" name="manutencao" value="f"/></div>
+                                                <label class="radioManutencao" for="Manutencao">Não</label><input type="radio" id="manutencaoN" checked name="manutencao" value="f"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>
@@ -115,9 +116,10 @@
                                             <div class="formCadastroLabel"><label for="sManDataFinal">Data Final (dd-mm-aaaa)</label> </div>
                                             <div class="formCadastroInput"><input type="date" name="sManDataFinal" /></div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><input type="submit" value="Enviar"/></div>
-                                            <div class="formCadastroInput"><input type="reset" value="Resetar"/></div>
+                                        <li class="formBotoes">
+                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>
+                                            <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
                                         </li>
                                     </ul>
                                 </div>

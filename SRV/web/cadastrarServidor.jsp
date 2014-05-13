@@ -178,9 +178,10 @@
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><input type="submit" value="Enviar"/></div>
-                                            <div class="formCadastroInput"><input type="reset" value="Resetar"/></div>
+                                        <li class="formBotoes">
+                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>
+                                            <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
                                         </li>
                                     </ul>
                                 </div>
