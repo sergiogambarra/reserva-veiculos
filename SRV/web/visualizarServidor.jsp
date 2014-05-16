@@ -91,6 +91,63 @@
                                             <div class="formCadastroLabel"><label for="sOrgaoExpedidor">Orgão Expedidor</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
                                         </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sNaturalidade">Naturalidade</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sUf">UF</label> </div>
+                                            <div class="formCadastroInput">
+                                                <select id="estado" name="estado"/>
+                                                <option value="0">Selecione o Estado</option>
+                                                <option value="ac">Acre</option>
+                                                <option value="al">Alagoas</option>
+                                                <option value="ap">Amapá</option>
+                                                <option value="am">Amazonas</option>
+                                                <option value="ba">Bahia</option>
+                                                <option value="ce">Ceará</option>
+                                                <option value="df">Distrito Federal</option>
+                                                <option value="es">Espirito Santo</option>
+                                                <option value="go">Goiás</option>
+                                                <option value="ma">Maranhão</option>
+                                                <option value="ms">Mato Grosso do Sul</option>
+                                                <option value="mt">Mato Grosso</option>
+                                                <option value="mg">Minas Gerais</option>
+                                                <option value="pa">Pará</option>
+                                                <option value="pb">Paraíba</option>
+                                                <option value="pr">Paraná</option>
+                                                <option value="pe">Pernambuco</option>
+                                                <option value="pi">Piauí</option>
+                                                <option value="rj">Rio de Janeiro</option>
+                                                <option value="rn">Rio Grande do Norte</option>
+                                                <option value="rs">Rio Grande do Sul</option>
+                                                <option value="ro">Rondônia</option>
+                                                <option value="rr">Roraima</option>
+                                                <option value="sc">Santa Catarina</option>
+                                                <option value="sp">São Paulo</option>
+                                                <option value="se">Sergipe</option>
+                                                <option value="to">Tocantins</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
+                                            <div class="formCadastroInput">
+                                                <select id="estadoCivil" name="estadoCivil">
+                                                    <option value="0">Estado Civil:</option>
+                                                    <option value="1">Solteiro</option>
+                                                    <option value="2">Casado</option>
+                                                    <option value="3">Viúvo</option>
+                                                    <option value="4">Separado</option>
+                                                    <option value="5">Divorciado</option>
+                                                    <option value="6">União Estável</option>
+                                                </select>
+                                            </div>
+                                        </li>
                                         
                                         <li>
                                             <div class="formCadastroLabel"><label for="status">Status</label> </div>
@@ -109,19 +166,6 @@
                                                 <label class="radioMotorista" for="bMotorista">Não<lable><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
                                         </li> 
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
-                                            <div class="formCadastroInput">
-                                                <select id="estadoCivil" name="estadoCivil">
-                                                    <option value="0">Estado Civil:</option>
-                                                    <option value="1">Solteiro</option>
-                                                    <option value="2">Casado</option>
-                                                    <option value="3">Viúvo</option>
-                                                    <option value="4">Separado</option>
-                                                    <option value="5">União Estável</option>
-                                                </select>
-                                            </div>
-                                        </li>
-                                        <li>
                                             <div class="formCadastroLabel"><label for="sTelefoneComercial">Telefone Comercial</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sTelefoneComercial" name="sTelefoneComercial" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneComercial);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneComercial);"/> </div>
                                         </li>
@@ -129,50 +173,6 @@
                                             <div class="formCadastroLabel"><label for="sTelefoneCelular">Telefone Celular</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sTelefoneCelular" name="sTelefoneCelular" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneCelular);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneCelular);"/></div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sUf">UF</label> </div>
-                                            <div class="formCadastroInput">
-                                                <select id="estado" name="estado"/>
-                                                    <option value="0">Selecione o Estado</option>
-                                                    <option value="ac">Acre</option>
-                                                    <option value="al">Alagoas</option>
-                                                    <option value="ap">Amapá</option>
-                                                    <option value="am">Amazonas</option>
-                                                    <option value="ba">Bahia</option>
-                                                    <option value="ce">Ceará</option>
-                                                    <option value="df">Distrito Federal</option>
-                                                    <option value="es">Espirito Santo</option>
-                                                    <option value="go">Goiás</option>
-                                                    <option value="ma">Maranhão</option>
-                                                    <option value="ms">Mato Grosso do Sul</option>
-                                                    <option value="mt">Mato Grosso</option>
-                                                    <option value="mg">Minas Gerais</option>
-                                                    <option value="pa">Pará</option>
-                                                    <option value="pb">Paraíba</option>
-                                                    <option value="pr">Paraná</option>
-                                                    <option value="pe">Pernambuco</option>
-                                                    <option value="pi">Piauí</option>
-                                                    <option value="rj">Rio de Janeiro</option>
-                                                    <option value="rn">Rio Grande do Norte</option>
-                                                    <option value="rs">Rio Grande do Sul</option>
-                                                    <option value="ro">Rondônia</option>
-                                                    <option value="rr">Roraima</option>
-                                                    <option value="sc">Santa Catarina</option>
-                                                    <option value="sp">São Paulo</option>
-                                                    <option value="se">Sergipe</option>
-                                                    <option value="to">Tocantins</option>
-                                                </select>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sCidade">Cidade de Nascimento</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCidade" name="sCidade" placeholder="Naturalidade"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
-                                        </li>
-                                       
                                         <li class="liTextArea">
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>

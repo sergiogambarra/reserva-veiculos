@@ -49,14 +49,15 @@ public class ControleServidor extends HttpServlet {
                     String cpf = request.getParameter("sCpf");
                     String rg = request.getParameter("sRg");
                     String orgao_expedidor = request.getParameter("sOrgaoExpedidor");
+                    String naturalidade = request.getParameter("sNaturalidade");
+                    String estado = request.getParameter("estado");
+                    String nacionalidade = request.getParameter("sNacionalidade");
+                    String estado_civil = request.getParameter("estadoCivil");
+                    
                     int cnh = Integer.parseInt(request.getParameter("sCnh"));
                     String motorista = request.getParameter("bMotorista");
-                    String estado_civil = request.getParameter("estadoCivil");
                     String telefone_comer = request.getParameter("sTelefoneComercial");
                     String telefone_cel = request.getParameter("sTelefoneCelular");
-                    String estado = request.getParameter("estado");
-                    String cidade = request.getParameter("sCidade");
-                    String nacionalidade = request.getParameter("sNacionalidade");
                     String informacoes = request.getParameter("sInfoComplementar");
                     String status_serv = request.getParameter("status_serv");
                     
@@ -70,9 +71,14 @@ public class ControleServidor extends HttpServlet {
                     Date date;
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
                     serv.setData_nascimento(date);
+                    
                     serv.setCpf(cpf);
                     serv.setRg(rg);
                     serv.setOrgao_expedidor(orgao_expedidor);
+                    serv.setNaturalidade(naturalidade);
+                    serv.setEstado(estado);
+                    serv.setNacionalidade(nacionalidade);
+                    serv.setEstado_civil(estado_civil);
                     
                     serv.setCnh(cnh);
                     if (motorista.equals("t")) {
@@ -80,12 +86,9 @@ public class ControleServidor extends HttpServlet {
                     } else {
                         serv.setMotorista(false);
                     }
-                    serv.setEstado_civil(estado_civil);
+                    
                     serv.setTelefone_comer(telefone_comer);
                     serv.setTelefone_cel(telefone_cel);
-                    serv.setEstado(estado);
-                    serv.setCidade(cidade);
-                    serv.setNacionalidade(nacionalidade);
                     serv.setInformacoes(informacoes);
                     
                     //Ativo ou Inativo

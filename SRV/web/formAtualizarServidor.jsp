@@ -83,7 +83,7 @@
                                                         </li>
                                                         <li>
                                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" size="14" maxlength="11"/></div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" maxlength="11"/></div>
                                                         </li>
                                                         <li>
                                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
@@ -93,7 +93,43 @@
                                                             <div class="formCadastroLabel"><label for="sOrgaoExpedidor">*Orgão Expedidor</label> </div>
                                                             <div class="formCadastroInput"><input type="text" value="${matricula.orgao_expedidor}" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
                                                         </li>
-                                                        
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sNaturalidade">Naturalidade</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.naturalidade}" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento"/></div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel">
+                                                                <label for="sUf" id="estado" value="${matricula.estado}">UF</label>
+                                                            </div>
+                                                            <div class="formCadastroInput">
+                                                                <select id="estado" name="estado"/>
+                                                                <option value="0">Selecione o Estado</option>
+                                                                <%
+                                                                    List<String> listEstados = ((InterfaceServidorDAO) request.getAttribute("dao")).editarServidorSelecionarEstado(((Servidor) request.getAttribute("matricula")).getEstado());
+                                                                    for (int i = 0; i < listEstados.size(); i++) {
+                                                                %><%= listEstados.get(i)%><%
+                                                                    }
+                                                                %>
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.nacionalidade}" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
+                                                            <div class="formCadastroInput">
+                                                                <select id="estadoCivil" name="estadoCivil">
+                                                                    <%
+                                                                        List<String> listEstCivil = ((InterfaceServidorDAO) request.getAttribute("dao")).editarEstadoCivil(((Servidor) request.getAttribute("matricula")).getEstado_civil());
+                                                                        for (int i = 0; i < listEstCivil.size(); i++) {
+                                                                    %><%= listEstCivil.get(i)%><%
+                                                                        }
+                                                                    %>
+                                                                </select>
+                                                            </div>
+                                                        </li>
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
@@ -129,20 +165,6 @@
                                                                                         </div>
                                                                                         </li>
                                                                                         <li>
-                                                                                            <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
-                                                                                            <div class="formCadastroInput">
-                                                                                                <select id="estadoCivil" name="estadoCivil">
-                                                                                                    <%
-                                                                                                        List<String> listEstCivil= ((InterfaceServidorDAO) request.getAttribute("dao")).editarEstadoCivil(((Servidor) request.getAttribute("matricula")).getEstado_civil());
-                                                                                                        for (int i = 0; i < listEstCivil.size(); i++) {
-                                                                                                    %><%= listEstCivil.get(i)%><%
-                                                                                                    }
-                                                                                                    %>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </li>
-                                                                                        
-                                                                                        <li>
                                                                                             <div class="formCadastroLabel"><label for="sTelefoneComercial">Telefone Comercial</label> </div>
                                                                                             <div class="formCadastroInput"><input type="text" value="${matricula.telefone_comer}" id="sTelefoneComercial" name="sTelefoneComercial" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneComercial);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneComercial);"/> </div>
                                                                                         </li>
@@ -150,31 +172,6 @@
                                                                                             <div class="formCadastroLabel"><label for="sTelefoneCelular">Telefone Celular</label> </div>
                                                                                             <div class="formCadastroInput"><input type="text" value="${matricula.telefone_cel}" id="sTelefoneCelular" name="sTelefoneCelular" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneCelular);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneCelular);"/></div>
                                                                                         </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel">
-                                                                                                <label for="sUf" id="estado" value="${matricula.estado}">UF</label>
-                                                                                            </div>
-                                                                                            <div class="formCadastroInput">
-                                                                                                <select id="estado" name="estado"/>
-                                                                                                <option value="0">Selecione o Estado</option>
-                                                                                                <%
-                                                                                                    List<String> listEstados = ((InterfaceServidorDAO) request.getAttribute("dao")).editarServidorSelecionarEstado(((Servidor) request.getAttribute("matricula")).getEstado());
-                                                                                                    for (int i = 0; i < listEstados.size(); i++) {
-                                                                                                %><%= listEstados.get(i)%><%
-                                                                                                    }
-                                                                                                %>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sCidade">Cidade de Nascimento</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cidade}" id="sCidade" name="sCidade" placeholder="Naturalidade"/></div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.nacionalidade}" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
-                                                                                        </li>
-
                                                                                         <li class="liTextArea">
                                                                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                                                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140">${matricula.informacoes}</textarea></div>
