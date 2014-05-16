@@ -53,11 +53,11 @@ public class ControleServidor extends HttpServlet {
                     String estado = request.getParameter("estado");
                     String nacionalidade = request.getParameter("sNacionalidade");
                     String estado_civil = request.getParameter("estadoCivil");
+                    String telefone1 = request.getParameter("sTelefone1");
+                    String telefone2 = request.getParameter("sTelefone2");
                     
                     int cnh = Integer.parseInt(request.getParameter("sCnh"));
                     String motorista = request.getParameter("bMotorista");
-                    String telefone_comer = request.getParameter("sTelefoneComercial");
-                    String telefone_cel = request.getParameter("sTelefoneCelular");
                     String informacoes = request.getParameter("sInfoComplementar");
                     String status_serv = request.getParameter("status_serv");
                     
@@ -79,6 +79,8 @@ public class ControleServidor extends HttpServlet {
                     serv.setEstado(estado);
                     serv.setNacionalidade(nacionalidade);
                     serv.setEstado_civil(estado_civil);
+                    serv.setTelefone1(telefone1);
+                    serv.setTelefone2(telefone2);
                     
                     serv.setCnh(cnh);
                     if (motorista.equals("t")) {
@@ -87,8 +89,6 @@ public class ControleServidor extends HttpServlet {
                         serv.setMotorista(false);
                     }
                     
-                    serv.setTelefone_comer(telefone_comer);
-                    serv.setTelefone_cel(telefone_cel);
                     serv.setInformacoes(informacoes);
                     
                     //Ativo ou Inativo

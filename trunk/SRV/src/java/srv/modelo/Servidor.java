@@ -38,16 +38,16 @@ public class Servidor implements java.io.Serializable {
     private String estado;
     private String nacionalidade;
     private String estado_civil;
+    private String telefone1;
+    private String telefone2;
     
     private int cnh;
     private boolean motorista;
-    private String telefone_comer;
-    private String telefone_cel;
     private boolean status_serv;
     private String informacoes;
     
 
-    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, String naturalidade, String estado, String nacionalidade, String estado_civil, int cnh, boolean motorista, String telefone_comer, String telefone_cel, boolean status_serv, String informacoes) {
+    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, String naturalidade, String estado, String nacionalidade, String estado_civil, String telefone1, String telefone2, int cnh, boolean motorista, boolean status_serv, String informacoes) {
         this.matriculaSIAPE = matriculaSIAPE;
         this.nome = nome;
         this.senha = senha;
@@ -62,10 +62,11 @@ public class Servidor implements java.io.Serializable {
         this.estado = estado;
         this.nacionalidade = nacionalidade;
         this.estado_civil = estado_civil;
+        this.telefone1 = telefone1;
+        this.telefone2 = telefone2;
+        
         this.cnh = cnh;
         this.motorista = motorista;
-        this.telefone_comer = telefone_comer;
-        this.telefone_cel = telefone_cel;
         this.status_serv = status_serv;
         this.informacoes = informacoes;
         
@@ -212,22 +213,22 @@ public class Servidor implements java.io.Serializable {
         this.orgao_expedidor = orgao_expedidor;
     }
 
-    @Column(name = "telefone_comer")
-    public String getTelefone_comer() {
-        return telefone_comer;
+    @Column(name = "telefone1")
+    public String getTelefone1() {
+        return telefone1;
     }
 
-    public void setTelefone_comer(String telefone_comer) {
-        this.telefone_comer = telefone_comer;
+    public void setTelefone1(String telefone1) {
+        this.telefone1 = telefone1;
     }
 
-    @Column(name = "telefone_cel")
-    public String getTelefone_cel() {
-        return telefone_cel;
+    @Column(name = "telefone2")
+    public String getTelefone2() {
+        return telefone2;
     }
 
-    public void setTelefone_cel(String telefone_cel) {
-        this.telefone_cel = telefone_cel;
+    public void setTelefone2(String telefone2) {
+        this.telefone2 = telefone2;
     }
 
     @Column(name = "estado")

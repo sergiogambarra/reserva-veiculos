@@ -17,10 +17,10 @@ naturalidade VARCHAR(30)null default null,
 estado VARCHAR(2)null default null,
 nacionalidade VARCHAR(20)null default null,
 estado_civil VARCHAR(15)null default null,
+telefone1 VARCHAR(13)not null,
+telefone2 VARCHAR(13)null default null,
 cnh INT(15)null default null,
 motorista TINYINT(1)not null,
-telefone_comer VARCHAR(14)not null,
-telefone_cel VARCHAR(14)null default null,
 status_serv TINYINT(1)not null,
 informacoes VARCHAR(100)null default null,
 PRIMARY KEY (matricula_siape));
@@ -42,8 +42,8 @@ PRIMARY KEY (placa));
 insert into servidor 
 values ('1234567', 'admin', '123456', 'admin1@gmail.com', '1',
  'masculino', '2010/10/09','1212', '4353', 'sde',
- 'porto', 'rs', 'brasileiro', 'casado', '3434',
-  '1', '(51)2324-2324', '(43)3434-3434','1', 'teste admin');
+ 'porto', 'rs', 'brasileiro', 'casado', '(51)2324-2324', '(43)3434-3434',
+ '3434','1','1', 'teste admin');
 
 select * from servidor;
 
