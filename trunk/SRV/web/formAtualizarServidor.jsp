@@ -57,8 +57,43 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
                                             <div class="formCadastroInput"><input type="text" value="${matricula.email}" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
-                                       </li>
-                                       
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel">
+                                                <label for="sexo">*Sexo</label>
+                                            </div>
+                                            <div class="formCadastroInput">
+                                                <label class="radioSexo" for="Sexo">Masculino</label>
+                                                <input type="radio" id="sexom" name="sexo" value="m" 
+                                                       <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("m")) {%>
+                                                       checked
+                                                       <% }%>   
+                                                       />
+                                                <label class="radioSexo" for="Sexo">Feminino<label>
+                                                        <input type="radio" id="sexof" name="sexo" value="f" 
+                                                               <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("f")) {%>
+                                                               checked
+                                                               <% }%>   
+                                                               />
+                                                        </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sDataNascimento">*Data Nascimento</label> </div>
+                                                            <div class="formCadastroInput"><input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" placeholder="aaaa-mm-dd"/></div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" size="14" maxlength="11"/></div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.rg}" id="sRg" name="sRg" placeholder="Identidade"/></div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sOrgaoExpedidor">*Orgão Expedidor</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.orgao_expedidor}" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
+                                                        </li>
+                                                        
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
@@ -74,26 +109,6 @@
                                                                />
                                                         </div>
                                                         </li>
-                                                        
-                                                        <li>
-                                                            <div class="formCadastroLabel">
-                                                                <label for="sexo">Sexo</label>
-                                                            </div>
-                                                            <div class="formCadastroInput">
-                                                                <label class="radioSexo" for="Sexo">Masculino</label>
-                                                                <input type="radio" id="sexom" name="sexo" value="m" 
-                                                                       <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("m")) {%>
-                                                                       checked
-                                                                       <% }%>   
-                                                                       />
-                                                                <label class="radioSexo" for="Sexo">Feminino<label>
-                                                                        <input type="radio" id="sexof" name="sexo" value="f" 
-                                                                               <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("f")) {%>
-                                                                               checked
-                                                                               <% }%>   
-                                                                               />
-                                                                        </div>
-                                                                        </li>
                                                                         <li>
                                                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
                                                                             <div class="formCadastroInput"><input value="${matricula.cnh}" type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
@@ -112,18 +127,6 @@
                                                                                                <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                                                                />
                                                                                         </div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sCpf">CPF</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" size="14" maxlength="11"/></div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sRg">RG</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.rg}" id="sRg" name="sRg" placeholder="Identidade"/></div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sOrgaoExpedidor">Orgão Expedidor</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.orgao_expedidor}" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
                                                                                         </li>
                                                                                         <li>
                                                                                             <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
@@ -146,10 +149,6 @@
                                                                                         <li>
                                                                                             <div class="formCadastroLabel"><label for="sTelefoneCelular">Telefone Celular</label> </div>
                                                                                             <div class="formCadastroInput"><input type="text" value="${matricula.telefone_cel}" id="sTelefoneCelular" name="sTelefoneCelular" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneCelular);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneCelular);"/></div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sDataNascimento">Data Nascimento (dd-mm-aaaa)</label> </div>
-                                                                                            <div class="formCadastroInput"><input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" /></div>
                                                                                         </li>
                                                                                         <li>
                                                                                             <div class="formCadastroLabel">

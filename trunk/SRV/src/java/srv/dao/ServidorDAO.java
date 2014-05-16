@@ -182,13 +182,14 @@ public class ServidorDAO implements InterfaceServidorDAO {
         comboBox.add("<option value=\"cas\">Casado</option>");
         comboBox.add("<option value=\"viu\">Viúvo</option>");
         comboBox.add("<option value=\"sep\">Separado</option>");
-
+        comboBox.add("<option value=\"uni\">União Estável</option>");
         List<String> listAux = new ArrayList<String>();
 
         listAux.add("sol");
         listAux.add("cas");
         listAux.add("viu");
         listAux.add("sep");
+        listAux.add("uni");
 
         for (int i = 0; i < listAux.size(); i++) {
             if (listAux.get(i).equals(ecAtual)) {
