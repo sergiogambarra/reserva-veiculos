@@ -25,10 +25,10 @@ import srv.dao.ServidorDAO;
 public class Servidor implements java.io.Serializable {
 
     private String matriculaSIAPE;
-    private String senha;
-    private int perfil;
-    private String email;
     private String nome;
+    private String senha;
+    private String email;
+    private int perfil; 
     private String cpf;
     private int cnh;
     private boolean motorista;
@@ -45,12 +45,12 @@ public class Servidor implements java.io.Serializable {
     private String informacoes;
     private Date data_nascimento;
 
-    public Servidor(String matriculaSIAPE, String senha, int perfil, String email, String nome, String cpf, int cnh, boolean motorista, String rg, String orgao_expedidor, String estado_civil, String sexo, String telefone_comer, String telefone_cel, String estado, boolean status_serv, String cidade, String nacionalidade, String informacoes, Date data_nascimento) {
+    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String cpf, int cnh, boolean motorista, String rg, String orgao_expedidor, String estado_civil, String sexo, String telefone_comer, String telefone_cel, String estado, boolean status_serv, String cidade, String nacionalidade, String informacoes, Date data_nascimento) {
         this.matriculaSIAPE = matriculaSIAPE;
-        this.senha = senha;
-        this.perfil = perfil;
-        this.email = email;
         this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.perfil = perfil;
         this.cpf = cpf;
         this.cnh = cnh;
         this.motorista = motorista;

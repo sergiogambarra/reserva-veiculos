@@ -71,7 +71,7 @@
                 <td headers="Matricula"><%= serv.getMatriculaSIAPE() %></td>
                 <td headers="Servidor"><% out.print(serv.getNome());%></td>
                 <td headers="CNH"><% out.print(serv.getCnh());%></td>
-                <td headers="Telefone"><% out.print(serv.getTelefone_cel());%></td>
+                <td headers="Telefone"><% out.print(serv.getTelefone_comer());%></td>
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>

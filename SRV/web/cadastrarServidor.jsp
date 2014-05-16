@@ -43,10 +43,23 @@
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMatriculaSiape">Matricula SIAPE</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMatriculaSiape">*Matricula SIAPE</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iMatriculaSiape" name="iMatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/></div>
                                         </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" size="50"/></div>
+                                        </li>
+                                        <!--<li>
+                                            <div class="formCadastroLabel"><label for="sSenha">*Senha</label> </div>
+                                            <div class="formCadastroInput"><input type="password" name="sSenha" placeholder="Senha"/></div>
+                                        </li>-->
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
+                                        </li>
+                                        
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv">Status</label> </div>
@@ -57,10 +70,7 @@
                                                 <input type="radio" id="status_serv" name="status_serv" value="i"/>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sNomeCompleto">Nome</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" size="50"/></div>
-                                        </li>
+                                        
                                         <li>
                                             <div class="formCadastroLabel"><label for="sexo">Sexo</label> </div>
                                             <div class="formCadastroInput"><label class="radioSexo" for="Sexo" >Masculino</label>
@@ -101,10 +111,7 @@
                                                 </select>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sEmail">Email</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
-                                        </li>
+                                        
                                         <li>
                                             <div class="formCadastroLabel"><label for="sTelefoneComercial">Telefone Comercial</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sTelefoneComercial" name="sTelefoneComercial" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneComercial);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneComercial);"/> </div>
@@ -160,10 +167,7 @@
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
                                         </li>
-                                    <!--<li>
-                                            <div class="formCadastroLabel"><label for="sSenha">Senha</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sSenha" placeholder="Senha"/></div>
-                                        </li>-->
+                                    
                                         <li class="liTextArea">
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>
