@@ -130,6 +130,15 @@
                                                                 </select>
                                                             </div>
                                                         </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sTelefone1">*Telefone 1</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.telefone1}" id="sTelefone1" name="sTelefone1" placeholder="(xx)xxxx-xxxx"  maxlength="14" /> </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel"><label for="sTelefone2">Telefone 2</label> </div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.telefone2}" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"  maxlength="14" /></div>
+                                                        </li>
+                                                                                        
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
@@ -163,14 +172,6 @@
                                                                                                <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                                                                />
                                                                                         </div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sTelefoneComercial">Telefone Comercial</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.telefone_comer}" id="sTelefoneComercial" name="sTelefoneComercial" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneComercial);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneComercial);"/> </div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sTelefoneCelular">Telefone Celular</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.telefone_cel}" id="sTelefoneCelular" name="sTelefoneCelular" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneCelular);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneCelular);"/></div>
                                                                                         </li>
                                                                                         <li class="liTextArea">
                                                                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
