@@ -43,13 +43,13 @@ public class ControleServidor extends HttpServlet {
                 try {
                     String matricula_siape = request.getParameter("iMatriculaSiape");
                     String nome = request.getParameter("sNomeCompleto");
+                    String email = request.getParameter("sEmail");
                     String cpf = request.getParameter("sCpf");
                     int cnh = Integer.parseInt(request.getParameter("sCnh"));
                     String motorista = request.getParameter("bMotorista");
                     String rg = request.getParameter("sRg");
                     String orgao_expedidor = request.getParameter("sOrgaoExpedidor");
                     String estado_civil = request.getParameter("estadoCivil");
-                    String email = request.getParameter("sEmail");
                     String telefone_comer = request.getParameter("sTelefoneComercial");
                     String telefone_cel = request.getParameter("sTelefoneCelular");
                     String estado = request.getParameter("estado");
@@ -63,6 +63,7 @@ public class ControleServidor extends HttpServlet {
                     Servidor serv = new Servidor();
                     serv.setMatriculaSIAPE(matricula_siape);
                     serv.setNome(nome);
+                    serv.setEmail(email);
                     serv.setCpf(cpf);
                     serv.setCnh(cnh);
                     if (motorista.equals("t")) {
@@ -73,7 +74,6 @@ public class ControleServidor extends HttpServlet {
                     serv.setRg(rg);
                     serv.setOrgao_expedidor(orgao_expedidor);
                     serv.setEstado_civil(estado_civil);
-                    serv.setEmail(email);
                     serv.setTelefone_comer(telefone_comer);
                     serv.setTelefone_cel(telefone_cel);
                     serv.setEstado(estado);

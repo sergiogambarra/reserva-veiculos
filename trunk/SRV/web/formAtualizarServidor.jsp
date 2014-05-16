@@ -47,9 +47,18 @@
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMatriculaSiape">Matricula SIAPE</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMatriculaSiape">*Matricula SIAPE</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="iMatriculaSiape" name="iMatriculaSiape" placeholder="SIAPE" value="${matricula.matriculaSIAPE}"size="7" maxlength="7"/></div>
                                         </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" value="${matricula.nome}" name="sNomeCompleto" placeholder="Nome completo" size="50"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
+                                            <div class="formCadastroInput"><input type="text" value="${matricula.email}" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
+                                       </li>
+                                       
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
@@ -65,10 +74,7 @@
                                                                />
                                                         </div>
                                                         </li>
-                                                        <li>
-                                                            <div class="formCadastroLabel"><label for="sNomeCompleto">Nome</label> </div>
-                                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" value="${matricula.nome}" name="sNomeCompleto" placeholder="Nome completo" size="50"/></div>
-                                                        </li>
+                                                        
                                                         <li>
                                                             <div class="formCadastroLabel">
                                                                 <label for="sexo">Sexo</label>
@@ -132,10 +138,7 @@
                                                                                                 </select>
                                                                                             </div>
                                                                                         </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><label for="sEmail">Email</label> </div>
-                                                                                            <div class="formCadastroInput"><input type="text" value="${matricula.email}" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
-                                                                                        </li>
+                                                                                        
                                                                                         <li>
                                                                                             <div class="formCadastroLabel"><label for="sTelefoneComercial">Telefone Comercial</label> </div>
                                                                                             <div class="formCadastroInput"><input type="text" value="${matricula.telefone_comer}" id="sTelefoneComercial" name="sTelefoneComercial" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneComercial);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneComercial);"/> </div>
