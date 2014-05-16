@@ -57,7 +57,7 @@
             <thead>
               <td id="Matricula" class="colunaDuzentos">Matrícula</td>
               <td id="Servidor">Nome</td>
-              <td id="CNH" class="colunaDuzentos">CNH</td>
+              <td id="CNH" class="colunaDuzentos">email</td>
               <td id="Telefone" class="colunaDuzentos">Telefone</td>
               <td id="Acoes" class="colunaAcoesHead" >Ações</td>
             </thead>
@@ -70,7 +70,7 @@
               <tr>
                 <td headers="Matricula"><%= serv.getMatriculaSIAPE() %></td>
                 <td headers="Servidor"><% out.print(serv.getNome());%></td>
-                <td headers="CNH"><% out.print(serv.getCnh());%></td>
+                <td headers="CNH"><% out.print(serv.getEmail());%></td>
                 <td headers="Telefone"><% out.print(serv.getTelefone_comer());%></td>
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">

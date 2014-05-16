@@ -59,6 +59,28 @@
                                             <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
                                         </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sexo">*Sexo</label> </div>
+                                            <div class="formCadastroInput"><label class="radioSexo" for="Sexo" >Masculino</label>
+                                                <input type="radio" id="sexo" name="sexo" value="m"/>
+                                                <label class="radioSexo" for="Sexo">Feminino</label><input type="radio" id="sexo" name="sexo" value="f"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sDataNascimento">*Data Nascimento</label> </div>
+                                            <div class="formCadastroInput"><input type="date" name="sDataNascimento" placeholder="aaaa-mm-dd"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sCpf" name="sCpf" placeholder="CPF" size="14" maxlength="14"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sRg" name="sRg" placeholder="Identidade"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sOrgaoExpedidor">*Orgão Expedidor</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
+                                        </li>
                                         
                                         <li>
                                             <div class="formCadastroLabel">
@@ -69,13 +91,6 @@
                                                 <label class="radioStatus" for="Status">Inativo<label>
                                                 <input type="radio" id="status_serv" name="status_serv" value="i"/>
                                             </div>
-                                        </li>
-                                        
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sexo">Sexo</label> </div>
-                                            <div class="formCadastroInput"><label class="radioSexo" for="Sexo" >Masculino</label>
-                                                <input type="radio" id="sexo" name="sexo" value="m"/>
-                                                <label class="radioSexo" for="Sexo">Feminino</label><input type="radio" id="sexo" name="sexo" value="f"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
@@ -88,18 +103,6 @@
                                                 <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sCpf">CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCpf" name="sCpf" placeholder="CPF" size="14" maxlength="11"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sRg">RG</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sRg" name="sRg" placeholder="Identidade"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sOrgaoExpedidor">Orgão Expedidor</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
-                                        </li>
-                                        <li>
                                             <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="estadoCivil" name="estadoCivil">
@@ -108,6 +111,7 @@
                                                         <option value="cas">Casado</option>
                                                         <option value="viu">Viúvo</option>
                                                         <option value="sep">Separado</option>
+                                                        <option value="uni">União Estável</option>
                                                 </select>
                                             </div>
                                         </li>
@@ -120,10 +124,7 @@
                                             <div class="formCadastroLabel"><label for="sTelefoneCelular">Telefone Celular</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sTelefoneCelular" name="sTelefoneCelular" placeholder="(xx)xxxx-xxxx"  onKeyPress="MascaraTelefone(formCadastroServidor.sTelefoneCelular);" maxlength="14"  onBlur="ValidaTelefone(formCadastroServidor.sTelefoneCelular);"/></div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sDataNascimento">Data Nascimento (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sDataNascimento" /></div>
-                                        </li>
+                                        
                                         <li>
                                             <div class="formCadastroLabel"><label for="sUf">UF</label> </div>
                                             <div class="formCadastroInput">

@@ -44,11 +44,13 @@ public class ControleServidor extends HttpServlet {
                     String matricula_siape = request.getParameter("iMatriculaSiape");
                     String nome = request.getParameter("sNomeCompleto");
                     String email = request.getParameter("sEmail");
+                    String sexo = request.getParameter("sexo");
+                    String data_nascimento = request.getParameter("sDataNascimento");
                     String cpf = request.getParameter("sCpf");
-                    int cnh = Integer.parseInt(request.getParameter("sCnh"));
-                    String motorista = request.getParameter("bMotorista");
                     String rg = request.getParameter("sRg");
                     String orgao_expedidor = request.getParameter("sOrgaoExpedidor");
+                    int cnh = Integer.parseInt(request.getParameter("sCnh"));
+                    String motorista = request.getParameter("bMotorista");
                     String estado_civil = request.getParameter("estadoCivil");
                     String telefone_comer = request.getParameter("sTelefoneComercial");
                     String telefone_cel = request.getParameter("sTelefoneCelular");
@@ -57,22 +59,27 @@ public class ControleServidor extends HttpServlet {
                     String nacionalidade = request.getParameter("sNacionalidade");
                     String informacoes = request.getParameter("sInfoComplementar");
                     String status_serv = request.getParameter("status_serv");
-                    String sexo = request.getParameter("sexo");
-                    String data_nascimento = request.getParameter("sDataNascimento");
-
+                    
+                    
                     Servidor serv = new Servidor();
                     serv.setMatriculaSIAPE(matricula_siape);
                     serv.setNome(nome);
                     serv.setEmail(email);
+                    serv.setSexo(sexo);
+                    //A DATA SERÁ A SENHA INICIAL
+                    Date date;
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
+                    serv.setData_nascimento(date);
                     serv.setCpf(cpf);
+                    serv.setRg(rg);
+                    serv.setOrgao_expedidor(orgao_expedidor);
+                    
                     serv.setCnh(cnh);
                     if (motorista.equals("t")) {
                         serv.setMotorista(true);
                     } else {
                         serv.setMotorista(false);
                     }
-                    serv.setRg(rg);
-                    serv.setOrgao_expedidor(orgao_expedidor);
                     serv.setEstado_civil(estado_civil);
                     serv.setTelefone_comer(telefone_comer);
                     serv.setTelefone_cel(telefone_cel);
@@ -80,7 +87,6 @@ public class ControleServidor extends HttpServlet {
                     serv.setCidade(cidade);
                     serv.setNacionalidade(nacionalidade);
                     serv.setInformacoes(informacoes);
-                    serv.setSexo(sexo);
                     
                     //Ativo ou Inativo
                     if (status_serv.equalsIgnoreCase("a")) {
@@ -89,11 +95,6 @@ public class ControleServidor extends HttpServlet {
                         serv.setStatus_serv(false);
                     }
 
-                    //A DATA SERÁ A SENHA INICIAL
-                    Date date;
-                    date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
-                    serv.setData_nascimento(date);
-                    
                     //PEGA DIA E ANO PARA GERAR A SENHA
                     SimpleDateFormat dataSenha = new SimpleDateFormat("ddyyyy");  
                     dataSenha.format(date);

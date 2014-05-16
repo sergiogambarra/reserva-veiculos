@@ -8,21 +8,21 @@ nome VARCHAR(50)not null,
 senha VARCHAR(6)not null,
 email VARCHAR(50)not null,
 perfil TINYINT(1)not null,
-cpf VARCHAR(50)not null,
-cnh INT(15),
-motorista TINYINT(1)not null,
-rg VARCHAR(15)not null,
-orgao_expedidor VARCHAR(5)not null,
-estado_civil VARCHAR(10),
 sexo VARCHAR(10)not null,
-telefone_comer VARCHAR(14)not null,
-telefone_cel VARCHAR(14),
-estado VARCHAR(2),
-status_serv TINYINT(1)not null,
-cidade VARCHAR(20),
-nacionalidade VARCHAR(20),
-informacoes VARCHAR(100),
 data_nascimento DATE not null,
+cpf VARCHAR(14)not null,
+rg VARCHAR(15)not null,
+orgao_expedidor VARCHAR(10)not null,
+cnh INT(15)null default null,
+motorista TINYINT(1)not null,
+estado_civil VARCHAR(10)null default null,
+telefone_comer VARCHAR(14)not null,
+telefone_cel VARCHAR(14)null default null,
+estado VARCHAR(2)null default null,
+status_serv TINYINT(1)not null,
+cidade VARCHAR(20)null default null,
+nacionalidade VARCHAR(20)null default null,
+informacoes VARCHAR(100)null default null,
 PRIMARY KEY (matricula_siape));
 
 CREATE TABLE IF NOT EXISTS veiculo(
@@ -34,16 +34,16 @@ combustivel VARCHAR(50) not null,
 renavam VARCHAR(11) not null,
 capacidade INT(2) not null,
 manutencao TINYINT(1) not null,
-manutencao_data_inicial DATE null,
-manutencao_data_final DATE default null,
+manutencao_data_inicial DATE null default null,
+manutencao_data_final DATE null default null,
 PRIMARY KEY (placa));
 
 
 insert into servidor 
 values ('1234567', 'admin', '123456', 'admin1@gmail.com', '1',
-  '1212', '3434', '1', '4353', 'sde', 'casado', 'masculino', 
- '(51)2324-2324', '(43)3434-3434', 'rs', '1', 'porto', 'brasileiro', 
- 'teste admin', '2010/10/09');
+ 'masculino', '2010/10/09','1212','4353', 'sde',
+ '3434', '1','casado', '(51)2324-2324', '(43)3434-3434',
+ 'rs','1', 'porto', 'brasileiro', 'teste admin');
 
 select * from servidor;
 
