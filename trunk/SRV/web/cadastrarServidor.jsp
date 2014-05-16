@@ -119,8 +119,7 @@
                                                 <option value="to">Tocantins</option>
                                                 </select>
                                             </div>
-                                        </li>
-                                            
+                                        </li> 
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
@@ -147,7 +146,16 @@
                                             <div class="formCadastroLabel"><label for="sTelefone2">Telefone 2</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"   maxlength="14"  /></div>
                                         </li>
-                                        
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="bMotorista">Motorista</label> </div>
+                                            <div class="formCadastroInput"><label class="radioMotorista" for="bMotoristaTrue" >Sim</label>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="t"/>
+                                                <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
+                                        </li>
                                         <li>
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv">Status</label> </div>
@@ -155,19 +163,9 @@
                                                 <label class="radioStatus" for="Status" >Ativo</label>
                                                 <input type="radio" id="status_serv" name="status_serv" value="a" checked/>
                                                 <label class="radioStatus" for="Status">Inativo<label>
-                                                <input type="radio" id="status_serv" name="status_serv" value="i"/>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="bMotorista">Motorista</label> </div>
-                                            <div class="formCadastroInput"><label class="radioMotorista" for="bMotoristaTrue" >Sim</label>
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="t"/>
-                                                <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
-                                        </li>
+                                                        <input type="radio" id="status_serv" name="status_serv" value="i"/>
+                                                        </div>
+                                                        </li>
                                         <li class="liTextArea">
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>

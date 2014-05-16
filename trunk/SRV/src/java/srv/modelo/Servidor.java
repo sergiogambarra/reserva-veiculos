@@ -40,14 +40,13 @@ public class Servidor implements java.io.Serializable {
     private String estado_civil;
     private String telefone1;
     private String telefone2;
-    
-    private int cnh;
     private boolean motorista;
+    private String cnh;
     private boolean status_serv;
     private String informacoes;
     
 
-    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, String naturalidade, String estado, String nacionalidade, String estado_civil, String telefone1, String telefone2, int cnh, boolean motorista, boolean status_serv, String informacoes) {
+    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, String naturalidade, String estado, String nacionalidade, String estado_civil, String telefone1, String telefone2, boolean motorista, String cnh, boolean status_serv, String informacoes) {
         this.matriculaSIAPE = matriculaSIAPE;
         this.nome = nome;
         this.senha = senha;
@@ -64,9 +63,8 @@ public class Servidor implements java.io.Serializable {
         this.estado_civil = estado_civil;
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
-        
-        this.cnh = cnh;
         this.motorista = motorista;
+        this.cnh = cnh;
         this.status_serv = status_serv;
         this.informacoes = informacoes;
         
@@ -178,11 +176,11 @@ public class Servidor implements java.io.Serializable {
     }
 
     @Column(name = "cnh")
-    public int getCnh() {
+    public String getCnh() {
         return cnh;
     }
 
-    public void setCnh(int cnh) {
+    public void setCnh(String cnh) {
         this.cnh = cnh;
     }
 

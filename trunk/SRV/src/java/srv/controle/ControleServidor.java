@@ -55,11 +55,10 @@ public class ControleServidor extends HttpServlet {
                     String estado_civil = request.getParameter("estadoCivil");
                     String telefone1 = request.getParameter("sTelefone1");
                     String telefone2 = request.getParameter("sTelefone2");
-                    
-                    int cnh = Integer.parseInt(request.getParameter("sCnh"));
                     String motorista = request.getParameter("bMotorista");
-                    String informacoes = request.getParameter("sInfoComplementar");
+                    String cnh = request.getParameter("sCnh");
                     String status_serv = request.getParameter("status_serv");
+                    String informacoes = request.getParameter("sInfoComplementar");
                     
                     
                     Servidor serv = new Servidor();
@@ -82,14 +81,13 @@ public class ControleServidor extends HttpServlet {
                     serv.setTelefone1(telefone1);
                     serv.setTelefone2(telefone2);
                     
-                    serv.setCnh(cnh);
                     if (motorista.equals("t")) {
                         serv.setMotorista(true);
                     } else {
                         serv.setMotorista(false);
                     }
                     
-                    serv.setInformacoes(informacoes);
+                    serv.setCnh(cnh);
                     
                     //Ativo ou Inativo
                     if (status_serv.equalsIgnoreCase("a")) {
@@ -97,7 +95,8 @@ public class ControleServidor extends HttpServlet {
                     } else {
                         serv.setStatus_serv(false);
                     }
-
+                    serv.setInformacoes(informacoes);
+                    
                     //PEGA DIA E ANO PARA GERAR A SENHA
                     SimpleDateFormat dataSenha = new SimpleDateFormat("ddyyyy");  
                     dataSenha.format(date);
