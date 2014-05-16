@@ -138,49 +138,48 @@
                                                             <div class="formCadastroLabel"><label for="sTelefone2">Telefone 2</label> </div>
                                                             <div class="formCadastroInput"><input type="text" value="${matricula.telefone2}" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"  maxlength="14" /></div>
                                                         </li>
-                                                                                        
-                                        <li>
-                                            <div class="formCadastroLabel">
-                                                <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
-                                            </div>
-                                            <div class="formCadastroInput">
-                                                <label class="radioStatus" for="Status" >Ativo</label>
-                                                <input type="radio" id="status_serv" value="true" name="status_serv"
-                                                       <% if (((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
-                                                       />
-                                                <label class="radioStatus" for="Status">Inativo<label>
-                                                        <input type="radio" value="false" id="status_serv" name="status_serv"
-                                                               <% if (!((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
-                                                               />
-                                                        </div>
-                                                        </li>
+                                                        <li>
+                                                            <div class="formCadastroLabel">
+                                                                <label for="bMotorista">Motorista</label>
+                                                            </div>
+                                                            <div class="formCadastroInput">
+                                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
+                                                                <input type="radio" id="bMotorista" name="bMotorista" value="t"
+                                                                       <% if (((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
+                                                                       />
+                                                                <label class="radioMotorista" for="bMotorista">Não<label>
+                                                                        <input type="radio" id="bMotorista" name="bMotorista" value="f"
+                                                                               <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
+                                                                               />
+                                                                        </div>
+                                                                        </li>
                                                                         <li>
                                                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
                                                                             <div class="formCadastroInput"><input value="${matricula.cnh}" type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
                                                                         </li>
                                                                         <li>
                                                                             <div class="formCadastroLabel">
-                                                                                <label for="bMotorista">Motorista</label>
+                                                                                <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
                                                                             </div>
                                                                             <div class="formCadastroInput">
-                                                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
-                                                                                <input type="radio" id="bMotorista" name="bMotorista" value="t"
-                                                                                       <% if (((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
+                                                                                <label class="radioStatus" for="Status" >Ativo</label>
+                                                                                <input type="radio" id="status_serv" value="true" name="status_serv"
+                                                                                       <% if (((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
                                                                                        />
-                                                                                <label class="radioMotorista" for="bMotorista">Não<label>
-                                                                                        <input type="radio" id="bMotorista" name="bMotorista" value="f"
-                                                                                               <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
+                                                                                <label class="radioStatus" for="Status">Inativo<label>
+                                                                                        <input type="radio" value="false" id="status_serv" name="status_serv"
+                                                                                               <% if (!((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
                                                                                                />
                                                                                         </div>
                                                                                         </li>
-                                                                                        <li class="liTextArea">
-                                                                                            <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
-                                                                                            <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140">${matricula.informacoes}</textarea></div>
-                                                                                        </li>
-                                                                                        <li>
-                                                                                            <div class="formCadastroLabel"><input type="submit" value="Editar"/></div>
-                                                                                            <div class="formCadastroInput"><input type="reset" value="Resetar"/></div>
-                                                                                        </li>
+                                                                        <li class="liTextArea">
+                                                                            <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
+                                                                            <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140">${matricula.informacoes}</textarea></div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="formCadastroLabel"><input type="submit" value="Editar"/></div>
+                                                                            <div class="formCadastroInput"><input type="reset" value="Resetar"/></div>
+                                                                        </li>                                
                                                                                         </ul>
                                                                                         </div>
                                                                                         </form>

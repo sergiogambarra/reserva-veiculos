@@ -156,23 +156,22 @@
                                             <div class="formCadastroLabel"><label for="sTelefone2">Telefone 2</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"  /></div>
                                         </li>
-                                        
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="status">Status</label> </div>
-                                            <div class="formCadastroInput"><label class="radioStatus" for="Status" >Ativo</label>
-                                                <input type="radio" id="status_serv" name="status_serv" value="a"/>
-                                                <label class="radioStatus" for="Status">Inativo<label><input type="radio" id="status_serv" name="status" value="i"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
-                                        </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="bMotorista">Motorista</label> </div>
                                             <div class="formCadastroInput"><label class="radioMotorista" for="bMotoristaTrue" >Sim</label>
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="t"/>
                                                 <label class="radioMotorista" for="bMotorista">Não<lable><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
                                         </li> 
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="status">Status</label> </div>
+                                            <div class="formCadastroInput"><label class="radioStatus" for="Status" >Ativo</label>
+                                                <input type="radio" id="status_serv" name="status_serv" value="a"/>
+                                                <label class="radioStatus" for="Status">Inativo<label><input type="radio" id="status_serv" name="status" value="i"/></div>
+                                        </li>
                                         <li class="liTextArea">
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>
