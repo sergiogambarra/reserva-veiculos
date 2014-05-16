@@ -34,19 +34,20 @@ public class Servidor implements java.io.Serializable {
     private String cpf;
     private String rg;
     private String orgao_expedidor;
+    private String naturalidade;
+    private String estado;
+    private String nacionalidade;
+    private String estado_civil;
+    
     private int cnh;
     private boolean motorista;
-    private String estado_civil;
     private String telefone_comer;
     private String telefone_cel;
-    private String estado;
     private boolean status_serv;
-    private String cidade;
-    private String nacionalidade;
     private String informacoes;
     
 
-    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, int cnh, boolean motorista, String estado_civil, String telefone_comer, String telefone_cel, String estado, boolean status_serv, String cidade, String nacionalidade, String informacoes) {
+    public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, String naturalidade, String estado, String nacionalidade, String estado_civil, int cnh, boolean motorista, String telefone_comer, String telefone_cel, boolean status_serv, String informacoes) {
         this.matriculaSIAPE = matriculaSIAPE;
         this.nome = nome;
         this.senha = senha;
@@ -57,15 +58,15 @@ public class Servidor implements java.io.Serializable {
         this.cpf = cpf;
         this.rg = rg;
         this.orgao_expedidor = orgao_expedidor;
+        this.naturalidade = naturalidade;
+        this.estado = estado;
+        this.nacionalidade = nacionalidade;
+        this.estado_civil = estado_civil;
         this.cnh = cnh;
         this.motorista = motorista;
-        this.estado_civil = estado_civil;
         this.telefone_comer = telefone_comer;
         this.telefone_cel = telefone_cel;
-        this.estado = estado;
         this.status_serv = status_serv;
-        this.cidade = cidade;
-        this.nacionalidade = nacionalidade;
         this.informacoes = informacoes;
         
     }
@@ -238,13 +239,13 @@ public class Servidor implements java.io.Serializable {
         this.estado = estado;
     }
 
-    @Column(name = "cidade")
-    public String getCidade() {
-        return cidade;
+    @Column(name = "naturalidade")
+    public String getNaturalidade() {
+        return naturalidade;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setNaturalidade(String naturalidade) {
+        this.naturalidade = naturalidade;
     }
 
     @Column(name = "informacoes")
