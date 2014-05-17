@@ -65,25 +65,34 @@ public class VeiculoDAO implements InterfaceVeiculoDAO  {
     @Override
     public void atualizar(Veiculo veic) {
         session = Conexao.getInstance();
-        Transaction tx = null;
-
+        int rowCount = 0;
         try {
-            tx = session.beginTransaction();
-            session.update(veic);
-            tx.commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            tx.rollback();
-        } finally {
-            session.close();
-        }
-    }
+            Transaction tx = session.beginTransaction();
+            String sql = "update Veiculo set ano = :ano, "
+                    +"marca = :marca, modelo = :modelo, combustivel = :combustivel, renavam = :renavam, capacidade = :capacidade, "
+                    +"manutencao = :manutencao, manutencao_data_inicial = :manutencao_data_inicial, "
+                    +"manutencao_data_final = :manutencao_data_final "+
+                    " where placa = :placa";
+            Query query = session.createQuery(sql);
 
-    @Override
-    public List visualizar(Veiculo veic) {
-        session = Conexao.getInstance();
-        List list = session.createQuery("from Veiculo").list();
-        return list;
+            query.setString("ano", veic.getAno());
+            query.setString("marca",veic.getMarca());
+            query.setString("modelo", veic.getModelo());
+            query.setString("combustivel", veic.getCombustivel());
+            query.setString("renavam", veic.getRenavam());
+            query.setInteger("capacidade", veic.getCapacidade());
+            query.setBoolean("manutencao", veic.isManutencao());
+            query.setDate("manutencao_data_inicial", veic.getManutencao_data_inicial());
+            query.setDate("manutencao_data_final", veic.getManutencao_data_final());
+            query.setString("placa", veic.getPlaca());
+            
+            rowCount = query.executeUpdate();
+            tx.commit();
+
+            session.close();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -105,5 +114,10 @@ public class VeiculoDAO implements InterfaceVeiculoDAO  {
         List list = query.setString("placa", placa).list();
 
         return list;
+    }
+
+    @Override
+    public void visualizar(Veiculo veic) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

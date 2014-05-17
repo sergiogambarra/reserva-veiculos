@@ -20,6 +20,7 @@
   <title>Lista de Veículos</title>
   <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
   <link rel="stylesheet" href="css/styleContent.css" type='text/css'>
+  <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
 </head>
 <body>
 	<section class="container">
@@ -76,7 +77,7 @@
                     <div class="divColunaAcoes">
                       <ul>
                         <li><a href="ControleVeiculo?action=editarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
-                        <li><a href="ControleVeiculo?action=visualizarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
+                        <li><a href="#"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor" onclick="visualizarVeiculo('<%= veic.getPlaca()%>')"></div></a></li>
                         <li><a href="ControleVeiculo?action=excluirVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor"></div></a></li>
                       </ul>                       
                     </div>

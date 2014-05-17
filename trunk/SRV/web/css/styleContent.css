@@ -341,3 +341,46 @@ caption{
   border: 3px solid;
   border-color: rgba(50,200,50,.9);
 }
+
+/*Style para formulário visualizar*/
+.formularioVisualizarServidor, .formularioVisualizarVeiculo{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: red;
+  padding-bottom: 15px;
+  height: 795px;
+  top: 5px;
+  background-color: rgba(86, 167, 62, .1);
+}
+
+.formularioVisualizarServidor h2, .formularioVisualizarVeiculo h2{
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  background-color: rgba(100, 167, 100, .6);
+  color: #F0FFFF;
+}
+
+.containerVisualizarDados{
+    height: 100%;
+    
+}
+
+.containerVisualizarDados ul{
+  margin-left: 0px;
+}
+
+.containerVisualizarDados ul li{
+  list-style: none;
+  width: 480px;
+  height: 40px;
+}
+
+.containerVisualizarDados ul .liTextArea{
+  height: 120px;
+}

@@ -115,6 +115,7 @@ public class ControleServidor extends HttpServlet {
                         
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                     } else if (acao.equals("atualizarServidor")) {
+                        
                         sdao.atualizar(serv);
                         InterfaceServidorDAO idao = new ServidorDAO();
                         List<Servidor> lista = idao.todosServidor();
@@ -126,13 +127,18 @@ public class ControleServidor extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }else if (acao.equalsIgnoreCase("editarServidor")){
+            }else if (acao.equalsIgnoreCase("editarServidor") || acao.equalsIgnoreCase("visualizarServidor")){
                 InterfaceServidorDAO idao = new ServidorDAO();
                 List<Servidor> list = idao.consultarMatricula(request.getParameter("matricula"));
                 Servidor matricula = list.get(0);
                 request.setAttribute("matricula", matricula);
                 request.setAttribute("dao", idao);
-                request.getRequestDispatcher("/formAtualizarServidor.jsp").forward(request, response);
+                
+                if(acao.equalsIgnoreCase("editarServidor")){
+                    request.getRequestDispatcher("/formAtualizarServidor.jsp").forward(request, response);
+                }else{
+                    request.getRequestDispatcher("/formVisualizarServidor.jsp").forward(request, response);
+                }
             }else if (acao.equals("excluirServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
                 List<Servidor> list = idao.consultarMatricula(request.getParameter("matricula"));
