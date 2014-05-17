@@ -180,20 +180,20 @@
                                                                             <div class="formCadastroLabel"><input type="submit" value="Editar"/></div>
                                                                             <div class="formCadastroInput"><input type="reset" value="Resetar"/></div>
                                                                         </li>                                
-                                                                                        </ul>
-                                                                                        </div>
-                                                                                        </form>
-                                                                                        </div>
-                                                                                        </div>
-                                                                                        </div>
-                                                                                        </div>
-                                                                                        </section>
-                                                                                        <section class="about">
-                                                                                            <p class="aboutLinks">
-                                                                                                &copy; 2014&ndash;2014 
-                                                                                                <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5º semestre 2014 - IFRS Campus Restinga</a>
-                                                                                            </p>
-                                                                                            <!-- <a href="http://www.cssflow.com/mit-license" target="_blank">MIT License</a><br> -->
-                                                                                        </section>
-                                                                                        </body>
-                                                                                        </html>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    <section class="about">
+                                                        <p class="aboutLinks">
+                                                            &copy; 2014&ndash;2014 
+                                                            <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5º semestre 2014 - IFRS Campus Restinga</a>
+                                                        </p>
+                                                        <!-- <a href="http://www.cssflow.com/mit-license" target="_blank">MIT License</a><br> -->
+                                                    </section>
+                                                </body>
+                                            </html>

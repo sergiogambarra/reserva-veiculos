@@ -106,12 +106,17 @@ public class ControleVeiculo extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            } else if (acao.equalsIgnoreCase("editarVeiculo")) {
+            }else if (acao.equalsIgnoreCase("editarVeiculo") || acao.equalsIgnoreCase("visualizarVeiculo")){
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
                 List<Veiculo> list = idao.consultarPlaca(request.getParameter("placa"));
                 Veiculo placa = list.get(0);
                 request.setAttribute("placa", placa);
-                request.getRequestDispatcher("/formAtualizarVeiculo.jsp").forward(request, response);
+                
+                 if(acao.equalsIgnoreCase("editarVeiculo")){
+                    request.getRequestDispatcher("/formAtualizarVeiculo.jsp").forward(request, response);
+                }else{
+                    request.getRequestDispatcher("/formVisualizarVeiculo.jsp").forward(request, response);
+                }
             } else if (acao.equals("excluirVeiculo")) {
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
                 List<Veiculo> list = idao.consultarPlaca(request.getParameter("placa"));

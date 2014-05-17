@@ -65,25 +65,42 @@ public class ServidorDAO implements InterfaceServidorDAO {
     @Override
     public void atualizar(Servidor serv) {
         session = Conexao.getInstance();
-        Transaction tx = null;
-
+        int rowCount = 0;
         try {
-            tx = session.beginTransaction();
-            session.update(serv);
-            tx.commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            tx.rollback();
-        } finally {
-            session.close();
-        }
-    }
+            Transaction tx = session.beginTransaction();
+            String sql = "update Servidor set nome = :nome, "
+                    +                     "email = :email, sexo = :sexo, data_nascimento = :data_nascimento, cpf = :cpf,rg = :rg, orgao_expedidor = :orgao_expedidor, "+
+                                        "naturalidade = :naturalidade, estado = :estado, nacionalidade = :nacionalidade, estado_civil = :estado_civil, telefone1 = :telefone1, telefone2 = :telefone2, "+
+                                        "cnh = :cnh, motorista = :motorista, status_serv = :status_serv, informacoes = :informacoes"+
+                    " where matricula_siape = :matriculaSIAPE";
+            Query query = session.createQuery(sql);
 
-    @Override
-    public List visualizar(Servidor serv) {
-        session = Conexao.getInstance();
-        List list = session.createQuery("from Servidor").list();
-        return list;
+            query.setString("nome", serv.getNome());
+            query.setString("email", serv.getEmail());
+            query.setString("sexo", serv.getSexo());
+            query.setDate("data_nascimento", serv.getData_nascimento());
+            query.setString("cpf", serv.getCpf());
+            query.setString("rg", serv.getRg());
+            query.setString("orgao_expedidor", serv.getOrgao_expedidor());
+            query.setString("naturalidade", serv.getNaturalidade());
+            query.setString("estado", serv.getEstado());
+            query.setString("nacionalidade", serv.getNacionalidade());
+            query.setString("estado_civil", serv.getEstado_civil());
+            query.setString("telefone1", serv.getTelefone1());
+            query.setString("telefone2", serv.getTelefone2());
+            query.setInteger("cnh", serv.getCnh());
+            query.setBoolean("motorista", serv.isMotorista());
+            query.setBoolean("status_serv", serv.isStatus_serv());
+            query.setString("informacoes", serv.getInformacoes());
+            query.setString("matriculaSIAPE", serv.getMatriculaSIAPE());
+
+            rowCount = query.executeUpdate();
+            tx.commit();
+
+            session.close();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -203,5 +220,10 @@ public class ServidorDAO implements InterfaceServidorDAO {
         }
 
         return comboBox;
+    }
+
+    @Override
+    public void visualizar(Servidor serv) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
