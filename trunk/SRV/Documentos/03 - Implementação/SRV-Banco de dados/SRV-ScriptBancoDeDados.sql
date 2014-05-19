@@ -5,7 +5,7 @@ USE srv;
 CREATE TABLE IF NOT EXISTS servidor(
 matricula_siape VARCHAR(7)not null,
 nome VARCHAR(50)not null,
-senha VARCHAR(6)not null,
+senha VARCHAR(6),
 email VARCHAR(50)not null,
 perfil TINYINT(1)not null,
 sexo VARCHAR(10)not null,

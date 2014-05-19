@@ -71,7 +71,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
             String sql = "update Servidor set nome = :nome, "
                     +                     "email = :email, sexo = :sexo, data_nascimento = :data_nascimento, cpf = :cpf,rg = :rg, orgao_expedidor = :orgao_expedidor, "+
                                         "naturalidade = :naturalidade, estado = :estado, nacionalidade = :nacionalidade, estado_civil = :estado_civil, telefone1 = :telefone1, telefone2 = :telefone2, "+
-                                        "cnh = :cnh, motorista = :motorista, status_serv = :status_serv, informacoes = :informacoes"+
+                                        "motorista = :motorista, cnh = :cnh, status_serv = :status_serv, informacoes = :informacoes"+
                     " where matricula_siape = :matriculaSIAPE";
             Query query = session.createQuery(sql);
 
@@ -88,8 +88,8 @@ public class ServidorDAO implements InterfaceServidorDAO {
             query.setString("estado_civil", serv.getEstado_civil());
             query.setString("telefone1", serv.getTelefone1());
             query.setString("telefone2", serv.getTelefone2());
-            query.setInteger("cnh", serv.getCnh());
             query.setBoolean("motorista", serv.isMotorista());
+            query.setString("cnh", serv.getCnh());
             query.setBoolean("status_serv", serv.isStatus_serv());
             query.setString("informacoes", serv.getInformacoes());
             query.setString("matriculaSIAPE", serv.getMatriculaSIAPE());
