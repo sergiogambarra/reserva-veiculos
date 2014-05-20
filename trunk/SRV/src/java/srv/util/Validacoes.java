@@ -75,4 +75,23 @@ public class Validacoes {
         return true;
 
     }
+
+    public static boolean ValidarQualUsuarioLogado(String matriculaSIAPE, String matricula_siape) {
+        if(matriculaSIAPE.equalsIgnoreCase(matricula_siape)){
+            setMensagemErro("Operação recusada");
+            return false;  
+        }
+        return true;
+    }
+
+    public static boolean ValidarMatriculaExiste(String matricula_siape) {
+        ServidorDAO fdao = new ServidorDAO();
+        List l = fdao.buscarServidor(matricula_siape);
+        if (!(l.isEmpty())){
+            setMensagemErro("Servidor já cadastrado");
+            return false;  
+        }
+        return true;
+    }
+    
 }

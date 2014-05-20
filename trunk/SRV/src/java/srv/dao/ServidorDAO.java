@@ -29,7 +29,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
 
         return list;
     }
-
+   
     public void salvar(Servidor serv) {
         session = Conexao.getInstance();
         Transaction tx = null;

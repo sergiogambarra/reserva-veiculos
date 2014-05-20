@@ -34,6 +34,7 @@
 .paginaAtual{
   font-size: 10px;
   color: rgba(86, 167, 62, .9);
+  width: 100%;
 }
 
 .filtroData{
@@ -224,6 +225,8 @@ caption{
 .camposObrigatorios{
   font-size: 10px;
   padding-left: 20px;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .formularioCadastrarServidor h2, .formularioCadastrarVeiculo h2{
@@ -383,4 +386,23 @@ caption{
 
 .containerVisualizarDados ul .liTextArea{
   height: 120px;
+}
+
+.barraNavegacao{ 
+    width: 300px;
+    float: left;
+    height: 30px;
+}
+
+.mensagem{ 
+    width: 655px;
+    float: left;
+}
+
+.mensagem p{
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin: 5px;
 }

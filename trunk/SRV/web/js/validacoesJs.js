@@ -49,7 +49,7 @@ function desabilitaVisualizarServidor()  {
     document.getElementById("sInfoComplementar").disabled = true; 
 } 
 
-function desabilitaVisualizarServidor()  {  
+function desabilitaVisualizarVeiculo()  {  
     document.getElementById("iPlaca").disabled = true; 
     document.getElementById("iAno").disabled = true; 
     document.getElementById("iMarca").disabled = true;
