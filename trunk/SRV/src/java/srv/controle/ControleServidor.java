@@ -81,7 +81,7 @@ public class ControleServidor extends HttpServlet {
                     serv.setTelefone1(telefone1);
                     serv.setTelefone2(telefone2);
                     
-                    if (motorista.equals("t")) {
+                    if (motorista.equals("1")) {
                         serv.setMotorista(true);
                     } else {
                         serv.setMotorista(false);
@@ -90,7 +90,7 @@ public class ControleServidor extends HttpServlet {
                     serv.setCnh(cnh);
                     
                     //Ativo ou Inativo
-                    if (status_serv.equalsIgnoreCase("a")) {
+                    if (status_serv.equalsIgnoreCase("1")) {
                         serv.setStatus_serv(true);
                     } else {
                         serv.setStatus_serv(false);

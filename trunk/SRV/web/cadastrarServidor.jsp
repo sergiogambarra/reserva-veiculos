@@ -149,8 +149,8 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="bMotorista">Motorista</label> </div>
                                             <div class="formCadastroInput"><label class="radioMotorista" for="bMotoristaTrue" >Sim</label>
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="t"/>
-                                                <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="f"/></div>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="1"/>
+                                                <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="0"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
@@ -161,9 +161,9 @@
                                                 <label for="status" id="status_serv">Status</label> </div>
                                             <div class="formCadastroInput">
                                                 <label class="radioStatus" for="Status" >Ativo</label>
-                                                <input type="radio" id="status_serv" name="status_serv" value="a" checked/>
+                                                <input type="radio" id="status_serv" name="status_serv" value="1" checked/>
                                                 <label class="radioStatus" for="Status">Inativo<label>
-                                                        <input type="radio" id="status_serv" name="status_serv" value="i"/>
+                                                        <input type="radio" id="status_serv" name="status_serv" value="0"/>
                                                         </div>
                                                         </li>
                                         <li class="liTextArea">
