@@ -34,11 +34,22 @@
       <div class="containerLogadoBorda">
         <div class="containerLogadoDados">
           <div class="paginaAtual">
-              Você está em: 
-              <script type="text/javascript">
-                var pagina = document.title;
-                document.write(pagina);
-              </script>
+              <div class="barraNavegacao">
+                  Você está em:
+                  <script type="text/javascript">
+                      var pagina = document.title;
+                      document.write(pagina);
+                  </script>
+              </div>
+              <div class="mensagem">
+                  <%
+                    if (request.getAttribute("mensagem") != null) {
+                  %>
+                  <p><%= request.getAttribute("mensagem")%> </p>
+                  <%
+                             }
+                  %>
+              </div>
             </div>
           <div class="filtroData">
         <!--    <form action="#" class="filtroDataFormulario">
