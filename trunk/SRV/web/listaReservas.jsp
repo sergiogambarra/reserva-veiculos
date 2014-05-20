@@ -38,11 +38,12 @@
               </script>
             </div>
           <div class="filtroData">
-        <!--    <form action="#" class="filtroDataFormulario">
-              <label name="filtroLabelDataInicio">De</label>
-              <input type="date" name="filtroDataInicio" class="inputDataInicio"/>
-              <label name="filtroLabelDataRetorno">Até</label>
-              <input type="date" name="dataInicio" class="inputDataInicio"/>
+        <!--
+            <form action="#" class="filtroDataFormulario">
+                  <label name="filtroLabelDataInicio">De</label>
+                  <input type="date" name="filtroDataInicio" class="inputDataInicio"/>
+                  <label name="filtroLabelDataRetorno">Até</label>
+                  <input type="date" name="dataInicio" class="inputDataInicio"/>
             </form>
           -->
         </div>

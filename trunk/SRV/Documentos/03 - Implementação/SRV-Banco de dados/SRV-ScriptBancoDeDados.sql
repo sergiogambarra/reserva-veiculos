@@ -66,4 +66,105 @@ INSERT INTO veiculo VALUES
 
 select * from veiculo;
 
-drop database srv;
+
+-- -----------------------------------------------------
+
+-- Table `mydb`.`destino`
+
+-- -----------------------------------------------------
+
+CREATE  TABLE IF NOT EXISTS `destino` (
+
+  `id_destino` INT NOT NULL AUTO_INCREMENT ,
+
+  `nome` VARCHAR(45) NOT NULL ,
+
+  PRIMARY KEY (`id_destino`) )
+
+ENGINE = InnoDB;
+
+
+
+-- -----------------------------------------------------
+
+-- Table `mydb`.`reserva`
+
+-- -----------------------------------------------------
+
+CREATE  TABLE IF NOT EXISTS `reserva` (
+
+  `id_reserva` INT NOT NULL ,
+
+  `matricula_siape` VARCHAR(7) NOT NULL ,
+
+  `data_saida` DATETIME NOT NULL ,
+
+  `data_retorno` DATETIME NOT NULL ,
+
+  `placa` VARCHAR(7) NOT NULL ,
+
+  `condutor` BINARY NOT NULL ,
+
+  `matricula_siape_condutor` VARCHAR(7) NOT NULL ,
+
+  `id_destino` INT NULL ,
+
+  `descricao_destino` VARCHAR(30) NULL ,
+
+  `reserva_datetime` DATETIME NOT NULL ,
+
+  PRIMARY KEY (`id_reserva`) ,
+
+  INDEX `fk_reserva_servidor_idx` (`matricula_siape` ASC) ,
+
+  INDEX `fk_reserva_veiculo_idx` (`placa` ASC) ,
+
+  INDEX `reserva_data_saida_idx` (`data_saida` ASC) ,
+
+  INDEX `reserva_data_retorno_idx` (`data_retorno` ASC) ,
+
+  INDEX `fk_reserva_servidor_condutor_idx` (`matricula_siape_condutor` ASC) ,
+
+  INDEX `fk_reserva_destino_idx` (`id_destino` ASC) ,
+
+  CONSTRAINT `fk_reserva_servidor`
+
+    FOREIGN KEY (`matricula_siape` )
+
+    REFERENCES `srv`.`servidor` (`matricula_siape` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT `fk_reserva_veiculo1`
+
+    FOREIGN KEY (`placa` )
+
+    REFERENCES `srv`.`veiculo` (`placa` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT `fk_reserva_servidor1`
+
+    FOREIGN KEY (`matricula_siape_condutor` )
+
+    REFERENCES `srv`.`servidor` (`matricula_siape` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION,
+
+  CONSTRAINT `fk_reserva_destino1`
+
+    FOREIGN KEY (`id_destino` )
+
+    REFERENCES `destino` (`id_destino` )
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB;
