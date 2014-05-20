@@ -147,10 +147,13 @@
                                             <div class="formCadastroInput"><input type="text" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"   maxlength="14"  /></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="bMotorista">Motorista</label> </div>
-                                            <div class="formCadastroInput"><label class="radioMotorista" for="bMotoristaTrue" >Sim</label>
+                                            <div class="formCadastroLabel">
+                                                <label for="bMotorista">*Motorista</label> </div>
+                                            <div class="formCadastroInput">
+                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="1"/>
-                                                <label class="radioMotorista" for="bMotorista">Não</label><input type="radio" id="bMotorista" name="bMotorista" value="0"/></div>
+                                                <label class="radioMotorista" for="bMotorista">Não</label>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="0"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
@@ -158,7 +161,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="status" id="status_serv">Status</label> </div>
+                                                <label for="status" id="status_serv">*Status</label> </div>
                                             <div class="formCadastroInput">
                                                 <label class="radioStatus" for="Status" >Ativo</label>
                                                 <input type="radio" id="status_serv" name="status_serv" value="1" checked/>

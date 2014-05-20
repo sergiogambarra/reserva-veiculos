@@ -140,7 +140,7 @@
                                                         </li>
                                                         <li>
                                                             <div class="formCadastroLabel">
-                                                                <label for="bMotorista">Motorista</label>
+                                                                <label for="bMotorista">*Motorista</label>
                                                             </div>
                                                             <div class="formCadastroInput">
                                                                 <label class="radioMotorista" for="bMotorista" >Sim</label>
@@ -159,7 +159,7 @@
                                                                         </li>
                                                                         <li>
                                                                             <div class="formCadastroLabel">
-                                                                                <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
+                                                                                <label for="status" id="status_serv" value="${matricula.status_serv}">*Status</label>
                                                                             </div>
                                                                             <div class="formCadastroInput">
                                                                                 <label class="radioStatus" for="Status" >Ativo</label>
