@@ -83,7 +83,7 @@
                                                         </li>
                                                         <li>
                                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" maxlength="11"/></div>
+                                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF"/></div>
                                                         </li>
                                                         <li>
                                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
@@ -144,11 +144,11 @@
                                                             </div>
                                                             <div class="formCadastroInput">
                                                                 <label class="radioMotorista" for="bMotorista" >Sim</label>
-                                                                <input type="radio" id="bMotorista" name="bMotorista" value="t"
+                                                                <input type="radio" id="bMotorista" name="bMotorista" value="1"
                                                                        <% if (((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                                        />
                                                                 <label class="radioMotorista" for="bMotorista">Não<label>
-                                                                        <input type="radio" id="bMotorista" name="bMotorista" value="f"
+                                                                        <input type="radio" id="bMotorista" name="bMotorista" value="0"
                                                                                <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                                                />
                                                                         </div>
@@ -163,11 +163,11 @@
                                                                             </div>
                                                                             <div class="formCadastroInput">
                                                                                 <label class="radioStatus" for="Status" >Ativo</label>
-                                                                                <input type="radio" id="status_serv" value="true" name="status_serv"
+                                                                                <input type="radio" id="status_serv" value="1" name="status_serv"
                                                                                        <% if (((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
                                                                                        />
                                                                                 <label class="radioStatus" for="Status">Inativo<label>
-                                                                                        <input type="radio" value="false" id="status_serv" name="status_serv"
+                                                                                        <input type="radio" value="0" id="status_serv" name="status_serv"
                                                                                                <% if (!((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
                                                                                                />
                                                                                         </div>
