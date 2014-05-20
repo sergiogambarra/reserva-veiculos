@@ -44,6 +44,8 @@
                                 %>
                             </div>
                           </div>
+                            <div class="formularioCadastrarServidor">            
+                            <h2>Cadastrar Servidor</h2>
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
