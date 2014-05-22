@@ -66,4 +66,8 @@ function desabilitaVisualizarVeiculo()  {
     document.formVisualizarVeiculo.manutencao[0].disabled = true;
     document.formVisualizarVeiculo.manutencao[1].disabled = true;
      
-}  
+}
+
+function validarManutencao(){
+    
+}

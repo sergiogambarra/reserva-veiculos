@@ -67,16 +67,25 @@
                                                 <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25" value="${placa.modelo}"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sCombustivel">Combustível</label></div>
+                                            <div class="formCadastroLabel">
+                                                <label for="sCombustivel">Combustível</label> </div>
                                             <div class="formCadastroInput">
-                                                <label id="gasolina">Gasolina</label>
-                                                <input type="checkbox" id="gasolina" name="gasolina" placeholder="GASOLINA"/>
-                                                <label id="alcool">Álcool</label>
-                                                <input type="checkbox" id="alcool" name="alcool" placeholder="ALCOOL"/>
-                                                <label id="diesel">Diesel</label>
-                                                <input type="checkbox" id="diesel" name="diesel" placeholder="DIESEL"/>
-                                                <label id="gnv">GNV</label>
-                                                <input type="checkbox" id="gnv" name="gnv" placeholder="GNV"/>
+                                                <label class="radioManutencao" for="sCombustivel">Gasolina</label>
+                                                <input type="radio" id="gasolina" name="combustivel" value="g"
+                                                       <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("g")) {%>checked<% }%>
+                                                       />
+                                                <label class="radioManutencao" for="sCombustivel">Álcool</label>
+                                                <input type="radio" id="alcool" name="combustivel" value="a"
+                                                       <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("a")) {%>checked<% }%>
+                                                       />
+                                                <label class="radioManutencao" for="sCombustivel">Diesel</label>
+                                                <input type="radio" id="diesel" name="combustivel" value="c"
+                                                       <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("c")) {%>checked<% }%>
+                                                       />
+                                                <label class="radioManutencao" for="sCombustivel">GNV</label>
+                                                <input type="radio" id="gnv" name="combustivel" value="n"
+                                                       <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("n")) {%>checked<% }%>
+                                                       />
                                             </div>
                                         </li>
                                         <li>

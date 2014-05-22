@@ -50,12 +50,7 @@ public class ControleVeiculo extends HttpServlet {
                     String manutencao = request.getParameter("manutencao");
                     String manutencao_data_inicial = request.getParameter("sManDataInicial");
                     String manutencao_data_final = request.getParameter("sManDataFinal");
-                    
-                    //COMBUSTIVEL
-                    String gasolina = request.getParameter("gasolina");
-                    String diesel = request.getParameter("diesel");
-                    String alcool = request.getParameter("alcool");
-                    String gnv = request.getParameter("gnv");
+                    String combustivel = request.getParameter("combustivel");
                     
                     Veiculo veiculo = new Veiculo();
                     veiculo.setPlaca(placa);
@@ -64,9 +59,7 @@ public class ControleVeiculo extends HttpServlet {
                     veiculo.setCapacidade(capacidade);
                     veiculo.setModelo(modelo);
                     veiculo.setRenavam(renavam);
-
-                    //FALTA VALIDAR TODOS OS CHECKBOX
-                    veiculo.setCombustivel(gasolina);
+                    veiculo.setCombustivel(combustivel);
                     
                     if (manutencao.equals("t")) {
                         veiculo.setManutencao(true);
@@ -104,7 +97,7 @@ public class ControleVeiculo extends HttpServlet {
                     }
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
-                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                    request.getRequestDispatcher("cadastrarVeiculo.jsp").forward(request, response);
                 }
             }else if (acao.equalsIgnoreCase("editarVeiculo") || acao.equalsIgnoreCase("visualizarVeiculo")){
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
