@@ -33,11 +33,31 @@
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
-                            Você está em: 
-                            <script type="text/javascript">
-                                var pagina = document.title;
-                                document.write(pagina);
-                            </script>
+                            <table class="tabelaMensagem">
+                                <thead>
+                                  <td>
+                                      <div class="barraNavegacao">
+                                          <p>Você está em: 
+                                            <script type="text/javascript">
+                                                var pagina = document.title;
+                                                document.write(pagina);
+                                            </script>
+                                          </p>
+                                      </div>
+                                        </td>
+                                        <td>
+                                            <div class="mensagem">
+                                                  <%
+                                                    if (request.getAttribute("mensagem") != null) {
+                                                  %>
+                                                  <p><%= request.getAttribute("mensagem")%> </p>
+                                                  <%
+                                                             }
+                                                  %>
+                                            </div>
+                                        </td>
+                                </thead>
+                            </table>
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Cadastrar Novo Veículo</h2>
@@ -69,16 +89,17 @@
                                                 <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sCombustivel">Combustível</label></div>
+                                            <div class="formCadastroLabel">
+                                                <label for="sCombustivel">Combustível</label> </div>
                                             <div class="formCadastroInput">
-                                                <label id="gasolina">Gasolina</label>
-                                                <input type="checkbox" id="gasolina" name="gasolina" placeholder="GASOLINA"/>
-                                                <label id="alcool">Álcool</label>
-                                                <input type="checkbox" id="alcool" name="alcool" placeholder="ALCOOL"/>
-                                                <label id="diesel">Diesel</label>
-                                                <input type="checkbox" id="diesel" name="diesel" placeholder="DIESEL"/>
-                                                <label id="gnv">GNV</label>
-                                                <input type="checkbox" id="gnv" name="gnv" placeholder="GNV"/>
+                                                <label class="radioManutencao" for="sCombustivel">Gasolina</label>
+                                                <input type="radio" id="gasolina" name="combustivel" value="g"/>
+                                                <label class="radioManutencao" for="sCombustivel">Álcool</label>
+                                                <input type="radio" id="alcool" name="combustivel" value="a"/>
+                                                <label class="radioManutencao" for="sCombustivel">Diesel</label>
+                                                <input type="radio" id="diesel" name="combustivel" value="c"/>
+                                                <label class="radioManutencao" for="sCombustivel">GNV</label>
+                                                <input type="radio" id="gnv" name="combustivel" value="n"/>
                                             </div>
                                         </li>
                                         <li>
@@ -93,10 +114,15 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="Manutencao">Manutenção</label> </div>
-                                            <div class="formCadastroInput"><label class="radioManutencao" for="manutencao" >Sim</label>
-                                                <input type="radio" id="manutencaoS" name="manutencao" value="t"/>
-                                                <label class="radioManutencao" for="Manutencao">Não</label><input type="radio" id="manutencaoN" checked name="manutencao" value="f"/></div>
+                                            <div class="formCadastroLabel">
+                                                <label for="Manutencao">Manutenção</label>
+                                            </div>
+                                            <div class="formCadastroInput">
+                                                <label class="radioManutencao" for="manutencao" >Sim</label>
+                                                <input type="radio" id="manutencaoS" name="manutencao" value="t" onclick="validarManutencao()" />
+                                                <label class="radioManutencao" for="Manutencao">Não</label>
+                                                <input type="radio" id="manutencaoN" checked name="manutencao" value="f" onclick="validarManutencao()" />
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>

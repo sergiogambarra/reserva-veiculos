@@ -137,11 +137,7 @@ public class ControleServidor extends HttpServlet {
                     }
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
-                    InterfaceServidorDAO sdao = new ServidorDAO();
-                    List<Servidor> lista = sdao.todosServidor();
-
-                    request.setAttribute("listaserv", lista);
-                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                    request.getRequestDispatcher("cadastrarServidor.jsp").forward(request, response);
                 }
             } else if (acao.equalsIgnoreCase("editarServidor") || acao.equalsIgnoreCase("visualizarServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
