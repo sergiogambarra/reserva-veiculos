@@ -66,6 +66,19 @@ INSERT INTO veiculo VALUES
 
 select * from veiculo;
 
+insert into destino values
+	  (null, 'OUTROS')
+	, (null, 'IFRS CAMPUS RESTINGA')
+	, (null, 'IFRS CAMPUS PORTO ALEGRE')
+	, (null, 'IFRS CAMPUS RIO GRANDE')
+	, (null, 'IFRS CAMPUS BENTO GONÇALVES')
+	, (null, 'IFRS CAMPUS FARROUPILHA')
+	, (null, 'IFRS CAMPUS SERTÃO')
+	, (null, 'IFRS CAMPUS OSÓRIO')
+	, (null, 'IFRS CAMPUS VIAMÃO')
+	, (null, 'IFRS CAMPUS ALVORADA')
+	, (null, 'IFRS REITORIA');
+
 
 -- -----------------------------------------------------
 
