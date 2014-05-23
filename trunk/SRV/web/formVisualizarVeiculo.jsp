@@ -21,7 +21,7 @@
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
-    <body onload="desabilitaVisualizarVeiculo()">
+    <body onload="desabilitaVisualizarVeiculo();validarManutencao(<% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("g"))%>);">
         <section class="container">
             <div class="containerLogado">
                 <!-- A próxima div poderia servir para controle de permissões? -->
@@ -56,22 +56,22 @@
                                             <div class="formCadastroLabel">
                                                 <label for="sCombustivel">Combustível</label> </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioManutencao" for="sCombustivel">Gasolina</label>
                                                 <input type="radio" id="gasolina" name="combustivel" value="g"
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("g")) {%>checked<% }%>
                                                        />
-                                                <label class="radioManutencao" for="sCombustivel">Álcool</label>
+                                                <label class="radioManutencao" for="sCombustivel">Gasolina</label>
                                                 <input type="radio" id="alcool" name="combustivel" value="a"
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("a")) {%>checked<% }%>
                                                        />
-                                                <label class="radioManutencao" for="sCombustivel">Diesel</label>
+                                                <label class="radioManutencao" for="sCombustivel">Álcool</label>
                                                 <input type="radio" id="diesel" name="combustivel" value="c"
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("c")) {%>checked<% }%>
                                                        />
-                                                <label class="radioManutencao" for="sCombustivel">GNV</label>
+                                                <label class="radioManutencao" for="sCombustivel">Diesel</label>
                                                 <input type="radio" id="gnv" name="combustivel" value="n"
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("n")) {%>checked<% }%>
                                                        />
+                                                <label class="radioManutencao" for="sCombustivel">GNV</label>
                                             </div>
                                         </li>
                                         <li>
@@ -85,15 +85,18 @@
                                                 <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" maxlength="2" value="${placa.capacidade}"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="Manutencao">Manutenção</label> </div>
-                                            <div class="formCadastroInput"><label class="radioManutencao" for="manutencao" >Sim</label>
+                                            <div class="formCadastroLabel">
+                                                <label for="Manutencao">Manutenção</label> 
+                                            </div>
+                                            <div class="formCadastroInput">
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t"
                                                        <% if (((Veiculo) request.getAttribute("placa")).isManutencao()) {%>checked<% }%>          
                                                        />
-                                                <label class="radioManutencao" for="Manutencao">Não</label>
+                                                <label class="radioManutencao" for="manutencao" >Sim</label>
                                                 <input type="radio" id="manutencaoN" name="manutencao" value="f"
                                                        <% if (!((Veiculo) request.getAttribute("placa")).isManutencao()) {%>checked<% }%>          
                                                        />
+                                                <label class="radioManutencao" for="Manutencao">Não</label>
                                             </div>
                                         </li>
                                         <li>
