@@ -14,6 +14,8 @@
         <title>Novo Veículo</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
 <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
@@ -92,14 +94,14 @@
                                             <div class="formCadastroLabel">
                                                 <label for="sCombustivel">Combustível</label> </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioManutencao" for="sCombustivel">Gasolina</label>
                                                 <input type="radio" id="gasolina" name="combustivel" value="g"/>
-                                                <label class="radioManutencao" for="sCombustivel">Álcool</label>
+                                                <label class="radioManutencao" for="sCombustivel">Gasolina</label>
                                                 <input type="radio" id="alcool" name="combustivel" value="a"/>
-                                                <label class="radioManutencao" for="sCombustivel">Diesel</label>
+                                                <label class="radioManutencao" for="sCombustivel">Álcool</label>
                                                 <input type="radio" id="diesel" name="combustivel" value="c"/>
-                                                <label class="radioManutencao" for="sCombustivel">GNV</label>
+                                                <label class="radioManutencao" for="sCombustivel">Diesel</label>
                                                 <input type="radio" id="gnv" name="combustivel" value="n"/>
+                                                <label class="radioManutencao" for="sCombustivel">GNV</label>
                                             </div>
                                         </li>
                                         <li>
@@ -115,22 +117,22 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="Manutencao">Manutenção</label>
+                                                <label for="Manutencao" >Manutenção</label>
                                             </div>
                                             <div class="formCadastroInput">
+                                                <input type="radio" id="manutencaoS" name="manutencao" value="t" onClick="validarManutencao(this.value);"/>
                                                 <label class="radioManutencao" for="manutencao" >Sim</label>
-                                                <input type="radio" id="manutencaoS" name="manutencao" value="t" onclick="validarManutencao()" />
-                                                <label class="radioManutencao" for="Manutencao">Não</label>
-                                                <input type="radio" id="manutencaoN" checked name="manutencao" value="f" onclick="validarManutencao()" />
+                                                <input type="radio" id="manutencaoN" checked name="manutencao" value="f" onClick="validarManutencao(this.value);"/>
+                                                <label class="radioManutencao" for="Manutencao" >Não</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" /></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" disabled/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">Data Final (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" /></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" disabled/></div>
                                         </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>

@@ -42,18 +42,18 @@
                                                     <label for="sexo">*Sexo</label>
                                                 </div>
                                                 <div class="formCadastroInput">
-                                                    <label class="radioSexo" for="Sexo">Masculino</label>
                                                     <input type="radio" id="sexom" name="sexo" value="m"
                                                            <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("m")) {%>
                                                            checked
                                                            <% }%>   
                                                            />
-                                                    <label class="radioSexo" for="Sexo">Feminino<label>
+                                                    <label class="radioSexo" for="Sexo">Masculino</label>
                                                     <input type="radio" id="sexof" name="sexo" value="f"
                                                            <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("f")) {%>
                                                         checked
                                                         <% }%>   
                                                         />
+                                                    <label class="radioSexo" for="Sexo">Feminino<label>
                                                 </div>
                                             </li>
                                             <li>
@@ -122,14 +122,14 @@
                                                 <label for="bMotorista">Motorista</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="1"
                                                        <% if (((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                        />
-                                                <label class="radioMotorista" for="bMotorista">Não</label>
+                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="0"
                                                        <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                        />
+                                                <label class="radioMotorista" for="bMotorista">Não</label>
                                             </div>
                                         </li>
                                          <li>
@@ -141,14 +141,14 @@
                                             <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
                                         </div>
                                         <div class="formCadastroInput">
-                                            <label class="radioStatus" for="Status" >Ativo</label>
                                             <input type="radio" id="status_serv" value="1" name="status_serv"
                                                    <% if (((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
                                                    />
-                                            <label class="radioStatus" for="Status">Inativo<label>
-                                                <input type="radio" value="0" id="status_serv" name="status_serv"
+                                            <label class="radioStatus" for="Status" >Ativo</label>
+                                            <input type="radio" value="0" id="status_serv" name="status_serv"
                                                        <% if (!((Servidor) request.getAttribute("matricula")).isStatus_serv()) {%>checked<% }%>   
                                                 />
+                                            <label class="radioStatus" for="Status">Inativo<label>
                                          </div>
                                          </li>
                                         <li class="liTextArea">

@@ -81,9 +81,12 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sexo">*Sexo</label> </div>
-                                            <div class="formCadastroInput"><label class="radioSexo" for="Sexo" >Masculino</label>
+                                            <div class="formCadastroInput">
                                                 <input type="radio" id="sexo" name="sexo" value="m"/>
-                                                <label class="radioSexo" for="Sexo">Feminino</label><input type="radio" id="sexo" name="sexo" value="f"/></div>
+                                                <label class="radioSexo" for="Sexo" >Masculino</label>
+                                                <input type="radio" id="sexo" name="sexo" value="f"/>
+                                                <label class="radioSexo" for="Sexo">Feminino</label>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sDataNascimento">*Data Nascimento</label> </div>
@@ -170,10 +173,11 @@
                                             <div class="formCadastroLabel">
                                                 <label for="bMotorista">*Motorista</label> </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="1"/>
+                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="0"/>
                                                 <label class="radioMotorista" for="bMotorista">Não</label>
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="0"/></div>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
@@ -183,12 +187,12 @@
                                             <div class="formCadastroLabel">
                                                 <label for="status" id="status_serv">*Status</label> </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioStatus" for="Status" >Ativo</label>
                                                 <input type="radio" id="status_serv" name="status_serv" value="1" checked/>
+                                                <label class="radioStatus" for="Status" >Ativo</label>
+                                                <input type="radio" id="status_serv" name="status_serv" value="0"/>
                                                 <label class="radioStatus" for="Status">Inativo<label>
-                                                        <input type="radio" id="status_serv" name="status_serv" value="0"/>
-                                                        </div>
-                                                        </li>
+                                            </div>
+                                        </li>
                                         <li class="liTextArea">
                                             <div class="formCadastroLabel"><label for="sInfoComplementar">Informações Complementares</label> </div>
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>

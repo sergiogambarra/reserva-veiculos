@@ -68,6 +68,13 @@ function desabilitaVisualizarVeiculo()  {
      
 }
 
-function validarManutencao(){
-    
+function validarManutencao(valor){
+    if(valor == "t"){
+        document.formCadastroVeiculo.sManDataInicial.disabled= false;
+        document.formCadastroVeiculo.sManDataFinal.disabled= false;
+    }else{
+        document.formCadastroVeiculo.sManDataInicial.disabled= true;
+        document.formCadastroVeiculo.sManDataFinal.disabled= true;
+        
+    }
 }
