@@ -42,6 +42,7 @@ public class ControleServidor extends HttpServlet {
 
             HttpSession session = request.getSession();
             Servidor user = (Servidor) session.getAttribute("administrador");
+            System.out.println("Teste: "+user.getNome());
 
             String acao = request.getParameter("action");
             //Se for CADASTRAR ou ATUALIZAR
@@ -121,7 +122,7 @@ public class ControleServidor extends HttpServlet {
                         sdao.salvar(serv);
 
                         InterfaceServidorDAO idao = new ServidorDAO();
-                        List<Servidor> lista = idao.todosServidor();
+                        List<Servidor> lista = idao.todosServidores();
 
                         request.setAttribute("listaserv", lista);
 
@@ -130,7 +131,7 @@ public class ControleServidor extends HttpServlet {
 
                         sdao.atualizar(serv);
                         InterfaceServidorDAO idao = new ServidorDAO();
-                        List<Servidor> lista = idao.todosServidor();
+                        List<Servidor> lista = idao.todosServidores();
 
                         request.setAttribute("listaserv", lista);
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
@@ -141,8 +142,8 @@ public class ControleServidor extends HttpServlet {
                 }
             } else if (acao.equalsIgnoreCase("editarServidor") || acao.equalsIgnoreCase("visualizarServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
-                List<Servidor> list = idao.consultarMatricula(request.getParameter("matricula"));
-                Servidor matricula = list.get(0);
+                Servidor s = idao.consultarMatricula(request.getParameter("matricula"));
+                String matricula = s.getMatriculaSIAPE();
                 request.setAttribute("matricula", matricula);
                 request.setAttribute("dao", idao);
 
@@ -157,18 +158,17 @@ public class ControleServidor extends HttpServlet {
                     throw new Exception(Validacoes.getMensagemErro());
                 }
                 InterfaceServidorDAO idao = new ServidorDAO();
-                List<Servidor> list = idao.consultarMatricula(matricula);
-                Servidor servidor = list.get(0);
+                Servidor servidor = idao.consultarMatricula(matricula);
                 idao.excluir(servidor);
 
-                List<Servidor> lista = idao.todosServidor();
+                List<Servidor> lista = idao.todosServidores();
 
                 request.setAttribute("listaserv", lista);
                 request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
             } else if (acao.equals("listaServidores")) {
                 try {
                     InterfaceServidorDAO sdao = new ServidorDAO();
-                    List<Servidor> lista = sdao.todosServidor();
+                    List<Servidor> lista = sdao.todosServidores();
 
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
@@ -180,7 +180,7 @@ public class ControleServidor extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             InterfaceServidorDAO sdao = new ServidorDAO();
-            List<Servidor> lista = sdao.todosServidor();
+            List<Servidor> lista = sdao.todosServidores();
 
             request.setAttribute("listaserv", lista);
             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);

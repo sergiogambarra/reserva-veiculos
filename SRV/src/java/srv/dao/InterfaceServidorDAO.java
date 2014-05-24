@@ -13,13 +13,13 @@ import srv.modelo.Servidor;
  */
 public interface InterfaceServidorDAO {
  
-    public abstract List buscarServidor(String matriculaSIAPE);
+    public abstract Servidor buscarServidor(String matriculaSIAPE);
     public abstract void salvar(Servidor serv);
     public abstract void excluir(Servidor serv);
     public abstract void atualizar(Servidor serv);
     public abstract void visualizar(Servidor serv);
-    public abstract List todosServidor();
-    public List<Servidor> consultarMatricula(String parameter);
+    public abstract List todosServidores();
+    public Servidor consultarMatricula(String parameter);
     public abstract List<String> editarServidorSelecionarEstado(String ufAtual);
     public abstract List<String> editarEstadoCivil(String ecAtual);
 }

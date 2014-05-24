@@ -4,6 +4,8 @@
  */
 package srv.dao;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import srv.modelo.Reserva;
@@ -18,7 +20,7 @@ public class ReservaDAO implements InterfaceReservaDAO{
     private Session session;
     
     @Override
-    public void gravarDados(Reserva reserva) {
+    public void inserirReserva(Reserva reserva) {
         session = Conexao.getInstance();
         Transaction tx = null;
         
@@ -27,10 +29,10 @@ public class ReservaDAO implements InterfaceReservaDAO{
             session.save(reserva);
             tx.commit();
         } catch (Exception e) {
+            e.getMessage();            
         } finally{
             session.close();
         }
-        
     }
 
     @Override
@@ -51,6 +53,43 @@ public class ReservaDAO implements InterfaceReservaDAO{
     @Override
     public void excluirReserva() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public int gerarIdReserva(){
+        GregorianCalendar calendar = new GregorianCalendar(); 
+        StringBuilder idReserva= new StringBuilder();
+        idReserva.append(Integer.toString(calendar.get(Calendar.YEAR)).substring(2, 4));
+        
+        
+        if(calendar.get(Calendar.MONTH) < 10){
+           idReserva.append('0');
+           idReserva.append(calendar.get(Calendar.MONTH));
+        }else{
+           idReserva.append(calendar.get(Calendar.MONTH)); 
+        }
+        if(calendar.get(Calendar.HOUR) < 10){
+           idReserva.append('0');
+           idReserva.append(calendar.get(Calendar.HOUR));
+        }else{
+           idReserva.append(calendar.get(Calendar.HOUR)); 
+        }
+        if(calendar.get(Calendar.MINUTE) < 10){
+           idReserva.append('0');
+           idReserva.append(calendar.get(Calendar.MINUTE));
+        }else{
+           idReserva.append(calendar.get(Calendar.MINUTE)); 
+        }
+        if(calendar.get(Calendar.SECOND) < 10){
+           idReserva.append('0');
+           idReserva.append(calendar.get(Calendar.SECOND));
+        }else{
+           idReserva.append(calendar.get(Calendar.SECOND)); 
+        }
+        
+        int id = Integer.parseInt(idReserva.toString());
+        
+        return id;
     }
     
 }

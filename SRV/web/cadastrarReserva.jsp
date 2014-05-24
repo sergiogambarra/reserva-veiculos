@@ -4,6 +4,10 @@
     Author     : Douglas
 --%>
 
+<%@page import="srv.modelo.Destino"%>
+<%@page import="srv.modelo.Veiculo"%>
+<%@page import="srv.modelo.Servidor"%>
+<%@page import="java.util.List"%>
 <%@include file="ValidarLoginAdministrador.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
@@ -14,14 +18,21 @@
         <title>Novo Veículo</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
-<!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-        <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
+        <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+                <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
     <body>
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
-                    <div class="cabecalhoUsuario">Bem vindo, Servidor Fulano de Tal</div>
+                    <%
+                        Servidor servidor = new Servidor();
+                            if (request.getSession().getAttribute("administrador") != null) {
+                                servidor = (Servidor)request.getSession().getAttribute("administrador");
+                            }
+                        %>
+                    <div class="cabecalhoUsuario">Bem vindo, <%= servidor.getNome() %></div>
+                    
                     <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
@@ -40,51 +51,66 @@
                             </script>
                         </div>
                         <div class="formularioCadastrarServidor">            
-                            <h2>Cadastrar Novo Veículo</h2>
+                            <h2>Cadastrar Nova Reserva</h2>
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
-                            <form action="ControleVeiculo" name="formCadastroVeiculo">
-                                <input type="hidden" name="action" value="cadastrarVeiculo"/>
+                            <form action="ControleReserva" name="formInserirReserva" method="POST">
+                                <input type="hidden" name="action" value="inserirReserva"/>
+
+                                <%
+                                    List<Servidor> lista = (List<Servidor>) request.getAttribute("listaserv");
+                                    List<Veiculo> listav = (List<Veiculo>) request.getAttribute("listaveic");
+                                    List<Destino> listad = (List<Destino>) request.getAttribute("listadest");
+                                %>
+
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
+                                            <div class="formCadastroLabel">
+                                                <label for="iDataSaida">Data de Saída</label>
+                                            </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="PLACA" maxlength="7"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
-                                            <div class="formCadastroInput">
-                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" maxlength="9"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="iMarca">Marca</label> </div>
-                                            <div class="formCadastroInput">
-                                                <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" maxlength="15"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="iModelo">Modelo</label> </div>
-                                            <div class="formCadastroInput">
-                                                <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sCombustivel">Combustível</label></div>
-                                            <div class="formCadastroInput">
-                                                <label id="gasolina">Gasolina</label>
-                                                <input type="checkbox" id="gasolina" name="gasolina" placeholder="GASOLINA"/>
-                                                <label id="alcool">Álcool</label>
-                                                <input type="checkbox" id="alcool" name="alcool" placeholder="ALCOOL"/>
-                                                <label id="diesel">Diesel</label>
-                                                <input type="checkbox" id="diesel" name="diesel" placeholder="DIESEL"/>
-                                                <label id="gnv">GNV</label>
-                                                <input type="checkbox" id="gnv" name="gnv" placeholder="GNV"/>
+                                                <input type="date" id="inputDataSaida" name="inputDataSaida" />
+                                                <label for="iHoraSaida" >Horário de Saída: </label>
+                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iRenavam">Renavam</label> </div>
+                                            <div class="formCadastroLabel">
+                                                <label for="iDataRetorno">Data de Retorno</label>
+                                            </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11"/></div>
+                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" />
+                                                <label for="iHoraRetorno" >Horário de Retorno </label>
+                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
+                                            <div class="formCadastroInput">
+                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo">
+                                                    <option value="">Modelo:</option>
+                                                    <%
+                                                        for (int i = 0; i < listav.size(); i++) {
+                                                    %>
+                                                    <option value="<%= listav.get(i).getPlaca() %>">
+                                                        <%= listav.get(i).getModelo() %>
+                                                    </option>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel">
+                                                <label for="bMotorista">*Motorista</label> </div>
+                                            <div class="formCadastroInput">
+                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
+                                                <input type="radio" id="inputMotorista" name="inputMotorista" value="1" checked/>
+                                                <label class="radioMotorista" for="bMotorista">Não</label>
+                                                <input type="radio" id="inputMotorista" name="inputMotorista" value="0"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
@@ -93,18 +119,21 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="Manutencao">Manutenção</label> </div>
-                                            <div class="formCadastroInput"><label class="radioManutencao" for="manutencao" >Sim</label>
-                                                <input type="radio" id="manutencaoS" name="manutencao" value="t"/>
-                                                <label class="radioManutencao" for="Manutencao">Não</label><input type="radio" id="manutencaoN" checked name="manutencao" value="f"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" /></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sManDataFinal">Data Final (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" /></div>
+                                             <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
+                                            <div class="formCadastroInput">
+                                                <select id="iDestino" name="inputDestino">
+                                                    <option value="">Destino:</option>
+                                                    <%
+                                                        for (int i = 0; i < listad.size(); i++) {
+                                                    %>
+                                                    <option value="<%= listad.get(i).getId_destino() %>">
+                                                        <%= listad.get(i).getNome() %>
+                                                    </option>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </select>
+                                            </div>
                                         </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>

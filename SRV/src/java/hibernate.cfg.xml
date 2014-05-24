@@ -10,5 +10,6 @@
     <mapping class="srv.modelo.Servidor" />
     <mapping class="srv.modelo.Veiculo" />
     <mapping class="srv.modelo.Reserva" />
+    <mapping class="srv.modelo.Destino" />
   </session-factory>
 </hibernate-configuration>

@@ -11,9 +11,10 @@ import srv.modelo.Reserva;
  * @author Douglas
  */
 public interface InterfaceReservaDAO {
-    public abstract void gravarDados(Reserva reserva);
+    public abstract void inserirReserva(Reserva reserva);
     public abstract void consultarDisponibilidadeVeiculo();
     public abstract void consultarDisponibilidadeReserva();
     public abstract void consultarDadosReserva();
     public abstract void excluirReserva();
+    public abstract int gerarIdReserva();
 }

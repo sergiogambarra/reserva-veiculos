@@ -5,34 +5,36 @@
 package srv.modelo;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Douglas
  */
 @Entity
-@Table(name = "servidor")
+@Table(name = "reserva")
 @SuppressWarnings("serial")
 public class Reserva implements java.io.Serializable{
     private int id_reserva;
     private String matricula_siape;
-    private Timestamp data_saida;
-    private Timestamp data_retorno;
+    private Date data_saida;
+    private Date data_retorno;
     private String placa;
     private boolean condutor;
     private String matricula_siape_condutor;
     private int id_destino;
     private String descricao_destino;
-    private Timestamp reserva_datetime;
+    private Date reserva_datetime;
     
     public Reserva() {
     }
     
-    public Reserva(int id_reserva, String matricula_siape, Timestamp data_saida, Timestamp data_retorno, String placa, boolean condutor, String matricula_siape_condutor, int id_destino, String descricao_destino, Timestamp reserva_datetime) {
+    public Reserva(int id_reserva, String matricula_siape, Date data_saida, Date data_retorno, String placa, boolean condutor, String matricula_siape_condutor, int id_destino, String descricao_destino, Date reserva_datetime) {
         this.id_reserva = id_reserva;
         this.matricula_siape = matricula_siape;
         this.data_saida = data_saida;
@@ -65,7 +67,8 @@ public class Reserva implements java.io.Serializable{
     }
     
     @Column(name = "data_saida")
-    public Timestamp getData_saida() {
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getData_saida() {
         return data_saida;
     }
     
@@ -74,7 +77,8 @@ public class Reserva implements java.io.Serializable{
     }
 
     @Column(name = "data_retorno")
-    public Timestamp getData_retorno() {
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getData_retorno() {
         return data_retorno;
     }
 
@@ -128,7 +132,8 @@ public class Reserva implements java.io.Serializable{
     }
 
     @Column(name = "reserva_datetime")
-    public Timestamp getReserva_datetime() {
+    @Temporal(javax.persistence.TemporalType.DATE)
+    public Date getReserva_datetime() {
         return reserva_datetime;
     }
 

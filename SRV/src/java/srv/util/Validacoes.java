@@ -6,6 +6,7 @@ package srv.util;
 
 import java.util.List;
 import srv.dao.ServidorDAO;
+import srv.modelo.Servidor;
 
 /**
  *
@@ -43,8 +44,8 @@ public class Validacoes {
     public static boolean ValidarUsuarioLogin(String matriculaSIAPE)
     {
         ServidorDAO fdao = new ServidorDAO();
-        List l = fdao.buscarServidor(matriculaSIAPE);
-        if (l.isEmpty())
+        Servidor s = fdao.buscarServidor(matriculaSIAPE);
+        if (s != null)
         {
             setMensagemErro("Matricula e/ou senha incorreto(s)");
             return false;  
@@ -66,8 +67,8 @@ public class Validacoes {
     public static boolean ValidarUsuarioEnviarSenha(String matriculaSIAPE)
     {
        ServidorDAO fdao = new ServidorDAO();
-        List l = fdao.buscarServidor(matriculaSIAPE);
-        if (l.isEmpty())
+        Servidor s = fdao.buscarServidor(matriculaSIAPE);
+        if (s != null)
         {
             setMensagemErro("Matricula incorreta");
             return false;  
@@ -84,10 +85,10 @@ public class Validacoes {
         return true;
     }
 
-    public static boolean ValidarMatriculaExiste(String matricula_siape) {
+    public static boolean ValidarMatriculaExiste(String matriculaSIAPE) {
         ServidorDAO fdao = new ServidorDAO();
-        List l = fdao.buscarServidor(matricula_siape);
-        if (!(l.isEmpty())){
+        Servidor s = fdao.buscarServidor(matriculaSIAPE);
+        if (s != null){
             setMensagemErro("Servidor já cadastrado");
             return false;  
         }
