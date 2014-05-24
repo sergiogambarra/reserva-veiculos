@@ -69,9 +69,9 @@ public class ServidorDAO implements InterfaceServidorDAO {
         try {
             Transaction tx = session.beginTransaction();
             String sql = "update Servidor set nome = :nome, "
-                    +                     "email = :email, sexo = :sexo, data_nascimento = :data_nascimento, cpf = :cpf,rg = :rg, orgao_expedidor = :orgao_expedidor, "+
-                                        "naturalidade = :naturalidade, estado = :estado, nacionalidade = :nacionalidade, estado_civil = :estado_civil, telefone1 = :telefone1, telefone2 = :telefone2, "+
-                                        "motorista = :motorista, cnh = :cnh, status_serv = :status_serv, informacoes = :informacoes"+
+    +                     "email = :email, sexo = :sexo, data_nascimento = :data_nascimento, cpf = :cpf,rg = :rg, orgao_expedidor = :orgao_expedidor, "+
+                        "naturalidade = :naturalidade, estado = :estado, nacionalidade = :nacionalidade, estado_civil = :estado_civil, telefone1 = :telefone1, telefone2 = :telefone2, "+
+                        "motorista = :motorista, cnh = :cnh, status_serv = :status_serv, informacoes = :informacoes"+
                     " where matricula_siape = :matriculaSIAPE";
             Query query = session.createQuery(sql);
 

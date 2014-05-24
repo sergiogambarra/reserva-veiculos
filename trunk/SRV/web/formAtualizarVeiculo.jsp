@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
     <body>
@@ -49,7 +50,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="PLACA" maxlength="7" value="${placa.placa}" disabled/></div>
+                                                <input type="text" id="id" name="iPlaca" placeholder="PLACA" maxlength="7" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>

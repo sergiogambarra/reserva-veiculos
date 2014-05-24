@@ -101,9 +101,8 @@ public class ControleVeiculo extends HttpServlet {
                 }
             }else if (acao.equalsIgnoreCase("editarVeiculo") || acao.equalsIgnoreCase("visualizarVeiculo")){
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
-                List<Veiculo> list = idao.consultarPlaca(request.getParameter("placa"));
-                Veiculo placa = list.get(0);
-                request.setAttribute("placa", placa);
+                Veiculo v = idao.consultarPlaca(request.getParameter("placa"));
+                request.setAttribute("placa", v);
                 
                  if(acao.equalsIgnoreCase("editarVeiculo")){
                     request.getRequestDispatcher("/formAtualizarVeiculo.jsp").forward(request, response);
@@ -112,8 +111,7 @@ public class ControleVeiculo extends HttpServlet {
                 }
             } else if (acao.equals("excluirVeiculo")) {
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
-                List<Veiculo> list = idao.consultarPlaca(request.getParameter("placa"));
-                Veiculo veiculo = list.get(0);
+                Veiculo veiculo = idao.consultarPlaca(request.getParameter("placa"));
                 idao.excluir(veiculo);
 
                 List<Veiculo> lista = idao.todosVeiculo();

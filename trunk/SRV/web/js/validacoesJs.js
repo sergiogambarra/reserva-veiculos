@@ -1,26 +1,26 @@
 function validarMatricula(){
-	var matricula = document.formLogin.inputMatricula.value.length;
-	var teste = matricula.value.type;
-	if (matricula == 7){
-		prompt("Teste nan: "+reg);
-		return false;
-	}else{
-		prompt("Teste nan: "+ teste);
-		return false;
-	}
+    var matricula = document.formLogin.inputMatricula.value.length;
+    var teste = matricula.value.type;
+    if (matricula == 7){
+        prompt("Teste nan: "+reg);
+        return false;
+    }else{
+        prompt("Teste nan: "+ teste);
+        return false;
+    }
 }
 
 function visualizarServidor(MatriculaSIAPE){
     var matricula = MatriculaSIAPE;
     window.open("ControleServidor?action=visualizarServidor&matricula="+matricula,
-    "janela","width=700, height=900, \n\
+        "janela","width=700, height=900, \n\
 scrollbars=yes, menubar=no, resizable=no, fullscreen=no");
 }
 
 function visualizarVeiculo(Placa){
     var placa = Placa;
     window.open("ControleVeiculo?action=visualizarVeiculo&placa="+placa,
-    "janela","width=700, height=900, \n\
+        "janela","width=700, height=900, \n\
 scrollbars=yes, menubar=no, resizable=no, fullscreen=no");
 }
 
@@ -74,7 +74,20 @@ function validarManutencao(valor){
         document.formCadastroVeiculo.sManDataFinal.disabled= false;
     }else{
         document.formCadastroVeiculo.sManDataInicial.disabled= true;
-        document.formCadastroVeiculo.sManDataFinal.disabled= true;
-        
+        document.formCadastroVeiculo.sManDataFinal.disabled= true;   
     }
 }
+
+function naoAlterarId(){
+    var id = document.getElementById("id").getAttribute('name')
+    if(id == "iPlaca"){
+        alert("Você não pode alterar a Placa.");
+    }else{
+        alert("Você não pode alterar a Matrícula.");
+    }  
+}
+
+//function funcoesOnload(valor){
+//    validarManutencao(valor);
+//    desabilitaVisualizarVeiculo();
+//}

@@ -143,8 +143,8 @@ public class ControleServidor extends HttpServlet {
             } else if (acao.equalsIgnoreCase("editarServidor") || acao.equalsIgnoreCase("visualizarServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
                 Servidor s = idao.consultarMatricula(request.getParameter("matricula"));
-                String matricula = s.getMatriculaSIAPE();
-                request.setAttribute("matricula", matricula);
+                //String matricula = s.getMatriculaSIAPE();
+                request.setAttribute("matricula", s);
                 request.setAttribute("dao", idao);
 
                 if (acao.equalsIgnoreCase("editarServidor")) {
