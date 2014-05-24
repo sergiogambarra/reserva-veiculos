@@ -21,7 +21,7 @@
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
-    <body onload="desabilitaVisualizarVeiculo();validarManutencao(<% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("g"))%>);">
+    <body onload="desabilitaVisualizarVeiculo()">
         <section class="container">
             <div class="containerLogado">
                 <!-- A próxima div poderia servir para controle de permissões? -->

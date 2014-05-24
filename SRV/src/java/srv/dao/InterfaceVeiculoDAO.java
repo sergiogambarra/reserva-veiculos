@@ -18,5 +18,5 @@ public interface InterfaceVeiculoDAO {
     public abstract void atualizar(Veiculo veic);
     public abstract void visualizar(Veiculo veic);
     public abstract List todosVeiculo();
-    public List<Veiculo> consultarPlaca(String parameter);
+    public Veiculo consultarPlaca(String parameter);
 }

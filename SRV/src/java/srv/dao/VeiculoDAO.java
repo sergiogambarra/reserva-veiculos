@@ -107,15 +107,15 @@ public class VeiculoDAO implements InterfaceVeiculoDAO  {
      * @param placa
      * @return
      */
+    
     @Override
-    public List<Veiculo> consultarPlaca(String placa) {
+    public Veiculo consultarPlaca(String placa) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Veiculo l where l.placa like :placa");
-        List list = query.setString("placa", placa).list();
-
-        return list;
+        Query query = session.createQuery("from Veiculo l where l.placa = :placa");
+        Veiculo v = (Veiculo) query.setString("placa", placa).uniqueResult();
+        return v;
     }
-
+    
     @Override
     public void visualizar(Veiculo veic) {
         throw new UnsupportedOperationException("Not supported yet.");

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
     <body>
@@ -48,7 +49,7 @@
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMatriculaSiape">*Matricula SIAPE</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="iMatriculaSiape" name="iMatriculaSiape" placeholder="SIAPE" value="${matricula.matriculaSIAPE}"size="7" maxlength="7" disabled /></div>
+                                            <div class="formCadastroInput"><input type="text" id="id" name="iMatriculaSiape" placeholder="SIAPE" value="${matricula.matriculaSIAPE}"size="7" maxlength="7" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
