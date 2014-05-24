@@ -22,12 +22,12 @@ public class ServidorDAO implements InterfaceServidorDAO {
     private Session session;
 
     @Override
-    public List buscarServidor(String matriculaSIAPE) {
+    public Servidor buscarServidor(String matriculaSIAPE) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE like :matricula_siape");
-        List list = query.setString("matricula_siape", matriculaSIAPE).list();
+        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE = :matricula_siape");
+        Servidor s = (Servidor) query.setString("matricula_siape", matriculaSIAPE).uniqueResult();
 
-        return list;
+        return s;
     }
    
     public void salvar(Servidor serv) {
@@ -104,19 +104,19 @@ public class ServidorDAO implements InterfaceServidorDAO {
     }
 
     @Override
-    public List todosServidor() {
+    public List todosServidores() {
         session = Conexao.getInstance();
         List list = session.createQuery("from Servidor").list();
         return list;
     }
 
     @Override
-    public List<Servidor> consultarMatricula(String matriculaSIAPE) {
+    public Servidor consultarMatricula(String matriculaSIAPE) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE like :matricula_siape");
-        List list = query.setString("matricula_siape", matriculaSIAPE).list();
+        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE = :matricula_siape");
+        Servidor s = (Servidor) query.setString("matricula_siape", matriculaSIAPE).uniqueResult();
 
-        return list;
+        return s;
     }
 
     @Override

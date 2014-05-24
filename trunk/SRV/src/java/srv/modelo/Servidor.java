@@ -81,10 +81,10 @@ public class Servidor implements java.io.Serializable {
          * -1 para senha incorreta
          */
         ServidorDAO fdao = new ServidorDAO();
-        List l = fdao.buscarServidor(matriculaSIAPE);
+        Servidor s = fdao.buscarServidor(this.matriculaSIAPE);
 
-        if (!l.isEmpty()) {
-            Servidor func = (Servidor) l.get(0);
+        if (s != null) {
+            Servidor func = s;
             if (func.senha.equals(senha)) {
                 if (func.perfil == 1) {
                     return 1;
@@ -98,9 +98,9 @@ public class Servidor implements java.io.Serializable {
 
     public void EnviarSenha() {
         ServidorDAO fdao = new ServidorDAO();
-        List l = fdao.buscarServidor(matriculaSIAPE);
-        if (!l.isEmpty()) {
-            Servidor func = (Servidor) l.get(0);
+        Servidor s = fdao.buscarServidor(this.matriculaSIAPE);
+        if (s != null) {
+            Servidor func = s;
             SimpleEmail simplemail = new SimpleEmail();
 
             try {
