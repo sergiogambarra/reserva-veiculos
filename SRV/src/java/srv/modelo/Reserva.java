@@ -67,7 +67,7 @@ public class Reserva implements java.io.Serializable{
     }
     
     @Column(name = "data_saida")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getData_saida() {
         return data_saida;
     }
@@ -77,7 +77,7 @@ public class Reserva implements java.io.Serializable{
     }
 
     @Column(name = "data_retorno")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getData_retorno() {
         return data_retorno;
     }

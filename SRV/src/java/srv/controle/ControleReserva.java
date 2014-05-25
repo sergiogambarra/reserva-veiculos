@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -110,14 +111,9 @@ public class ControleReserva extends HttpServlet {
                     matricula_siape_condutor = "outro";
                 }
                 int id_destino = Integer.parseInt(request.getParameter("inputDestino"));
-
-                Date date_saida;
-                date_saida = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime_saida);
-                Timestamp timestamp_saida = new Timestamp(date_saida.getTime());
                 
-                Date date_retorno;
-                date_retorno = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime_retorno);
-                Timestamp timestamp_retorno = new Timestamp(date_retorno.getTime());
+                Date date_saida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_saida);
+                Date date_retorno = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_retorno);
                 
                 DateFormat df = new  SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date date_atual = new Date();
@@ -134,6 +130,7 @@ public class ControleReserva extends HttpServlet {
                         , id_destino
                         , " "
                         , date_atual);
+                
                 rdao.inserirReserva(reserva);
                 request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
             }

@@ -39,7 +39,7 @@
                             </script>
                         </div>
                         <div class="formularioCadastrarServidor">            
-                            <h2>Editar Servidor</h2>
+                            <h2>Editar Veículo</h2>
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
