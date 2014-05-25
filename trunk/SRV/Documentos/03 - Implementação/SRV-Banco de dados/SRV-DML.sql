@@ -34,3 +34,5 @@ insert into destino values
 	, (null, 'IFRS CAMPUS VIAMÃO')
 	, (null, 'IFRS CAMPUS ALVORADA')
 	, (null, 'IFRS REITORIA');
+
+select * from reserva;
