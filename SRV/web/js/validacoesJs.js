@@ -78,6 +78,14 @@ function validarManutencao(valor){
     }
 }
 
+function validarMotorista(valor){
+    if(valor == "1"){
+        document.getElementById("sCnh").disabled = false; 
+    }else{
+        document.getElementById("sCnh").disabled = true;
+    }
+}
+
 function naoAlterarId(){
     var id = document.getElementById("id").getAttribute('name')
     if(id == "iPlaca"){
@@ -108,3 +116,100 @@ function exibirDescricaoDestino(selected){
 //    validarManutencao(valor);
 //    desabilitaVisualizarVeiculo();
 //}
+
+function validarVeiculo(){
+    if(document.formCadastroVeiculo.iPlaca.value == ""){
+        alert("Informe a Placa.");
+        return false;
+    }
+    
+    if(document.formCadastroVeiculo.iAno.value == ""){
+        alert("Informe o Ano.");
+        return false;
+    }
+    
+    if(document.formCadastroVeiculo.iMarca.value == ""){
+        alert("Informe a Marca.");
+        return false;
+    }
+    
+    if(document.formCadastroVeiculo.iModelo.value == ""){
+        alert("Informe o Modelo.");
+        return false;
+    }
+    
+    if(document.formCadastroVeiculo.combustivel[0].checked == false && document.formCadastroVeiculo.combustivel[1].checked == false
+        && document.formCadastroVeiculo.combustivel[2].checked == false && document.formCadastroVeiculo.combustivel[3].checked == false){
+        alert("Escolha uma opção de Combustível.");
+        return false;
+    }
+    
+    if(document.formCadastroVeiculo.iRenavam.value == ""){
+        alert("Informe o Renanvam.");
+        return false;
+    }
+     
+    if(document.formCadastroVeiculo.manutencao[0].checked == true){
+        if(document.formCadastroVeiculo.sManDataInicial.value == ""){
+            alert("Informe a Data Incial da Manutenção.");
+            return false;
+        }
+    
+        if(document.formCadastroVeiculo.sManDataFinal.value == ""){
+            alert("Informe a Data Final da Manutenção.");
+            return false;
+        }
+    } 
+    return true;
+}
+
+
+function validarServidor(){
+    if(document.formCadastroServidor.iMatriculaSiape.value == ""){
+        alert("Informe a Matrícula.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sNomeCompleto.value == ""){
+        alert("Informe o Nome.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sEmail.value == ""){
+        alert("Informe o E-mail.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sexo[0].checked == false && document.formCadastroServidor.sexo[1].checked == false){
+        alert("Informe o Sexo.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sDataNascimento.value == ""){
+        alert("Informe a Data de Nascimento.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sCpf.value == ""){
+        alert("Informe o CPF.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sOrgaoExpedidor.value == ""){
+        alert("Informe o Orgão Expedidor.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.sTelefone1.value == ""){
+        alert("Informe o Telefone.");
+        return false;
+    }
+    
+    if(document.formCadastroServidor.bMotorista[0].checked == true){
+        if(document.formCadastroServidor.sCnh.value == ""){
+            alert("Informe a CNH.");
+            return false;
+        }
+    }
+    return true;
+}

@@ -16,8 +16,7 @@
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
-<!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-        <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
+<!--    <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
     <body>
         <section class="container">
@@ -71,28 +70,28 @@
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
+                                            <div class="formCadastroLabel"><label for="iPlaca">* Placa</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iPlaca" name="iPlaca" placeholder="PLACA" maxlength="7"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
+                                            <div class="formCadastroLabel"><label for="iAno">* Ano</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iAno" name="iAno" placeholder="ANO" maxlength="9"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMarca">Marca</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMarca">* Marca</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" maxlength="15"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iModelo">Modelo</label> </div>
+                                            <div class="formCadastroLabel"><label for="iModelo">* Modelo</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="sCombustivel">Combustível</label> </div>
+                                                <label for="sCombustivel">* Combustível</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="gasolina" name="combustivel" value="g"/>
                                                 <label class="radioManutencao" for="sCombustivel">Gasolina</label>
@@ -105,19 +104,19 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iRenavam">Renavam</label> </div>
+                                            <div class="formCadastroLabel"><label for="iRenavam">* Renavam</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">* Capacidade</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="number" id="iCapacidade" name="iCapacidade" value="5" min="1" max="50">
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="Manutencao" >Manutenção</label>
+                                                <label for="Manutencao" >* Manutenção</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t" onClick="validarManutencao(this.value);"/>
@@ -127,17 +126,17 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>
+                                            <div class="formCadastroLabel"><label for="sManDataInicial">* Data Inicial (dd-mm-aaaa)</label> </div>
                                             <div class="formCadastroInput"><input type="date" name="sManDataInicial" disabled/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sManDataFinal">Data Final (dd-mm-aaaa)</label> </div>
+                                            <div class="formCadastroLabel"><label for="sManDataFinal">* Data Final (dd-mm-aaaa)</label> </div>
                                             <div class="formCadastroInput"><input type="date" name="sManDataFinal" disabled/></div>
                                         </li>
                                         <li class="formBotoes">
-                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>
+                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar" /></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
-                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
                                         </li>
                                     </ul>
                                 </div>

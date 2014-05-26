@@ -48,9 +48,11 @@ public class ControleVeiculo extends HttpServlet {
                     String modelo = request.getParameter("iModelo");
                     String renavam = request.getParameter("iRenavam");
                     String manutencao = request.getParameter("manutencao");
+                    String combustivel = request.getParameter("combustivel");
+                    
+                    //CAMPOS NÃO OBRIGATÓRIOS (SE NÃO ESTIVER EM MANUTENÇÃO)
                     String manutencao_data_inicial = request.getParameter("sManDataInicial");
                     String manutencao_data_final = request.getParameter("sManDataFinal");
-                    String combustivel = request.getParameter("combustivel");
                     
                     Veiculo veiculo = new Veiculo();
                     veiculo.setPlaca(placa);
@@ -63,25 +65,24 @@ public class ControleVeiculo extends HttpServlet {
                     
                     if (manutencao.equals("t")) {
                         veiculo.setManutencao(true);
+                        // SETANDO CAMPOS NÃO OBRIGATÓRIOS
+                        Date date1;
+                        date1 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_inicial);
+                        veiculo.setManutencao_data_inicial(date1);
+
+                        Date date2;
+                        date2 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_final);
+                        veiculo.setManutencao_data_final(date2);
                     } else {
                         veiculo.setManutencao(false);
+                        veiculo.setManutencao_data_inicial(null);
+                        veiculo.setManutencao_data_final(null);
                     }
-
-                    // FALTA VALIDACAO DA DATA FINAL < DATA INICIAL
-                    Date date1;
-                    date1 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_inicial);
-                    veiculo.setManutencao_data_inicial(date1);
-
-                    Date date2;
-                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_final);
-                    veiculo.setManutencao_data_final(date2);
 
                     VeiculoDAO vdao = new VeiculoDAO();
 
                     if (acao.equals("cadastrarVeiculo")) {
-
                         vdao.salvar(veiculo);
-
                         InterfaceVeiculoDAO idao = new VeiculoDAO();
                         List<Veiculo> lista = idao.todosVeiculo();
 
