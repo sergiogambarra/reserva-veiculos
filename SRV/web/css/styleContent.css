@@ -410,3 +410,11 @@ caption{
     font-weight: bold;
     text-align: center;
 }
+
+.invisivel{
+    display: none;
+}
+
+.visivel { 
+    visibility: visible; 
+}

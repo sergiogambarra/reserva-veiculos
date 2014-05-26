@@ -18,6 +18,7 @@
         <title>Novo Veículo</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
+        <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
                 <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
@@ -105,13 +106,34 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="bMotorista">*Motorista</label> </div>
+                                                <label for="inputMotorista">*Sou o Motorista</label> 
+                                            </div>
                                             <div class="formCadastroInput">
-                                                <label class="radioMotorista" for="bMotorista" >Sim</label>
-                                                <input type="radio" id="inputMotorista" name="inputMotorista" value="1" checked/>
+                                                <label class="radioMotorista" for="inputMotorista" >Sim</label>
+                                                <input type="radio" id="inputMotorista" name="inputMotorista" value="1" onchange="trocarMotorista(this.value);" checked/>
                                                 <label class="radioMotorista" for="bMotorista">Não</label>
-                                                <input type="radio" id="inputMotorista" name="inputMotorista" value="0"/></div>
+                                                <input type="radio" id="inputMotorista" name="inputMotorista" value="0" onchange="trocarMotorista(this.value);"/>
+                                            </div>
                                         </li>
+                                        <div id="selecaoOutroMotorista" class="invisivel">
+                                            <li >
+                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">Motorista</label> </div>
+                                                <div class="formCadastroInput">
+                                                    <select id="inputOutroMotorista" name="inputOutroMotorista">
+                                                        <option value="">Selecione:</option>
+                                                        <%
+                                                            for (int i = 0; i < lista.size(); i++) {
+                                                        %>
+                                                        <option value="<%= lista.get(i).getMatriculaSIAPE() %>">
+                                                            <%= lista.get(i).getNome() %>
+                                                        </option>
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </div>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
                                             <div class="formCadastroInput">
@@ -121,20 +143,42 @@
                                         <li>
                                              <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
                                             <div class="formCadastroInput">
-                                                <select id="iDestino" name="inputDestino">
+                                                <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="">Destino:</option>
                                                     <%
                                                         for (int i = 0; i < listad.size(); i++) {
+                                                            if(i == 0){
+                                                                continue;
+                                                            }if(i == (listad.size() - 1)){
+                                                    %>
+                                                    <option value="<%= listad.get(i).getId_destino() %>">
+                                                        <%= listad.get(i).getNome() %>
+                                                    </option>
+                                                    <option value="<%= listad.get(0).getId_destino() %>">
+                                                        <%= listad.get(0).getNome() %>
+                                                    </option>
+                                                    <%
+                                                        break;
+                                                            }else{
                                                     %>
                                                     <option value="<%= listad.get(i).getId_destino() %>">
                                                         <%= listad.get(i).getNome() %>
                                                     </option>
                                                     <%
                                                         }
+                                                        }
                                                     %>
                                                 </select>
                                             </div>
                                         </li>
+                                        <div id="complementoDestino" class="invisivel">
+                                            <li class="liTextArea">
+                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Destino: </label> </div>
+                                                <div class="formCadastroInput">
+                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informações complementares"/>
+                                                </div>
+                                            </li>
+                                        </div>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
