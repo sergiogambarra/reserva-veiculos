@@ -87,6 +87,23 @@ function naoAlterarId(){
     }  
 }
 
+function trocarMotorista(checked)
+{
+    if(checked == 1){
+        document.getElementById("selecaoOutroMotorista").className = "invisivel";
+    }else{
+        document.getElementById("selecaoOutroMotorista").className = "visivel";
+    }
+}
+
+function exibirDescricaoDestino(selected){
+    if(selected == 1){
+        document.getElementById("complementoDestino").className = "visivel";
+    }else{
+        document.getElementById("complementoDestino").className = "invisivel";
+    }
+}
+
 //function funcoesOnload(valor){
 //    validarManutencao(valor);
 //    desabilitaVisualizarVeiculo();

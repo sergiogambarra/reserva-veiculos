@@ -87,7 +87,6 @@ public class ControleReserva extends HttpServlet {
             }
             if (acao.equals("inserirReserva")) {
                 ReservaDAO rdao = new ReservaDAO();
-                System.out.println("TEste:" + user.getNome());
 
                 int id_reserva = rdao.gerarIdReserva();
                 String matricula_siape = user.getMatriculaSIAPE();
@@ -103,14 +102,20 @@ public class ControleReserva extends HttpServlet {
                 int iCondutor = Integer.parseInt(request.getParameter("inputMotorista"));
                 boolean condutor;
                 String matricula_siape_condutor;
+                
                 if (iCondutor == 1) {
                     condutor = true;
-                    matricula_siape_condutor = user.getMatriculaSIAPE();
+                    matricula_siape_condutor = matricula_siape;
                 } else {
                     condutor = false;
-                    matricula_siape_condutor = "outro";
+                    matricula_siape_condutor = request.getParameter("inputOutroMotorista");
                 }
                 int id_destino = Integer.parseInt(request.getParameter("inputDestino"));
+                String descricao = null;
+                
+                if(id_destino == 1){
+                    descricao = request.getParameter("inputDestinoComplementar");
+                }
                 
                 Date date_saida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_saida);
                 Date date_retorno = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_retorno);
@@ -128,7 +133,7 @@ public class ControleReserva extends HttpServlet {
                         , condutor
                         , matricula_siape_condutor
                         , id_destino
-                        , " "
+                        , descricao
                         , date_atual);
                 
                 rdao.inserirReserva(reserva);

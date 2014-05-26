@@ -132,7 +132,7 @@ public class Reserva implements java.io.Serializable{
     }
 
     @Column(name = "reserva_datetime")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     public Date getReserva_datetime() {
         return reserva_datetime;
     }

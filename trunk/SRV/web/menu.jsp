@@ -7,6 +7,7 @@
             <li><a href="ControleReserva?action=formularioReserva">Nova Reserva</a></li>
             <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
             <li><a href="cadastrarVeiculo.jsp">Novo Veículo</a></li>
+            <li><a href="formPeriodo.jsp">OUTRO</a></li>
         </li>
     </nav>
 </div>

@@ -35,4 +35,5 @@ insert into destino values
 	, (null, 'IFRS CAMPUS ALVORADA')
 	, (null, 'IFRS REITORIA');
 
-select * from reserva;
+select * from reserva order by reserva_datetime desc;
+select * from servidor;
