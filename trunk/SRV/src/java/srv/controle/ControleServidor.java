@@ -42,7 +42,7 @@ public class ControleServidor extends HttpServlet {
 
             HttpSession session = request.getSession();
             Servidor user = (Servidor) session.getAttribute("administrador");
-            System.out.println("Teste: "+user.getNome());
+            System.out.println("Teste: " + user.getNome());
 
             String acao = request.getParameter("action");
             //Se for CADASTRAR ou ATUALIZAR
@@ -57,45 +57,40 @@ public class ControleServidor extends HttpServlet {
                     String cpf = request.getParameter("sCpf");
                     String rg = request.getParameter("sRg");
                     String orgao_expedidor = request.getParameter("sOrgaoExpedidor");
+                    String telefone1 = request.getParameter("sTelefone1");
+                    String motorista = request.getParameter("bMotorista");
+                    String status_serv = request.getParameter("status_serv");
+
+                    //CAMPOS NÃO OBRIGATÓRIOS
                     String naturalidade = request.getParameter("sNaturalidade");
                     String estado = request.getParameter("estado");
                     String nacionalidade = request.getParameter("sNacionalidade");
                     String estado_civil = request.getParameter("estadoCivil");
-                    String telefone1 = request.getParameter("sTelefone1");
-                    String telefone2 = request.getParameter("sTelefone2");
-                    String motorista = request.getParameter("bMotorista");
                     String cnh = request.getParameter("sCnh");
-                    String status_serv = request.getParameter("status_serv");
                     String informacoes = request.getParameter("sInfoComplementar");
-
+                    String telefone2 = request.getParameter("sTelefone2");
 
                     Servidor serv = new Servidor();
                     serv.setMatriculaSIAPE(matricula_siape);
                     serv.setNome(nome);
                     serv.setEmail(email);
                     serv.setSexo(sexo);
+
                     //A DATA SERÁ A SENHA INICIAL
                     Date date;
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
                     serv.setData_nascimento(date);
-
                     serv.setCpf(cpf);
                     serv.setRg(rg);
                     serv.setOrgao_expedidor(orgao_expedidor);
-                    serv.setNaturalidade(naturalidade);
-                    serv.setEstado(estado);
-                    serv.setNacionalidade(nacionalidade);
-                    serv.setEstado_civil(estado_civil);
                     serv.setTelefone1(telefone1);
-                    serv.setTelefone2(telefone2);
 
+                    //Motorista
                     if (motorista.equals("1")) {
                         serv.setMotorista(true);
                     } else {
                         serv.setMotorista(false);
                     }
-
-                    serv.setCnh(cnh);
 
                     //Ativo ou Inativo
                     if (status_serv.equalsIgnoreCase("1")) {
@@ -103,7 +98,49 @@ public class ControleServidor extends HttpServlet {
                     } else {
                         serv.setStatus_serv(false);
                     }
-                    serv.setInformacoes(informacoes);
+
+                    //SETANDO CAMPOS NÃO OBRIGATÓRIOS (VERIFICA CAMPOS NULOS)
+                    if (!(naturalidade.equalsIgnoreCase(""))) {
+                        serv.setNaturalidade(naturalidade);
+                    } else {
+                        serv.setNaturalidade(null);
+                    }
+
+                    if (!(estado.equalsIgnoreCase(""))) {
+                        serv.setEstado(estado);
+                    } else {
+                        serv.setEstado(null);
+                    }
+
+                    if (!(nacionalidade.equalsIgnoreCase(""))) {
+                        serv.setNacionalidade(nacionalidade);
+                    } else {
+                        serv.setNacionalidade(null);
+                    }
+
+                    if (!(estado_civil.equalsIgnoreCase("0"))) {
+                        serv.setEstado_civil(estado_civil);
+                    } else {
+                        serv.setEstado_civil(null);
+                    }
+
+                    if (!(informacoes.equalsIgnoreCase(""))) {
+                        serv.setInformacoes(informacoes);
+                    } else {
+                        serv.setInformacoes(null);
+                    }
+                    
+                    if (!(telefone2.equalsIgnoreCase(""))) {
+                        serv.setTelefone2(telefone2);
+                    } else {
+                        serv.setTelefone2(null);
+                    }
+                    
+                    if (motorista.equalsIgnoreCase("1")) {
+                        serv.setCnh(cnh);
+                    } else {
+                        serv.setCnh(null);
+                    }
 
                     //PEGA DIA E ANO PARA GERAR A SENHA
                     SimpleDateFormat dataSenha = new SimpleDateFormat("ddyyyy");
@@ -118,6 +155,7 @@ public class ControleServidor extends HttpServlet {
                         }
 
                         //Senha só pode ser alterada pelo próprio servidor
+                        //Senha inicial == Data Nascimento ddyyyy
                         serv.setSenha(senha);
                         sdao.salvar(serv);
 
@@ -125,7 +163,6 @@ public class ControleServidor extends HttpServlet {
                         List<Servidor> lista = idao.todosServidores();
 
                         request.setAttribute("listaserv", lista);
-
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                     } else if (acao.equals("atualizarServidor")) {
 
@@ -143,7 +180,6 @@ public class ControleServidor extends HttpServlet {
             } else if (acao.equalsIgnoreCase("editarServidor") || acao.equalsIgnoreCase("visualizarServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
                 Servidor s = idao.consultarMatricula(request.getParameter("matricula"));
-                //String matricula = s.getMatriculaSIAPE();
                 request.setAttribute("matricula", s);
                 request.setAttribute("dao", idao);
 

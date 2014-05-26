@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
     <body>
@@ -173,9 +174,9 @@
                                             <div class="formCadastroLabel">
                                                 <label for="bMotorista">*Motorista</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="1"/>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="1" onClick="validarMotorista(this.value);"/>
                                                 <label class="radioMotorista" for="bMotorista" >Sim</label>
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="0"/>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="0" checked onClick="validarMotorista(this.value);"/>
                                                 <label class="radioMotorista" for="bMotorista">Não</label>
                                             </div>
                                         </li>
@@ -200,7 +201,7 @@
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
-                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarServidor()"/></div>
                                         </li>
                                     </ul>
                                 </div>
