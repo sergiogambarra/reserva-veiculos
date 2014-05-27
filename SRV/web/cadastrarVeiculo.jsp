@@ -127,11 +127,11 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">* Data Inicial (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" disabled/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" id="sManDataInicial" disabled/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">* Data Final (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" disabled/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" id="sManDataFinal" disabled/></div>
                                         </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar" /></div>

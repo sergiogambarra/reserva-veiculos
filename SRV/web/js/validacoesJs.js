@@ -159,6 +159,17 @@ function validarVeiculo(){
             alert("Informe a Data Final da Manutenção.");
             return false;
         }
+        
+        var data1 = document.getElementById("sManDataInicial").value;
+        var data2 = document.getElementById("sManDataFinal").value;
+
+        var nova_data1 = parseInt(data1.split("-")[2].toString() + data1.split("-")[1].toString() + data1.split("-")[0].toString());
+        var nova_data2 = parseInt(data2.split("-")[2].toString() + data2.split("-")[1].toString() + data2.split("-")[0].toString());
+ 
+        if (nova_data2 < nova_data1){
+            alert("Data Final não pode ser menor que a Data Inicial.");
+            return false;
+        }
     } 
     return true;
 }
