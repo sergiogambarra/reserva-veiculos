@@ -1,3 +1,6 @@
+
+<%@page import="srv.modelo.Reserva"%>
+<%@page import="java.util.List"%>
 <%-- 
     Document   : listaReservas
     Created on : 21/04/2014, 18:38:38
@@ -86,12 +89,27 @@
               <td id="Modelo" class="colunaDuzentos">Modelo</td>
               <td id="Acoes" class="colunaAcoesHead" >Ações</td>
             </thead>
+                                            <%
+                                    
+                                    String x;
+                                    String y;
+                                    String nome;
+                                    String z;
+                                    List<Reserva> lista = (List<Reserva>) request.getAttribute("listaReservas");
+                                    for (int i = 0; i < lista.size(); i++) {
+                                        Reserva reserv = lista.get(i);
+                                        
+                                        //Date data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
+                                        x = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
+                                        y = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
+                                        z = request.getAttribute("nomedest").toString();
+                                %>
             <tbody>
               <tr>
-                <td headers="Responsavel">Responsável</td>
-                <td headers="DataSaida">Data de saída</td>
-                <td headers="HorarioSaida">Horário de saída</td>
-                <td headers="Destino">Destino</td>
+                <td headers="Responsavel"><%= request.getAttribute("nomeserv") %></td>
+                <td headers="DataSaida"><%= x %></td>
+                <td headers="HorarioSaida"><%= y %></td>
+                <td headers="Destino"><%= z %></td>
                 <td headers="Placa">Placa</td>
                 <td headers="Modelo">Modelo</td>
                 <td headers="Acoes" class="colunaAcoes">
@@ -104,7 +122,9 @@
                     </div>
                 </td>
               </tr>
-              
+              <%
+                           }
+              %>
         <table class="tabelaListaVeiculos">
             <thead>
                 

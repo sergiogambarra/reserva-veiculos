@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import srv.dao.DestinoDAO;
 import srv.dao.InterfaceDestinoDAO;
+import srv.dao.InterfaceReservaDAO;
 import srv.dao.InterfaceServidorDAO;
 import srv.dao.InterfaceVeiculoDAO;
 import srv.dao.ReservaDAO;
@@ -97,12 +98,12 @@ public class ControleReserva extends HttpServlet {
                 String data_retorno = request.getParameter("inputDataRetorno");
                 String hora_retorno = request.getParameter("inputHoraRetorno");
                 String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
-                
+
                 String placa = request.getParameter("inputModeloVeiculo");
                 int iCondutor = Integer.parseInt(request.getParameter("inputMotorista"));
                 boolean condutor;
                 String matricula_siape_condutor;
-                
+
                 if (iCondutor == 1) {
                     condutor = true;
                     matricula_siape_condutor = matricula_siape;
@@ -112,34 +113,68 @@ public class ControleReserva extends HttpServlet {
                 }
                 int id_destino = Integer.parseInt(request.getParameter("inputDestino"));
                 String descricao = null;
-                
-                if(id_destino == 1){
+
+                if (id_destino == 1) {
                     descricao = request.getParameter("inputDestinoComplementar");
                 }
-                
+
                 Date date_saida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_saida);
                 Date date_retorno = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_retorno);
-                
-                DateFormat df = new  SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date date_atual = new Date();
                 Timestamp timestamp_atual = new Timestamp(date_atual.getTime());
-                
+
                 Reserva reserva = new Reserva(
-                          id_reserva
-                        , matricula_siape
-                        , date_saida
-                        , date_retorno
-                        , placa
-                        , condutor
-                        , matricula_siape_condutor
-                        , id_destino
-                        , descricao
-                        , date_atual);
-                
+                        id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, id_destino, descricao, date_atual);
+
                 rdao.inserirReserva(reserva);
                 request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
             }
             
+            if (acao.equals("listaReservas")) {
+                try {
+                    InterfaceServidorDAO sdao = new ServidorDAO();
+                    List<Servidor> lista = sdao.todosServidores();
+                    String nome = "";
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
+                            nome = user.getNome();
+                            lista.remove(i);
+                        }
+                    }
+                    
+                    InterfaceDestinoDAO iddao = new DestinoDAO();
+                    List<Destino> listad = iddao.buscarDestinos();
+                    String destino = "";
+                    int aux;
+                    String aux1 = "";
+                    request.setAttribute("nomeserv", nome);
+                    request.setAttribute("listaserv", lista);
+                    
+                    InterfaceReservaDAO irdao = new ReservaDAO();
+                    List<Reserva> listar = irdao.listaReservas();
+                    List<Destino> descricao = new Destino();
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (listar.get(i).getMatricula_siape().equals(user.getMatriculaSIAPE())) {
+                            aux = listar.get(i).getId_destino();
+                            if(listad.get(i).getId_destino() == aux){
+                                aux1 = listad.get(i).getNome();
+                                descricao.add(aux1);
+                                request.setAttribute("nomedest", descricao);
+                            }
+                        }
+                    }
+                    
+                    request.setAttribute("listaReservas", listar);
+                    request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+            }
+            
+
 
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());

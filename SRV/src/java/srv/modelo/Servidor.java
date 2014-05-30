@@ -100,19 +100,19 @@ public class Servidor implements java.io.Serializable {
         ServidorDAO fdao = new ServidorDAO();
         Servidor s = fdao.buscarServidor(this.matriculaSIAPE);
         if (s != null) {
-            Servidor func = s;
+            Servidor serv = s;
             SimpleEmail simplemail = new SimpleEmail();
 
             try {
                 simplemail.setDebug(true);
                 simplemail.setSmtpPort(465);
                 simplemail.setHostName("smtp.gmail.com");
-                simplemail.setAuthentication("erickrpeck@gmail.com", "!*)%!(($");
+                simplemail.setAuthentication("email@email", "senha");
                 simplemail.setSSL(true);
-                simplemail.addTo(func.getEmail()); //pode ser qualquer um email  
-                simplemail.setFrom("erickrpeck@gmail.com"); //aqui necessita ser o email que voce fara a autenticacao  
+                simplemail.addTo(serv.getEmail()); //pode ser qualquer um email  
+                simplemail.setFrom("email@email.com"); //aqui necessita ser o email que voce fara a autenticacao  
                 simplemail.setSubject("Senha do SRV");
-                simplemail.setMsg("Sua senha é: " + func.getSenha());
+                simplemail.setMsg("Sua senha é: " + serv.getSenha());
                 simplemail.send();
 
             } catch (EmailException e) {
