@@ -102,14 +102,14 @@
                                         //Date data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
                                         x = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
                                         y = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-                                        z = request.getAttribute("nomedest").toString();
+                                        //z = request.getAttribute("nomedest").toString();
                                 %>
             <tbody>
               <tr>
                 <td headers="Responsavel"><%= request.getAttribute("nomeserv") %></td>
                 <td headers="DataSaida"><%= x %></td>
                 <td headers="HorarioSaida"><%= y %></td>
-                <td headers="Destino"><%= z %></td>
+                <td headers="Destino"></td>
                 <td headers="Placa">Placa</td>
                 <td headers="Modelo">Modelo</td>
                 <td headers="Acoes" class="colunaAcoes">
