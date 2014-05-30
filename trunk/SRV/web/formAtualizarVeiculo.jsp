@@ -32,11 +32,31 @@
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
-                            Você está em: 
-                            <script type="text/javascript">
-                                var pagina = document.title;
-                                document.write(pagina);
-                            </script>
+                            <table class="tabelaMensagem">
+                                <thead>
+                                  <td>
+                                      <div class="barraNavegacao">
+                                          <p>Você está em: 
+                                            <script type="text/javascript">
+                                                var pagina = document.title;
+                                                document.write(pagina);
+                                            </script>
+                                          </p>
+                                      </div>
+                                        </td>
+                                        <td>
+                                            <div class="mensagem">
+                                                  <%
+                                                    if (request.getAttribute("mensagem") != null) {
+                                                  %>
+                                                  <p><%= request.getAttribute("mensagem")%> </p>
+                                                  <%
+                                                             }
+                                                  %>
+                                            </div>
+                                        </td>
+                                </thead>
+                            </table>
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Editar Veículo</h2>

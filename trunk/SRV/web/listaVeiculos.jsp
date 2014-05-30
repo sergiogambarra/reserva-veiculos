@@ -38,12 +38,32 @@
       <div class="containerLogadoBorda">
         <div class="containerLogadoDados">
           <div class="paginaAtual">
-              Você está em: 
-              <script type="text/javascript">
-                var pagina = document.title;
-                document.write(pagina);
-              </script>
-            </div>
+            <table class="tabelaMensagem">
+                <thead>
+                  <td>
+                      <div class="barraNavegacao">
+                          <p>Você está em: 
+                            <script type="text/javascript">
+                                var pagina = document.title;
+                                document.write(pagina);
+                            </script>
+                          </p>
+                      </div>
+                        </td>
+                        <td>
+                            <div class="mensagem">
+                                  <%
+                                    if (request.getAttribute("mensagem") != null) {
+                                  %>
+                                  <p><%= request.getAttribute("mensagem")%> </p>
+                                  <%
+                                             }
+                                  %>
+                            </div>
+                        </td>
+                </thead>
+            </table>
+        </div>
           <div class="filtroData">
         <!--    <form action="#" class="filtroDataFormulario">
               <label name="filtroLabelDataInicio">De</label>
@@ -77,8 +97,8 @@
                     <div class="divColunaAcoes">
                       <ul>
                         <li><a href="ControleVeiculo?action=editarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
-                        <li><a href="#"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor" onclick="visualizarVeiculo('<%= veic.getPlaca()%>')"></div></a></li>
-                        <li><a href="ControleVeiculo?action=excluirVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor"></div></a></li>
+                        <li><a href="ControleVeiculo?action=visualizarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
+                        <li><a href="ControleVeiculo?action=excluirVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor" onclick="return exluirCadastro()"></div></a></li>
                       </ul>                       
                     </div>
                 </td>

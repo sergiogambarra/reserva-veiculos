@@ -162,6 +162,7 @@ public class ControleServidor extends HttpServlet {
                         InterfaceServidorDAO idao = new ServidorDAO();
                         List<Servidor> lista = idao.todosServidores();
 
+                        request.setAttribute("mensagem", "Cadastro efetuado com Sucesso.");
                         request.setAttribute("listaserv", lista);
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                     } else if (acao.equals("atualizarServidor")) {
@@ -170,6 +171,7 @@ public class ControleServidor extends HttpServlet {
                         InterfaceServidorDAO idao = new ServidorDAO();
                         List<Servidor> lista = idao.todosServidores();
 
+                        request.setAttribute("mensagem", "Cadastro alterado com sucesso.");
                         request.setAttribute("listaserv", lista);
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                     }

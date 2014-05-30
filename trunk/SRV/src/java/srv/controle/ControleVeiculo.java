@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import srv.dao.InterfaceVeiculoDAO;
 import srv.dao.VeiculoDAO;
 import srv.modelo.Veiculo;
+import srv.util.Validacoes;
 
 /**
  *
@@ -82,10 +83,16 @@ public class ControleVeiculo extends HttpServlet {
                     VeiculoDAO vdao = new VeiculoDAO();
 
                     if (acao.equals("cadastrarVeiculo")) {
+                        //Verifica se a Placa não existe no BD
+                        if (!(Validacoes.ValidarPlacaExiste(placa))) {
+                            throw new Exception(Validacoes.getMensagemErro());
+                        }
+                        
                         vdao.salvar(veiculo);
                         InterfaceVeiculoDAO idao = new VeiculoDAO();
                         List<Veiculo> lista = idao.todosVeiculo();
 
+                        request.setAttribute("mensagem", "Cadastro efetuado com Sucesso.");
                         request.setAttribute("listaveic", lista);
                         request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                     } else if (acao.equals("atualizarVeiculo")) {
@@ -93,6 +100,7 @@ public class ControleVeiculo extends HttpServlet {
                         InterfaceVeiculoDAO idao = new VeiculoDAO();
                         List<Veiculo> lista = idao.todosVeiculo();
 
+                        request.setAttribute("mensagem", "Cadastro alterado com sucesso.");
                         request.setAttribute("listaveic", lista);
                         request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                     }

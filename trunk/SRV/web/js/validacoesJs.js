@@ -1,3 +1,36 @@
+
+function funcoesOnloadServidor(){
+    if(document.body.className == "") {
+        desabilitaVisualizarServidor();
+        document.body.className = "habilita";
+        document.getElementById("btnSaveHidden").style.display = "none";
+        document.getElementById("btnEditHidden").style.display = "block";  
+    } else {
+        habilitaVisualizarServidor();
+        document.body.className = "habilita";
+        document.getElementById("btnSaveHidden").style.display = "block";
+        document.getElementById("btnEditHidden").style.display = "none";  
+    }
+//validarManutencao(valor);
+//desabilitaVisualizarVeiculo();
+}
+
+function funcoesOnloadVeiculo(){
+    if(document.body.className == "") {
+        desabilitaVisualizarVeiculo();
+        document.body.className = "habilita";
+        document.getElementById("btnSaveHidden").style.display = "none";
+        document.getElementById("btnEditHidden").style.display = "block";  
+    } else {
+        habilitaVisualizarVeiculo();
+        document.body.className = "habilita";
+        document.getElementById("btnSaveHidden").style.display = "block";
+        document.getElementById("btnEditHidden").style.display = "none";  
+    }
+//validarManutencao(valor);
+//desabilitaVisualizarVeiculo();
+}
+
 function validarMatricula(){
     var matricula = document.formLogin.inputMatricula.value.length;
     var teste = matricula.value.type;
@@ -10,63 +43,105 @@ function validarMatricula(){
     }
 }
 
-function visualizarServidor(MatriculaSIAPE){
-    var matricula = MatriculaSIAPE;
-    window.open("ControleServidor?action=visualizarServidor&matricula="+matricula,
-        "janela","width=700, height=900, \n\
-scrollbars=yes, menubar=no, resizable=no, fullscreen=no");
-}
+//function visualizarServidor(MatriculaSIAPE){
+//    var matricula = MatriculaSIAPE;
+//    window.open("ControleServidor?action=visualizarServidor&matricula="+matricula,
+//        "janela","width=700, height=900, \n\
+//scrollbars=yes, menubar=no, resizable=no, fullscreen=no//");
+//}
 
-function visualizarVeiculo(Placa){
-    var placa = Placa;
-    window.open("ControleVeiculo?action=visualizarVeiculo&placa="+placa,
-        "janela","width=700, height=900, \n\
-scrollbars=yes, menubar=no, resizable=no, fullscreen=no");
+//function visualizarVeiculo(Placa){
+//    var placa = Placa;
+//    window.open("ControleVeiculo?action=visualizarVeiculo&placa="+placa,
+//        "janela","width=700, height=900, \n\
+//scrollbars=yes, menubar=no, resizable=no, fullscreen=no//");
+//}
+
+function habilitaVisualizarServidor(){
+    document.getElementById("id").disabled = false; 
+    document.getElementById("sNomeCompleto").disabled = false; 
+    document.getElementById("sEmail").disabled = false;
+    document.formaAtualizarServidor.sexo[0].disabled = false;
+    document.formaAtualizarServidor.sexo[1].disabled = false;
+    document.formaAtualizarServidor.sDataNascimento.disabled = false;
+    document.getElementById("sCpf").disabled = false; 
+    document.getElementById("sRg").disabled = false; 
+    document.getElementById("sOrgaoExpedidor").disabled = false; 
+    document.getElementById("sNaturalidade").disabled = false; 
+    document.formaAtualizarServidor.estado.disabled = false;
+    document.getElementById("sNacionalidade").disabled = false; 
+    document.getElementById("estadoCivil").disabled = false; 
+    document.getElementById("sTelefone1").disabled = false; 
+    document.getElementById("sTelefone2").disabled = false; 
+    document.formaAtualizarServidor.status_serv[0].disabled = false;
+    document.formaAtualizarServidor.status_serv[1].disabled = false;
+    document.getElementById("status_serv").disabled = false; 
+    document.getElementById("sCnh").disabled = false; 
+    document.formaAtualizarServidor.bMotorista[0].disabled = false;
+    document.formaAtualizarServidor.bMotorista[1].disabled = false;
+    document.getElementById("sInfoComplementar").disabled = false;
 }
 
 function desabilitaVisualizarServidor()  {  
-    document.getElementById("iMatriculaSiape").disabled = true; 
+    document.getElementById("id").disabled = true; 
     document.getElementById("sNomeCompleto").disabled = true; 
     document.getElementById("sEmail").disabled = true;
     document.formaAtualizarServidor.sexo[0].disabled = true;
     document.formaAtualizarServidor.sexo[1].disabled = true;
+    document.formaAtualizarServidor.sDataNascimento.disabled = true;
     document.getElementById("sCpf").disabled = true; 
     document.getElementById("sRg").disabled = true; 
     document.getElementById("sOrgaoExpedidor").disabled = true; 
     document.getElementById("sNaturalidade").disabled = true; 
-    document.getElementById("estado").disabled = true; 
+    document.formaAtualizarServidor.estado.disabled = true;
     document.getElementById("sNacionalidade").disabled = true; 
     document.getElementById("estadoCivil").disabled = true; 
     document.getElementById("sTelefone1").disabled = true; 
     document.getElementById("sTelefone2").disabled = true; 
     document.formaAtualizarServidor.status_serv[0].disabled = true;
     document.formaAtualizarServidor.status_serv[1].disabled = true;
-    
     document.getElementById("status_serv").disabled = true; 
     document.getElementById("sCnh").disabled = true; 
     document.formaAtualizarServidor.bMotorista[0].disabled = true;
     document.formaAtualizarServidor.bMotorista[1].disabled = true;
-    document.getElementById("sInfoComplementar").disabled = true; 
+    document.getElementById("sInfoComplementar").disabled = true;    
 } 
 
 function desabilitaVisualizarVeiculo()  {  
-    document.getElementById("iPlaca").disabled = true; 
+    document.getElementById("id").disabled = true; 
     document.getElementById("iAno").disabled = true; 
     document.getElementById("iMarca").disabled = true;
-    
-    document.formVisualizarVeiculo.gasolina.disabled= true;
-    document.formVisualizarVeiculo.alcool.disabled= true;
-    document.formVisualizarVeiculo.gnv.disabled= true;
-    document.formVisualizarVeiculo.diesel.disabled= true;
-    
+    document.getElementById("gasolina").disabled = true;
+    document.getElementById("alcool").disabled = true;
+    document.getElementById("gnv").disabled = true;
+    document.getElementById("diesel").disabled = true;
     document.getElementById("iModelo").disabled = true; 
-    
     document.getElementById("iRenavam").disabled = true; 
     document.getElementById("iCapacidade").disabled = true; 
-    document.formVisualizarVeiculo.manutencao[0].disabled = true;
-    document.formVisualizarVeiculo.manutencao[1].disabled = true;
-     
+    document.getElementById("manutencaoS").disabled = true; 
+    document.getElementById("manutencaoN").disabled = true; 
+    document.getElementById("sManDataInicial").disabled = true; 
+    document.getElementById("sManDataFinal").disabled = true; 
 }
+
+function habilitaVisualizarVeiculo()  {  
+    document.getElementById("id").disabled = false; 
+    document.getElementById("iAno").disabled = false; 
+    document.getElementById("iMarca").disabled = false;
+    document.getElementById("gasolina").disabled = false;
+    document.getElementById("alcool").disabled = false;
+    document.getElementById("gnv").disabled = false;
+    document.getElementById("diesel").disabled = false;
+    document.getElementById("iModelo").disabled = false; 
+    document.getElementById("iRenavam").disabled = false; 
+    document.getElementById("iCapacidade").disabled = false; 
+    document.getElementById("manutencaoS").disabled = false; 
+    document.getElementById("manutencaoN").disabled = false; 
+    document.getElementById("sManDataInicial").disabled = false; 
+    document.getElementById("sManDataFinal").disabled = false;    
+}
+
+
 
 function validarManutencao(valor){
     if(valor == "t"){
@@ -111,11 +186,6 @@ function exibirDescricaoDestino(selected){
         document.getElementById("complementoDestino").className = "invisivel";
     }
 }
-
-//function funcoesOnload(valor){
-//    validarManutencao(valor);
-//    desabilitaVisualizarVeiculo();
-//}
 
 function validarVeiculo(){
     if(document.formCadastroVeiculo.iPlaca.value == ""){
@@ -223,4 +293,11 @@ function validarServidor(){
         }
     }
     return true;
+}
+
+function exluirCadastro(){
+    if (window.confirm (' Deseja realmente excluir? ')){
+        return true;
+    }
+    return false;
 }

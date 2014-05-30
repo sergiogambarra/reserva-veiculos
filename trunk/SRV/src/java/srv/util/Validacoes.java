@@ -6,7 +6,9 @@ package srv.util;
 
 import java.util.List;
 import srv.dao.ServidorDAO;
+import srv.dao.VeiculoDAO;
 import srv.modelo.Servidor;
+import srv.modelo.Veiculo;
 
 /**
  *
@@ -90,6 +92,16 @@ public class Validacoes {
         Servidor s = fdao.buscarServidor(matriculaSIAPE);
         if (s != null){
             setMensagemErro("Servidor já cadastrado");
+            return false;  
+        }
+        return true;
+    }
+
+    public static boolean ValidarPlacaExiste(String placa) {
+        VeiculoDAO vdao = new VeiculoDAO();
+        Veiculo v = vdao.buscarVeiculo(placa);
+        if (v != null){
+            setMensagemErro("Placa já cadastrada");
             return false;  
         }
         return true;
