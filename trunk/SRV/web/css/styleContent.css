@@ -7,9 +7,19 @@
     width: 100%;
 }
 
+.cabecalhoCentral ul li{
+    display: inline-block;
+}
+.cabecalhoCentral{
+    height: 40px;
+    width: 600px;
+    margin-left: 100px;
+    
+    
+}
 .cabecalhoLateral{
   height: 40px;
-  width: 650px;
+  width: 350px;
   float: right;
   text-align: right;
   margin-right: 15px;

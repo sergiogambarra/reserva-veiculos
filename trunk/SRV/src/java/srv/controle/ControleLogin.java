@@ -57,14 +57,14 @@ public class ControleLogin extends HttpServlet {
                     {
                         request.getSession().setAttribute("servidor", f);
 
-                        request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
 
                     } 
                     else if (f.VerificarLogin() == 1) 
                     {
                         request.getSession().setAttribute("administrador", f);
                         
-                        request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        request.getRequestDispatcher("ControleReserva?action=listaReservas").include(request, response);
 
                     } 
                     else 

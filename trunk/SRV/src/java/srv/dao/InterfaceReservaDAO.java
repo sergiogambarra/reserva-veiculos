@@ -4,6 +4,7 @@
  */
 package srv.dao;
 
+import java.util.List;
 import srv.modelo.Reserva;
 
 /**
@@ -17,4 +18,5 @@ public interface InterfaceReservaDAO {
     public abstract void consultarDadosReserva();
     public abstract void excluirReserva();
     public abstract int gerarIdReserva();
+    public abstract List listaReservas();
 }

@@ -6,6 +6,7 @@ package srv.dao;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import srv.modelo.Reserva;
@@ -38,6 +39,13 @@ public class ReservaDAO implements InterfaceReservaDAO{
     @Override
     public void consultarDisponibilidadeVeiculo() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public List listaReservas(){
+        session = Conexao.getInstance();
+        List list = session.createQuery("from Reserva").list();
+        return list;
     }
 
     @Override
