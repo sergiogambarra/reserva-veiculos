@@ -31,7 +31,7 @@
   background-color: #FFFFFF;
 }
 
-.paginaAtual{
+.paginaAtual .barraNavegacao{
   font-size: 10px;
   color: rgba(86, 167, 62, .9);
   width: 100%;
@@ -261,7 +261,7 @@ caption{
   float: left;
   font-size: 15px;
   text-align: right;
-  margin-top:3px;
+  margin-top:0px;
   right: 30px;
   height: auto;
 }
@@ -292,7 +292,7 @@ caption{
   margin-top: 3px;
 }
 
-.formCadastroLabel input[type=submit], .formCadastroInput input[type=reset] {
+.formCadastroLabel input[type=submit], .formCadastroLabel input[type=button] ,.formCadastroInput input[type=reset], .formCadastroInput input[type=button]{
   padding: 0 18px;
   margin-right: 15px;
   height: 29px;
@@ -312,12 +312,12 @@ caption{
 }
 
 
-.formCadastroLabel input[type=submit]:hover, .formCadastroInput input[type=reset]:hover{
+.formCadastroLabel input[type=submit]:hover, .formCadastroInput input[type=reset]:hover, .formCadastroInput input[type=button]:hover{
   border: 3px solid;
   border-color: rgba(50,200,50,.9);
 }
 
-.formCadastroInputSalvar input[type=submit], .formCadastroInputLimpar input[type=reset], .formCadastroInputCancelar input[type=submit] {
+.formCadastroInputSalvar input[type=submit], .formCadastroInputLimpar input[type=reset], .formCadastroInputCancelar input[type=submit], .formCadastroInputCancelar input[type=button] {
   display: inline;
   float: right;
   padding: 0 18px;
@@ -399,7 +399,7 @@ caption{
 }
 
 .mensagem{ 
-    width: 300px;
+    width: 1050px;
     height: 15px;
 }
 

@@ -34,23 +34,32 @@
       <div class="containerLogadoBorda">
         <div class="containerLogadoDados">
           <div class="paginaAtual">
-              <div class="barraNavegacao">
-                  Você está em:
-                  <script type="text/javascript">
-                      var pagina = document.title;
-                      document.write(pagina);
-                  </script>
-              </div>
-              <div class="mensagem">
-                  <%
-                    if (request.getAttribute("mensagem") != null) {
-                  %>
-                  <p><%= request.getAttribute("mensagem")%> </p>
-                  <%
-                             }
-                  %>
-              </div>
-            </div>
+            <table class="tabelaMensagem">
+                <thead>
+                  <td>
+                      <div class="barraNavegacao">
+                          <p>Você está em: 
+                            <script type="text/javascript">
+                                var pagina = document.title;
+                                document.write(pagina);
+                            </script>
+                          </p>
+                      </div>
+                        </td>
+                        <td>
+                            <div class="mensagem">
+                                  <%
+                                    if (request.getAttribute("mensagem") != null) {
+                                  %>
+                                  <p><%= request.getAttribute("mensagem")%> </p>
+                                  <%
+                                             }
+                                  %>
+                            </div>
+                        </td>
+                </thead>
+            </table>
+        </div>
           <div class="filtroData">
         <!--    <form action="#" class="filtroDataFormulario">
               <label name="filtroLabelDataInicio">De</label>
@@ -84,8 +93,8 @@
                     <div class="divColunaAcoes">
                       <ul>
                         <li><a href="ControleServidor?action=editarServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
-                        <li><a href="#"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor" onclick="visualizarServidor(<%= serv.getMatriculaSIAPE()%>)"></div></a></li>
-                        <li><a href="ControleServidor?action=excluirServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor"></div></a></li>
+                        <li><a href="ControleServidor?action=visualizarServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
+                        <li><a href="ControleServidor?action=excluirServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor" onclick="return exluirCadastro()"></div></a></li>
                       </ul>
                     </div>
                 </td>

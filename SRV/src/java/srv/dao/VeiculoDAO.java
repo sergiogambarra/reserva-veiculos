@@ -20,13 +20,14 @@ public class VeiculoDAO implements InterfaceVeiculoDAO  {
 
     private Session session;
 
+    
     @Override
-    public List buscarVeiculo(String placa) {
+    public Veiculo buscarVeiculo(String placa) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Veiculo l where l.placa like :placa");
-        List list = query.setString("placa", placa).list();
+        Query query = session.createQuery("from Veiculo l where l.placa = :placa");
+        Veiculo v = (Veiculo) query.setString("placa", placa).uniqueResult();
 
-        return list;
+        return v;
     }
 
     @Override

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : visualizarServidor
-    Created on : 21/04/2014, 22:14:59
-    Author     : Paula
---%>
 
 <%@page import="srv.dao.InterfaceVeiculoDAO"%>
 <%@page import="java.util.List"%>
@@ -21,21 +16,61 @@
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
-    <body onload="desabilitaVisualizarVeiculo()">
+    <body onload="funcoesOnloadVeiculo()">
         <section class="container">
+            <div class="cabecalho">
+                <div class="cabecalhoLateral">
+                    <div class="cabecalhoUsuario">Bem vindo, Servidor Fulano de Tal</div>
+                    <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
+                </div>
+                <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
+                </div>
+            </div>
             <div class="containerLogado">
+                <%@include file="menu.jsp" %>
                 <!-- A próxima div poderia servir para controle de permissões? -->
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
+                        <div class="paginaAtual">
+                            <table class="tabelaMensagem">
+                                <thead>
+                                  <td>
+                                      <div class="barraNavegacao">
+                                          <p>Você está em: 
+                                            <script type="text/javascript">
+                                                var pagina = document.title;
+                                                document.write(pagina);
+                                            </script>
+                                          </p>
+                                      </div>
+                                        </td>
+                                        <td>
+                                            <div class="mensagem">
+                                                  <%
+                                                    if (request.getAttribute("mensagem") != null) {
+                                                  %>
+                                                  <p><%= request.getAttribute("mensagem")%> </p>
+                                                  <%
+                                                             }
+                                                  %>
+                                            </div>
+                                        </td>
+                                </thead>
+                            </table>
+                        </div>
                         <div class="formularioCadastrarServidor">            
-                            <h2>Visualizar Veículo</h2>
-                            <form action="ControleVeiculo" name="formVisualizarVeiculo">
-                                <div class="containerVisualizarDados">
+                            <h2>Editar Veículo</h2>
+                            <div class="camposObrigatorios">
+                                *Campos obrigatórios
+                            </div>
+                            <form action="ControleVeiculo" name="formAtualizaVeiculo">
+                                <input type="hidden" name="action" value="atualizarVeiculo"/>
+                                <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="PLACA" maxlength="7" value="${placa.placa}"/></div>
+                                                <input type="text" id="id" name="iPlaca" placeholder="PLACA" maxlength="7" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
@@ -86,7 +121,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="Manutencao">Manutenção</label> 
+                                                <label for="Manutencao">Manutenção</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t"
@@ -101,11 +136,16 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" value="${placa.manutencao_data_inicial}" disabled="disabled"/></div>
+                                            <div class="formCadastroInput"><input type="date" id="sManDataInicial" name="sManDataInicial" value="${placa.manutencao_data_inicial}"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">Data Final (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" value="${placa.manutencao_data_final}" disabled="disabled"/></div>
+                                            <div class="formCadastroInput"><input type="date" id="sManDataFinal" name="sManDataFinal" value="${placa.manutencao_data_final}"/></div>
+                                        </li>
+                                        <li>
+                                            <div id="btnEditHidden" class="formCadastroLabel"><input type="button" value="Editar" onclick="funcoesOnloadVeiculo()"/></div>
+                                                <div id="btnSaveHidden" class="formCadastroLabel"><input type="submit" value="Salvar"/></div>
+                                                <div class="formCadastroInput"><input type="button" value="Voltar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')" /></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -114,6 +154,13 @@
                         </div>
                     </div>
                 </div>
+            </section>
+            <section class="about">
+                <p class="aboutLinks">
+                    &copy; 2014&ndash;2014 
+                    <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5º semestre 2014 - IFRS Campus Restinga</a>
+                </p>
+                <!-- <a href="http://www.cssflow.com/mit-license" target="_blank">MIT License</a><br> -->
             </section>
         </body>
     </html>

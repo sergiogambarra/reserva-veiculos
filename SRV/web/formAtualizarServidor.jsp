@@ -32,11 +32,31 @@
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
-                            Você está em: 
-                            <script type="text/javascript">
-                                var pagina = document.title;
-                                document.write(pagina);
-                            </script>
+                            <table class="tabelaMensagem">
+                                <thead>
+                                  <td>
+                                      <div class="barraNavegacao">
+                                          <p>Você está em: 
+                                            <script type="text/javascript">
+                                                var pagina = document.title;
+                                                document.write(pagina);
+                                            </script>
+                                          </p>
+                                      </div>
+                                        </td>
+                                        <td>
+                                            <div class="mensagem">
+                                                  <%
+                                                    if (request.getAttribute("mensagem") != null) {
+                                                  %>
+                                                  <p><%= request.getAttribute("mensagem")%> </p>
+                                                  <%
+                                                             }
+                                                  %>
+                                            </div>
+                                        </td>
+                                </thead>
+                            </table>
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Editar Servidor</h2>
@@ -71,10 +91,10 @@
                                                        />
                                                 <label class="radioSexo" for="Sexo">Masculino</label>
                                                 <input type="radio" id="sexof" name="sexo" value="f" 
-                                                               <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("f")) {%>
-                                                               checked
-                                                               <% }%>   
-                                                               />
+                                                        <% if (((Servidor) request.getAttribute("matricula")).getSexo().equals("f")) {%>
+                                                        checked
+                                                        <% }%>   
+                                                        />
                                                 <label class="radioSexo" for="Sexo">Feminino<label>
                                             </div>
                                         </li>
@@ -179,22 +199,22 @@
                                             </li>
                                             <li>
                                                 <div class="formCadastroLabel"><input type="submit" value="Editar"/></div>
-                                                <div class="formCadastroInput"><input type="reset" value="Resetar"/></div>
+                                                <div class="formCadastroInput"><input type="reset" value="Limpar"/></div>
                                             </li>                                
-                                                        </ul>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                        </ul>
                                     </div>
-                                </div>
-                            </section>
-                        <section class="about">
-                            <p class="aboutLinks">
-                                &copy; 2014&ndash;2014 
-                                <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5º semestre 2014 - IFRS Campus Restinga</a>
-                            </p>
-                            <!-- <a href="http://www.cssflow.com/mit-license" target="_blank">MIT License</a><br> -->
-                        </section>
-                    </body>
-                </html>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <section class="about">
+            <p class="aboutLinks">
+                &copy; 2014&ndash;2014 
+                <a href="http://restinga.ifrs.edu.br" target="_parent">ADS 5º semestre 2014 - IFRS Campus Restinga</a>
+            </p>
+            <!-- <a href="http://www.cssflow.com/mit-license" target="_blank">MIT License</a><br> -->
+        </section>
+    </body>
+</html>

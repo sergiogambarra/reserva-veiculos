@@ -12,7 +12,7 @@ import srv.modelo.Veiculo;
  */
 public interface InterfaceVeiculoDAO {
  
-    public abstract List buscarVeiculo(String placa);
+    public abstract Veiculo buscarVeiculo(String placa);
     public abstract void salvar(Veiculo veic);
     public abstract void excluir(Veiculo veic);
     public abstract void atualizar(Veiculo veic);

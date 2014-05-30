@@ -199,7 +199,7 @@
                                             <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="140"></textarea></div>
                                         </li>
                                         <li class="formBotoes">
-                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar"/></div>
+                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleServidor?action=listaServidores')" /></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
                                             <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarServidor()"/></div>
                                         </li>
