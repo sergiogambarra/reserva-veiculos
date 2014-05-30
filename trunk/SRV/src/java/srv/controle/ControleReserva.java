@@ -154,14 +154,14 @@ public class ControleReserva extends HttpServlet {
                     
                     InterfaceReservaDAO irdao = new ReservaDAO();
                     List<Reserva> listar = irdao.listaReservas();
-                    List<Destino> descricao = new Destino();
+              //      List<Destino> descricao = new Destino();
                     for (int i = 0; i < lista.size(); i++) {
                         if (listar.get(i).getMatricula_siape().equals(user.getMatriculaSIAPE())) {
                             aux = listar.get(i).getId_destino();
                             if(listad.get(i).getId_destino() == aux){
                                 aux1 = listad.get(i).getNome();
-                                descricao.add(aux1);
-                                request.setAttribute("nomedest", descricao);
+        //                        descricao.add(aux1);
+                            //    request.setAttribute("nomedest", descricao);
                             }
                         }
                     }
