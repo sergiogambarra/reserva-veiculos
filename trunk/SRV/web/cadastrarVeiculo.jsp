@@ -77,7 +77,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">* Ano</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" maxlength="9"/></div>
+                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" maxlength="4"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMarca">* Marca</label> </div>
