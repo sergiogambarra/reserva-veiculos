@@ -246,49 +246,71 @@ function validarVeiculo(){
 
 
 function validarServidor(){
-    if(document.formCadastroServidor.iMatriculaSiape.value == ""){
-        alert("Informe a Matrícula.");
+    
+    d = document.formCadastroServidor;
+    
+    if(d.iMatriculaSiape.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iMatriculaSiape.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.sNomeCompleto.value == ""){
-        alert("Informe o Nome.");
+    if(d.sNomeCompleto.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sNomeCompleto.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.sEmail.value == ""){
-        alert("Informe o E-mail.");
+    if(d.sEmail.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sEmail.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.sexo[0].checked == false && document.formCadastroServidor.sexo[1].checked == false){
-        alert("Informe o Sexo.");
+    if(d.sexo[0].checked == false && d.sexo[1].checked == false){
+        alert("Dados obrigatórios não preenchidos.");
         return false;
     }
     
-    if(document.formCadastroServidor.sDataNascimento.value == ""){
-        alert("Informe a Data de Nascimento.");
+    if(d.sDataNascimento.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sDataNascimento.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.sCpf.value == ""){
-        alert("Informe o CPF.");
+    if(d.sCpf.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sCpf.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.sOrgaoExpedidor.value == ""){
-        alert("Informe o Orgão Expedidor.");
+    if(d.sRg.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sRg.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.sTelefone1.value == ""){
-        alert("Informe o Telefone.");
+    if(d.sOrgaoExpedidor.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sOrgaoExpedidor.focus();
         return false;
     }
     
-    if(document.formCadastroServidor.bMotorista[0].checked == true){
-        if(document.formCadastroServidor.sCnh.value == ""){
-            alert("Informe a CNH.");
+    if(d.sTelefone1.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sTelefone1.focus();
+        return false;
+    }
+    
+    if (d.bMotorista[1].checked==false && d.bMotorista[0].checked==false) {
+        alert("Dados obrigatórios não preenchidos.");
+        return false;
+    }
+    
+    if(d.bMotorista[0].checked == true && d.bMotorista[1].checked==false){
+        if(d.sCnh.value == ""){
+            alert("Dados obrigatórios não preenchidos.");
+            d.sCnh.focus();
             return false;
         }
     }

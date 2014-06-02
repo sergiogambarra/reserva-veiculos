@@ -17,14 +17,6 @@ function mascaraMatSiap(e){
 	}
 }
 
-//adiciona mascara de cep
-function MascaraCep(cep){
-		if(mascaraInteiro(cep)==false){
-		event.returnValue = false;
-	}	
-	return formataCampo(cep, '00.000-000', event);
-}
-
 //adiciona mascara de data
 function MascaraData(data){
 	if(mascaraInteiro(data)==false){
@@ -33,7 +25,7 @@ function MascaraData(data){
 	return formataCampo(data, '00/00/0000', event);
 }
 
-/*/adiciona mascara ao telefone
+//adiciona mascara ao telefone
 function MascaraTelefone(tel){	
 	if(mascaraInteiro(tel)==false){
 		event.returnValue = false;
@@ -54,13 +46,6 @@ function ValidaTelefone(tel){
 	exp = /\(\d{2}\)\ \d{4}\-\d{4}/
 	if(!exp.test(tel.value))
 		alert('Numero de Telefone Invalido!');
-}*/
-
-//valida CEP
-function ValidaCep(cep){
-	exp = /\d{2}\.\d{3}\-\d{3}/
-	if(!exp.test(cep.value))
-		alert('Numero de Cep Invalido!');		
 }
 
 //valida data
