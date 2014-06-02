@@ -70,7 +70,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" size="50"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" maxlength="50"/></div>
                                         </li>
                                         <!--<li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Senha</label> </div>
@@ -78,7 +78,7 @@
                                         </li>-->
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sEmail" name="sEmail" placeholder="Email institucional"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sEmail" name="sEmail" placeholder="Email institucional" maxlength="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sexo">*Sexo</label> </div>
@@ -95,19 +95,19 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCpf" name="sCpf" placeholder="CPF" size="14" maxlength="14"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sCpf" name="sCpf" placeholder="CPF" maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sRg" name="sRg" placeholder="Identidade"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sRg" name="sRg" placeholder="Identidade" maxlength="15"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sOrgaoExpedidor">*Orgão Expedidor</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor" maxlength="10"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNaturalidade">Naturalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento" maxlength="30"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sUf">UF</label> </div>
@@ -146,7 +146,7 @@
                                         </li> 
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade" maxlength="20"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
@@ -182,7 +182,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH" maxlenght="11"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">

@@ -188,45 +188,66 @@ function exibirDescricaoDestino(selected){
 }
 
 function validarVeiculo(){
-    if(document.formCadastroVeiculo.iPlaca.value == ""){
-        alert("Informe a Placa.");
+    
+    var d = document.formCadastroVeiculo;
+    
+    if(d.iPlaca.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iPlaca.focus();
         return false;
     }
     
-    if(document.formCadastroVeiculo.iAno.value == ""){
-        alert("Informe o Ano.");
+    if(d.iAno.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iAno.focus();
         return false;
     }
     
-    if(document.formCadastroVeiculo.iMarca.value == ""){
-        alert("Informe a Marca.");
+    /*corrigir
+    if (isNaN(d.iAno.value)){
+        alert("Dados Inválidos");
+        d.siAno.focus();
+        return false;
+    }*/
+    
+    if(d.iMarca.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iMarca.focus();
         return false;
     }
     
-    if(document.formCadastroVeiculo.iModelo.value == ""){
-        alert("Informe o Modelo.");
+    if (!isNaN(d.iMarca.value)){
+        alert ("Dados Inválidos");
+        d.iMarca.focus();
         return false;
     }
     
-    if(document.formCadastroVeiculo.combustivel[0].checked == false && document.formCadastroVeiculo.combustivel[1].checked == false
-        && document.formCadastroVeiculo.combustivel[2].checked == false && document.formCadastroVeiculo.combustivel[3].checked == false){
-        alert("Escolha uma opção de Combustível.");
+    if(d.iModelo.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iModelo.focus();
         return false;
     }
     
-    if(document.formCadastroVeiculo.iRenavam.value == ""){
-        alert("Informe o Renanvam.");
+    if(d.combustivel[0].checked == false && d.combustivel[1].checked == false
+        && d.combustivel[2].checked == false && d.combustivel[3].checked == false){
+        alert("Dados obrigatórios não preenchidos.");
+        return false;
+    }
+    
+    if(d.iRenavam.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iRenavam.focus();
         return false;
     }
      
-    if(document.formCadastroVeiculo.manutencao[0].checked == true){
-        if(document.formCadastroVeiculo.sManDataInicial.value == ""){
-            alert("Informe a Data Incial da Manutenção.");
+    if(d.manutencao[0].checked == true){
+        if(d.sManDataInicial.value == ""){
+            alert("Dados obrigatórios não preenchidos.");
             return false;
         }
     
-        if(document.formCadastroVeiculo.sManDataFinal.value == ""){
-            alert("Informe a Data Final da Manutenção.");
+        if(d.sManDataFinal.value == ""){
+            alert("Dados obrigatórios não preenchidos.");
             return false;
         }
         
@@ -241,13 +262,16 @@ function validarVeiculo(){
             return false;
         }
     } 
+    
+    
+    
     return true;
 }
 
 
 function validarServidor(){
     
-    d = document.formCadastroServidor;
+    var d = document.formCadastroServidor;
     
     if(d.iMatriculaSiape.value == ""){
         alert("Dados obrigatórios não preenchidos.");
@@ -260,12 +284,20 @@ function validarServidor(){
         d.sNomeCompleto.focus();
         return false;
     }
+       //Valida Nome com apenas Letras
+    if (!isNaN(d.sNomeCompleto.value)){
+        alert ("Dados Inválidos");
+        d.sNomeCompleto.focus();
+        return false;
+    }
+ 
     
     if(d.sEmail.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.sEmail.focus();
         return false;
     }
+    
     
     if(d.sexo[0].checked == false && d.sexo[1].checked == false){
         alert("Dados obrigatórios não preenchidos.");
@@ -312,8 +344,43 @@ function validarServidor(){
             alert("Dados obrigatórios não preenchidos.");
             d.sCnh.focus();
             return false;
-        }
+        }   
     }
+    
+    
+    
+    /*Valida campo cpf só com numeros (falta inserir mascara)
+    if (isNaN(d.sCpf.value)){
+        alert("Dados Inválidos");
+        d.sCpf.focus();
+        return false;
+    }
+    //Valida cpf não aceita menos que 11 dígitos(falta mascara)
+    if(d.sCpf.value.length <11){
+        alert("Dados Inválidos.");
+        d.sCpf.focus();
+        return false;
+    }
+     */
+    
+    if (d.sNaturalidade.value != "" && !isNaN(d.sNaturalidade.value)){
+        alert ("Dados Inválidos");
+        d.sNaturalidade.focus();
+        return false;
+    }
+    
+    if (d.sNacionalidade.value != "" && !isNaN(d.sNacionalidade.value)){
+        alert ("Dados Inválidos");
+        d.sNacionalidade.focus();
+        return false;
+    }
+    
+    if(d.sCnh.value.length <10){
+            alert("Dados Inválidos.");
+            d.sCnh.focus();
+            return false;
+        }
+        
     return true;
 }
 
