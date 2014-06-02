@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -146,25 +147,28 @@ public class ControleReserva extends HttpServlet {
                     
                     InterfaceDestinoDAO iddao = new DestinoDAO();
                     List<Destino> listad = iddao.buscarDestinos();
-                    String destino = "";
-                    int aux;
-                    String aux1 = "";
-                    request.setAttribute("nomeserv", nome);
-                    request.setAttribute("listaserv", lista);
+//                    String destino = "";
+//                    int aux;
+//                    String aux1 = "";
+//                    request.setAttribute("nomeserv", nome);
+//                    request.setAttribute("listaserv", lista);
+//                    String matricula_siape = user.getMatriculaSIAPE();
                     
                     InterfaceReservaDAO irdao = new ReservaDAO();
-                    List<Reserva> listar = irdao.listaReservas();
-              //      List<Destino> descricao = new Destino();
-                    for (int i = 0; i < lista.size(); i++) {
-                        if (listar.get(i).getMatricula_siape().equals(user.getMatriculaSIAPE())) {
-                            aux = listar.get(i).getId_destino();
-                            if(listad.get(i).getId_destino() == aux){
-                                aux1 = listad.get(i).getNome();
-        //                        descricao.add(aux1);
-                            //    request.setAttribute("nomedest", descricao);
-                            }
-                        }
-                    }
+//                    Reserva r = new Reserva();
+//                    r.setMatricula_siape(matricula_siape);
+                    List<Reserva> listar = irdao.listaReservas();                
+//                    List descricao = new ArrayList();
+//                    for (int i = 0; i < lista.size(); i++) {
+//                        if (listar.get(i).getMatricula_siape().equals(user.getMatriculaSIAPE())) {
+//                            aux = listar.get(i).getId_destino();
+//                            if(listad.get(i).getId_destino() == aux){
+//                                aux1 = listad.get(i).getNome();
+//                                descricao.add(aux1);
+//
+//                            }
+//                        }
+//                    }
                     
                     request.setAttribute("listaReservas", listar);
                     request.getRequestDispatcher("listaReservas.jsp").forward(request, response);

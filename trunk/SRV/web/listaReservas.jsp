@@ -91,24 +91,24 @@
             </thead>
                                             <%
                                     
-                                    String x;
-                                    String y;
-                                    String nome;
-                                    String z;
+//                                    String x;
+//                                    String y;
+//                                    String nome;
+//                                    String z;
                                     List<Reserva> lista = (List<Reserva>) request.getAttribute("listaReservas");
                                     for (int i = 0; i < lista.size(); i++) {
                                         Reserva reserv = lista.get(i);
                                         
-                                        //Date data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
-                                        x = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
-                                        y = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-                                        //z = request.getAttribute("nomedest").toString();
+//                                        data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
+//                                        x = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
+//                                        y = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
+
                                 %>
             <tbody>
               <tr>
-                <td headers="Responsavel"><%= request.getAttribute("nomeserv") %></td>
-                <td headers="DataSaida"><%= x %></td>
-                <td headers="HorarioSaida"><%= y %></td>
+                <td headers="Responsavel"><%= reserv.getMatricula_siape() %></td>
+                <td headers="DataSaida"><%= reserv.getId_destino() %></td>
+                <td headers="HorarioSaida"></td>
                 <td headers="Destino"></td>
                 <td headers="Placa">Placa</td>
                 <td headers="Modelo">Modelo</td>

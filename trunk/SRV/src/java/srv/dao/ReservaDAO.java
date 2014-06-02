@@ -7,6 +7,7 @@ package srv.dao;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import srv.modelo.Reserva;
@@ -43,8 +44,11 @@ public class ReservaDAO implements InterfaceReservaDAO{
     
     @Override
     public List listaReservas(){
-        session = Conexao.getInstance();
+        session = Conexao.getInstance();       
         List list = session.createQuery("from Reserva").list();
+//        Query q = session.createQuery("select r.id_reserva, r.matricula_siape, r.data_saida, r.placa, r.id_destino from Reserva r where r.matricula_siape = :matricula_siape");
+//        List list = q.setString("matricula_siape", matricula_siape).list();
+        
         return list;
     }
 
@@ -99,5 +103,5 @@ public class ReservaDAO implements InterfaceReservaDAO{
         
         return id;
     }
-    
+
 }
