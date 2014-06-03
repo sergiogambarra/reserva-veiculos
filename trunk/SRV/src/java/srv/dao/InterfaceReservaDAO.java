@@ -18,5 +18,6 @@ public interface InterfaceReservaDAO {
     public abstract void consultarDadosReserva();
     public abstract void excluirReserva();
     public abstract int gerarIdReserva();
-    public abstract List listaReservas();
+    public abstract List listaReservas(String matricula);
+    public abstract List listaReservasOutros(String matricula);
 }

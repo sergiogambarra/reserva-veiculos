@@ -4,6 +4,7 @@
  */
 package srv.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -14,6 +15,10 @@ import javax.persistence.Temporal;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import srv.dao.ServidorDAO;
+import java.util.Collection;
+import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -22,13 +27,13 @@ import srv.dao.ServidorDAO;
 @Entity
 @Table(name = "servidor")
 @SuppressWarnings("serial")
-public class Servidor implements java.io.Serializable {
+public class Servidor implements Serializable {
 
     private String matriculaSIAPE;
     private String nome;
     private String senha;
     private String email;
-    private int perfil; 
+    private int perfil;
     private String sexo;
     private Date data_nascimento;
     private String cpf;
@@ -45,6 +50,8 @@ public class Servidor implements java.io.Serializable {
     private boolean status_serv;
     private String informacoes;
     
+    @Cascade(CascadeType.ALL)
+    private Collection<Reserva> reservas;
 
     public Servidor(String matriculaSIAPE, String nome, String senha, String email, int perfil, String sexo, Date data_nascimento, String cpf, String rg, String orgao_expedidor, String naturalidade, String estado, String nacionalidade, String estado_civil, String telefone1, String telefone2, boolean motorista, String cnh, boolean status_serv, String informacoes) {
         this.matriculaSIAPE = matriculaSIAPE;
@@ -67,7 +74,7 @@ public class Servidor implements java.io.Serializable {
         this.cnh = cnh;
         this.status_serv = status_serv;
         this.informacoes = informacoes;
-        
+
     }
 
     public Servidor() {
@@ -300,5 +307,14 @@ public class Servidor implements java.io.Serializable {
 
     public void setNacionalidade(String nacionalidade) {
         this.nacionalidade = nacionalidade;
+    }
+
+    @OneToMany(mappedBy = "servidor", targetEntity = Reserva.class, fetch = FetchType.LAZY)
+    public Collection<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Collection<Reserva> reservas) {
+        this.reservas = reservas;
     }
 }

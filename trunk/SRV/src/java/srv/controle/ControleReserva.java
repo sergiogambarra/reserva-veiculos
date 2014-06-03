@@ -135,41 +135,12 @@ public class ControleReserva extends HttpServlet {
             
             if (acao.equals("listaReservas")) {
                 try {
-                    InterfaceServidorDAO sdao = new ServidorDAO();
-                    List<Servidor> lista = sdao.todosServidores();
-                    String nome = "";
-                    for (int i = 0; i < lista.size(); i++) {
-                        if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
-                            nome = user.getNome();
-                            lista.remove(i);
-                        }
-                    }
-                    
-                    InterfaceDestinoDAO iddao = new DestinoDAO();
-                    List<Destino> listad = iddao.buscarDestinos();
-//                    String destino = "";
-//                    int aux;
-//                    String aux1 = "";
-//                    request.setAttribute("nomeserv", nome);
-//                    request.setAttribute("listaserv", lista);
-//                    String matricula_siape = user.getMatriculaSIAPE();
-                    
                     InterfaceReservaDAO irdao = new ReservaDAO();
-//                    Reserva r = new Reserva();
-//                    r.setMatricula_siape(matricula_siape);
-                    List<Reserva> listar = irdao.listaReservas();                
-//                    List descricao = new ArrayList();
-//                    for (int i = 0; i < lista.size(); i++) {
-//                        if (listar.get(i).getMatricula_siape().equals(user.getMatriculaSIAPE())) {
-//                            aux = listar.get(i).getId_destino();
-//                            if(listad.get(i).getId_destino() == aux){
-//                                aux1 = listad.get(i).getNome();
-//                                descricao.add(aux1);
-//
-//                            }
-//                        }
-//                    }
+                    List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE());
                     
+                    List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE());                
+  
+                    request.setAttribute("listaReservasOutros", listaOutros);
                     request.setAttribute("listaReservas", listar);
                     request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                 } catch (Exception e) {

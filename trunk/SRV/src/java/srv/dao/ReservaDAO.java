@@ -7,6 +7,7 @@ package srv.dao;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,22 +18,22 @@ import srv.util.Conexao;
  *
  * @author Douglas
  */
-public class ReservaDAO implements InterfaceReservaDAO{
-    
+public class ReservaDAO implements InterfaceReservaDAO {
+
     private Session session;
-    
+
     @Override
     public void inserirReserva(Reserva reserva) {
         session = Conexao.getInstance();
         Transaction tx = null;
-        
+
         try {
             tx = session.beginTransaction();
             session.save(reserva);
             tx.commit();
         } catch (Exception e) {
-            e.getMessage();            
-        } finally{
+            e.getMessage();
+        } finally {
             session.close();
         }
     }
@@ -41,15 +42,65 @@ public class ReservaDAO implements InterfaceReservaDAO{
     public void consultarDisponibilidadeVeiculo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
-    public List listaReservas(){
-        session = Conexao.getInstance();       
-        List list = session.createQuery("from Reserva").list();
-//        Query q = session.createQuery("select r.id_reserva, r.matricula_siape, r.data_saida, r.placa, r.id_destino from Reserva r where r.matricula_siape = :matricula_siape");
-//        List list = q.setString("matricula_siape", matricula_siape).list();
-        
-        return list;
+    public List listaReservas(String matricula) {
+        session = Conexao.getInstance();
+        try {
+            Transaction tx = session.beginTransaction();
+            List list;
+            if (null != matricula) {
+
+                String sql = "from Reserva r"
+                        + " where r.matricula_siape = :matriculaSIAPE";
+
+                Query query = session.createQuery(sql);
+                query.setString("matriculaSIAPE", matricula);
+
+                list = query.list();
+                tx.commit();
+            } else {
+                String sql = "from Reserva r"
+                        + " where r.matricula_siape <> :matriculaSIAPE";
+
+                Query query = session.createQuery(sql);
+                query.setString("matriculaSIAPE", matricula);
+
+                list = query.list();
+                tx.commit();
+            }
+
+            session.close();
+            return list;
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List listaReservasOutros(String matricula) {
+        session = Conexao.getInstance();
+        try {
+            Transaction tx = session.beginTransaction();
+            List list;
+
+            String sql = "from Reserva r"
+                    + " where r.matricula_siape <> :matriculaSIAPE";
+
+            Query query = session.createQuery(sql);
+            query.setString("matriculaSIAPE", matricula);
+
+            list = query.list();
+            tx.commit();
+
+            session.close();
+            return list;
+
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -66,42 +117,41 @@ public class ReservaDAO implements InterfaceReservaDAO{
     public void excluirReserva() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
-    public int gerarIdReserva(){
-        GregorianCalendar calendar = new GregorianCalendar(); 
-        StringBuilder idReserva= new StringBuilder();
+    public int gerarIdReserva() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        StringBuilder idReserva = new StringBuilder();
         idReserva.append(Integer.toString(calendar.get(Calendar.YEAR)).substring(2, 4));
-        
-        
-        if(calendar.get(Calendar.MONTH) < 10){
-           idReserva.append('0');
-           idReserva.append(calendar.get(Calendar.MONTH));
-        }else{
-           idReserva.append(calendar.get(Calendar.MONTH)); 
+
+
+        if (calendar.get(Calendar.MONTH) < 10) {
+            idReserva.append('0');
+            idReserva.append(calendar.get(Calendar.MONTH));
+        } else {
+            idReserva.append(calendar.get(Calendar.MONTH));
         }
-        if(calendar.get(Calendar.HOUR) < 10){
-           idReserva.append('0');
-           idReserva.append(calendar.get(Calendar.HOUR));
-        }else{
-           idReserva.append(calendar.get(Calendar.HOUR)); 
+        if (calendar.get(Calendar.HOUR) < 10) {
+            idReserva.append('0');
+            idReserva.append(calendar.get(Calendar.HOUR));
+        } else {
+            idReserva.append(calendar.get(Calendar.HOUR));
         }
-        if(calendar.get(Calendar.MINUTE) < 10){
-           idReserva.append('0');
-           idReserva.append(calendar.get(Calendar.MINUTE));
-        }else{
-           idReserva.append(calendar.get(Calendar.MINUTE)); 
+        if (calendar.get(Calendar.MINUTE) < 10) {
+            idReserva.append('0');
+            idReserva.append(calendar.get(Calendar.MINUTE));
+        } else {
+            idReserva.append(calendar.get(Calendar.MINUTE));
         }
-        if(calendar.get(Calendar.SECOND) < 10){
-           idReserva.append('0');
-           idReserva.append(calendar.get(Calendar.SECOND));
-        }else{
-           idReserva.append(calendar.get(Calendar.SECOND)); 
+        if (calendar.get(Calendar.SECOND) < 10) {
+            idReserva.append('0');
+            idReserva.append(calendar.get(Calendar.SECOND));
+        } else {
+            idReserva.append(calendar.get(Calendar.SECOND));
         }
-        
+
         int id = Integer.parseInt(idReserva.toString());
-        
+
         return id;
     }
-
 }

@@ -5,10 +5,15 @@
 package srv.modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -20,6 +25,8 @@ import javax.persistence.Table;
 public class Destino implements Serializable {
     private int id_destino;
     private String nome;
+    @Cascade(CascadeType.ALL)
+    private Collection<Reserva> reservas;
 
     public Destino() {
     }
@@ -46,5 +53,14 @@ public class Destino implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @OneToMany(mappedBy="destino", targetEntity = Reserva.class, fetch = FetchType.LAZY)
+    public Collection<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Collection<Reserva> reservas) {
+        this.reservas = reservas;
     }
 }
