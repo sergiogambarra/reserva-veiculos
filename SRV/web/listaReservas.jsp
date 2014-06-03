@@ -23,15 +23,7 @@
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
-                    <%
-                        Servidor servidor = new Servidor();
-                        if (request.getSession().getAttribute("administrador") != null) {
-                            servidor = (Servidor) request.getSession().getAttribute("administrador");
-                        } else if (request.getSession().getAttribute("servidor") != null) {
-                            servidor = (Servidor) request.getSession().getAttribute("servidor");
-                        }
-                    %>
-                    <div class="cabecalhoUsuario">Bem vindo, <%= servidor.getNome()%></div>
+                    <%@include file="cabecalhoNomeUsuario.jsp"%>
                     <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      

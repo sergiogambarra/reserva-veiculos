@@ -26,13 +26,7 @@
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
-                    <%
-                        Servidor servidor = new Servidor();
-                            if (request.getSession().getAttribute("administrador") != null) {
-                                servidor = (Servidor)request.getSession().getAttribute("administrador");
-                            }
-                        %>
-                    <div class="cabecalhoUsuario">Bem vindo, <%= servidor.getNome() %></div>
+                    <%@include file="cabecalhoNomeUsuario.jsp"%>
                     
                     <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
                 </div>

@@ -22,7 +22,7 @@
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
-                    <div class="cabecalhoUsuario">Bem vindo, Servidor Fulano de Tal</div>
+                    <%@include file="cabecalhoNomeUsuario.jsp"%>
                     <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
