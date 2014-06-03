@@ -11,6 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.*; 
+import org.hibernate.annotations.Cascade; 
+import org.hibernate.annotations.CascadeType; 
+import org.hibernate.annotations.Fetch; 
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -20,16 +25,51 @@ import javax.persistence.Temporal;
 @Table(name = "reserva")
 @SuppressWarnings("serial")
 public class Reserva implements java.io.Serializable{
+    @Id
+    @Column(name = "id_reserva")
     private int id_reserva;
+    @Column(name = "matricula_siape")
     private String matricula_siape;
+    @Column(name = "data_saida")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date data_saida;
+    @Column(name = "data_retorno")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date data_retorno;
+    @Column(name = "placa")
     private String placa;
+    @Column(name = "condutor")
     private boolean condutor;
+    @Column(name = "matricula_siape_condutor")
     private String matricula_siape_condutor;
+    @Column(name = "id_destino", nullable=true)
     private int id_destino;
+    @Column(name = "descricao_destino")
     private String descricao_destino;
+    @Column(name = "reserva_datetime")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date reserva_datetime;
+    
+    @ManyToOne(fetch = FetchType.EAGER) 
+    @JoinColumn(name="matricula_siape", 
+    insertable=false, updatable=false) 
+    @Fetch(FetchMode.SELECT) 
+    @Cascade(CascadeType.SAVE_UPDATE) 
+    private Servidor servidor;
+    
+    @ManyToOne(fetch = FetchType.EAGER) 
+    @JoinColumn(name="placa", 
+    insertable=false, updatable=false) 
+    @Fetch(FetchMode.SELECT) 
+    @Cascade(CascadeType.SAVE_UPDATE) 
+    private Veiculo veiculo;
+    
+    @ManyToOne(fetch = FetchType.EAGER) 
+    @JoinColumn(name="id_destino", 
+    insertable=false, updatable=false) 
+    @Fetch(FetchMode.SELECT) 
+    @Cascade(CascadeType.SAVE_UPDATE) 
+    private Destino destino;
     
     public Reserva() {
     }
@@ -47,9 +87,7 @@ public class Reserva implements java.io.Serializable{
         this.reserva_datetime = reserva_datetime;
     }
     
-    @Id
-    @Column(name = "id_reserva")
-    public int getId_reserva() {
+        public int getId_reserva() {
         return id_reserva;
     }
 
@@ -57,8 +95,7 @@ public class Reserva implements java.io.Serializable{
         this.id_reserva = id_reserva;
     }
 
-    @Column(name = "matricula_siape")
-    public String getMatricula_siape() {
+        public String getMatricula_siape() {
         return matricula_siape;
     }
 
@@ -66,9 +103,7 @@ public class Reserva implements java.io.Serializable{
         this.matricula_siape = matricula_siape;
     }
     
-    @Column(name = "data_saida")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    public Date getData_saida() {
+        public Date getData_saida() {
         return data_saida;
     }
     
@@ -76,9 +111,7 @@ public class Reserva implements java.io.Serializable{
         this.data_saida = data_saida;
     }
 
-    @Column(name = "data_retorno")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    public Date getData_retorno() {
+        public Date getData_retorno() {
         return data_retorno;
     }
 
@@ -86,8 +119,7 @@ public class Reserva implements java.io.Serializable{
         this.data_retorno = data_retorno;
     }
 
-    @Column(name = "placa")
-    public String getPlaca() {
+        public String getPlaca() {
         return placa;
     }
 
@@ -95,8 +127,7 @@ public class Reserva implements java.io.Serializable{
         this.placa = placa;
     }
     
-    @Column(name = "condutor")
-    public boolean getCondutor() {
+        public boolean getCondutor() {
         return condutor;
     }
 
@@ -104,8 +135,7 @@ public class Reserva implements java.io.Serializable{
         this.condutor = condutor;
     }
 
-    @Column(name = "matricula_siape_condutor")
-    public String getMatricula_siape_condutor() {
+        public String getMatricula_siape_condutor() {
         return matricula_siape_condutor;
     }
 
@@ -113,8 +143,7 @@ public class Reserva implements java.io.Serializable{
         this.matricula_siape_condutor = matricula_siape_condutor;
     }
 
-    @Column(name = "id_destino")
-    public int getId_destino() {
+        public int getId_destino() {
         return id_destino;
     }
 
@@ -122,8 +151,7 @@ public class Reserva implements java.io.Serializable{
         this.id_destino = id_destino;
     }
 
-    @Column(name = "descricao_destino")
-    public String getDescricao_destino() {
+        public String getDescricao_destino() {
         return descricao_destino;
     }
 
@@ -131,13 +159,35 @@ public class Reserva implements java.io.Serializable{
         this.descricao_destino = descricao_destino;
     }
 
-    @Column(name = "reserva_datetime")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    public Date getReserva_datetime() {
+        public Date getReserva_datetime() {
         return reserva_datetime;
     }
 
     public void setReserva_datetime(Timestamp reserva_datetime) {
         this.reserva_datetime = reserva_datetime;
     }    
+
+    public Servidor getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(Servidor servidor) {
+        this.servidor = servidor;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
+    }
 }

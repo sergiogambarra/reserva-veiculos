@@ -10,6 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import java.util.Collection;
+import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -30,6 +34,8 @@ public class Veiculo implements java.io.Serializable {
     private boolean manutencao;
     private Date manutencao_data_inicial;
     private Date manutencao_data_final;
+    @Cascade(CascadeType.ALL)
+    private Collection<Reserva> reservas;
 
     public Veiculo() {
         this.placa = placa;
@@ -46,16 +52,6 @@ public class Veiculo implements java.io.Serializable {
         this.manutencao = manutencao;
         this.manutencao_data_inicial = manutencao_data_inicial;
         this.manutencao_data_final = manutencao_data_final;
-    }
-
-    @Id
-    @Column(name = "placa")
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
     }
 
     @Column(name = "ano")
@@ -139,5 +135,24 @@ public class Veiculo implements java.io.Serializable {
 
     public void setManutencao_data_final(Date manutencao_data_final) {
         this.manutencao_data_final = manutencao_data_final;
+    }
+
+    @Id
+    @Column(name = "placa")
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    @OneToMany(mappedBy = "veiculo", targetEntity = Reserva.class, fetch = FetchType.LAZY)
+    public Collection<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Collection<Reserva> reservas) {
+        this.reservas = reservas;
     }
 }
