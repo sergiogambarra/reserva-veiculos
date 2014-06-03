@@ -95,7 +95,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCpf" name="sCpf" placeholder="CPF" maxlength="14"/></div>
+                                            <div class="formCadastroInput"><input type="text" pattern="^(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{11})$" placeholder="xxx.xxx.xxx-xx" id="sCpf" name="sCpf" maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>

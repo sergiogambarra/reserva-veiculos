@@ -190,7 +190,7 @@ function exibirDescricaoDestino(selected){
 function validarVeiculo(){
     
     var d = document.formCadastroVeiculo;
-    
+         
     if(d.iPlaca.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iPlaca.focus();
@@ -203,12 +203,12 @@ function validarVeiculo(){
         return false;
     }
     
-    /*corrigir
+    
     if (isNaN(d.iAno.value)){
         alert("Dados Inválidos");
-        d.siAno.focus();
+        d.iAno.focus();
         return false;
-    }*/
+    }
     
     if(d.iMarca.value == ""){
         alert("Dados obrigatórios não preenchidos.");
@@ -272,7 +272,7 @@ function validarVeiculo(){
 function validarServidor(){
     
     var d = document.formCadastroServidor;
-    
+   
     if(d.iMatriculaSiape.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iMatriculaSiape.focus();
@@ -284,7 +284,7 @@ function validarServidor(){
         d.sNomeCompleto.focus();
         return false;
     }
-       //Valida Nome com apenas Letras
+    //Valida Nome com apenas Letras
     if (!isNaN(d.sNomeCompleto.value)){
         alert ("Dados Inválidos");
         d.sNomeCompleto.focus();
@@ -298,7 +298,11 @@ function validarServidor(){
         return false;
     }
     
-    
+    if(d.sEmail.value.indexOf("@")==-1 || d.sEmail.value.indexOf(".")==-1){
+        alert("Dados Inválidos");
+        d.sEmail.focus();
+    }
+        
     if(d.sexo[0].checked == false && d.sexo[1].checked == false){
         alert("Dados obrigatórios não preenchidos.");
         return false;
@@ -339,7 +343,7 @@ function validarServidor(){
         return false;
     }
     
-    if(d.bMotorista[0].checked == true && d.bMotorista[1].checked==false){
+    if(d.bMotorista[1].checked == false && d.bMotorista[0].checked==true){
         if(d.sCnh.value == ""){
             alert("Dados obrigatórios não preenchidos.");
             d.sCnh.focus();
@@ -347,21 +351,13 @@ function validarServidor(){
         }   
     }
     
-    
-    
-    /*Valida campo cpf só com numeros (falta inserir mascara)
-    if (isNaN(d.sCpf.value)){
-        alert("Dados Inválidos");
-        d.sCpf.focus();
-        return false;
+    if(d.bMotorista[1].checked == false && d.bMotorista[0].checked==true){ 
+        if(d.sCnh.value.length <10){
+            alert("Dados Inválidos.");
+            d.sCnh.focus();
+            return false;
+        }
     }
-    //Valida cpf não aceita menos que 11 dígitos(falta mascara)
-    if(d.sCpf.value.length <11){
-        alert("Dados Inválidos.");
-        d.sCpf.focus();
-        return false;
-    }
-     */
     
     if (d.sNaturalidade.value != "" && !isNaN(d.sNaturalidade.value)){
         alert ("Dados Inválidos");
@@ -375,12 +371,6 @@ function validarServidor(){
         return false;
     }
     
-    if(d.sCnh.value.length <10){
-            alert("Dados Inválidos.");
-            d.sCnh.focus();
-            return false;
-        }
-        
     return true;
 }
 
