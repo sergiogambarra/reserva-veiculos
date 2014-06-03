@@ -55,7 +55,14 @@ public class ControleReserva extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            Servidor user = (Servidor) session.getAttribute("administrador");
+            Servidor user = new Servidor();
+            if(request.getSession().getAttribute("administrador") != null){
+                 user = (Servidor) session.getAttribute("administrador");
+            }else if(request.getSession().getAttribute("servidor") != null){
+                  user = (Servidor) session.getAttribute("servidor");
+            }
+            
+//            Servidor user = (Servidor) session.getAttribute("administrador");
             String acao = request.getParameter("action");
 
             if (acao.equals("formularioReserva")) {
@@ -130,11 +137,12 @@ public class ControleReserva extends HttpServlet {
                         id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, id_destino, descricao, date_atual);
 
                 rdao.inserirReserva(reserva);
-                request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
             }
             
             if (acao.equals("listaReservas")) {
                 try {
+                    
                     InterfaceReservaDAO irdao = new ReservaDAO();
                     List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE());
                     

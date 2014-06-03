@@ -27,6 +27,8 @@
                         Servidor servidor = new Servidor();
                         if (request.getSession().getAttribute("administrador") != null) {
                             servidor = (Servidor) request.getSession().getAttribute("administrador");
+                        } else if (request.getSession().getAttribute("servidor") != null) {
+                            servidor = (Servidor) request.getSession().getAttribute("servidor");
                         }
                     %>
                     <div class="cabecalhoUsuario">Bem vindo, <%= servidor.getNome()%></div>
@@ -94,23 +96,26 @@
 
                                 String dataSaida;
                                 String horarioSaida;
-//                                    String nome;
-//                                    String z;
+                                String nomeDestino;
                                 List<Reserva> lista = (List<Reserva>) request.getAttribute("listaReservas");
                                 for (int i = 0; i < lista.size(); i++) {
                                     Reserva reserv = lista.get(i);
-                                    System.out.println("Teste" + reserv.getVeiculo().getModelo());
+
 //                                        data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
                                     dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
                                     horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-
+                                    if(reserv.getDescricao_destino() == null){                                      
+                                        nomeDestino = reserv.getDestino().getNome(); 
+                                    }else{
+                                         nomeDestino = reserv.getDescricao_destino();
+                                    }
                             %>
                             <tbody>
                                 <tr>
                                     <td headers="Responsavel"><%= reserv.getServidor().getNome()%></td>
                                     <td headers="DataSaida"><%= dataSaida%></td>
                                     <td headers="HorarioSaida"><%= horarioSaida%></td>
-                                    <td headers="Destino"><%= reserv.getDestino().getNome()%></td>
+                                    <td headers="Destino"><%= nomeDestino %></td>
                                     <td headers="Placa"><%= reserv.getVeiculo().getPlaca()%></td>
                                     <td headers="Modelo"><%= reserv.getVeiculo().getModelo()%></td>
                                     <td headers="Acoes" class="colunaAcoes">
@@ -147,14 +152,18 @@
                     //                                        data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
                                         dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
                                         horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-
+                                        if(reserv.getDescricao_destino() == null){                                      
+                                            nomeDestino = reserv.getDestino().getNome(); 
+                                        }else{
+                                            nomeDestino = reserv.getDescricao_destino();
+                                        }
                                 %>
                                 <tbody>
                                     <tr>
                                         <td headers="Responsavel"><%= reserv.getServidor().getNome()%></td>
                                     <td headers="DataSaida"><%= dataSaida%></td>
                                     <td headers="HorarioSaida"><%= horarioSaida%></td>
-                                    <td headers="Destino"><%= reserv.getDestino().getNome()%></td>
+                                    <td headers="Destino"><%= nomeDestino%></td>
                                     <td headers="Placa"><%= reserv.getVeiculo().getPlaca()%></td>
                                     <td headers="Modelo"><%= reserv.getVeiculo().getModelo()%></td>
                                         <td headers="Acoes" class="colunaAcoes">
