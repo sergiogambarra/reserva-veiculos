@@ -156,6 +156,17 @@ public class ControleReserva extends HttpServlet {
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
             }
+            if (acao.equals("editarReserva") || acao.equals("visualizarReserva")) {
+                InterfaceReservaDAO idao = new ReservaDAO();
+                Reserva r = idao.consultarIdReserva(Integer.parseInt(request.getParameter("id_reserva")));
+                request.setAttribute("reserva", r);
+
+                if (acao.equalsIgnoreCase("editarReserva")) {
+                    request.getRequestDispatcher("/formAtualizarReserva.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/formVisualizarReserva.jsp").forward(request, response);
+                }
+            }
             
 
 
