@@ -113,9 +113,9 @@
                                     <td headers="Acoes" class="colunaAcoes">
                                         <div class="divColunaAcoes">
                                             <ul>
-                                                <li><a href="#" ><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
-                                                <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
-                                                <li><a href="#" ><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
+                                                <li><a href="ControleReserva?action=editarReserva&id_reserva=<%= reserv.getId_reserva() %>" ><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
+                                                <li><a href="ControleReserva?action=visualizarReserva&id_reserva=<%= reserv.getId_reserva() %>" ><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
+                                                <li><a href="ControleReserva?action=excluirReserva&id_reserva=<%= reserv.getId_reserva() %>" ><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -164,14 +164,14 @@
                                                     <%
                                                         if (request.getSession().getAttribute("administrador") != null) {
                                                     %>  
-                                                    <li><a href="#" ><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
+                                                    <li><a href="ControleReserva?action=editarReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
                                                     <%                            }
                                                     %>
-                                                    <li><a href="#" ><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
+                                                    <li><a href="ControleReserva?action=visualizarReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
                                                     <%
                                                         if (request.getSession().getAttribute("administrador") != null) {
                                                     %>  
-                                                    <li><a href="#" ><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
+                                                    <li><a href="ControleReserva?action=excluirReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
                                                     <%                            }
                                                     %>
 
