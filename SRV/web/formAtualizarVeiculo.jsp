@@ -63,7 +63,7 @@
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
-                            <form action="ControleVeiculo" name="formAtualizaVeiculo">
+                            <form action="ControleVeiculo" name="formCadastroVeiculo">
                                 <input type="hidden" name="action" value="atualizarVeiculo"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
