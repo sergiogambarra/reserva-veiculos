@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.exception.ConstraintViolationException;
 import srv.dao.InterfaceVeiculoDAO;
 import srv.dao.VeiculoDAO;
 import srv.modelo.Veiculo;
@@ -50,11 +51,11 @@ public class ControleVeiculo extends HttpServlet {
                     String renavam = request.getParameter("iRenavam");
                     String manutencao = request.getParameter("manutencao");
                     String combustivel = request.getParameter("combustivel");
-                    
+
                     //CAMPOS NÃO OBRIGATÓRIOS (SE NÃO ESTIVER EM MANUTENÇÃO)
                     String manutencao_data_inicial = request.getParameter("sManDataInicial");
                     String manutencao_data_final = request.getParameter("sManDataFinal");
-                    
+
                     Veiculo veiculo = new Veiculo();
                     veiculo.setPlaca(placa);
                     veiculo.setAno(ano);
@@ -63,7 +64,7 @@ public class ControleVeiculo extends HttpServlet {
                     veiculo.setModelo(modelo);
                     veiculo.setRenavam(renavam);
                     veiculo.setCombustivel(combustivel);
-                    
+
                     if (manutencao.equals("t")) {
                         veiculo.setManutencao(true);
                         // SETANDO CAMPOS NÃO OBRIGATÓRIOS
@@ -87,7 +88,7 @@ public class ControleVeiculo extends HttpServlet {
                         if (!(Validacoes.ValidarPlacaExiste(placa))) {
                             throw new Exception(Validacoes.getMensagemErro());
                         }
-                        
+
                         vdao.salvar(veiculo);
                         InterfaceVeiculoDAO idao = new VeiculoDAO();
                         List<Veiculo> lista = idao.todosVeiculo();
@@ -108,25 +109,34 @@ public class ControleVeiculo extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("cadastrarVeiculo.jsp").forward(request, response);
                 }
-            }else if (acao.equalsIgnoreCase("editarVeiculo") || acao.equalsIgnoreCase("visualizarVeiculo")){
+            } else if (acao.equalsIgnoreCase("editarVeiculo") || acao.equalsIgnoreCase("visualizarVeiculo")) {
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
                 Veiculo v = idao.consultarPlaca(request.getParameter("placa"));
                 request.setAttribute("placa", v);
-                
-                 if(acao.equalsIgnoreCase("editarVeiculo")){
+
+                if (acao.equalsIgnoreCase("editarVeiculo")) {
                     request.getRequestDispatcher("/formAtualizarVeiculo.jsp").forward(request, response);
-                }else{
+                } else {
                     request.getRequestDispatcher("/formVisualizarVeiculo.jsp").forward(request, response);
                 }
             } else if (acao.equals("excluirVeiculo")) {
-                InterfaceVeiculoDAO idao = new VeiculoDAO();
-                Veiculo veiculo = idao.consultarPlaca(request.getParameter("placa"));
-                idao.excluir(veiculo);
+                try {
+                    InterfaceVeiculoDAO idao = new VeiculoDAO();
+                    Veiculo veiculo = idao.consultarPlaca(request.getParameter("placa"));
+                    idao.excluir(veiculo);
 
-                List<Veiculo> lista = idao.todosVeiculo();
+                    List<Veiculo> lista = idao.todosVeiculo();
 
-                request.setAttribute("listaveic", lista);
-                request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    request.setAttribute("mensagem", "Cadastro excluído com sucesso.");
+                    request.setAttribute("listaveic", lista);
+                    request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                } catch (ConstraintViolationException e) {
+                    request.setAttribute("mensagem", "Não foi possível excluir. Há reservas associadas.");
+                    InterfaceVeiculoDAO idao = new VeiculoDAO();
+                    List<Veiculo> lista = idao.todosVeiculo();
+                    request.setAttribute("listaveic", lista);
+                    request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                }
             } else if (acao.equals("listaVeiculos")) {
                 try {
                     InterfaceVeiculoDAO sdao = new VeiculoDAO();
@@ -141,7 +151,10 @@ public class ControleVeiculo extends HttpServlet {
             }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            InterfaceVeiculoDAO idao = new VeiculoDAO();
+            List<Veiculo> lista = idao.todosVeiculo();
+            request.setAttribute("listaveic", lista);
+            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
         }
     }
 

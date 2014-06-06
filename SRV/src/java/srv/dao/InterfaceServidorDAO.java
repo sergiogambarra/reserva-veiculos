@@ -15,7 +15,7 @@ public interface InterfaceServidorDAO {
  
     public abstract Servidor buscarServidor(String matriculaSIAPE);
     public abstract void salvar(Servidor serv);
-    public abstract void excluir(Servidor serv);
+    public abstract void excluir(Servidor serv) throws Exception;
     public abstract void atualizar(Servidor serv);
     public abstract void visualizar(Servidor serv);
     public abstract List todosServidores();

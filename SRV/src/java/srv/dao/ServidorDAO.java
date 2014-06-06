@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import srv.modelo.Servidor;
 import srv.util.Conexao;
 
@@ -29,7 +30,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
 
         return s;
     }
-   
+
     public void salvar(Servidor serv) {
         session = Conexao.getInstance();
         Transaction tx = null;
@@ -46,8 +47,9 @@ public class ServidorDAO implements InterfaceServidorDAO {
         }
     }
 
+    
     @Override
-    public void excluir(Servidor serv) {
+    public void excluir(Servidor serv)throws Exception{
         session = Conexao.getInstance();
         Transaction tx = null;
 
@@ -55,8 +57,6 @@ public class ServidorDAO implements InterfaceServidorDAO {
             tx = session.beginTransaction();
             session.delete(serv);
             tx.commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
         } finally {
             session.close();
         }
@@ -69,10 +69,10 @@ public class ServidorDAO implements InterfaceServidorDAO {
         try {
             Transaction tx = session.beginTransaction();
             String sql = "update Servidor set nome = :nome, "
-    +                     "email = :email, sexo = :sexo, data_nascimento = :data_nascimento, cpf = :cpf,rg = :rg, orgao_expedidor = :orgao_expedidor, "+
-                        "naturalidade = :naturalidade, estado = :estado, nacionalidade = :nacionalidade, estado_civil = :estado_civil, telefone1 = :telefone1, telefone2 = :telefone2, "+
-                        "motorista = :motorista, cnh = :cnh, status_serv = :status_serv, informacoes = :informacoes"+
-                    " where matricula_siape = :matriculaSIAPE";
+                    + "email = :email, sexo = :sexo, data_nascimento = :data_nascimento, cpf = :cpf,rg = :rg, orgao_expedidor = :orgao_expedidor, "
+                    + "naturalidade = :naturalidade, estado = :estado, nacionalidade = :nacionalidade, estado_civil = :estado_civil, telefone1 = :telefone1, telefone2 = :telefone2, "
+                    + "motorista = :motorista, cnh = :cnh, status_serv = :status_serv, informacoes = :informacoes"
+                    + " where matricula_siape = :matriculaSIAPE";
             Query query = session.createQuery(sql);
 
             query.setString("nome", serv.getNome());
@@ -113,10 +113,16 @@ public class ServidorDAO implements InterfaceServidorDAO {
     @Override
     public Servidor consultarMatricula(String matriculaSIAPE) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE = :matricula_siape");
-        Servidor s = (Servidor) query.setString("matricula_siape", matriculaSIAPE).uniqueResult();
-
-        return s;
+        try {
+            Query query = session.createQuery("from Servidor l where l.matriculaSIAPE = :matricula_siape");
+            Servidor s = (Servidor) query.setString("matricula_siape", matriculaSIAPE).uniqueResult();
+            return s;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
     }
 
     @Override
