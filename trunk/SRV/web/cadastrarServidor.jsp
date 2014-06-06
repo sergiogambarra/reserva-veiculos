@@ -95,7 +95,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" placeholder="CPF" id="sCpf" name="sCpf" maxlength="14"/></div>
+                                            <div class="formCadastroInput"><input type="text" placeholder="CPF" id="sCpf" name="sCpf" onKeyPress="return mascaraCpf()" maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
@@ -164,11 +164,11 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sTelefone1">*Telefone 1</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sTelefone1" name="sTelefone1" placeholder="(xx)xxxx-xxxx"  maxlength="14" /> </div>
+                                            <div class="formCadastroInput"><input type="text" id="sTelefone1" name="sTelefone1" placeholder="(xx)xxxx-xxxx"  maxlength="14"/> </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sTelefone2">Telefone 2</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"   maxlength="14"  /></div>
+                                            <div class="formCadastroInput"><input type="text" id="sTelefone2" name="sTelefone2" placeholder="(xx)xxxx-xxxx"   maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
@@ -182,7 +182,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH" maxlenght="11"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH" maxlength="11"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
