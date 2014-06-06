@@ -17,6 +17,7 @@ function mascaraMatSiap(e){
 	}
 }
 
+//não funcionando
 function mascaraLetras(){
 	    tecla = event.keyCode;  
     if (tecla >= 33 && tecla <= 64 || tecla >= 91 && tecla <= 93 || tecla >= 123 && tecla <= 159 || tecla >= 162 && tecla <= 191 ){   
@@ -126,4 +127,60 @@ function formataCampo(campo, Mascara, evento) {
 	}else { 
 		return true; 
 	}
+}
+
+// Função que aplica uma máscara de formato ao Cpf
+function mascaraCpf(evento)
+{
+    var origem;
+    var txtOrigem;
+    var key;
+    if(window.event)
+    {
+        key = evento.keyCode;
+        if(key >= 48 && key <= 57)
+        {
+            origem = evento.srcElement;
+            txtOrigem = origem.value;
+            if(txtOrigem.length == 3 || txtOrigem.length == 7 )
+            {
+                txtOrigem += ".";
+                origem.value = txtOrigem ;
+            }
+            if(txtOrigem.length == 11)
+            {
+                txtOrigem += "-";
+                origem.value = txtOrigem ;
+            }
+        }else
+        {
+            event.returnValue = false;
+        }  
+    }
+    else
+    {
+        key = evento.which;
+        if(key >= 48 && key <= 57)
+        {
+            origem = evento.target;
+            txtOrigem = origem.value;
+            if(txtOrigem.length == 3 || txtOrigem.length == 7 )
+            {
+                txtOrigem += ".";
+                origem.value = txtOrigem ;
+            }
+            if(txtOrigem.length == 11)
+            {
+                txtOrigem += "-";
+                origem.value = txtOrigem ;
+            }
+        }else
+        {
+            if(key != 8 && key != 0)
+            {
+                evento.preventDefault();
+            }
+        }
+    }
+     
 }
