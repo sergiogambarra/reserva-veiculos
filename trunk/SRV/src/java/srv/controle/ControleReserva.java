@@ -31,7 +31,7 @@ import srv.modelo.Destino;
 import srv.modelo.Reserva;
 import srv.modelo.Servidor;
 import srv.modelo.Veiculo;
-
+import srv.util.Validacoes;
 /**
  *
  * @author Douglas
@@ -167,9 +167,17 @@ public class ControleReserva extends HttpServlet {
                     request.getRequestDispatcher("/formVisualizarReserva.jsp").forward(request, response);
                 }
             }
-            
-
-
+            else if (acao.equals("excluirReserva")) {
+                int id_reserva = Integer.parseInt (request.getParameter("reserva"));
+                //if (!Validacoes.ValidarQualUsuarioLogado(user.getMatriculaSIAPE(), matricula)) {
+                    //throw new Exception(Validacoes.getMensagemErro());
+                InterfaceReservaDAO idao = new ReservaDAO();
+                Reserva reserva = idao.consultarID_Reserva(id_reserva);
+                idao.excluirReserva(reserva);
+                
+                request.setAttribute("mensagem", "Reserva excluída com sucesso.");
+                request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);

@@ -1,4 +1,3 @@
-
 <%@page import="srv.modelo.Reserva"%>
 <%@page import="java.util.List"%>
 <%-- 
@@ -18,6 +17,7 @@
         <title>Lista de Reservas</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
     </head>
     <body>
         <section class="container">
@@ -115,7 +115,7 @@
                                             <ul>
                                                 <li><a href="ControleReserva?action=editarReserva&id_reserva=<%= reserv.getId_reserva() %>" ><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
                                                 <li><a href="ControleReserva?action=visualizarReserva&id_reserva=<%= reserv.getId_reserva() %>" ><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
-                                                <li><a href="ControleReserva?action=excluirReserva&id_reserva=<%= reserv.getId_reserva() %>" ><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
+                                                <li><a href="ControleReserva?action=excluirReserva&reserva=<%= reserv.getId_reserva() %>"><div class="iconeDeletar" alt="Deletar Reserva." title="Deletar Reserva" onclick="return exluirReserva()"></div></a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -171,7 +171,7 @@
                                                     <%
                                                         if (request.getSession().getAttribute("administrador") != null) {
                                                     %>  
-                                                    <li><a href="ControleReserva?action=excluirReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeDeletar" alt="Deletar reserva." title="Deletar reserva"></div></a></li>
+                                                    <li><a href="ControleReserva?action=excluirReserva&reserva=<%= reserv.getId_reserva() %>"><div class="iconeDeletar" alt="Deletar Reserva." title="Deletar Reserva" onclick="return exluirReserva()"></div></a></li>
                                                     <%                            }
                                                     %>
 

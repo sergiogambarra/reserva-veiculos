@@ -381,3 +381,10 @@ function exluirCadastro(){
     return false;
 }
 
+function exluirReserva(){
+    if (window.confirm (' Deseja realmente excluir? ')){
+        return true;
+    }
+    return false;
+    
+ }

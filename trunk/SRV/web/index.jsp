@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="refresh" content="0; url=http://localhost:8084/LoginSRV/login.jsp">
+        <meta http-equiv="refresh" content="0; url=http://localhost:8080/LoginSRV/login.jsp">
  
     </head>
 
