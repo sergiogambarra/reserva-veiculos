@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.exception.ConstraintViolationException;
 import srv.dao.InterfaceServidorDAO;
 import srv.dao.ServidorDAO;
 import srv.modelo.Servidor;
@@ -129,13 +130,13 @@ public class ControleServidor extends HttpServlet {
                     } else {
                         serv.setInformacoes(null);
                     }
-                    
+
                     if (!(telefone2.equalsIgnoreCase(""))) {
                         serv.setTelefone2(telefone2);
                     } else {
                         serv.setTelefone2(null);
                     }
-                    
+
                     if (motorista.equalsIgnoreCase("1")) {
                         serv.setCnh(cnh);
                     } else {
@@ -191,18 +192,27 @@ public class ControleServidor extends HttpServlet {
                     request.getRequestDispatcher("/formVisualizarServidor.jsp").forward(request, response);
                 }
             } else if (acao.equals("excluirServidor")) {
-                String matricula = request.getParameter("matricula");
-                if (!Validacoes.ValidarQualUsuarioLogado(user.getMatriculaSIAPE(), matricula)) {
-                    throw new Exception(Validacoes.getMensagemErro());
+                try {
+                    String matricula = request.getParameter("matricula");
+                    if (!Validacoes.ValidarQualUsuarioLogado(user.getMatriculaSIAPE(), matricula)) {
+                        throw new Exception(Validacoes.getMensagemErro());
+                    }
+                    InterfaceServidorDAO idao = new ServidorDAO();
+                    Servidor servidor = idao.consultarMatricula(matricula);
+                    idao.excluir(servidor);
+
+                    List<Servidor> lista = idao.todosServidores();
+
+                    request.setAttribute("mensagem", "Cadastro excluído com sucesso.");
+                    request.setAttribute("listaserv", lista);
+                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                } catch (ConstraintViolationException e) {
+                    request.setAttribute("mensagem", "Não foi possível excluir. Há reservas associadas.");
+                    InterfaceServidorDAO idao = new ServidorDAO();
+                    List<Servidor> lista = idao.todosServidores();
+                    request.setAttribute("listaserv", lista);
+                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                 }
-                InterfaceServidorDAO idao = new ServidorDAO();
-                Servidor servidor = idao.consultarMatricula(matricula);
-                idao.excluir(servidor);
-
-                List<Servidor> lista = idao.todosServidores();
-
-                request.setAttribute("listaserv", lista);
-                request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
             } else if (acao.equals("listaServidores")) {
                 try {
                     InterfaceServidorDAO sdao = new ServidorDAO();
