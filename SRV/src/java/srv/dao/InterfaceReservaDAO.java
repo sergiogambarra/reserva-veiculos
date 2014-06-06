@@ -21,4 +21,6 @@ public interface InterfaceReservaDAO {
     public abstract List listaReservas(String matricula);
     public abstract List listaReservasOutros(String matricula);
     public Reserva consultarIdReserva(int id_reserva);
+    public abstract void excluirReserva(Reserva reserva);
+    public Reserva consultarID_Reserva(int id_reserva);
 }

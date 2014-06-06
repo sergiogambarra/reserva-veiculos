@@ -102,7 +102,33 @@ public class ReservaDAO implements InterfaceReservaDAO {
         }
         return null;
     }
+   
+    @Override
+    public Reserva consultarID_Reserva(int id_reserva ) {
+        session = Conexao.getInstance();
+        Query query = session.createQuery("from Reserva l where l.id_reserva = :id_reserva");
+        Reserva r = (Reserva) query.setInteger("id_reserva", id_reserva).uniqueResult();
+
+        return r;
+    }
     
+    
+    @Override
+    public void excluirReserva(Reserva reserva) {
+        session = Conexao.getInstance();
+        Transaction tx = null;
+        
+    ///////////////////////////
+        try {
+            tx = session.beginTransaction();
+            session.delete(reserva);
+            tx.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
     
     @Override
     public Reserva consultarIdReserva(int id_reserva) {
