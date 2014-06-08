@@ -282,15 +282,6 @@ public class Servidor implements Serializable {
         this.sexo = sexo;
     }
 
-    @Column(name = "status_serv")
-    public boolean isStatus_serv() {
-        return status_serv;
-    }
-
-    public void setStatus_serv(boolean status_serv) {
-        this.status_serv = status_serv;
-    }
-
     @Column(name = "estado_civil")
     public String getEstado_civil() {
         return estado_civil;
@@ -316,5 +307,14 @@ public class Servidor implements Serializable {
 
     public void setReservas(Collection<Reserva> reservas) {
         this.reservas = reservas;
+    }
+
+    @Column(name = "status_serv")
+    public boolean isStatus_serv() {
+        return status_serv;
+    }
+
+    public void setStatus_serv(boolean status_serv) {
+        this.status_serv = status_serv;
     }
 }
