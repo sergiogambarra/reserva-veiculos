@@ -106,5 +106,15 @@ public class Validacoes {
         }
         return true;
     }
+
+    public static boolean ValidarStatusUsuario(String matriculaSIAPE) {
+        ServidorDAO fdao = new ServidorDAO();
+        Servidor s = fdao.buscarServidor(matriculaSIAPE);
+        if (!s.isStatus_serv()){
+            setMensagemErro("Usuário inativo. Contate o administrador.");
+            return false;  
+        }
+        return true;
+    }
     
 }

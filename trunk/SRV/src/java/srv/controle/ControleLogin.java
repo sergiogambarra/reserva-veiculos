@@ -47,12 +47,14 @@ public class ControleLogin extends HttpServlet {
                 {
                     String matriculaSIAPE = request.getParameter("inputMatricula");
                     String senha = request.getParameter("inputSenha");
-
+                    
                     if (!Validacoes.ValidarLogin(matriculaSIAPE, senha)) throw new Exception(Validacoes.getMensagemErro());
                     ServidorDAO sdao = new ServidorDAO();
                     
                     Servidor f = (Servidor)sdao.buscarServidor(matriculaSIAPE);
 
+                    if (!Validacoes.ValidarStatusUsuario(matriculaSIAPE)) throw new Exception(Validacoes.getMensagemErro());
+                    
                     if (f.VerificarLogin() == 0) 
                     {
                         request.getSession().setAttribute("servidor", f);
