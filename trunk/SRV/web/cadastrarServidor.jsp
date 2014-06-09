@@ -70,7 +70,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" maxlength="50"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
                                         </li>
                                         <!--<li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Senha</label> </div>
@@ -95,7 +95,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" placeholder="CPF" id="sCpf" name="sCpf" onKeyPress="return mascaraCpf(event)" maxlength="14"/></div>
+                                            <div class="formCadastroInput"><input type="text" placeholder="CPF" id="sCpf" name="sCpf" onKeyPress="return mascaraCpf(event)" onKeyPress="return mascaraMatSiap(event);"maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
@@ -107,7 +107,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNaturalidade">Naturalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento" maxlength="30"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento" onKeyPress="return mascaraLetras(event);" maxlength="30"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sUf">UF</label> </div>
@@ -146,7 +146,7 @@
                                         </li> 
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade" maxlength="20"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade" onKeyPress="return mascaraLetras(event);" maxlength="20"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
@@ -182,7 +182,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH" maxlength="11"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">

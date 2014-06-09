@@ -203,7 +203,6 @@ function validarVeiculo(){
         return false;
     }
     
-    
     if (isNaN(d.iAno.value)){
         alert("Dados Inválidos");
         d.iAno.focus();
@@ -236,6 +235,18 @@ function validarVeiculo(){
     
     if(d.iRenavam.value == ""){
         alert("Dados obrigatórios não preenchidos.");
+        d.iRenavam.focus();
+        return false;
+    }
+    
+    if(d.iRenavam.value.length <11){
+        alert("Dados inválidos.");
+        d.iRenavam.focus();
+        return false;
+    }
+    
+    if (isNaN(d.iRenavam.value)){
+        alert("Dados Inválidos");
         d.iRenavam.focus();
         return false;
     }
@@ -279,19 +290,18 @@ function validarServidor(){
         return false;
     }
     
+    if(d.iMatriculaSiape.value.length <7){
+        alert("Dados inválidos.");
+        d.iMatriculaSiape.focus();
+        return false;
+    }
+    
     if(d.sNomeCompleto.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.sNomeCompleto.focus();
         return false;
     }
-    //Valida Nome com apenas Letras
-    if (!isNaN(d.sNomeCompleto.value)){
-        alert ("Dados Inválidos");
-        d.sNomeCompleto.focus();
-        return false;
-    }
- 
-    
+   
     if(d.sEmail.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.sEmail.focus();
@@ -316,6 +326,12 @@ function validarServidor(){
     
     if(d.sCpf.value == ""){
         alert("Dados obrigatórios não preenchidos.");
+        d.sCpf.focus();
+        return false;
+    }
+    
+    if(d.sCpf.value.length <14){
+        alert("Dados inválidos.");
         d.sCpf.focus();
         return false;
     }
@@ -348,28 +364,14 @@ function validarServidor(){
             alert("Dados obrigatórios não preenchidos.");
             d.sCnh.focus();
             return false;
-        }   
+        } 
     }
     
-    if(d.bMotorista[1].checked == false && d.bMotorista[0].checked==true){ 
-        if(d.sCnh.value.length <10){
-            alert("Dados Inválidos.");
-            d.sCnh.focus();
-            return false;
-        }
-    }
-    
-    if (d.sNaturalidade.value != "" && !isNaN(d.sNaturalidade.value)){
-        alert ("Dados Inválidos");
-        d.sNaturalidade.focus();
+    if(d.sCnh.value != "" && d.sCnh.value.length <11){
+        alert("Dados inválidos.");
+        d.sCnh.focus();
         return false;
-    }
-    
-    if (d.sNacionalidade.value != "" && !isNaN(d.sNacionalidade.value)){
-        alert ("Dados Inválidos");
-        d.sNacionalidade.focus();
-        return false;
-    }
+    }  
     
     return true;
 }

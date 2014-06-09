@@ -77,7 +77,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">* Ano</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" maxlength="4"/></div>
+                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMarca">* Marca</label> </div>
@@ -106,12 +106,12 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iRenavam">* Renavam</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11"/></div>
+                                                <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">* Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" value="5" min="1" max="50">
+                                                <input type="number" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);"value="5" min="1" max="50">
                                             </div>
                                         </li>
                                         <li>
@@ -127,11 +127,11 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">* Data Inicial (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" id="sManDataInicial" disabled/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">* Data Final (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" id="sManDataFinal" disabled/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled/></div>
                                         </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar" /></div>
