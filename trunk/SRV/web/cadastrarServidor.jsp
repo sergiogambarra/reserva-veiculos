@@ -95,7 +95,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" placeholder="CPF" id="sCpf" name="sCpf" onKeyPress="return mascaraCpf(event)" onKeyPress="return mascaraMatSiap(event);"maxlength="14"/></div>
+                                            <div class="formCadastroInput"><input type="text" placeholder="CPF" id="sCpf" name="sCpf" onKeyPress="return mascaraCpf(event);" onKeyPress="return mascaraMatSiap(event);" maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
@@ -182,7 +182,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH"onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sCnh" name="sCnh" placeholder="CNH" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">

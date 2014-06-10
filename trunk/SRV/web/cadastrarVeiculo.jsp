@@ -82,7 +82,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMarca">* Marca</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" maxlength="15"/></div>
+                                                <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" onKeyPress="return mascaraLetras(event);" maxlength="15"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModelo">* Modelo</label> </div>
@@ -101,6 +101,8 @@
                                                 <label class="radioManutencao" for="sCombustivel">Diesel</label>
                                                 <input type="radio" id="gnv" name="combustivel" value="n"/>
                                                 <label class="radioManutencao" for="sCombustivel">GNV</label>
+                                                <input type="radio" id="flex" name="combustivel" value="f"/>
+                                                <label class="radioManutencao" for="sCombustivel">Flex</label>
                                             </div>
                                         </li>
                                         <li>
@@ -111,7 +113,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">* Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);"value="5" min="1" max="50">
+                                                <input type="number" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" maxlength="2" value="5" min="1" max="50">
                                             </div>
                                         </li>
                                         <li>
@@ -126,15 +128,15 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sManDataInicial">* Data Inicial (dd-mm-aaaa)</label> </div>
+                                            <div class="formCadastroLabel"><label for="sManDataInicial">* Data Inicial</label> </div>
                                             <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sManDataFinal">* Data Final (dd-mm-aaaa)</label> </div>
+                                            <div class="formCadastroLabel"><label for="sManDataFinal">* Data Final</label> </div>
                                             <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled/></div>
                                         </li>
                                         <li class="formBotoes">
-                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar" /></div>
+                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
                                             <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
                                         </li>

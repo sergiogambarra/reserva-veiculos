@@ -63,7 +63,7 @@
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
-                            <form action="ControleVeiculo" name="formAtualizaVeiculo">
+                            <form action="ControleVeiculo" name="formCadastroVeiculo">
                                 <input type="hidden" name="action" value="atualizarVeiculo"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
@@ -75,12 +75,12 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" maxlength="9" value="${placa.ano}"/></div>
+                                                <input type="text" id="iAno" name="iAno" placeholder="ANO" value="${placa.ano}" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMarca">Marca</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" maxlength="15" value="${placa.marca}"/></div>
+                                                <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" onKeyPress="return mascaraLetras(event);" maxlength="15" value="${placa.marca}"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModelo">Modelo</label> </div>
@@ -107,17 +107,21 @@
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("n")) {%>checked<% }%>
                                                        />
                                                 <label class="radioManutencao" for="sCombustivel">GNV</label>
+                                                <input type="radio" id="flex" name="combustivel" value="f"
+                                                       <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("f")) {%>checked<% }%>
+                                                       />
+                                                <label class="radioManutencao" for="sCombustivel">Flex</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iRenavam">Renavam</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11" value="${placa.renavam}"/></div>
+                                                <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11" value="${placa.renavam}" onKeyPress="return mascaraMatSiap(event);"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" maxlength="2" value="${placa.capacidade}"/></div>
+                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" maxlength="2" value="5" min="1" max="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
@@ -135,17 +139,17 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" id="sManDataInicial" name="sManDataInicial" value="${placa.manutencao_data_inicial}"/></div>
+                                            <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial</label> </div>
+                                            <div class="formCadastroInput"><input type="date" id="sManDataInicial" name="sManDataInicial" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_inicial}"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sManDataFinal">Data Final (dd-mm-aaaa)</label> </div>
-                                            <div class="formCadastroInput"><input type="date" id="sManDataFinal" name="sManDataFinal" value="${placa.manutencao_data_final}"/></div>
+                                            <div class="formCadastroLabel"><label for="sManDataFinal">Data Final</label> </div>
+                                            <div class="formCadastroInput"><input type="date" id="sManDataFinal" name="sManDataFinal" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_final}"/></div>
                                         </li>
                                         <li>
                                             <div id="btnEditHidden" class="formCadastroLabel"><input type="button" value="Editar" onclick="funcoesOnloadVeiculo()"/></div>
-                                                <div id="btnSaveHidden" class="formCadastroLabel"><input type="submit" value="Salvar"/></div>
-                                                <div class="formCadastroInput"><input type="button" value="Voltar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')" /></div>
+                                                <div id="btnSaveHidden" class="formCadastroLabel"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
+                                                <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')" /></div>
                                         </li>
                                     </ul>
                                 </div>

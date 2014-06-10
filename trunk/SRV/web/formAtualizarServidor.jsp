@@ -63,17 +63,17 @@
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
-                            <form action="ControleServidor" name="formCadastrarServidor">
+                            <form action="ControleServidor" name="formCadastroServidor">
                                 <input type="hidden" name="action" value="atualizarServidor"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iMatriculaSiape">*Matricula SIAPE</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="id" name="iMatriculaSiape" placeholder="SIAPE" value="${matricula.matriculaSIAPE}"size="7" maxlength="7" readonly="readonly" onclick="naoAlterarId()"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="id" name="iMatriculaSiape" placeholder="SIAPE" value="${matricula.matriculaSIAPE}" maxlength="7" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
-                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" value="${matricula.nome}" name="sNomeCompleto" placeholder="Nome completo" size="50"/></div>
+                                            <div class="formCadastroInput"><input type="text" id="sNomeCompleto" value="${matricula.nome}" name="sNomeCompleto" placeholder="Nome completo" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
@@ -104,7 +104,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
-                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" onKeyPress="return mascaraCpf(event)" maxlength="14 "/></div>
+                                            <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" onKeyPress="return mascaraCpf(event)" onKeyPress="return mascaraMatSiap(event);" maxlength="14"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
@@ -116,7 +116,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNaturalidade">Naturalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" value="${matricula.naturalidade}" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento" maxlength="30"/></div>
+                                            <div class="formCadastroInput"><input type="text" value="${matricula.naturalidade}" id="sNaturalidade" name="sNaturalidade" placeholder="Cidade de nascimento" onKeyPress="return mascaraLetras(event);" maxlength="30"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
@@ -136,7 +136,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sNacionalidade">Nacionalidade</label> </div>
-                                            <div class="formCadastroInput"><input type="text" value="${matricula.nacionalidade}" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade" maxlength="20"/></div>
+                                            <div class="formCadastroInput"><input type="text" value="${matricula.nacionalidade}" id="sNacionalidade" name="sNacionalidade" placeholder="Nacionalidade" onKeyPress="return mascaraLetras(event);" maxlength="20"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEstadoCivil">Estado Civil</label> </div>
@@ -164,11 +164,11 @@
                                                 <label for="bMotorista">*Motorista</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="1"
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="1" 
                                                        <% if (((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                        />
                                                 <label class="radioMotorista" for="bMotorista" >Sim</label>
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="0"
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="0" 
                                                                <% if (!((Servidor) request.getAttribute("matricula")).isMotorista()) {%>checked<% }%>          
                                                                />
                                                 <label class="radioMotorista" for="bMotorista">Não<label>
@@ -176,7 +176,7 @@
                                             </li>
                                             <li>
                                                 <div class="formCadastroLabel"><label for="sCnh">CNH</label> </div>
-                                                <div class="formCadastroInput"><input value="${matricula.cnh}" type="text" id="sCnh" name="sCnh" placeholder="CNH" maxlength="11"/></div>
+                                                <div class="formCadastroInput"><input value="${matricula.cnh}" type="text" id="sCnh" name="sCnh" placeholder="CNH" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
                                             </li>
                                             <li>
                                                 <div class="formCadastroLabel">
@@ -198,9 +198,9 @@
                                                 <div class="formCadastroInput"><textarea type="text" name="sInfoComplementar" id="sInfoComplementar" placeholder="Informações complementares" maxlength="1000">${matricula.informacoes}</textarea></div>
                                             </li>
                                             <li>
-                                                <div class="formCadastroLabel"><input type="submit" value="Editar" onclick="return validarServidor()"/></div>
-                                                <div class="formCadastroInput"><input type="reset" value="Limpar"/></div>
-                                            </li>                                
+                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleServidor?action=listaServidores')" /></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarServidor()"/></div>
+                                        </li>                                
                                         </ul>
                                     </div>
                                 </form>
