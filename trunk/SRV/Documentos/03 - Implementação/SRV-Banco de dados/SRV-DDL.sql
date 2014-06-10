@@ -38,7 +38,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `srv`.`veiculo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `srv`.`veiculo` (
-  `placa` VARCHAR(7) NOT NULL ,
+  `placa` VARCHAR(8) NOT NULL ,
   `ano` VARCHAR(9) NOT NULL ,
   `marca` VARCHAR(15) NOT NULL ,
   `modelo` VARCHAR(30) NOT NULL ,

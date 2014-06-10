@@ -195,6 +195,12 @@ function validarVeiculo(){
         return false;
     }
     
+    if(d.iPlaca.value.length < 8){
+        alert("Dados inválidos.");
+        d.iPlaca.focus();
+        return false;
+    }
+    
     if(d.iAno.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iAno.focus();
@@ -325,6 +331,13 @@ function validarServidor(){
         d.sDataNascimento.focus();
         return false;
     }
+    
+    /*Não funciona (por causa do html 5??)
+    if(d.sDataNascimento.value.length <10){
+        alert("Dados inválidos.");
+        d.sDataNascimento.focus();
+        return false;
+    }*/
     
     if(d.sCpf.value == ""){
         alert("Dados obrigatórios não preenchidos.");

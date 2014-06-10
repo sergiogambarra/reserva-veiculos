@@ -100,7 +100,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sDataNascimento">*Data Nascimento</label> </div>
-                                            <div class="formCadastroInput"><input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" placeholder="aaaa-mm-dd"/></div>
+                                            <div class="formCadastroInput"><input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" placeholder="aaaa-mm-dd" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
