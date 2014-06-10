@@ -1,4 +1,5 @@
 
+// <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadServidor(){
     if(document.body.className == "") {
         desabilitaVisualizarServidor();
@@ -13,6 +14,7 @@ function funcoesOnloadServidor(){
     }
 }
 
+// <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadVeiculo(){
     if(document.body.className == "") {
         desabilitaVisualizarVeiculo();
@@ -28,6 +30,20 @@ function funcoesOnloadVeiculo(){
 //validarManutencao(valor);
 //desabilitaVisualizarVeiculo();
 }
+
+// <<<< AO CARREGAR PÁGINA   >>> ///
+function funcoesOnloadReserva(){
+    //Verifica qual check está marcado e chama função passando o valor
+    if(document.formInserirReserva.inputMotorista[0].checked == true){
+        trocarMotorista(document.formInserirReserva.inputMotorista[0].value);
+    }else{
+        trocarMotorista(document.formInserirReserva.inputMotorista[1].value);
+    }
+    //Verifica qual option está selecionado e chama função passando o valor
+    exibirDescricaoDestino(document.formInserirReserva.inputDestino.value);
+    
+}
+
 
 function validarMatricula(){
     var matricula = document.formLogin.inputMatricula.value.length;
@@ -55,6 +71,8 @@ function validarMatricula(){
 //scrollbars=yes, menubar=no, resizable=no, fullscreen=no//");
 //}
 
+
+// HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
 function habilitaVisualizarServidor(){
     document.getElementById("id").disabled = false; 
     document.getElementById("sNomeCompleto").disabled = false; 
@@ -80,6 +98,7 @@ function habilitaVisualizarServidor(){
     document.getElementById("sInfoComplementar").disabled = false;
 }
 
+// DESABILITA FORMULÁRIO AO CARREGAR PÁGINA DE VISUALIZAÇÃO
 function desabilitaVisualizarServidor()  {  
     document.getElementById("id").disabled = true; 
     document.getElementById("sNomeCompleto").disabled = true; 
@@ -105,6 +124,7 @@ function desabilitaVisualizarServidor()  {
     document.getElementById("sInfoComplementar").disabled = true;    
 } 
 
+// DESABILITA FORMULÁRIO AO CARREGAR PÁGINA DE VISUALIZAÇÃO
 function desabilitaVisualizarVeiculo()  {  
     document.getElementById("id").disabled = true; 
     document.getElementById("iAno").disabled = true; 
@@ -122,6 +142,7 @@ function desabilitaVisualizarVeiculo()  {
     document.getElementById("sManDataFinal").disabled = true; 
 }
 
+// HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
 function habilitaVisualizarVeiculo()  {  
     document.getElementById("id").disabled = false; 
     document.getElementById("iAno").disabled = false; 
@@ -139,8 +160,7 @@ function habilitaVisualizarVeiculo()  {
     document.getElementById("sManDataFinal").disabled = false;    
 }
 
-
-
+// SE VEÍCULO ESTIVER EM MANUTENÇÃO MOSTRA CAMPOS DE DATA INICIAL E DATA FINAL
 function validarManutencao(valor){
     if(valor == "t"){
         document.formCadastroVeiculo.sManDataInicial.disabled= false;
@@ -151,6 +171,7 @@ function validarManutencao(valor){
     }
 }
 
+// SE FOR MOTORISTA, HABILITA CAMPO DA CNH
 function validarMotorista(valor){
     if(valor == "1"){
         document.getElementById("sCnh").disabled = false; 
@@ -158,7 +179,7 @@ function validarMotorista(valor){
         document.getElementById("sCnh").disabled = true;
     }
 }
-
+// QUANDO CLICAR NO CAMPO ID(PLACA OU MATRÍCULA) EXIBE MENSAGEM
 function naoAlterarId(){
     var id = document.getElementById("id").getAttribute('name')
     if(id == "iPlaca"){
@@ -168,8 +189,8 @@ function naoAlterarId(){
     }  
 }
 
-function trocarMotorista(checked)
-{
+// SE NÃO FOR O MOTORISTA DA RESERVA, MOSTRA CAMPO PARA SELECIONAR OUTRO MOTORISTA
+function trocarMotorista(checked){
     if(checked == 1){
         document.getElementById("selecaoOutroMotorista").className = "invisivel";
     }else{
@@ -177,6 +198,7 @@ function trocarMotorista(checked)
     }
 }
 
+// SE ESCOLHER A OPÇÃO "OUTROS" DESTINO, MOSTRA CAMPO PARA PREENCHIMENTO DO DESTINO
 function exibirDescricaoDestino(selected){
     if(selected == 1){
         document.getElementById("complementoDestino").className = "visivel";
@@ -185,6 +207,7 @@ function exibirDescricaoDestino(selected){
     }
 }
 
+// AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES DOS CAMPOS OBRIGATÓRIOS
 function validarVeiculo(){
     
     var d = document.formCadastroVeiculo;
@@ -287,7 +310,7 @@ function validarVeiculo(){
     return true;
 }
 
-
+// AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES DOS CAMPOS OBRIGATÓRIOS
 function validarServidor(){
     
     var d = document.formCadastroServidor;
@@ -374,6 +397,7 @@ function validarServidor(){
         return false;
     }
     
+    //SE FOR MOTORISTA, VERIFICA SE O CAMPO CNH FOI PREENCHIDO
     if(d.bMotorista[1].checked == false && d.bMotorista[0].checked==true){
         if(d.sCnh.value == ""){
             alert("Dados obrigatórios não preenchidos.");
@@ -391,6 +415,7 @@ function validarServidor(){
     return true;
 }
 
+// AO CLICAR EM "EXCLUIR", MOSTRA MENSAGEM DE CONFIRMAÇÃO DE EXCLUSÃO
 function exluirCadastro(){
     if (window.confirm (' Deseja realmente excluir? ')){
         return true;
@@ -398,10 +423,11 @@ function exluirCadastro(){
     return false;
 }
 
+// AO CLICAR EM "EXCLUIR", MOSTRA MENSAGEM DE CONFIRMAÇÃO DE EXCLUSÃO
 function exluirReserva(){
     if (window.confirm (' Deseja realmente excluir? ')){
         return true;
     }
     return false;
     
- }
+}

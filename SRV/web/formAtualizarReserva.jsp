@@ -26,7 +26,7 @@
         <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
                 <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
-    <body>
+    <body onload="funcoesOnloadReserva()">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
