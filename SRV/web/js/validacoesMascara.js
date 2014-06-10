@@ -7,6 +7,7 @@ function validarMatSiap(mat){
 	}
 }
 
+//permite somente inserção de números
 function mascaraMatSiap(e){
 	var digito = (window.event)?event.keyCode:e.which;
 	if((digito > 47) && (digito < 58)){
@@ -20,7 +21,7 @@ function mascaraMatSiap(e){
         }  
 }
 
- 
+//permite somente inserção de letras
 function mascaraLetras(e){
     var dig = (window.event)?event.keycode:e.which;
     if (dig >= 33 && dig <= 64 || dig >= 91 && dig <= 93 || dig >= 123 && dig <= 159 || dig >= 162 && dig <= 191 ){
@@ -28,15 +29,6 @@ function mascaraLetras(e){
     }else{
         return true;
     }
-}
-
-//valida numero inteiro com mascara
-function mascaraInteiro(){
-	if (event.keyCode < 48 || event.keyCode > 57){
-		event.returnValue = false;
-		return false;
-	}
-	return true;
 }
 
 // Função que aplica uma máscara de formato ao Cpf

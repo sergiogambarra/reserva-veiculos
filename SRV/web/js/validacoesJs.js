@@ -11,8 +11,6 @@ function funcoesOnloadServidor(){
         document.getElementById("btnSaveHidden").style.display = "block";
         document.getElementById("btnEditHidden").style.display = "none";  
     }
-//validarManutencao(valor);
-//desabilitaVisualizarVeiculo();
 }
 
 function funcoesOnloadVeiculo(){
@@ -61,24 +59,24 @@ function habilitaVisualizarServidor(){
     document.getElementById("id").disabled = false; 
     document.getElementById("sNomeCompleto").disabled = false; 
     document.getElementById("sEmail").disabled = false;
-    document.formaAtualizarServidor.sexo[0].disabled = false;
-    document.formaAtualizarServidor.sexo[1].disabled = false;
-    document.formaAtualizarServidor.sDataNascimento.disabled = false;
+    document.formCadastroServidor.sexo[0].disabled = false;
+    document.formCadastroServidor.sexo[1].disabled = false;
+    document.formCadastroServidor.sDataNascimento.disabled = false;
     document.getElementById("sCpf").disabled = false; 
     document.getElementById("sRg").disabled = false; 
     document.getElementById("sOrgaoExpedidor").disabled = false; 
     document.getElementById("sNaturalidade").disabled = false; 
-    document.formaAtualizarServidor.estado.disabled = false;
+    document.formCadastroServidor.estado.disabled = false;
     document.getElementById("sNacionalidade").disabled = false; 
     document.getElementById("estadoCivil").disabled = false; 
     document.getElementById("sTelefone1").disabled = false; 
     document.getElementById("sTelefone2").disabled = false; 
-    document.formaAtualizarServidor.status_serv[0].disabled = false;
-    document.formaAtualizarServidor.status_serv[1].disabled = false;
+    document.formCadastroServidor.status_serv[0].disabled = false;
+    document.formCadastroServidor.status_serv[1].disabled = false;
     document.getElementById("status_serv").disabled = false; 
     document.getElementById("sCnh").disabled = false; 
-    document.formaAtualizarServidor.bMotorista[0].disabled = false;
-    document.formaAtualizarServidor.bMotorista[1].disabled = false;
+    document.formCadastroServidor.bMotorista[0].disabled = false;
+    document.formCadastroServidor.bMotorista[1].disabled = false;
     document.getElementById("sInfoComplementar").disabled = false;
 }
 
@@ -86,24 +84,24 @@ function desabilitaVisualizarServidor()  {
     document.getElementById("id").disabled = true; 
     document.getElementById("sNomeCompleto").disabled = true; 
     document.getElementById("sEmail").disabled = true;
-    document.formaAtualizarServidor.sexo[0].disabled = true;
-    document.formaAtualizarServidor.sexo[1].disabled = true;
-    document.formaAtualizarServidor.sDataNascimento.disabled = true;
+    document.formCadastroServidor.sexo[0].disabled = true;
+    document.formCadastroServidor.sexo[1].disabled = true;
+    document.formCadastroServidor.sDataNascimento.disabled = true;
     document.getElementById("sCpf").disabled = true; 
     document.getElementById("sRg").disabled = true; 
     document.getElementById("sOrgaoExpedidor").disabled = true; 
     document.getElementById("sNaturalidade").disabled = true; 
-    document.formaAtualizarServidor.estado.disabled = true;
+    document.formCadastroServidor.estado.disabled = true;
     document.getElementById("sNacionalidade").disabled = true; 
     document.getElementById("estadoCivil").disabled = true; 
     document.getElementById("sTelefone1").disabled = true; 
     document.getElementById("sTelefone2").disabled = true; 
-    document.formaAtualizarServidor.status_serv[0].disabled = true;
-    document.formaAtualizarServidor.status_serv[1].disabled = true;
+    document.formCadastroServidor.status_serv[0].disabled = true;
+    document.formCadastroServidor.status_serv[1].disabled = true;
     document.getElementById("status_serv").disabled = true; 
     document.getElementById("sCnh").disabled = true; 
-    document.formaAtualizarServidor.bMotorista[0].disabled = true;
-    document.formaAtualizarServidor.bMotorista[1].disabled = true;
+    document.formCadastroServidor.bMotorista[0].disabled = true;
+    document.formCadastroServidor.bMotorista[1].disabled = true;
     document.getElementById("sInfoComplementar").disabled = true;    
 } 
 
@@ -204,7 +202,13 @@ function validarVeiculo(){
     }
     
     if (isNaN(d.iAno.value)){
-        alert("Dados Inválidos");
+        alert("Dados Inválidos.");
+        d.iAno.focus();
+        return false;
+    }
+    
+    if (d.iAno.value.length <4){
+        alert("Dados Inválidos.");
         d.iAno.focus();
         return false;
     }
@@ -216,7 +220,7 @@ function validarVeiculo(){
     }
     
     if (!isNaN(d.iMarca.value)){
-        alert ("Dados Inválidos");
+        alert ("Dados Inválidos.");
         d.iMarca.focus();
         return false;
     }
@@ -246,7 +250,7 @@ function validarVeiculo(){
     }
     
     if (isNaN(d.iRenavam.value)){
-        alert("Dados Inválidos");
+        alert("Dados Inválidos.");
         d.iRenavam.focus();
         return false;
     }
@@ -273,9 +277,7 @@ function validarVeiculo(){
             return false;
         }
     } 
-    
-    
-    
+ 
     return true;
 }
 
@@ -309,7 +311,7 @@ function validarServidor(){
     }
     
     if(d.sEmail.value.indexOf("@")==-1 || d.sEmail.value.indexOf(".")==-1){
-        alert("Dados Inválidos");
+        alert("Dados Inválidos.");
         d.sEmail.focus();
     }
         
