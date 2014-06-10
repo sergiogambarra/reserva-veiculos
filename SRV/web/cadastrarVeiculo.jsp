@@ -72,7 +72,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca">* Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="PLACA" maxlength="7"/></div>
+                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="PLACA" onKeyPress="return mascaraPlaca(event)" maxlength="8"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">* Ano</label> </div>
