@@ -25,4 +25,5 @@ public interface InterfaceReservaDAO {
     public Reserva consultarIdReserva(int id_reserva);
     public abstract void excluirReserva(Reserva reserva);
     public Reserva consultarID_Reserva(int id_reserva);
+    public abstract void atualizar(Reserva reserv);
 }

@@ -133,15 +133,23 @@ public class ControleReserva extends HttpServlet {
                 }
             }
 
-            if (acao.equals("inserirReserva")) {
+            if (acao.equals("inserirReserva") || acao.equals("atualizarReserva")) {
                 ReservaDAO rdao = new ReservaDAO();
+                int id_reserva = 0;
+                //Para Nova Reserva... gerar ID novo
+                if (acao.equals("inserirReserva")) {
+                    id_reserva = rdao.gerarIdReserva();
+                }
+                //Para atualizar Reserva... continua com o mesmo ID
+                if (acao.equals("atualizarReserva")) {
+                    id_reserva = (Integer.parseInt(request.getParameter("id_reserva")));
+                }
 
-                int id_reserva = rdao.gerarIdReserva();
                 String matricula_siape = user.getMatriculaSIAPE();
                 String data_saida = request.getParameter("inputDataSaida");
                 String hora_saida = request.getParameter("inputHoraSaida");
                 String datetime_saida = data_saida + " " + hora_saida + ":00";
-                
+
                 String data_retorno = request.getParameter("inputDataRetorno");
                 String hora_retorno = request.getParameter("inputHoraRetorno");
                 String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
@@ -175,7 +183,14 @@ public class ControleReserva extends HttpServlet {
                 Reserva reserva = new Reserva(
                         id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, id_destino, descricao, date_atual);
 
-                rdao.inserirReserva(reserva);
+                if (acao.equals("inserirReserva")) {
+                    rdao.inserirReserva(reserva);
+                    request.setAttribute("mensagem", "Reserva efetuada com sucesso.");
+                } else {
+                    rdao.atualizar(reserva);
+                    request.setAttribute("mensagem", "Reserva atualizada com sucesso.");
+                }
+
                 request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
             }
             
@@ -200,13 +215,32 @@ public class ControleReserva extends HttpServlet {
                 Reserva r = idao.consultarIdReserva(Integer.parseInt(request.getParameter("id_reserva")));
                 request.setAttribute("reserva", r);
 
+                InterfaceServidorDAO sdao = new ServidorDAO();
+                List<Servidor> lista = sdao.todosServidores();
+
+                for (int i = 0; i < lista.size(); i++) {
+                    if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
+                        lista.remove(i);
+                    }
+                }
+
+                InterfaceVeiculoDAO vdao = new VeiculoDAO();
+                List<Veiculo> listav = vdao.todosVeiculo();
+
+                InterfaceDestinoDAO ddao = new DestinoDAO();
+                List<Destino> listad = ddao.buscarDestinos();
+
+                request.setAttribute("listaserv", lista);
+                request.setAttribute("listaveic", listav);
+                request.setAttribute("listadest", listad);
+                request.setAttribute("usuario", user);
+
                 if (acao.equalsIgnoreCase("editarReserva")) {
                     request.getRequestDispatcher("/formAtualizarReserva.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("/formVisualizarReserva.jsp").forward(request, response);
                 }
-            }
-            else if (acao.equals("excluirReserva")) {
+            }else if (acao.equals("excluirReserva")) {
                 int id_reserva = Integer.parseInt (request.getParameter("reserva"));
                 //if (!Validacoes.ValidarQualUsuarioLogado(user.getMatriculaSIAPE(), matricula)) {
                     //throw new Exception(Validacoes.getMensagemErro());

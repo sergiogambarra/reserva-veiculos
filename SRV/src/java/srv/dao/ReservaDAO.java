@@ -215,4 +215,35 @@ public class ReservaDAO implements InterfaceReservaDAO {
 
         return id;
     }
+    
+    @Override
+    public void atualizar(Reserva reserv) {
+        session = Conexao.getInstance();
+        int rowCount = 0;
+        try {
+            Transaction tx = session.beginTransaction();
+            String sql = "update Reserva set data_saida = :data_saida, "
+                    + "data_retorno = :data_retorno, placa = :placa, condutor = :condutor, matricula_siape_condutor = :matricula_siape_condutor, "
+                    + "id_destino = :id_destino, descricao_destino = :descricao_destino, reserva_datetime = :reserva_datetime "
+                    + " where id_reserva = :id_reserva";
+            Query query = session.createQuery(sql);
+
+            query.setTimestamp("data_saida",reserv.getData_saida());
+            query.setTimestamp("data_retorno", reserv.getData_retorno());
+            query.setString("placa", reserv.getPlaca());
+            query.setBoolean("condutor", reserv.getCondutor());
+            query.setString("matricula_siape_condutor", reserv.getMatricula_siape_condutor());
+            query.setInteger("id_destino", reserv.getId_destino());
+            query.setString("descricao_destino", reserv.getDescricao_destino());
+            query.setTimestamp("reserva_datetime", reserv.getReserva_datetime());
+            query.setInteger("id_reserva", reserv.getId_reserva());
+
+            rowCount = query.executeUpdate();
+            tx.commit();
+
+            session.close();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
