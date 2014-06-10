@@ -3,15 +3,15 @@ use srv;
 insert into servidor 
 values ('1234567', 'admin', '123456', 'admin1@gmail.com', '1',
  'm', '2010/10/09','00000000000', '0000000000', 'ssp/rs',
- 'porto alegre', 'rs', 'brasileiro', 'cas', '(51)2324-2324', '(43)3434-3434',
+ 'porto alegre', 'rs', 'brasileiro', 'cas', '(51) 2324-2324', '(43) 3434-3434',
  '1', '12345678911', '1', 'teste admin'),
  ('7654321', 'servidor1', '123456', 'serv1@restinga.ifrs.edu.br', '0',
  'f', '1980/02/23', '111.111.111-11', '1111111111', 'stj/rs',
- 'alvorada', 'rs', 'brasileiro', 'sol', '(51)1111-1111', '(52)2222-2222',
+ 'alvorada', 'rs', 'brasileiro', 'sol', '(51) 1111-1111', '(52) 2222-2222',
 '1', '11111111111', '1', 'teste servidor 1'),
  ('7654322', 'servidor2', '123456', 'serv2@restinga.ifrs.edu.br', '0',
  'm', '1985/10/04', '222.222.222-02', '2222222222', 'stj/rj',
- 'nova friburgo', 'rj', 'brasileiro', 'sep', '(43)3333-3333', '(46)4444-4444',
+ 'nova friburgo', 'rj', 'brasileiro', 'sep', '(43) 3333-3333', '(46) 4444-4444',
  '0', null, '1', 'teste servidor 2');
 
 select * from servidor;
