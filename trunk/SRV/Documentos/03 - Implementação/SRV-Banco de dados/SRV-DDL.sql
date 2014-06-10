@@ -23,8 +23,8 @@ CREATE  TABLE IF NOT EXISTS `srv`.`servidor` (
   `estado` VARCHAR(2) NULL DEFAULT NULL ,
   `nacionalidade` VARCHAR(20) NULL DEFAULT NULL ,
   `estado_civil` VARCHAR(15) NULL DEFAULT NULL ,
-  `telefone1` VARCHAR(13) NOT NULL ,
-  `telefone2` VARCHAR(13) NULL DEFAULT NULL ,
+  `telefone1` VARCHAR(14) NOT NULL ,
+  `telefone2` VARCHAR(14) NULL DEFAULT NULL ,
   `motorista` TINYINT(1) NOT NULL ,
   `cnh` VARCHAR(11) NULL DEFAULT NULL ,
   `status_serv` TINYINT(1) NOT NULL ,
@@ -107,7 +107,6 @@ CREATE  TABLE IF NOT EXISTS `srv`.`reserva` (
 ENGINE = InnoDB;
 
 USE `srv` ;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
