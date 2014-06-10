@@ -106,36 +106,52 @@ public class ControleReservaAjax extends HttpServlet {
         }
 
         InterfaceReservaDAO iReservaDao = new ReservaDAO();
-        List<Veiculo> listaReservas = new ArrayList<Veiculo>();
-        listaReservas = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
+        List<Veiculo> listaVeiculosDisp = new ArrayList<Veiculo>();
+        listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
 
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
-        
-        String tabela =
-                "<table class=\"tabelaListaVeiculos\">"
-                + "<thead>"
-                + "<td id=\"Placa\" class=\"colunaDuzentos\">Placa</td>"
-                + "<td id=\"Modelo\">Modelo</td>"
-                + "<td id=\"Marca\" class=\"colunaDuzentos\">Marca</td>"
-                + "<td id=\"Renavam\" class=\"colunaDuzentos\">Renavam</td>"
-                + "<td id=\"Acoes\" class=\"colunaAcoesHead\" >Ações</td>"
-                + "</thead>"
-                + "<tbody>";
-        for (int i = 0; i < listaReservas.size(); i++) {
-            tabela += "<tr>";
-            tabela += "<td headers=\"Placa\">";
-            tabela += listaReservas.get(i).getPlaca() + "</td>";
-            tabela += "<td headers=\"Modelo\">";
-            tabela += listaReservas.get(i).getModelo() + "</td>";
-            tabela += "<td headers=\"Marca\">";
-            tabela += listaReservas.get(i).getMarca() + "</td>";
-            tabela += "<td headers=\"Renavam\">";
-            tabela += listaReservas.get(i).getRenavam() + "</td>";
-            tabela += "<td headers=\"Acoes\" class=\"colunaAcoes\"> SELECIONAR </td></tr>";
+
+        StringBuilder tabela = new StringBuilder();
+
+        if (listaVeiculosDisp.size() == 0) {
+            tabela.append("Não há veículos disponíveis para esta data/hora.");
+        } else {
+            tabela.append("<table id=\"idTabelaListaVeiculos\" class=\"tabelaListaVeiculos\">")
+                    .append("<thead>")
+                    .append("<td id=\"Placa\" class=\"colunaDuzentos\">Placa</td>")
+                    .append("<td id=\"Modelo\">Modelo</td>")
+                    .append("<td id=\"Marca\" class=\"colunaDuzentos\">Marca</td>")
+                    .append("<td id=\"Renavam\" class=\"colunaDuzentos\">Renavam</td>")
+                    .append("<td id=\"Acao\" class=\"colunaAcoesHead\" >Ação</td>")
+                    .append("</thead>")
+                    .append("<tbody>");
+            for (int i = 0; i < listaVeiculosDisp.size(); i++) {
+                tabela.append("<tr>")
+                        .append("<td headers=\"Placa\">")
+                        .append(listaVeiculosDisp.get(i).getPlaca())
+                        .append("</td>")
+                        .append("<td headers=\"Modelo\">")
+                        .append(listaVeiculosDisp.get(i).getModelo())
+                        .append("</td>")
+                        .append("<td headers=\"Marca\">")
+                        .append(listaVeiculosDisp.get(i).getMarca())
+                        .append("</td>")
+                        .append("<td headers=\"Renavam\">")
+                        .append(listaVeiculosDisp.get(i).getRenavam())
+                        .append("</td>")
+                        .append("<td headers=\"Acao\" class=\"colunaAcoes\">")
+                        .append("<div class=\"divColunaAcoes\">")
+                        .append("<ul><li>")
+                        .append("<a href=\"ControleReserva?action=formularioReserva&placa=").append(listaVeiculosDisp.get(i).getPlaca()).append("\"><div class=\"iconeSelecionar\" alt=\"Visualizar informações do Servidor.\" title=\"Visualizar Servidor\"></div>selecionar</a>")
+                        .append("</li></ul>")
+                        .append("</div>")
+                        .append("</td></tr>");
+            }
+            tabela.append("</tbody></table>");
         }
-        tabela += "</tbody></table>";
-        response.getWriter().write(tabela);
+
+        response.getWriter().write(tabela.toString());
     }
 
     /**

@@ -92,7 +92,11 @@
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>
-                        <li><a href="ControleServidor?action=editarServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
+                        <li>
+                            <a href="ControleServidor?action=editarServidor&matricula=<%= serv.getMatriculaSIAPE()%>">
+                                <div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div>
+                            </a>
+                        </li>
                         <li><a href="ControleServidor?action=visualizarServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
                         <li><a href="ControleServidor?action=excluirServidor&matricula=<%= serv.getMatriculaSIAPE()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor" onclick="return exluirCadastro()"></div></a></li>
                       </ul>

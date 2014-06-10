@@ -67,6 +67,43 @@ public class ControleReserva extends HttpServlet {
 
             if (acao.equals("formularioReserva")) {
                 try {
+                    String placa = request.getParameter("placa");
+                    
+                    String data_saida = request.getParameter("inputDataSaida");
+                    String hora_saida = request.getParameter("inputHoraSaida");
+                    String datetime_saida = data_saida + " " + hora_saida + ":00";
+
+                    String data_retorno = request.getParameter("inputDataRetorno");
+                    String hora_retorno = request.getParameter("inputHoraRetorno");
+                    String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
+                
+                    InterfaceServidorDAO sdao = new ServidorDAO();
+                    List<Servidor> lista = sdao.todosServidores();
+
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
+                            lista.remove(i);
+                        }
+                    }
+
+                    InterfaceVeiculoDAO vdao = new VeiculoDAO();
+                    Veiculo veiculo = vdao.buscarVeiculo(placa);
+
+                    InterfaceDestinoDAO ddao = new DestinoDAO();
+                    List<Destino> listad = ddao.buscarDestinos();
+
+                    request.setAttribute("listaserv", lista);
+                    request.setAttribute("veiculo", veiculo);
+                    request.setAttribute("listadest", listad);
+                    request.setAttribute("usuario", user);
+
+                    request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+            }if (acao.equals("consultarDispVeiculo")) {
+                try {
 
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidores();
@@ -88,12 +125,14 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("listadest", listad);
                     request.setAttribute("usuario", user);
 
-                    request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                    //request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                    request.getRequestDispatcher("formConsultarDispVeiculo.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
             }
+
             if (acao.equals("inserirReserva")) {
                 ReservaDAO rdao = new ReservaDAO();
 

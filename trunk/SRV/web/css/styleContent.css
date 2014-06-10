@@ -203,7 +203,7 @@ caption{
   text-decoration: none;
 }
 
-.iconeEditar, .iconeVisualizar, .iconeDeletar{
+.iconeEditar, .iconeVisualizar, .iconeDeletar, iconeSelecionar{
   height: 15px;
   width: 15px;
   margin: auto;
@@ -219,6 +219,10 @@ caption{
 
 .iconeDeletar{
   background: url("../imagens/botaoDeletar.png") no-repeat;
+}
+
+iconeSelecionar{
+  background: url("../imagens/add.png") no-repeat;
 }
 
 /*Style para formulário*/

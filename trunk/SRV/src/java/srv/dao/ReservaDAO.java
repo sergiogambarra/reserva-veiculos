@@ -4,7 +4,9 @@
  */
 package srv.dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -12,6 +14,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import srv.modelo.Reserva;
+import srv.modelo.Veiculo;
 import srv.util.Conexao;
 
 /**
@@ -39,8 +42,30 @@ public class ReservaDAO implements InterfaceReservaDAO {
     }
 
     @Override
-    public void consultarDisponibilidadeVeiculo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Veiculo> consultarDisponibilidadeVeiculo(Date dataSaida, Date dataRetorno) {
+        List<Veiculo> veiculosDisponiveis = new ArrayList<Veiculo>();
+        session = Conexao.getInstance();
+        StringBuilder qr = new StringBuilder();
+        qr.append("from Veiculo ")
+                .append("where placa not in(select r.placa from Reserva r where(((r.data_saida < ?) and ((r.data_retorno > ?) and((r.data_retorno < ?) or (r.data_retorno > ?)))) or ((r.data_saida > ?) and ((r.data_saida < ?) and (r.data_retorno > ?)))) or ((r.data_saida > ?) and (r.data_retorno < ?)))");
+        
+        try {
+            Query query = session.createQuery(qr.toString())
+                    .setDate(0, dataSaida)
+                    .setDate(1, dataSaida)
+                    .setDate(2, dataRetorno)
+                    .setDate(3, dataRetorno)
+                    .setDate(4, dataSaida)
+                    .setDate(5, dataRetorno)
+                    .setDate(6, dataSaida)
+                    .setDate(7, dataSaida)
+                    .setDate(8, dataRetorno);
+            veiculosDisponiveis = query.list();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
+        return veiculosDisponiveis;
     }
 
     @Override

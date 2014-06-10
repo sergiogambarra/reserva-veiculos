@@ -11,7 +11,7 @@
             <%
                     }
             %>
-            <li><a href="ControleReserva?action=formularioReserva">Nova Reserva</a></li>
+            <li><a href="ControleReserva?action=consultarDispVeiculo">Nova Reserva</a></li>
             <%
                 if (request.getSession().getAttribute("administrador") != null) {
             %>  
@@ -20,7 +20,6 @@
             <%
                     }
             %>
-            <li><a href="formPeriodo.jsp">OUTRO</a></li>
         </li>
     </nav>
 </div>
