@@ -4,8 +4,10 @@
  */
 package srv.dao;
 
+import java.util.Date;
 import java.util.List;
 import srv.modelo.Reserva;
+import srv.modelo.Veiculo;
 
 /**
  *
@@ -13,7 +15,7 @@ import srv.modelo.Reserva;
  */
 public interface InterfaceReservaDAO {
     public abstract void inserirReserva(Reserva reserva);
-    public abstract void consultarDisponibilidadeVeiculo();
+    public abstract List<Veiculo> consultarDisponibilidadeVeiculo(Date dataSaida, Date dataRetorno);
     public abstract void consultarDisponibilidadeReserva();
     public abstract void consultarDadosReserva();
     public abstract void excluirReserva();

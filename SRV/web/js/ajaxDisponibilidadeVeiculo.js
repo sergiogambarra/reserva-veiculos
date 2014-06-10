@@ -6,7 +6,7 @@ var autoRow;
 
 function init() {
     completeField = document.getElementById("complete-field");
-    completeTable = document.getElementById("complete-table");
+    completeTable = document.getElementById("idTabelaListaVeiculos");
     autoRow = document.getElementById("auto-row");
     completeTable.style.top = getElementY(autoRow) + "px";
 }
@@ -32,7 +32,12 @@ function filtrarVeiculos(form) {
             mensagem("Ocorreu um erro: "+objetoXMLHttp.statusText);
         }
     };
+    //tem tabela?
     
+    completeTable = document.getElementById("idTabelaListaVeiculos");
+    if(completeTable != null){
+       clearTable(); 
+    }
     objetoXMLHttp.send(dados);
 
     return false;

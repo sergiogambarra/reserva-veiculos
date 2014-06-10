@@ -56,7 +56,7 @@
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
-                            <form action="veiculosdisponiveis" id="formConsDispVeiculo" name="formConsDispVeiculo" onsubmit="return filtrarVeiculos(this);">
+                            <form action="veiculosdisponiveis" method="POST" id="formConsDispVeiculo" name="formConsDispVeiculo" onsubmit="return filtrarVeiculos(this);">
                                 
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
