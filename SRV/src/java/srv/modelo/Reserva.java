@@ -44,7 +44,7 @@ public class Reserva implements java.io.Serializable{
     private String matricula_siape_condutor;
     @Column(name = "id_destino", nullable=true)
     private int id_destino;
-    @Column(name = "descricao_destino")
+    @Column(name = "descricao_destino", nullable=true)
     private String descricao_destino;
     @Column(name = "reserva_datetime")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -54,7 +54,7 @@ public class Reserva implements java.io.Serializable{
     @JoinColumn(name="matricula_siape", 
     insertable=false, updatable=false) 
     @Fetch(FetchMode.SELECT) 
-    @Cascade(CascadeType.SAVE_UPDATE) 
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Servidor servidor;
     
     @ManyToOne(fetch = FetchType.EAGER) 
