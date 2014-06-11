@@ -4,6 +4,7 @@
     Author     : Douglas
 --%>
 
+<%@page import="java.util.Date"%>
 <%@page import="srv.modelo.Destino"%>
 <%@page import="srv.modelo.Veiculo"%>
 <%@page import="srv.modelo.Servidor"%>
@@ -27,7 +28,7 @@
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
                     <%@include file="cabecalhoNomeUsuario.jsp"%>
-                    
+
                     <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
@@ -41,27 +42,27 @@
                         <div class="paginaAtual">
                             <table class="tabelaMensagem">
                                 <thead>
-                                  <td>
-                                      <div class="barraNavegacao">
-                                          <p>Você está em: 
+                                <td>
+                                    <div class="barraNavegacao">
+                                        <p>Você está em: 
                                             <script type="text/javascript">
                                                 var pagina = document.title;
                                                 document.write(pagina);
                                             </script>
-                                          </p>
-                                      </div>
-                                        </td>
-                                        <td>
-                                            <div class="mensagem">
-                                                  <%
-                                                    if (request.getAttribute("mensagem") != null) {
-                                                  %>
-                                                  <p><%= request.getAttribute("mensagem")%> </p>
-                                                  <%
-                                                             }
-                                                  %>
-                                            </div>
-                                        </td>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mensagem">
+                                        <%
+                                            if (request.getAttribute("mensagem") != null) {
+                                        %>
+                                        <p><%= request.getAttribute("mensagem")%> </p>
+                                        <%
+                                            }
+                                        %>
+                                    </div>
+                                </td>
                                 </thead>
                             </table>
                         </div>
@@ -70,13 +71,18 @@
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
-                            <form action="ControleReserva" name="formInserirReserva" method="POST">
+                            <form action="ControleReserva" name="formInserirReserva" method="GET">
                                 <input type="hidden" name="action" value="inserirReserva"/>
 
                                 <%
+                                    Servidor usuario = (Servidor) request.getAttribute("usuario");
                                     List<Servidor> lista = (List<Servidor>) request.getAttribute("listaserv");
-                                    List<Veiculo> listav = (List<Veiculo>) request.getAttribute("listaveic");
+                                    Veiculo veiculo = (Veiculo) request.getAttribute("veiculo");
                                     List<Destino> listad = (List<Destino>) request.getAttribute("listadest");
+                                    String dataSaida = request.getAttribute("s_data_saida").toString();
+                                    String horaSaida = request.getAttribute("s_hora_saida").toString();
+                                    String dataRetorno = request.getAttribute("s_data_retorno").toString();
+                                    String horaRetorno = request.getAttribute("s_hora_retorno").toString();
                                 %>
 
                                 <div class="formularioCadastrarServidorBox">
@@ -86,9 +92,9 @@
                                                 <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" />
+                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida %>" readonly="true"/>
                                                 <label for="iHoraSaida" >Horário de Saída: </label>
-                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
+                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" value="<%= horaSaida %>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -96,26 +102,25 @@
                                                 <label for="iDataRetorno">Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" />
+                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno %>" readonly="true"/>
                                                 <label for="iHoraRetorno" >Horário de Retorno </label>
-                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
+                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" value="<%= horaRetorno %>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
+                                            <div class="formCadastroLabel">
+                                                <label for="iModeloVeiculo">Veículo</label>
+                                            </div>
                                             <div class="formCadastroInput">
-                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo">
-                                                    <option value="">Modelo:</option>
-                                                    <%
-                                                        for (int i = 0; i < listav.size(); i++) {
-                                                    %>
-                                                    <option value="<%= listav.get(i).getPlaca() %>">
-                                                        <%= listav.get(i).getModelo() %>
-                                                    </option>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </select>
+                                                <input type="text" id="inputModeloVeiculo" name="inputModeloVeiculo" maxlength="7" value="<%= veiculo.getModelo()%>" readonly="true"/>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel">
+                                                <label for="iPlacaVeiculo">Placa</label>
+                                            </div>
+                                            <div class="formCadastroInput">
+                                                <input type="text" id="inputPlacaVeiculo" name="inputPlacaVeiculo" maxlength="7" value="<%= veiculo.getPlaca()%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -123,10 +128,23 @@
                                                 <label for="inputMotorista">*Sou o Motorista</label> 
                                             </div>
                                             <div class="formCadastroInput">
+                                                <%
+                                                    if (usuario.isMotorista()) {
+                                                %>
                                                 <label class="radioMotorista" for="inputMotorista" >Sim</label>
                                                 <input type="radio" id="inputMotorista" name="inputMotorista" value="1" onchange="trocarMotorista(this.value);" checked/>
                                                 <label class="radioMotorista" for="bMotorista">Não</label>
                                                 <input type="radio" id="inputMotorista" name="inputMotorista" value="0" onchange="trocarMotorista(this.value);"/>
+                                                <%
+                                                    }else{
+                                                    %>
+                                                    <label class="radioMotorista" for="inputMotorista" >Sim</label>
+                                                    <input type="radio" id="inputMotorista" name="inputMotorista" value="1" onchange="trocarMotorista(this.value);" readonly="true"/>
+                                                    <label class="radioMotorista" for="bMotorista">Não</label>
+                                                    <input type="radio" id="inputMotorista" name="inputMotorista" value="0" onchange="trocarMotorista(this.value);" readonly="true" checked/>
+                                                    <%
+                                                    }
+                                                %>
                                             </div>
                                         </li>
                                         <div id="selecaoOutroMotorista" class="invisivel">
@@ -138,8 +156,8 @@
                                                         <%
                                                             for (int i = 0; i < lista.size(); i++) {
                                                         %>
-                                                        <option value="<%= lista.get(i).getMatriculaSIAPE() %>">
-                                                            <%= lista.get(i).getNome() %>
+                                                        <option value="<%= lista.get(i).getMatriculaSIAPE()%>">
+                                                            <%= lista.get(i).getNome()%>
                                                         </option>
                                                         <%
                                                             }
@@ -149,37 +167,44 @@
                                             </li>
                                         </div>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">Número de Ocupantes</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" value="5" min="1" max="50">
+                                                <%
+                                                if(usuario.isMotorista()){
+                                                    %><input type="number" id="iCapacidade" name="iCapacidade" value="1" min="1" max="<%= veiculo.getCapacidade() %>"><%
+                                                }else{
+                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="2" min="2" max="<%= veiculo.getCapacidade() %>"><%
+                                                }
+                                                %>
                                             </div>
                                         </li>
                                         <li>
-                                             <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
+                                            <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="">Destino:</option>
                                                     <%
                                                         for (int i = 0; i < listad.size(); i++) {
-                                                            if(i == 0){
+                                                            if (i == 0) {
                                                                 continue;
-                                                            }if(i == (listad.size() - 1)){
+                                                            }
+                                                            if (i == (listad.size() - 1)) {
                                                     %>
-                                                    <option value="<%= listad.get(i).getId_destino() %>">
-                                                        <%= listad.get(i).getNome() %>
+                                                    <option value="<%= listad.get(i).getId_destino()%>">
+                                                        <%= listad.get(i).getNome()%>
                                                     </option>
-                                                    <option value="<%= listad.get(0).getId_destino() %>">
-                                                        <%= listad.get(0).getNome() %>
+                                                    <option value="<%= listad.get(0).getId_destino()%>">
+                                                        <%= listad.get(0).getNome()%>
                                                     </option>
                                                     <%
                                                         break;
-                                                            }else{
+                                                    } else {
                                                     %>
-                                                    <option value="<%= listad.get(i).getId_destino() %>">
-                                                        <%= listad.get(i).getNome() %>
+                                                    <option value="<%= listad.get(i).getId_destino()%>">
+                                                        <%= listad.get(i).getNome()%>
                                                     </option>
                                                     <%
-                                                        }
+                                                            }
                                                         }
                                                     %>
                                                 </select>
