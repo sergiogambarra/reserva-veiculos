@@ -100,11 +100,12 @@ public class ReservaDAO implements InterfaceReservaDAO {
             return list;
 
         } catch (HibernateException ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
         return null;
     }
 
+    @Override
     public List listaReservasOutros(String matricula) {
         session = Conexao.getInstance();
         try {
@@ -124,7 +125,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
             return list;
 
         } catch (HibernateException ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
         return null;
     }
@@ -150,7 +151,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
             session.delete(reserva);
             tx.commit();
         } catch (HibernateException e) {
-            e.printStackTrace();
+            e.getMessage();
         } finally {
             session.close();
         }
@@ -163,21 +164,6 @@ public class ReservaDAO implements InterfaceReservaDAO {
         Reserva r = (Reserva) query.setInteger("id_reserva", id_reserva).uniqueResult();
 
         return r;
-    }
-
-    @Override
-    public void consultarDisponibilidadeReserva() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void consultarDadosReserva() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void excluirReserva() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -244,7 +230,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
 
             session.close();
         } catch (HibernateException ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
     }
 }

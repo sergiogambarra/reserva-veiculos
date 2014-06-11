@@ -16,9 +16,6 @@ import srv.modelo.Veiculo;
 public interface InterfaceReservaDAO {
     public abstract void inserirReserva(Reserva reserva);
     public abstract List<Veiculo> consultarDisponibilidadeVeiculo(Date dataSaida, Date dataRetorno);
-    public abstract void consultarDisponibilidadeReserva();
-    public abstract void consultarDadosReserva();
-    public abstract void excluirReserva();
     public abstract int gerarIdReserva();
     public abstract List listaReservas(String matricula);
     public abstract List listaReservasOutros(String matricula);
