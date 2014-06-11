@@ -127,7 +127,7 @@ public class ControleReservaAjax extends HttpServlet {
                     .append("</thead>")
                     .append("<tbody>");
             for (int i = 0; i < listaVeiculosDisp.size(); i++) {
-                tabela.append("<tr>")
+                                tabela.append("<tr>")
                         .append("<td headers=\"Placa\">")
                         .append(listaVeiculosDisp.get(i).getPlaca())
                         .append("</td>")
@@ -143,7 +143,12 @@ public class ControleReservaAjax extends HttpServlet {
                         .append("<td headers=\"Acao\" class=\"colunaAcoes\">")
                         .append("<div class=\"divColunaAcoes\">")
                         .append("<ul><li>")
-                        .append("<a href=\"ControleReserva?action=formularioReserva&placa=").append(listaVeiculosDisp.get(i).getPlaca()).append("\"><div class=\"iconeSelecionar\" alt=\"Visualizar informações do Servidor.\" title=\"Visualizar Servidor\"></div>selecionar</a>")
+                        .append("<a href=\"ControleReserva?action=formularioReserva&placa=").append(listaVeiculosDisp.get(i).getPlaca())
+                            .append("&inputDataSaida=").append(data_saida)
+                            .append("&inputHoraSaida=").append(hora_saida)
+                            .append("&inputDataRetorno=").append(data_retorno)
+                            .append("&inputHoraRetorno=").append(hora_retorno)
+                            .append("\"><div class=\"iconeSelecionar\" alt=\"Visualizar informações do Servidor.\" title=\"Visualizar Servidor\"></div>selecionar</a>")
                         .append("</li></ul>")
                         .append("</div>")
                         .append("</td></tr>");
