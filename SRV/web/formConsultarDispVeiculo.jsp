@@ -88,9 +88,9 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </form>
-                            <div id="msg">   
+                                <div id="msg">   
                                 </div>
+                            </form>
                         </div>
                         
                     </div>
