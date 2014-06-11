@@ -71,11 +71,8 @@ public class ControleReserva extends HttpServlet {
                     
                     String data_saida = request.getParameter("inputDataSaida");
                     String hora_saida = request.getParameter("inputHoraSaida");
-                    String datetime_saida = data_saida + " " + hora_saida + ":00";
-
                     String data_retorno = request.getParameter("inputDataRetorno");
                     String hora_retorno = request.getParameter("inputHoraRetorno");
-                    String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
                 
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidores();
@@ -96,13 +93,18 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("veiculo", veiculo);
                     request.setAttribute("listadest", listad);
                     request.setAttribute("usuario", user);
+                    request.setAttribute("s_data_saida", data_saida);
+                    request.setAttribute("s_hora_saida", hora_saida);
+                    request.setAttribute("s_data_retorno", data_retorno);
+                    request.setAttribute("s_hora_retorno", hora_retorno);
 
                     request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }if (acao.equals("consultarDispVeiculo")) {
+            }
+            if (acao.equals("consultarDispVeiculo")) {
                 try {
 
                     InterfaceServidorDAO sdao = new ServidorDAO();
