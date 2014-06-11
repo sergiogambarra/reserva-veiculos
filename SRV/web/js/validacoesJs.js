@@ -392,6 +392,18 @@ function validarServidor(){
         return false;
     }
     
+    if(d.sTelefone1.value.length <14){
+        alert("Dados inválidos.");
+        d.sTelefone1.focus();
+        return false;
+    }
+    
+    if(d.sTelefone2.value != "" && d.sTelefone2.value.length <14){
+        alert("Dados inválidos.");
+        d.sTelefone2.focus();
+        return false;
+    }
+    
     if (d.bMotorista[1].checked==false && d.bMotorista[0].checked==false) {
         alert("Dados obrigatórios não preenchidos.");
         return false;
