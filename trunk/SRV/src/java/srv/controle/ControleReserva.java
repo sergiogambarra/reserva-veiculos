@@ -156,7 +156,7 @@ public class ControleReserva extends HttpServlet {
                 String hora_retorno = request.getParameter("inputHoraRetorno");
                 String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
 
-                String placa = request.getParameter("inputModeloVeiculo");
+                String placa = request.getParameter("inputPlacaVeiculo");
                 int iCondutor = Integer.parseInt(request.getParameter("inputMotorista"));
                 boolean condutor;
                 String matricula_siape_condutor;
