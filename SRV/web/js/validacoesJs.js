@@ -42,8 +42,18 @@ function funcoesOnloadReserva(){
     //Verifica qual option está selecionado e chama função passando o valor
     exibirDescricaoDestino(document.formInserirReserva.inputDestino.value);
     
+    if(document.body.className == "desabilita") {
+        desabilitaVisualizarReserva();
+        document.body.className = "habilita";
+        document.getElementById("btnSaveHidden").style.display = "none";
+        document.getElementById("btnEditHidden").style.display = "block";
+    }else{
+        document.body.className = "habilita";
+        habilitaVisualizarReserva();
+        document.getElementById("btnEditHidden").style.display = "none";
+        document.getElementById("btnSaveHidden").style.display = "block";
+    }
 }
-
 
 function validarMatricula(){
     var matricula = document.formLogin.inputMatricula.value.length;
@@ -71,6 +81,35 @@ function validarMatricula(){
 //scrollbars=yes, menubar=no, resizable=no, fullscreen=no//");
 //}
 
+// HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
+function habilitaVisualizarReserva(){
+    document.getElementById("inputDataSaida").disabled = false; 
+    document.getElementById("inputHoraSaida").disabled = false; 
+    document.getElementById("inputDataRetorno").disabled = false; 
+    document.getElementById("inputHoraRetorno").disabled = false;
+    document.getElementById("inputModeloVeiculo").disabled = false; 
+    document.formInserirReserva.inputMotorista[0].disabled = false;
+    document.formInserirReserva.inputMotorista[1].disabled = false;
+    document.getElementById("inputOutroMotorista").disabled = false; 
+    document.getElementById("iCapacidade").disabled = false;
+    document.getElementById("iDestino").disabled = false;
+    document.getElementById("inputDestinoComplementar").disabled = false;
+}
+
+// DESABILITA FORMULÁRIO AO CARREGAR PÁGINA DE VISUALIZAÇÃO
+function desabilitaVisualizarReserva(){
+    document.getElementById("inputDataSaida").disabled = true; 
+    document.getElementById("inputHoraSaida").disabled = true; 
+    document.getElementById("inputDataRetorno").disabled = true; 
+    document.getElementById("inputHoraRetorno").disabled = true;
+    document.getElementById("inputModeloVeiculo").disabled = true; 
+    document.formInserirReserva.inputMotorista[0].disabled = true;
+    document.formInserirReserva.inputMotorista[1].disabled = true;
+    document.getElementById("inputOutroMotorista").disabled = true; 
+    document.getElementById("iCapacidade").disabled = true;
+    document.getElementById("iDestino").disabled = true;
+    document.getElementById("inputDestinoComplementar").disabled = true;
+}
 
 // HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
 function habilitaVisualizarServidor(){

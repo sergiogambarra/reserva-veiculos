@@ -331,7 +331,7 @@ iconeSelecionar{
   border-color: rgba(50,200,50,.9);
 }
 
-.formCadastroInputSalvar input[type=submit], .formCadastroInputLimpar input[type=reset], .formCadastroInputCancelar input[type=submit], .formCadastroInputCancelar input[type=button] {
+.formCadastroInputSalvar input[type=submit], .formCadastroInputSalvar input[type=button], .formCadastroInputLimpar input[type=reset], .formCadastroInputCancelar input[type=submit], .formCadastroInputCancelar input[type=button] {
   display: inline;
   float: right;
   padding: 0 18px;

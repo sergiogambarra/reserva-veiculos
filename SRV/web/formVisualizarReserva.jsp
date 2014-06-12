@@ -1,7 +1,7 @@
 <%-- 
-    Document   : atualizarReserva
-    Created on : 07/06/2014, 22:32:12
-    Author     : paula
+    Document   : formVisualizarReserva
+    Created on : 11/06/2014, 22:08:38
+    Author     : Paula
 --%>
 
 <%@page import="java.text.SimpleDateFormat"%>
@@ -19,14 +19,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Alterar Reserva</title>
+        <title>Visualizar Reserva</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
                 <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
-    <body onload="funcoesOnloadReserva()">
+    <body onload="funcoesOnloadReserva()" class="desabilita">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
@@ -70,7 +70,7 @@
                             </table>
                         </div>
                         <div class="formularioCadastrarServidor">            
-                            <h2>Alterar Reserva</h2>
+                            <h2>Visualizar Reserva</h2>
                             <div class="camposObrigatorios">
                                 *Campos obrigatórios
                             </div>
@@ -240,8 +240,8 @@
                                         </div>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onClick="history.go(-1)"/></div>
-                                            <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
-                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
+                                            <div id="btnEditHidden" class="formCadastroInputSalvar"><input type="button" value="Editar" onclick="funcoesOnloadReserva()"/></div>
+                                            <div id="btnSaveHidden" class="formCadastroInputSalvar"><input type="submit" value="Salvar"  onclick="return validarReserva()"/></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -260,3 +260,4 @@
         </section>
     </body>
 </html>
+
