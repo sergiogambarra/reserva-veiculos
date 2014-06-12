@@ -136,7 +136,7 @@
                                             <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled/></div>
                                         </li>
                                         <li class="formBotoes">
-                                            <div class="formCadastroInputCancelar"><input type="submit" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
+                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
                                             <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
                                         </li>
