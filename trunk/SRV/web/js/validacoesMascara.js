@@ -21,13 +21,17 @@ function mascaraMatSiap(e){
         }  
 }
 
-//permite somente inserção de letras
+//PERMITE SOMENTE INSERÇÃO DE LETRAS (Bug corrigido no chrome)
 function mascaraLetras(e){
-    var dig = (window.event)?event.keycode:e.which;
-    if (dig >= 33 && dig <= 64 || dig >= 91 && dig <= 93 || dig >= 123 && dig <= 159 || dig >= 162 && dig <= 191 ){
-        return false;
-    }else{
+    var tecla=(window.event)?event.keyCode:e.which;
+    if((tecla >= 65 && tecla <= 90)||(tecla >= 97 && tecla <= 122)){
         return true;
+    }    
+    else{
+        if (tecla != 8) 
+            return false;
+        else 
+            return true;
     }
 }
 
