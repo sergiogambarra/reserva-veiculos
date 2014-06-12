@@ -19,6 +19,7 @@ public interface InterfaceServidorDAO {
     public abstract void atualizar(Servidor serv);
     public abstract void visualizar(Servidor serv);
     public abstract List todosServidores();
+    public abstract List todosServidoresMotoristas();
     public Servidor consultarMatricula(String parameter);
     public abstract List<String> editarServidorSelecionarEstado(String ufAtual);
     public abstract List<String> editarEstadoCivil(String ecAtual);

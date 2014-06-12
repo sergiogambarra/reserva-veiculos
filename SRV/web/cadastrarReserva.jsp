@@ -23,7 +23,7 @@
         <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
                 <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
     </head>
-    <body>
+    <body onload="funcoesOnloadReserva()">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
@@ -214,7 +214,7 @@
                                             <li class="liTextArea">
                                                 <div class="formCadastroLabel"><label for="sInfoComplementar">Destino: </label> </div>
                                                 <div class="formCadastroInput">
-                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informações complementares"/>
+                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informe o destino"/>
                                                 </div>
                                             </li>
                                         </div>

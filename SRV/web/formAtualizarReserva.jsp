@@ -168,14 +168,21 @@
                                                 <div class="formCadastroLabel"><label for="inputOutroMotorista">Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
-                                                        <option value="<%= matriculaMotorista%>" selected><%= reserv.getServidor().getNome()%></option>
                                                         <%
                                                             for (int i = 0; i < lista.size(); i++) {
+                                                                if (matriculaMotorista.equals(lista.get(i).getMatriculaSIAPE())) {
+                                                        %>
+                                                        <option value="<%= matriculaMotorista%>" selected><%= lista.get(i).getNome()%></option>
+                                                        <%
+                                                                    lista.get(i).setMatriculaSIAPE("");
+                                                                }
+                                                            if (!lista.get(i).getMatriculaSIAPE().equals("")) {
                                                         %>
                                                         <option value="<%= lista.get(i).getMatriculaSIAPE()%>">
                                                             <%= lista.get(i).getNome()%>
                                                         </option>
                                                         <%
+                                                                }
                                                             }
                                                         %>
                                                     </select>
@@ -193,8 +200,13 @@
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
-                                                    <%
-                                                        for (int i = 0; i < listad.size(); i++) {
+                                                    <%                                                        for (int i = 0;
+
+                                                        i< listad.size ();
+                                                        i
+
+                                                        
+                                                            ++) {
                                                             if (i == 0) {
                                                                 continue;
                                                             }
@@ -228,13 +240,15 @@
                                             <li class="liTextArea">
                                                 <div class="formCadastroLabel"><label for="sInfoComplementar">Destino: </label> </div>
                                                 <div class="formCadastroInput">
-                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informações complementares"
-                                                        <%
-                                                            if (descricao_reserva != null) {
-                                                        %>
-                                                        value="<%= reserv.getDescricao_destino()%>"
-                                                        <% }%>
-                                                        />
+                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informe o destino"
+                                                           <%                                                            if (descricao_reserva
+
+                                                            
+                                                                   != null) {
+                                                           %>
+                                                           value="<%= reserv.getDescricao_destino()%>"
+                                                           <% }%>
+                                                           />
                                                 </div>
                                             </li>
                                         </div>
