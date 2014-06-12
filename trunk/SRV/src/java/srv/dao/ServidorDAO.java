@@ -109,6 +109,16 @@ public class ServidorDAO implements InterfaceServidorDAO {
         List list = session.createQuery("from Servidor").list();
         return list;
     }
+    
+    @Override
+    public List todosServidoresMotoristas() {
+        int isMotorista = 1;
+        session = Conexao.getInstance();
+        Query query = session.createQuery("from Servidor where motorista = :motorista");
+        List list = query.setInteger("motorista", isMotorista).list();
+        
+        return list;
+    }
 
     @Override
     public Servidor consultarMatricula(String matriculaSIAPE) {

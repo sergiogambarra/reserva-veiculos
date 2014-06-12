@@ -75,7 +75,7 @@ public class ControleReserva extends HttpServlet {
                     String hora_retorno = request.getParameter("inputHoraRetorno");
                 
                     InterfaceServidorDAO sdao = new ServidorDAO();
-                    List<Servidor> lista = sdao.todosServidores();
+                    List<Servidor> lista = sdao.todosServidoresMotoristas();
 
                     for (int i = 0; i < lista.size(); i++) {
                         if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
@@ -108,7 +108,7 @@ public class ControleReserva extends HttpServlet {
                 try {
 
                     InterfaceServidorDAO sdao = new ServidorDAO();
-                    List<Servidor> lista = sdao.todosServidores();
+                    List<Servidor> lista = sdao.todosServidoresMotoristas();
 
                     for (int i = 0; i < lista.size(); i++) {
                         if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
@@ -221,7 +221,7 @@ public class ControleReserva extends HttpServlet {
                 request.setAttribute("reserva", r);
 
                 InterfaceServidorDAO sdao = new ServidorDAO();
-                List<Servidor> lista = sdao.todosServidores();
+                List<Servidor> lista = sdao.todosServidoresMotoristas();
 
                 for (int i = 0; i < lista.size(); i++) {
                     if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
