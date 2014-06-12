@@ -381,6 +381,7 @@ function validarServidor(){
     if(d.sEmail.value.indexOf("@")==-1 || d.sEmail.value.indexOf(".")==-1){
         alert("Dados Inválidos.");
         d.sEmail.focus();
+        return false;
     }
         
     if(d.sexo[0].checked == false && d.sexo[1].checked == false){
