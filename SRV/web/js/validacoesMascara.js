@@ -24,7 +24,7 @@ function mascaraMatSiap(e){
 //PERMITE SOMENTE INSERÇÃO DE LETRAS (Bug corrigido no chrome)
 function mascaraLetras(e){
     var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla >= 65 && tecla <= 90)||(tecla >= 97 && tecla <= 122)){
+    if((tecla >= 65 && tecla <= 90)||(tecla >= 97 && tecla <= 122 || (tecla == 32))){
         return true;
     }    
     else{
