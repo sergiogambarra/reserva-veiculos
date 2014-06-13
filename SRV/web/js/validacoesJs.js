@@ -299,7 +299,7 @@ function validarVeiculo(){
     }
     
     if(d.combustivel[0].checked == false && d.combustivel[1].checked == false
-        && d.combustivel[2].checked == false && d.combustivel[3].checked == false){
+        && d.combustivel[2].checked == false && d.combustivel[3].checked == false && d.combustivel[4].checked == false){
         alert("Dados obrigatórios não preenchidos.");
         return false;
     }
