@@ -96,9 +96,9 @@
                 <td headers="Acoes" class="colunaAcoes">
                     <div class="divColunaAcoes">
                       <ul>
-                        <li><a href="ControleVeiculo?action=editarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeEditar" alt="Editar Servidor." title="Editar Servidor"></div></a></li>
-                        <li><a href="ControleVeiculo?action=visualizarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeVisualizar" alt="Visualizar informações do Servidor." title="Visualizar Servidor"></div></a></li>
-                        <li><a href="ControleVeiculo?action=excluirVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeDeletar" alt="Deletar Servidor." title="Deletar Servidor" onclick="return exluirCadastro()"></div></a></li>
+                        <li><a href="ControleVeiculo?action=editarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeEditar" alt="Editar Veículo." title="Editar Veículo"></div></a></li>
+                        <li><a href="ControleVeiculo?action=visualizarVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeVisualizar" alt="Visualizar informações do Veículo." title="Visualizar Veículo"></div></a></li>
+                        <li><a href="ControleVeiculo?action=excluirVeiculo&placa=<%= veic.getPlaca()%>"><div class="iconeDeletar" alt="Deletar Veículo." title="Deletar Veículo" onclick="return exluirCadastro()"></div></a></li>
                       </ul>                       
                     </div>
                 </td>
