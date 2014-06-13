@@ -70,7 +70,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="id" name="iPlaca" placeholder="PLACA" maxlength="8" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
+                                                <input type="text" id="id" name="iPlaca" placeholder="XXX0000" maxlength="7" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
@@ -121,7 +121,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" maxlength="2" value="5" min="1" max="50"/></div>
+                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" value="5" min="1" max="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
@@ -148,7 +148,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
-                                            <div class="formCadastroInput"><input type="reset" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
+                                            <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
                                         </li>
                                     </ul>
                                 </div>
