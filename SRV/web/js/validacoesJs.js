@@ -246,18 +246,29 @@ function exibirDescricaoDestino(selected){
     }
 }
 
-// AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES DOS CAMPOS OBRIGATÓRIOS
+// AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES 
 function validarVeiculo(){
     
     var d = document.formCadastroVeiculo;
          
+    var er = /[a-z]{3}?\d{4}/gim; //Expressão regular p/ 3 letras e 4 numeros
+    if (d.iPlaca.value != ""){
+        er.lastIndex = 0;
+        pl = iPlaca.value;
+        if (!er.test(pl)){
+            alert("Dados inválidos.");
+            d.iPlaca.focus();
+            return false;	
+        }
+    }	
+    
     if(d.iPlaca.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iPlaca.focus();
         return false;
     }
     
-    if(d.iPlaca.value.length < 8){
+    if(d.iPlaca.value.length != "" && d.iPlaca.value.length < 7){
         alert("Dados inválidos.");
         d.iPlaca.focus();
         return false;
@@ -265,12 +276,6 @@ function validarVeiculo(){
     
     if(d.iAno.value == ""){
         alert("Dados obrigatórios não preenchidos.");
-        d.iAno.focus();
-        return false;
-    }
-    
-    if (isNaN(d.iAno.value)){
-        alert("Dados Inválidos.");
         d.iAno.focus();
         return false;
     }
@@ -286,13 +291,7 @@ function validarVeiculo(){
         d.iMarca.focus();
         return false;
     }
-    
-    if (!isNaN(d.iMarca.value)){
-        alert ("Dados Inválidos.");
-        d.iMarca.focus();
-        return false;
-    }
-    
+
     if(d.iModelo.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iModelo.focus();
@@ -317,12 +316,18 @@ function validarVeiculo(){
         return false;
     }
     
-    if (isNaN(d.iRenavam.value)){
-        alert("Dados Inválidos.");
-        d.iRenavam.focus();
+    if(d.iCapacidade.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.iCapacidade.focus();
         return false;
     }
-     
+    
+    if(d.iCapacidade.value == 0){
+        alert("Dados inválidos.");
+        d.iCapacidade.focus();
+        return false;
+    }
+      
     if(d.manutencao[0].checked == true){
         if(d.sManDataInicial.value == ""){
             alert("Dados obrigatórios não preenchidos.");

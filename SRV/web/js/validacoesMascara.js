@@ -35,7 +35,21 @@ function mascaraLetras(e){
     }
 }
 
-// Função que aplica uma máscara de formato ao Cpf
+//Mascara Alfanumérica para PLACA
+function mascaraAlfanumerica(e){
+    var tecla=(window.event)?event.keyCode:e.which;
+    if((tecla >= 65 && tecla <= 90)||(tecla >= 97 && tecla <= 122)||(tecla >= 48 && tecla <= 57)){
+        return true;
+    }    
+    else{
+        if (tecla != 8) 
+            return false;
+        else 
+            return true;
+    }
+}
+
+//Máscara de formato ao Cpf permite somente inclusão de números
 function mascaraCpf(evento)
 {
     var origem;
@@ -91,7 +105,7 @@ function mascaraCpf(evento)
      
 }
 
-// Função que aplica uma máscara de formato ao Telefone
+//Máscara de formato ao Telefone
 function mascaraTelefone(evento)
 {
     var origem;
