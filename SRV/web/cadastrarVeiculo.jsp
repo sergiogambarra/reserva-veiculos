@@ -129,11 +129,11 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">* Data Inicial</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">* Data Final</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>

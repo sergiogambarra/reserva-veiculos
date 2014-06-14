@@ -140,11 +140,11 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_inicial}"/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_inicial}" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">Data Final</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_final}"/></div>
+                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_final}" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
