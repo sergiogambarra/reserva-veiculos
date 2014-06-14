@@ -20,8 +20,7 @@
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
-        <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-                <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
     </head>
     <body onload="funcoesOnloadReserva()">
         <section class="container">
@@ -149,7 +148,7 @@
                                         </li>
                                         <div id="selecaoOutroMotorista" class="invisivel">
                                             <li >
-                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">Motorista</label> </div>
+                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">*Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
                                                         <option value="">Selecione:</option>
@@ -167,7 +166,7 @@
                                             </li>
                                         </div>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Número de Ocupantes</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">*Número de Ocupantes</label> </div>
                                             <div class="formCadastroInput">
                                                 <%
                                                 if(usuario.isMotorista()){
@@ -179,10 +178,10 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
+                                            <div class="formCadastroLabel"><label for="iDestino">*Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
-                                                    <option value="">Destino:</option>
+                                                    <option value="">Selecione:</option>
                                                     <%
                                                         for (int i = 0; i < listad.size(); i++) {
                                                             if (i == 0) {
@@ -212,16 +211,16 @@
                                         </li>
                                         <div id="complementoDestino" class="invisivel">
                                             <li class="liTextArea">
-                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Destino: </label> </div>
+                                                <div class="formCadastroLabel"><label for="sInfoComplementar">*Informe o Destino:</label> </div>
                                                 <div class="formCadastroInput">
-                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informe o destino"/>
+                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Se não constar na lista de destino"/>
                                                 </div>
                                             </li>
                                         </div>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onClick="history.go(-1)"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
-                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarReserva()"/></div>
                                         </li>
                                     </ul>
                                 </div>

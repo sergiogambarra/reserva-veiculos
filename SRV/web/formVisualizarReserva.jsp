@@ -22,10 +22,10 @@
         <title>Visualizar Reserva</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
-        <!--        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-                <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>-->
-    </head>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+               
     <body onload="funcoesOnloadReserva()" class="desabilita">
         <section class="container">
             <div class="cabecalho">
@@ -112,7 +112,7 @@
                                                 <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>"/>
+                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>"onKeyPress="return mascaraData(event);" maxlength="10" />
                                                 <label for="iHoraSaida" >Horário de Saída: </label>
                                                 <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>"/>
                                             </div>
@@ -122,7 +122,7 @@
                                                 <label for="iDataRetorno">Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>"/>
+                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>"onKeyPress="return mascaraData(event);" maxlength="10" />
                                                 <label for="iHoraRetorno" >Horário de Retorno </label>
                                                 <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>"/>
                                             </div>
@@ -165,7 +165,7 @@
                                         </li>
                                         <div id="selecaoOutroMotorista" class="invisivel">
                                             <li >
-                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">Motorista</label> </div>
+                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">*Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
                                                         <%
@@ -190,13 +190,13 @@
                                             </li>
                                         </div>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="number" id="iCapacidade" name="iCapacidade" value="${reserva.veiculo.capacidade}" min="1" max="50">
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
+                                            <div class="formCadastroLabel"><label for="iDestino">*Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
@@ -233,9 +233,9 @@
                                         </li>
                                         <div id="complementoDestino" class="invisivel">
                                             <li class="liTextArea">
-                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Destino: </label> </div>
+                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Informe o Destino</label> </div>
                                                 <div class="formCadastroInput">
-                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Informe o destino"
+                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="se não constar na lista de destino"
                                                         <%
                                                             if (descricao_reserva != null) {
                                                         %>

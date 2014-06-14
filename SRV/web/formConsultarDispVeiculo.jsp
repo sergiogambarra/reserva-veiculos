@@ -18,6 +18,7 @@
         <title>Novo Veículo</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/ajaxDisponibilidadeVeiculo.js"></script>
         
@@ -62,21 +63,21 @@
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="iDataSaida">Data de Saída</label>
+                                                <label for="iDataSaida">*Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" />
-                                                <label for="iHoraSaida" >Horário de Saída: </label>
+                                                <input type="date" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
+                                                <label for="iHoraSaida" >*Horário de Saída: </label>
                                                 <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="iDataRetorno">Data de Retorno</label>
+                                                <label for="iDataRetorno">*Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" />
-                                                <label for="iHoraRetorno" >Horário de Retorno </label>
+                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
+                                                <label for="iHoraRetorno" >*Horário de Retorno </label>
                                                 <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
                                             </div>
                                         </li>
