@@ -44,6 +44,8 @@ public class ControleServidor extends HttpServlet {
             HttpSession session = request.getSession();
             Servidor user = (Servidor) session.getAttribute("administrador");
             System.out.println("Teste: " + user.getNome());
+            //Criação de uma string para trabalhar com os formularios de consuta
+            //String form = request.getParameter("frm");
 
             String acao = request.getParameter("action");
             //Se for CADASTRAR ou ATUALIZAR
@@ -213,10 +215,21 @@ public class ControleServidor extends HttpServlet {
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                 }
-            } else if (acao.equals("listaServidores")) {
+            } else if (acao.equals("listaServidores")) {// Parte de consulta ###################################################
                 try {
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidores();
+
+                    request.setAttribute("listaserv", lista);
+                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+            }else if (acao.equals("listaServidorPorNome")) {
+                try {
+                    InterfaceServidorDAO idao = new ServidorDAO();
+                    List<Servidor> lista = idao.buscarServidorPorNome(request.getParameter("nome"));
 
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
