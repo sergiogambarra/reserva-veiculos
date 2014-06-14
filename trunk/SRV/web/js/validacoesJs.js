@@ -172,6 +172,7 @@ function desabilitaVisualizarVeiculo()  {
     document.getElementById("alcool").disabled = true;
     document.getElementById("gnv").disabled = true;
     document.getElementById("diesel").disabled = true;
+    document.getElementById("flex").disabled = true;
     document.getElementById("iModelo").disabled = true; 
     document.getElementById("iRenavam").disabled = true; 
     document.getElementById("iCapacidade").disabled = true; 
@@ -190,6 +191,7 @@ function habilitaVisualizarVeiculo()  {
     document.getElementById("alcool").disabled = false;
     document.getElementById("gnv").disabled = false;
     document.getElementById("diesel").disabled = false;
+    document.getElementById("flex").disabled = true;
     document.getElementById("iModelo").disabled = false; 
     document.getElementById("iRenavam").disabled = false; 
     document.getElementById("iCapacidade").disabled = false; 
@@ -488,3 +490,19 @@ function exluirReserva(){
     return false;
     
 }
+
+/*//FunÁ„o chamada para validar a reserva
+function validarReserva(){
+    
+    var d = document.formInserirReserva;
+    
+    if(d.inputMotorista[1].checked == false && d.inputMotorista[0].checked==true){
+        if(d.inputOutroMotorista.value == ""){
+            alert("Dados obrigat√≥rios n√£o preenchidos.");
+            d.inputOutroMotorista.focus();
+            return false;
+        } 
+    }
+        
+    return true;
+}*/
