@@ -46,23 +46,30 @@ public class ReservaDAO implements InterfaceReservaDAO {
         List<Veiculo> veiculosDisponiveis = new ArrayList<Veiculo>();
         session = Conexao.getInstance();
         StringBuilder qr = new StringBuilder();
+        
         qr.append("from Veiculo ")
-                .append("where placa not in(select r.placa from Reserva r where(((r.data_saida < ?) and ((r.data_retorno > ?) and((r.data_retorno < ?) or (r.data_retorno > ?)))) or ((r.data_saida > ?) and ((r.data_saida < ?) and (r.data_retorno > ?)))) or ((r.data_saida > ?) and (r.data_retorno < ?)))");
+                .append("where placa not in(")
+                    .append("select r.placa from Reserva r where(")
+                    .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
+                    .append(" and ")
+                    .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
+                    .append(")")
+                .append(")");
         
         try {
             Query query = session.createQuery(qr.toString())
-                    .setDate(0, dataSaida)
-                    .setDate(1, dataSaida)
-                    .setDate(2, dataRetorno)
-                    .setDate(3, dataRetorno)
-                    .setDate(4, dataSaida)
-                    .setDate(5, dataRetorno)
-                    .setDate(6, dataSaida)
-                    .setDate(7, dataSaida)
-                    .setDate(8, dataRetorno);
+                    .setTimestamp(0, dataRetorno)
+                    .setTimestamp(1, dataSaida)
+                    .setTimestamp(2, dataSaida)
+                    .setTimestamp(3, dataSaida)
+                    .setTimestamp(4, dataRetorno)
+                    .setTimestamp(5, dataRetorno);
             veiculosDisponiveis = query.list();
         } catch (Exception e) {
+            session.close();
             e.getMessage();
+        } finally{
+            session.close();
         }
 
         return veiculosDisponiveis;
