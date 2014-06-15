@@ -28,7 +28,7 @@ select * from veiculo;
 
 INSERT INTO destino 
 values 
-	  (null, "IFRS Campus Restinga")
+	  (null, "Outro Destino")
 	, (null, "IFRS Campus Porto Alegre")
 	, (null, "IFRS Campus Bento Gonçalves")
 	, (null, "IFRS Campus Rio Grande")
