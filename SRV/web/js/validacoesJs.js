@@ -263,11 +263,10 @@ function exibirDescricaoDestino(selected){
     }
 }
 
-// AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES 
-function validarVeiculo(){
-    
+//VALIDA PLACA
+function validarPlaca(){
+
     var d = document.formCadastroVeiculo;
-         
     var er = /[a-z]{3}?\d{4}/gim; //Expressão regular p/ 3 letras e 4 numeros
     if (d.iPlaca.value != ""){
         er.lastIndex = 0;
@@ -276,9 +275,18 @@ function validarVeiculo(){
             alert("Dados inválidos.");
             d.iPlaca.focus();
             return false;	
+        }else{
+            return true
         }
-    }	
+    }
+    return true;
+}
+
+// AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES 
+function validarVeiculo(){
     
+    var d = document.formCadastroVeiculo;
+
     if(d.iPlaca.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iPlaca.focus();
@@ -348,11 +356,24 @@ function validarVeiculo(){
     if(d.manutencao[0].checked == true){
         if(d.sManDataInicial.value == ""){
             alert("Dados obrigatórios não preenchidos.");
+            d.sNanDataInicial.focus();
+            return false;
+        }
+        if(d.sManDataFinal.value == ""){
+            alert("Dados obrigatórios não preenchidos.");
+            d.sManDataFinal.focus();
+            return false;
+        }
+        
+        if(d.sManDataInicial.value != "" && d.sManDataInicial.value.length <10){
+            alert("Dados inválidos.");
+            d.sNanDataInicial.focus();
             return false;
         }
     
-        if(d.sManDataFinal.value == ""){
-            alert("Dados obrigatórios não preenchidos.");
+        if(d.sManDataFinal.value != "" && d.sManDataFinal.value.length <10){
+            alert("Dados inválidos.");
+            d.sManDataFinal.focus();
             return false;
         }
         
@@ -427,40 +448,36 @@ function validarServidor(){
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
     
-    
     if (ano_nasc > yyyy-18 || mes_nasc > 12 || dia_nasc > 31){
-        alert("Data de nascimento invalida");
+        alert("Dados Inválidos.");
         d.sDataNascimento.focus();
         return false;
     } 
     if (ano_nasc == yyyy-18){
         if (mes_nasc > mm){
-            alert("Data de nascimento invalida");
+            alert("Dados Inválidos.");
             d.sDataNascimento.focus();
             return false;
         }
     }
     if (ano_nasc == yyyy-18 && mes_nac == mm){
         if (dia_nasc >= dd){
-            alert("Data de nascimento invalida");
+            alert("Dados Inválidos.");
             d.sDataNascimento.focus();
             return false;
         }
     }
-    
-    /*
+   
     if (nova_data2 < nova_data1){
-            alert("Data Final não pode ser menor que a Data Inicial.");
+            alert("Dados Inválidos.");
             return false;
         }
 
-    
-    Não funciona (por causa do html 5??)
     if(d.sDataNascimento.value.length <10){
         alert("Dados inválidos.");
         d.sDataNascimento.focus();
         return false;
-    }*/
+    }
     
     if(d.sCpf.value == ""){
         alert("Dados obrigatórios não preenchidos.");
@@ -480,8 +497,20 @@ function validarServidor(){
         return false;
     }
     
+    if(d.sRg.value.length <8){
+        alert("Dados inválidos.");
+        d.sRg.focus();
+        return false;
+    }
+    
     if(d.sOrgaoExpedidor.value == ""){
         alert("Dados obrigatórios não preenchidos.");
+        d.sOrgaoExpedidor.focus();
+        return false;
+    }
+    
+    if(d.sOrgaoExpedidor.value.length <6){
+        alert("Dados Inválidos.");
         d.sOrgaoExpedidor.focus();
         return false;
     }
@@ -544,7 +573,7 @@ function exluirReserva(){
     
 }
 
-/*//Fun��o chamada para validar a reserva
+/*//VALIDAÇÃO DA RESERVA
 function validarReserva(){
     
     var d = document.formInserirReserva;
