@@ -68,28 +68,28 @@
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
+                                            <div class="formCadastroLabel"><label for="iPlaca">*Placa</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="id" name="iPlaca" placeholder="XXX0000" maxlength="7" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
+                                            <div class="formCadastroLabel"><label for="iAno">*Ano</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iAno" name="iAno" placeholder="ANO" value="${placa.ano}" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMarca">Marca</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMarca">*Marca</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" onKeyPress="return mascaraLetras(event);" maxlength="15" value="${placa.marca}"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iModelo">Modelo</label> </div>
+                                            <div class="formCadastroLabel"><label for="iModelo">*Modelo</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25" value="${placa.modelo}"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="sCombustivel">Combustível</label> </div>
+                                                <label for="sCombustivel">*Combustível</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="gasolina" name="combustivel" value="g"
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("g")) {%>checked<% }%>
@@ -114,18 +114,18 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iRenavam">Renavam</label> </div>
+                                            <div class="formCadastroLabel"><label for="iRenavam">*Renavam</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11" value="${placa.renavam}" onKeyPress="return mascaraMatSiap(event);"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" value="5" min="1" max="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="Manutencao">Manutenção</label>
+                                                <label for="Manutencao">*Manutenção</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t"
@@ -147,8 +147,8 @@
                                             <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_final}" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
-                                            <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
+                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
                                         </li>
                                     </ul>
                                 </div>

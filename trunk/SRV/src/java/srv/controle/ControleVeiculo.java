@@ -56,29 +56,29 @@ public class ControleVeiculo extends HttpServlet {
                     String manutencao_data_inicial = request.getParameter("sManDataInicial");
                     String manutencao_data_final = request.getParameter("sManDataFinal");
 
-                    Veiculo veiculo = new Veiculo();
-                    veiculo.setPlaca(placa);
-                    veiculo.setAno(ano);
-                    veiculo.setMarca(marca);
-                    veiculo.setCapacidade(capacidade);
-                    veiculo.setModelo(modelo);
-                    veiculo.setRenavam(renavam);
-                    veiculo.setCombustivel(combustivel);
+                    Veiculo veic = new Veiculo();
+                    veic.setPlaca(placa);
+                    veic.setAno(ano);
+                    veic.setMarca(marca);
+                    veic.setCapacidade(capacidade);
+                    veic.setModelo(modelo);
+                    veic.setRenavam(renavam);
+                    veic.setCombustivel(combustivel);
 
                     if (manutencao.equals("t")) {
-                        veiculo.setManutencao(true);
+                        veic.setManutencao(true);
                         // SETANDO CAMPOS NÃO OBRIGATÓRIOS
                         Date date1;
                         date1 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_inicial);
-                        veiculo.setManutencao_data_inicial(date1);
+                        veic.setManutencao_data_inicial(date1);
 
                         Date date2;
                         date2 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_final);
-                        veiculo.setManutencao_data_final(date2);
+                        veic.setManutencao_data_final(date2);
                     } else {
-                        veiculo.setManutencao(false);
-                        veiculo.setManutencao_data_inicial(null);
-                        veiculo.setManutencao_data_final(null);
+                        veic.setManutencao(false);
+                        veic.setManutencao_data_inicial(null);
+                        veic.setManutencao_data_final(null);
                     }
 
                     VeiculoDAO vdao = new VeiculoDAO();
@@ -89,7 +89,7 @@ public class ControleVeiculo extends HttpServlet {
                             throw new Exception(Validacoes.getMensagemErro());
                         }
 
-                        vdao.salvar(veiculo);
+                        vdao.salvar(veic);
                         InterfaceVeiculoDAO idao = new VeiculoDAO();
                         List<Veiculo> lista = idao.todosVeiculo();
 
@@ -97,7 +97,7 @@ public class ControleVeiculo extends HttpServlet {
                         request.setAttribute("listaveic", lista);
                         request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                     } else if (acao.equals("atualizarVeiculo")) {
-                        vdao.atualizar(veiculo);
+                        vdao.atualizar(veic);
                         InterfaceVeiculoDAO idao = new VeiculoDAO();
                         List<Veiculo> lista = idao.todosVeiculo();
 
@@ -113,6 +113,7 @@ public class ControleVeiculo extends HttpServlet {
                 InterfaceVeiculoDAO idao = new VeiculoDAO();
                 Veiculo v = idao.consultarPlaca(request.getParameter("placa"));
                 request.setAttribute("placa", v);
+                request.setAttribute("dao", idao);
 
                 if (acao.equalsIgnoreCase("editarVeiculo")) {
                     request.getRequestDispatcher("/formAtualizarVeiculo.jsp").forward(request, response);
