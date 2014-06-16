@@ -11,6 +11,20 @@ function init() {
     completeTable.style.top = getElementY(autoRow) + "px";
 }
 
+function limparTabela() {
+    
+    var objetoXMLHttp = objXMLHttp();
+    
+    objetoXMLHttp.open("POST", "veiculosdisponiveis", true);
+    objetoXMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    completeTable = document.getElementById("idTabelaListaVeiculos");
+    if(completeTable != null){
+       clearTable(); 
+    }
+
+}
+
 function filtrarVeiculos(form) {
     
     var dados = "dataSaida="+form.inputDataSaida.value
@@ -125,3 +139,4 @@ function objXMLHttp(){
 function mensagem(msg){
     document.getElementById('msg').innerHTML=msg;
 }
+

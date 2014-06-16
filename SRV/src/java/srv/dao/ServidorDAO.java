@@ -31,14 +31,14 @@ public class ServidorDAO implements InterfaceServidorDAO {
         return s;
     }
     
-     //@Override
-    public Servidor buscarServidorPorNome(String nome) {
-        session = Conexao.getInstance();
-        Query query = session.createQuery("from Servidor l where l.nome like :nome");
-        Servidor s = (Servidor) query.setString("nome", "%"+nome+"%").list();
-
-        return s;
-    }
+//    @Override
+//    public Servidor buscarServidorPorNome(String nome) {
+//        session = Conexao.getInstance();
+//        Query query = session.createQuery("from Servidor l where l.nome like :nome");
+//        Servidor s = (Servidor) query.setString("nome", "%"+nome+"%").list();
+//
+//        return s;
+//    }
 
     public void salvar(Servidor serv) {
         session = Conexao.getInstance();
