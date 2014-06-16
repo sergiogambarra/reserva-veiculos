@@ -1,3 +1,18 @@
+function validate(date){
+    var eighteenYearsAgo = moment().subtract("years", 18);
+    var birthday = moment(date);
+    
+    if (!birthday.isValid()) {
+        return "invalid date";    
+    }
+    else if (eighteenYearsAgo.isAfter(birthday)) {
+        return "okay, you're good";    
+    }
+    else {
+        return "sorry, no";    
+    }
+    
+}
 
 // <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadServidor(){
@@ -400,9 +415,47 @@ function validarServidor(){
         alert("Dados obrigatórios não preenchidos.");
         d.sDataNascimento.focus();
         return false;
+    } 
+    
+    var data1 = d.sDataNascimento.value;
+    var ano_nasc = parseInt(data1.split("-")[0].toString());
+    var mes_nasc = parseInt(data1.split("-")[1].toString());
+    var dia_nasc = parseInt(data1.split("-")[2].toString());
+    var today = new Date();
+    
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    
+    
+    if (ano_nasc > yyyy-18 || mes_nasc > 12 || dia_nasc > 31){
+        alert("Data de nascimento invalida");
+        d.sDataNascimento.focus();
+        return false;
+    } 
+    if (ano_nasc == yyyy-18){
+        if (mes_nasc > mm){
+            alert("Data de nascimento invalida");
+            d.sDataNascimento.focus();
+            return false;
+        }
+    }
+    if (ano_nasc == yyyy-18 && mes_nac == mm){
+        if (dia_nasc >= dd){
+            alert("Data de nascimento invalida");
+            d.sDataNascimento.focus();
+            return false;
+        }
     }
     
-    /*Não funciona (por causa do html 5??)
+    /*
+    if (nova_data2 < nova_data1){
+            alert("Data Final não pode ser menor que a Data Inicial.");
+            return false;
+        }
+
+    
+    Não funciona (por causa do html 5??)
     if(d.sDataNascimento.value.length <10){
         alert("Dados inválidos.");
         d.sDataNascimento.focus();
