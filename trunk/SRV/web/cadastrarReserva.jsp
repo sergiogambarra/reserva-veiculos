@@ -213,7 +213,7 @@
                                             <li class="liTextArea">
                                                 <div class="formCadastroLabel"><label for="sInfoComplementar">*Informe o Destino:</label> </div>
                                                 <div class="formCadastroInput">
-                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Se não constar na lista de destino"/>
+                                                    <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="Preencher..."/>
                                                 </div>
                                             </li>
                                         </div>

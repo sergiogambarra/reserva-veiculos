@@ -491,7 +491,7 @@ function exluirReserva(){
     
 }
 
-/*//Função chamada para validar a reserva
+/*//Funï¿½ï¿½o chamada para validar a reserva
 function validarReserva(){
     
     var d = document.formInserirReserva;
