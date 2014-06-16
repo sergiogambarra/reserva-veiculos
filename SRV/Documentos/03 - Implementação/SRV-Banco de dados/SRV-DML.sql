@@ -1,3 +1,4 @@
+
 use srv;
 
 insert into servidor 
@@ -17,11 +18,11 @@ values ('1234567', 'admin', '123456', 'admin1@gmail.com', '1',
 select * from servidor;
 
 INSERT INTO veiculo VALUES 
-('car1111', '2014', 'fiat', 'siena 1.0', 'gasolina', 
+('car1111', '2014', 'fiat', 'siena 1.0', 'g', 
 '12345678900', '5', '1', '2014/12/12', '2014/12/24'),
-('car2222', '2013', 'gm', 'corsa sedan', 'gnv',
+('car2222', '2013', 'gm', 'corsa sedan', 'n',
 '12345678901', '5', '0', null, null),
-('car3333', '2012', 'ford', 'f-100', 'diesel',
+('car3333', '2012', 'ford', 'f-100', 'c',
 '12345678902', '3', '1', '2014/10/20', '2014/10/21');
 
 select * from veiculo;
