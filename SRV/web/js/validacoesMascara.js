@@ -181,67 +181,6 @@ function mascaraTelefone(evento)
      
 }
 
-// Função que aplica uma máscara de formato a Placa
-function mascaraPlaca(evento)
-{
-    var origem;
-    var txtOrigem;
-    var key;
-    if(window.event)
-    {
-        key = evento.keyCode;
-        if(key >= 97 && key <= 122)
-        {
-            origem = evento.srcElement;
-            txtOrigem = origem.value;
-            if(txtOrigem.length == 3)
-            {
-                txtOrigem += "-";
-                origem.value = txtOrigem ;
-            }
-        }
-    }
-    if(txtOrigem>3){
-        if(key >= 48 && key <= 57)
-        {
-            txtOrigem += "";
-            origem.value = txtOrigem ;
-        }
-        else
-        {
-            event.returnValue = false;
-        }  
-    }
-    else
-    {
-        key = evento.which;
-        if(key >= 97 && key <= 122)
-        {
-            origem = evento.target;
-            txtOrigem = origem.value;
-            if(txtOrigem.length == 3)
-            {
-                txtOrigem += "-";
-                origem.value = txtOrigem ;
-            }
-        }
-    }
-    if(txtOrigem > 3){
-        if(key >= 48 && key <= 57)
-        {
-            txtOrigem += "";
-            origem.value = txtOrigem ;
-            
-        }else
-        {
-            if(key != 8 && key != 0)
-            {
-                evento.preventDefault();
-            }
-        }
-    }
-     
-}
 // Função que aplica uma máscara de formato a Data
 function mascaraData(evento)
 {

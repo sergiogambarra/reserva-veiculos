@@ -121,7 +121,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" value="5" min="1" max="50"/></div>
+                                                <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" min="1" max="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">

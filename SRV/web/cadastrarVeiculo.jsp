@@ -72,7 +72,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca">*Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" onKeyPress="return mascaraPlaca(event)" onBlur="return validarPlaca()" maxlength="7"/></div>
+                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">*Ano</label> </div>
@@ -113,7 +113,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" value="5" min="1" max="50">
+                                                <input type="number" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" value="5" maxlength="2">
                                             </div>
                                         </li>
                                         <li>
