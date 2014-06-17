@@ -226,7 +226,30 @@ public class ControleServidor extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
+            } else if(acao.equals("formAlterarSenha")){
+                request.getRequestDispatcher("alterarSenha.jsp").forward(request,response);
             }
+            else if(acao.equals("alterarSenha")){
+                try {
+                    String matriculaSIAPE = user.getMatriculaSIAPE();
+                    String senhaAtual = request.getParameter("sSenhaAtual");
+                    String novaSenha = request.getParameter("sNovaSenha");
+                    String confirmaSenha = request.getParameter("sConfirmaSenha");
+                    if(senhaAtual.equals(user.getSenha())){
+                        if(novaSenha.equals(confirmaSenha)){
+                            InterfaceServidorDAO idao = new ServidorDAO();
+                            idao.alterarSenha(matriculaSIAPE, novaSenha);
+                            
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request,response);
+                        }
+                    }
+
+                    
+                    
+                } catch (Exception e) {
+                }
+                
+            } 
 //            else if (acao.equals("listaServidorPorNome")) {
 //                try {
 //                    InterfaceServidorDAO idao = new ServidorDAO();
