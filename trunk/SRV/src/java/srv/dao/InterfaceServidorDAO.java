@@ -24,4 +24,5 @@ public interface InterfaceServidorDAO {
     public Servidor consultarMatricula(String parameter);
     public abstract List<String> editarServidorSelecionarEstado(String ufAtual);
     public abstract List<String> editarEstadoCivil(String ecAtual);
+    public void alterarSenha(String matriculaSIAPE, String novaSenha);
 }

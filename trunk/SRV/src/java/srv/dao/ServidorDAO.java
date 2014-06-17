@@ -72,6 +72,27 @@ public class ServidorDAO implements InterfaceServidorDAO {
     }
 
     @Override
+    public void alterarSenha(String matriculaSIAPE, String novaSenha){
+        session = Conexao.getInstance();
+        int rowCount = 0;
+        try {
+            Transaction tx = session.beginTransaction();
+            String sql = "update Servidor set senha = :senha where matricula_siape = :matriculaSIAPE";
+            Query query = session.createQuery(sql);
+            
+            query.setString("senha", novaSenha);
+            query.setString("matriculaSIAPE", matriculaSIAPE);
+
+            rowCount = query.executeUpdate();
+            tx.commit();
+
+            session.close();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }    
+    }
+    
+    @Override
     public void atualizar(Servidor serv) {
         session = Conexao.getInstance();
         int rowCount = 0;
@@ -143,6 +164,8 @@ public class ServidorDAO implements InterfaceServidorDAO {
         }
         return null;
     }
+    
+    
 
     @Override
     public List<String> editarServidorSelecionarEstado(String ufAtual) {
