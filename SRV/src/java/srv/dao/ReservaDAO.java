@@ -74,6 +74,42 @@ public class ReservaDAO implements InterfaceReservaDAO {
 
         return veiculosDisponiveis;
     }
+    
+    @Override
+    public List<Veiculo> consultarDisponibilidadeVeiculo(Date dataSaida, Date dataRetorno, String idReserva) {
+        List<Veiculo> veiculosDisponiveis = new ArrayList<Veiculo>();
+        session = Conexao.getInstance();
+        StringBuilder qr = new StringBuilder();
+        
+        qr.append("from Veiculo ")
+                .append("where placa not in(")
+                    .append("select r.placa from Reserva r where(")
+                    .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
+                    .append(" and ")
+                    .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
+                    .append(")")
+                    .append("and r.id_reserva <> ?")
+                .append(")");
+        
+        try {
+            Query query = session.createQuery(qr.toString())
+                    .setTimestamp(0, dataRetorno)
+                    .setTimestamp(1, dataSaida)
+                    .setTimestamp(2, dataSaida)
+                    .setTimestamp(3, dataSaida)
+                    .setTimestamp(4, dataRetorno)
+                    .setTimestamp(5, dataRetorno)
+                    .setString(6, idReserva);
+            veiculosDisponiveis = query.list();
+        } catch (Exception e) {
+            session.close();
+            e.getMessage();
+        } finally{
+            session.close();
+        }
+
+        return veiculosDisponiveis;
+    }
 
 
     @Override
