@@ -263,29 +263,12 @@ function exibirDescricaoDestino(selected){
     }
 }
 
-//VALIDA PLACA
-function validarPlaca(){
-
-    var d = document.formCadastroVeiculo;
-    var er = /[a-z]{3}?\d{4}/gim; //Expressão regular p/ 3 letras e 4 numeros
-    if (d.iPlaca.value != ""){
-        er.lastIndex = 0;
-        pl = iPlaca.value;
-        if (!er.test(pl)){
-            alert("Dados inválidos.");
-            d.iPlaca.focus();
-            return false;	
-        }else{
-            return true
-        }
-    }
-    return true;
-}
 
 // AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES 
 function validarVeiculo(){
     
     var d = document.formCadastroVeiculo;
+
 
     if(d.iPlaca.value == ""){
         alert("Dados obrigatórios não preenchidos.");
@@ -298,7 +281,7 @@ function validarVeiculo(){
         d.iPlaca.focus();
         return false;
     }
-    
+
     if(d.iAno.value == ""){
         alert("Dados obrigatórios não preenchidos.");
         d.iAno.focus();
