@@ -68,14 +68,11 @@
                                   <input type="date" name="dataInicio" class="inputDataInicio"/>
                                 </form>
                             -->
-                            <h2>Consultar por:</h2>
                             <form name="consultaServidorPorNome" action="ControleServidor">
-                            <input type="hidden" name="action" value="listaServidores"/>    
-                            <div class="formCadastroLabel"><label for="sNome">Nome</label></div>
-                            <div class="formCadastroInput"><input type="text" id="sNome" name="sNome" placeholder="Nome" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
-                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleServidor?action=listaServidorPorNome')" /></div>
-                            <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
-                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" <!--onclick="return validarServidor()"-->/></div>
+                            <input type="hidden" name="action" value="listaServidorPorNome"/>    
+                            <div class="formCadastroLabel"><label for="nome">Nome</label></div>
+                            <div class="formCadastroInput"><input type="text" id="nome" name="nome" placeholder="nome" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
+                            <div class="formCadastroInputSalvar"><input type="submit" value="Consultar" <!--onclick="return validarServidor()"-->/></div>
                             </form>
                         </div>
 
