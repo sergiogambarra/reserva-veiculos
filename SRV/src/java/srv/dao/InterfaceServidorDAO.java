@@ -14,7 +14,7 @@ import srv.modelo.Servidor;
 public interface InterfaceServidorDAO {
  
     public abstract Servidor buscarServidor(String matriculaSIAPE);
-//    public abstract List buscarServidorPorNome(String nome);
+    public abstract List buscarServidorPorNome(String nome);
     public abstract void salvar(Servidor serv);
     public abstract void excluir(Servidor serv) throws Exception;
     public abstract void atualizar(Servidor serv);
