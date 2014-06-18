@@ -100,6 +100,19 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
         List list = session.createQuery("from Veiculo").list();
         return list;
     }
+    
+    /* Parte especifica de parametros para consulta*/
+    
+     @Override
+    public List buscarVeiculoPorAno(String ano) {
+        session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo l where l.ano like :ano");
+       List s = query.setString("ano", "%"+ano+"%").list();
+
+        return s;
+    }
+
+    
 
     /**
      *
@@ -125,4 +138,7 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
     public void visualizar(Veiculo veic) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+   
+
 }

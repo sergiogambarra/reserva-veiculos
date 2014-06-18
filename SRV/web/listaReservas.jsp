@@ -71,6 +71,36 @@
                                       <input type="date" name="dataInicio" class="inputDataInicio"/>
                                 </form>
                             -->
+                            <form name="consultaReserva" action="ControleReserva">
+                                
+                                <input type="hidden" name="action" value="listaReservaPorMatriculaSIAP"/>    
+                                <div class="formCadastroLabel"><label for="ano">Ano</label> </div>
+                                <div class="formCadastroInput">
+                                    <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
+
+                                
+                                <input type="hidden" name="action" value="listaReservaPorDataSaida"/>    
+                                <div class="formCadastroLabel"><label for="DataSaida">Data de Saida</label> </div>
+                                <div class="formCadastroInput">
+                                    <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/></div>
+
+                                <input type="hidden" name="action" value="listaReservaPorDataRetorno"/>    
+                                <div class="formCadastroLabel"><label for="DataRetorno">Data de Retorno</label> </div>
+                                <div class="formCadastroInput">
+                                    <input type="text" id="DataRetorno" name="DataRetorno" placeholder="dd/mm/aaaa" maxlength="10"/></div>
+                                    
+                                    <input type="hidden" name="action" value="listaReservaPorPlaca"/>    
+                                <div class="formCadastroLabel"><label for="Placa">Placa</label> </div>
+                                <div class="formCadastroInput">
+                                    <input type="text" id="Placa" name="Placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/></div>
+                                    <!-- Aqui eu tenho que colocar uma caixa de celeção para o destino igual a do cadastro de reserva,
+                                    só que eu não to conseguindo
+                                     <input type="hidden" name="action" value="listaReservaPorDestino"/>    
+                                -->
+                                    
+                                <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
+                            </form>
+
                         </div>
 
                         <table class="tabelaListaVeiculos">

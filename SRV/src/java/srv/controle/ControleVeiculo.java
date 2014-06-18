@@ -138,7 +138,7 @@ public class ControleVeiculo extends HttpServlet {
                     request.setAttribute("listaveic", lista);
                     request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                 }
-            } else if (acao.equals("listaVeiculos")) {
+            } else if (acao.equals("listaVeiculos")) {// Parte de consulta ###############################
                 try {
                     InterfaceVeiculoDAO sdao = new VeiculoDAO();
                     List<Veiculo> lista = sdao.todosVeiculo();
@@ -150,6 +150,21 @@ public class ControleVeiculo extends HttpServlet {
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
             }
+            /* Parte especifica de parametros para consulta*/
+            
+             else if (acao.equals("listaVeiculoPorAno")) {
+                try {
+                   InterfaceVeiculoDAO idao = new VeiculoDAO();
+                   List<Veiculo> lista = idao.buscarVeiculoPorAno(request.getParameter("ano"));
+
+                   request.setAttribute("listaveic", lista);
+                    request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                } catch (Exception e) {
+                   request.setAttribute("mensagem", e.getMessage());
+                   request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+           }
+            
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             InterfaceVeiculoDAO idao = new VeiculoDAO();

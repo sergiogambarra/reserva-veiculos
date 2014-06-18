@@ -21,6 +21,7 @@ import srv.util.Conexao;
 public class ServidorDAO implements InterfaceServidorDAO {
 
     private Session session;
+    private List list;
 
     @Override
     public Servidor buscarServidor(String matriculaSIAPE) {
@@ -30,15 +31,8 @@ public class ServidorDAO implements InterfaceServidorDAO {
 
         return s;
     }
-    
-    @Override
-    public List buscarServidorPorNome(String nome) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where l.nome like :nome");
-       List s = query.setString("nome", "%"+nome+"%").list();
 
-        return s;
-    }
+
 
     public void salvar(Servidor serv) {
         session = Conexao.getInstance();
@@ -149,7 +143,19 @@ public class ServidorDAO implements InterfaceServidorDAO {
         
         return list;
     }
+    
+     /* Parte especifica de parametros para consulta*/
+    
+     @Override
+    public List buscarServidorPorNome(String nome) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor l where l.nome like :nome");
+       List s = query.setString("nome", "%"+nome+"%").list();
 
+        return s;
+    }
+
+     
     @Override
     public Servidor consultarMatricula(String matriculaSIAPE) {
         session = Conexao.getInstance();
@@ -274,4 +280,6 @@ public class ServidorDAO implements InterfaceServidorDAO {
     public void visualizar(Servidor serv) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+
 }

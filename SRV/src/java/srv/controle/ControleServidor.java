@@ -229,11 +229,26 @@ public class ControleServidor extends HttpServlet {
             } else if(acao.equals("formAlterarSenha")){
                 request.getRequestDispatcher("alterarSenha.jsp").forward(request,response);
             }
-<<<<<<< .mine
+     /* Parte especifica de parametros para consulta*/
          else if (acao.equals("listaServidorPorNome")) {
                 try {
+                   InterfaceServidorDAO idao = new ServidorDAO();
+                   List<Servidor> lista = idao.buscarServidorPorNome(request.getParameter("nome"));
+
+                   request.setAttribute("listaserv", lista);
+                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                } catch (Exception e) {
+                   request.setAttribute("mensagem", e.getMessage());
+                   request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+           } /*else if (acao.equals("buscarServidor")) {
+                try {
+                
+                    String matricula_siape = request.getParameter("MatriculaSiape");
+                    
                     InterfaceServidorDAO idao = new ServidorDAO();
-                    List<Servidor> lista = idao.buscarServidorPorNome(request.getParameter("nome"));
+                    Servidor servidor = idao.consultarMatricula(matricula_siape);
+                    idao.buscarServidor(Sevidores);
 
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
@@ -241,8 +256,10 @@ public class ControleServidor extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }
-=======
+            }*/
+         
+         
+
             else if(acao.equals("alterarSenha")){
                 try {
                     String matriculaSIAPE = user.getMatriculaSIAPE();
@@ -264,19 +281,7 @@ public class ControleServidor extends HttpServlet {
                 }
                 
             } 
-//            else if (acao.equals("listaServidorPorNome")) {
-//                try {
-//                    InterfaceServidorDAO idao = new ServidorDAO();
-//                    List<Servidor> lista = idao.buscarServidorPorNome(request.getParameter("nome"));
-//
-//                    request.setAttribute("listaserv", lista);
-//                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
-//                } catch (Exception e) {
-//                    request.setAttribute("mensagem", e.getMessage());
-//                    request.getRequestDispatcher("erro.jsp").forward(request, response);
-//                }
-//            }
->>>>>>> .r255
+          
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             InterfaceServidorDAO sdao = new ServidorDAO();
