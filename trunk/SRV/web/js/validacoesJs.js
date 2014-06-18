@@ -1,19 +1,3 @@
-function validate(date){
-    var eighteenYearsAgo = moment().subtract("years", 18);
-    var birthday = moment(date);
-    
-    if (!birthday.isValid()) {
-        return "invalid date";    
-    }
-    else if (eighteenYearsAgo.isAfter(birthday)) {
-        return "okay, you're good";    
-    }
-    else {
-        return "sorry, no";    
-    }
-    
-}
-
 // <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadServidor(){
     if(document.body.className == "") {
@@ -276,7 +260,7 @@ function validarVeiculo(){
         return false;
     }
     
-    if(d.iPlaca.value.length != "" && d.iPlaca.value.length < 7){
+    if(d.iPlaca.value.length != "" && d.iPlaca.value.length < 8){
         alert("Dados inválidos.");
         d.iPlaca.focus();
         return false;
@@ -443,7 +427,7 @@ function validarServidor(){
             return false;
         }
     }
-    if (ano_nasc == yyyy-18 && mes_nac == mm){
+    if (ano_nasc == yyyy-18 && mes_nasc == mm){
         if (dia_nasc >= dd){
             alert("Dados Inválidos.");
             d.sDataNascimento.focus();
@@ -451,13 +435,13 @@ function validarServidor(){
         }
     }
    
-    if (nova_data2 < nova_data1){
+   /* if (nova_data2 < nova_data1){
             alert("Dados Inválidos.");
             return false;
-        }
+        }*/
 
     if(d.sDataNascimento.value.length <10){
-        alert("Dados inválidos.");
+        alert("Dados inválidos.tamanho");
         d.sDataNascimento.focus();
         return false;
     }
