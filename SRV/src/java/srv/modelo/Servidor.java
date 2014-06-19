@@ -80,29 +80,7 @@ public class Servidor implements Serializable {
     public Servidor() {
         this.matriculaSIAPE = matriculaSIAPE;
     }
-
-    public int VerificarLogin() {
-        /*
-         * 1 para administrador
-         * 0 para Servidor normal
-         * -1 para senha incorreta
-         */
-        ServidorDAO fdao = new ServidorDAO();
-        Servidor s = fdao.buscarServidor(this.matriculaSIAPE);
-
-        if (s != null) {
-            Servidor func = s;
-            if (func.senha.equals(senha)) {
-                if (func.perfil == 1) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        }
-        return -1;
-    }
-
+    
     public void EnviarSenha() {
         ServidorDAO fdao = new ServidorDAO();
         Servidor s = fdao.buscarServidor(this.matriculaSIAPE);
