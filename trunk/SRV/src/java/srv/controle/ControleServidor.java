@@ -271,12 +271,10 @@ public class ControleServidor extends HttpServlet {
                             InterfaceServidorDAO idao = new ServidorDAO();
                             idao.alterarSenha(matriculaSIAPE, novaSenha);
                             
+                            request.setAttribute("mensagem", "Senha alterada com sucesso.");
                             request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request,response);
                         }
                     }
-
-                    
-                    
                 } catch (Exception e) {
                 }
                 
