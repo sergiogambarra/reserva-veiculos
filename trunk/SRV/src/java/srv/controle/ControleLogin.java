@@ -55,22 +55,15 @@ public class ControleLogin extends HttpServlet {
 
                     if (!Validacoes.ValidarStatusUsuario(matriculaSIAPE)) throw new Exception(Validacoes.getMensagemErro());
                     
-                    if (f.VerificarLogin() == 0) 
-                    {
-                        request.getSession().setAttribute("servidor", f);
-
-                        request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
-
-                    } 
-                    else if (f.VerificarLogin() == 1) 
-                    {
-                        request.getSession().setAttribute("administrador", f);
-                        
-                        request.getRequestDispatcher("ControleReserva?action=listaReservas").include(request, response);
-
-                    } 
-                    else 
-                    {
+                    if (f.getSenha().equals(senha)){
+                        if(f.getPerfil() == 0){
+                            request.getSession().setAttribute("servidor", f);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        }else if(f.getPerfil() == 1){
+                            request.getSession().setAttribute("administrador", f);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").include(request, response);
+                        }
+                    } else {
                        if (!Validacoes.ValidarUsuarioLogin(matriculaSIAPE)) throw new Exception(Validacoes.getMensagemErro());
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
