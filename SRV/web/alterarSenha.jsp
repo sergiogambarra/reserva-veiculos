@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
-        <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
     </head>
     <body>
         <section class="container">
@@ -65,20 +64,20 @@
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Senha atual</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sSenhaAtual" placeholder="Senha atual"/></div>
+                                            <div class="formCadastroInput"><input type="password" name="sSenhaAtual" placeholder="Senha atual" maxlength="6"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Nova senha</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sNovaSenha" placeholder="Nova senha"/></div>
+                                            <div class="formCadastroInput"><input type="password" name="sNovaSenha" placeholder="Nova senha" maxlength="6"/></div>
                                         </li>      
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sSenha">*Confirme à senha</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sConfirmaSenha" placeholder="Digitar senha novamente"/></div>
+                                            <div class="formCadastroLabel"><label for="sSenha">*Confirme a senha</label> </div>
+                                            <div class="formCadastroInput"><input type="password" name="sConfirmaSenha" placeholder="Digitar senha novamente" maxlength="6"/></div>
                                         </li>      
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleReserva?action=listaReservas')" /></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
-                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
+                                            <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarSenha()"/></div>
                                         </li>
                                     </ul>
                                 </div>

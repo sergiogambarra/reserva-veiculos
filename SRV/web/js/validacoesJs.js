@@ -555,3 +555,46 @@ function validarReserva(){
         
     return true;
 }*/
+
+function validarSenha(){
+    
+    var d = document.form.AlterarSenha;
+    
+    if(d.sSenhaAtual.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sSenhaAtual.focus();
+        return false;
+    }
+    
+    if(d.sSenhaAtual.value.length < 6){
+        alert("Dados inválidos.");
+        d.sSenhaAtual.focus();
+        return false;
+    }
+    
+    if(d.sNovaSenha.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sNovaSenha.focus();
+        return false;
+    }
+    
+    if(d.sNovaSenha.value.length < 6){
+        alert("Dados inválidos.");
+        d.sNovaSenha.focus();
+        return false;
+    }
+    
+    if(d.sConfirmaSenha.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        d.sConfirmaSenha.focus();
+        return false;
+    }
+    
+    if(d.sConfirmaSenha.value.length <6){
+        alert("Dados inválidos.");
+        d.sConfirmaSenha.focus();
+        return false;
+    }
+    
+    return true;    
+}
