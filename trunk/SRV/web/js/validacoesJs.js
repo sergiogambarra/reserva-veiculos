@@ -553,7 +553,7 @@ function validarReserva(){
 
 function validarSenha(){
     
-    var d = document.form.AlterarSenha;
+    var d = document.formAlterarSenha;
     
     if(d.sSenhaAtual.value == ""){
         alert("Dados obrigatórios não preenchidos.");
