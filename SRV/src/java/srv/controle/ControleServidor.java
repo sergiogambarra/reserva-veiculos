@@ -42,8 +42,12 @@ public class ControleServidor extends HttpServlet {
         try {
 
             HttpSession session = request.getSession();
-            Servidor user = (Servidor) session.getAttribute("administrador");
-            System.out.println("Teste: " + user.getNome());
+            Servidor user = new Servidor();
+            if(request.getSession().getAttribute("administrador") != null){
+                 user = (Servidor) session.getAttribute("administrador");
+            }else if(request.getSession().getAttribute("servidor") != null){
+                  user = (Servidor) session.getAttribute("servidor");
+            }
             //Criação de uma string para trabalhar com os formularios de consuta
             //String form = request.getParameter("frm");
 
@@ -274,6 +278,7 @@ public class ControleServidor extends HttpServlet {
                         if(novaSenha.equals(confirmaSenha)){
                             InterfaceServidorDAO idao = new ServidorDAO();
                             idao.alterarSenha(matriculaSIAPE, novaSenha);
+                            session = request.getSession();
                             
                             request.setAttribute("mensagem", "Senha alterada com sucesso.");
                             request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request,response);
