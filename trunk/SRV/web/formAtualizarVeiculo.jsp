@@ -70,7 +70,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca">*Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="id" name="iPlaca" placeholder="XXX0000" maxlength="7" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
+                                                <input type="text" id="id" name="iPlaca" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno">*Ano</label> </div>
