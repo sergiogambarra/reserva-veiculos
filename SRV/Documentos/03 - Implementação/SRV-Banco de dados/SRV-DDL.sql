@@ -38,7 +38,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `srv`.`veiculo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `srv`.`veiculo` (
-  `placa` VARCHAR(7) NOT NULL ,
+  `placa` VARCHAR(8) NOT NULL ,
   `ano` VARCHAR(9) NOT NULL ,
   `marca` VARCHAR(15) NOT NULL ,
   `modelo` VARCHAR(30) NOT NULL ,
@@ -111,3 +111,5 @@ USE `srv` ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+select * from veiculo;
