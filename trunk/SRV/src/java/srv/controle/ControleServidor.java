@@ -138,12 +138,16 @@ public class ControleServidor extends HttpServlet {
                     } else {
                         serv.setTelefone2(null);
                     }
-
-                    if (motorista.equalsIgnoreCase("1")) {
+                    
+                    if (!(cnh.equalsIgnoreCase(""))) {
                         serv.setCnh(cnh);
                     } else {
                         serv.setCnh(null);
                     }
+
+                    /*if (motorista.equalsIgnoreCase("1")) {
+                       serv.setCnh(cnh);
+                    }*/
 
                     //PEGA DIA E ANO PARA GERAR A SENHA
                     SimpleDateFormat dataSenha = new SimpleDateFormat("ddyyyy");
