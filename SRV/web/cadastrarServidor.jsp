@@ -173,9 +173,9 @@
                                             <div class="formCadastroLabel">
                                                 <label for="bMotorista">*Motorista</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="1" onClick="validarMotorista(this.value);"/>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="1" />
                                                 <label class="radioMotorista" for="bMotorista" >Sim</label>
-                                                <input type="radio" id="bMotorista" name="bMotorista" value="0" onClick="validarMotorista(this.value);"/>
+                                                <input type="radio" id="bMotorista" name="bMotorista" value="0"/>
                                                 <label class="radioMotorista" for="bMotorista">Não</label>
                                             </div>
                                         </li>

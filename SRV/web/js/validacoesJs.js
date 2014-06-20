@@ -211,14 +211,14 @@ function validarManutencao(valor){
     }
 }
 
-// SE FOR MOTORISTA, HABILITA CAMPO DA CNH
+/* SE FOR MOTORISTA, HABILITA CAMPO DA CNH
 function validarMotorista(valor){
     if(valor == "1"){
         document.getElementById("sCnh").disabled = false; 
     }else{
         document.getElementById("sCnh").disabled = true;
     }
-}
+}*/
 // QUANDO CLICAR NO CAMPO ID(PLACA OU MATRÍCULA) EXIBE MENSAGEM
 function naoAlterarId(){
     var id = document.getElementById("id").getAttribute('name')
@@ -323,7 +323,7 @@ function validarVeiculo(){
     if(d.manutencao[0].checked == true){
         if(d.sManDataInicial.value == ""){
             alert("Dados obrigatórios não preenchidos.");
-            d.sNanDataInicial.focus();
+            d.sManDataInicial.focus();
             return false;
         }
         if(d.sManDataFinal.value == ""){
@@ -334,7 +334,7 @@ function validarVeiculo(){
         
         if(d.sManDataInicial.value != "" && d.sManDataInicial.value.length <10){
             alert("Dados inválidos.");
-            d.sNanDataInicial.focus();
+            d.sManDataInicial.focus();
             return false;
         }
     
@@ -351,7 +351,7 @@ function validarVeiculo(){
         var nova_data2 = parseInt(data2.split("-")[2].toString() + data2.split("-")[1].toString() + data2.split("-")[0].toString());
  
         if (nova_data2 < nova_data1){
-            alert("Data Final não pode ser menor que a Data Inicial.");
+            alert("Dados inválidos.");
             return false;
         }
     } 
@@ -434,12 +434,7 @@ function validarServidor(){
             return false;
         }
     }
-   
-   /* if (nova_data2 < nova_data1){
-            alert("Dados Inválidos.");
-            return false;
-        }*/
-
+  
     if(d.sDataNascimento.value.length <10){
         alert("Dados inválidos.tamanho");
         d.sDataNascimento.focus();
