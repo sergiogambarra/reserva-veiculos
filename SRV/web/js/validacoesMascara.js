@@ -35,10 +35,10 @@ function mascaraLetras(e){
     }
 }
 
-//Mascara Alfanumérica para PLACA
+//Mascara Alfanumérica para PLACA (somente letra maiúscula, números e o -.
 function mascaraAlfanumerica(e){
     var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla >= 65 && tecla <= 90)||(tecla >= 97 && tecla <= 122)||(tecla >= 48 && tecla <= 57)){
+    if((tecla >= 65 && tecla <= 90)||(tecla >= 48 && tecla <= 57)||(tecla==45)){
         return true;
     }    
     else{
