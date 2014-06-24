@@ -309,6 +309,12 @@ function validarVeiculo(){
         d.iCapacidade.focus();
         return false;
     }
+    
+    if(d.iCapacidade.value > 50){
+        alert("Dados Inválidos.")
+        d.iCapacidade.focus();
+        return false;
+    }
       
     if(d.manutencao[0].checked == true){
         if(d.sManDataInicial.value == ""){
