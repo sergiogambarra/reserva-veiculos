@@ -96,6 +96,11 @@ public class ControleReservaAjax extends HttpServlet {
         String hora_retorno = request.getParameter("horaRetorno");
         String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
 
+        String id_reserva = "";
+        if(!request.getParameter("id_reserva").equals("")){
+            id_reserva = request.getParameter("id_reserva");
+        }
+        
         Date dateSaida = new Date();
         Date dateRetorno = new Date();
         try {
@@ -107,7 +112,14 @@ public class ControleReservaAjax extends HttpServlet {
 
         InterfaceReservaDAO iReservaDao = new ReservaDAO();
         List<Veiculo> listaVeiculosDisp = new ArrayList<Veiculo>();
-        listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
+        
+        if(id_reserva.equals("")){
+            listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
+        }else{
+            listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno, id_reserva);
+        }
+        
+        
 
         response.setContentType("text/xml");
         response.setHeader("Cache-Control", "no-cache");
@@ -148,6 +160,7 @@ public class ControleReservaAjax extends HttpServlet {
                             .append("&inputHoraSaida=").append(hora_saida)
                             .append("&inputDataRetorno=").append(data_retorno)
                             .append("&inputHoraRetorno=").append(hora_retorno)
+                            .append("&id_reserva=").append(id_reserva)
                             .append("\"><div class=\"iconeSelecionar\" alt=\"Visualizar informações do Servidor.\" title=\"Visualizar Servidor\"></div>selecionar</a>")
                         .append("</li></ul>")
                         .append("</div>")

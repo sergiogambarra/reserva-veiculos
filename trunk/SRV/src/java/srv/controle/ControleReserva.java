@@ -5,13 +5,10 @@
 package srv.controle;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +28,7 @@ import srv.modelo.Destino;
 import srv.modelo.Reserva;
 import srv.modelo.Servidor;
 import srv.modelo.Veiculo;
-import srv.util.Validacoes;
+
 /**
  *
  * @author Douglas
@@ -56,24 +53,34 @@ public class ControleReserva extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             Servidor user = new Servidor();
-            if(request.getSession().getAttribute("administrador") != null){
-                 user = (Servidor) session.getAttribute("administrador");
-            }else if(request.getSession().getAttribute("servidor") != null){
-                  user = (Servidor) session.getAttribute("servidor");
+            if (request.getSession().getAttribute("administrador") != null) {
+                user = (Servidor) session.getAttribute("administrador");
+            } else if (request.getSession().getAttribute("servidor") != null) {
+                user = (Servidor) session.getAttribute("servidor");
             }
-            
+
 //            Servidor user = (Servidor) session.getAttribute("administrador");
             String acao = request.getParameter("action");
 
             if (acao.equals("formularioReserva")) {
                 try {
                     String placa = request.getParameter("placa");
-                    
+
                     String data_saida = request.getParameter("inputDataSaida");
                     String hora_saida = request.getParameter("inputHoraSaida");
                     String data_retorno = request.getParameter("inputDataRetorno");
                     String hora_retorno = request.getParameter("inputHoraRetorno");
-                
+                    String id_reserva = request.getParameter("id_reserva");
+
+                    //Se vier da pag formConsultarDipVeiculoAlterarReserva, o id_reserva não será nulo
+                    //Busca os dados da Reserva para mostrar no formulário
+                    
+                    Reserva reserva = null;
+                    if(!id_reserva.equals("")){
+                        InterfaceReservaDAO idao = new ReservaDAO();
+                        reserva = idao.consultarIdReserva(Integer.parseInt(id_reserva));
+                    }
+                    
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidoresMotoristas();
 
@@ -97,8 +104,15 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("s_hora_saida", hora_saida);
                     request.setAttribute("s_data_retorno", data_retorno);
                     request.setAttribute("s_hora_retorno", hora_retorno);
+                    
+                    if(!id_reserva.equals("")){
+                        request.setAttribute("reserva", reserva);
+                        request.getRequestDispatcher("formAtualizarReserva.jsp").forward(request, response);
+                    }else{
+                        request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                    }
 
-                    request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                    
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
@@ -127,8 +141,15 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("listadest", listad);
                     request.setAttribute("usuario", user);
 
-                    //request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
-                    request.getRequestDispatcher("formConsultarDispVeiculo.jsp").forward(request, response);
+
+                    if (request.getParameter("id_reserva") != null) {
+                        int id_reserva = Integer.parseInt(request.getParameter("id_reserva"));
+                        request.setAttribute("id_reserva", id_reserva);
+                        request.getRequestDispatcher("formConsultarDispVeiculoAlterarReserva.jsp").forward(request, response);
+                    } else {
+                        //request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                        request.getRequestDispatcher("formConsultarDispVeiculo.jsp").forward(request, response);
+                    }
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
@@ -147,7 +168,7 @@ public class ControleReserva extends HttpServlet {
                 //Para atualizar Reserva... continua com o mesmo ID
                 if (acao.equals("atualizarReserva")) {
                     id_reserva = (Integer.parseInt(request.getParameter("id_reserva")));
-                    placa = request.getParameter("inputModeloVeiculo");   
+                    placa = request.getParameter("inputModeloVeiculo");
                 }
 
                 String matricula_siape = user.getMatriculaSIAPE();
@@ -159,7 +180,7 @@ public class ControleReserva extends HttpServlet {
                 String hora_retorno = request.getParameter("inputHoraRetorno");
                 String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
 
-                
+
                 int iCondutor = Integer.parseInt(request.getParameter("inputMotorista"));
                 boolean condutor;
                 String matricula_siape_condutor;
@@ -198,15 +219,15 @@ public class ControleReserva extends HttpServlet {
 
                 request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
             }
-            
+
             if (acao.equals("listaReservas")) {
                 try {
-                    
+
                     InterfaceReservaDAO irdao = new ReservaDAO();
                     List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE());
-                    
-                    List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE());                
-  
+
+                    List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE());
+
                     request.setAttribute("listaReservasOutros", listaOutros);
                     request.setAttribute("listaReservas", listar);
                     request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
@@ -229,14 +250,10 @@ public class ControleReserva extends HttpServlet {
                     }
                 }
 
-                InterfaceVeiculoDAO vdao = new VeiculoDAO();
-                List<Veiculo> listav = vdao.todosVeiculo();
-
                 InterfaceDestinoDAO ddao = new DestinoDAO();
                 List<Destino> listad = ddao.buscarDestinos();
 
                 request.setAttribute("listaserv", lista);
-                request.setAttribute("listaveic", listav);
                 request.setAttribute("listadest", listad);
                 request.setAttribute("usuario", user);
 
@@ -245,17 +262,17 @@ public class ControleReserva extends HttpServlet {
                 } else {
                     request.getRequestDispatcher("/formVisualizarReserva.jsp").forward(request, response);
                 }
-            }else if (acao.equals("excluirReserva")) {
-                int id_reserva = Integer.parseInt (request.getParameter("reserva"));
+            } else if (acao.equals("excluirReserva")) {
+                int id_reserva = Integer.parseInt(request.getParameter("reserva"));
                 //if (!Validacoes.ValidarQualUsuarioLogado(user.getMatriculaSIAPE(), matricula)) {
-                    //throw new Exception(Validacoes.getMensagemErro());
+                //throw new Exception(Validacoes.getMensagemErro());
                 InterfaceReservaDAO idao = new ReservaDAO();
                 Reserva reserva = idao.consultarID_Reserva(id_reserva);
                 idao.excluirReserva(reserva);
-                
+
                 request.setAttribute("mensagem", "Reserva excluída com sucesso.");
                 request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
-                }
+            }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
