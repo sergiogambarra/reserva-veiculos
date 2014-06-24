@@ -535,21 +535,33 @@ function exluirReserva(){
     
 }
 
-/*//VALIDAÇÃO DA RESERVA
+
 function validarReserva(){
-    
     var d = document.formInserirReserva;
     
-    if(d.inputMotorista[1].checked == false && d.inputMotorista[0].checked==true){
+    if((d[8].value == '0') && (d[8].checked==true)){
         if(d.inputOutroMotorista.value == ""){
-            alert("Dados obrigatórios não preenchidos.");
+            alert("Selecione o motorista.");
             d.inputOutroMotorista.focus();
             return false;
-        } 
+        }
     }
-        
+    if(d.iDestino[0].selected == true){
+        alert("Selecione o destino.");
+        d.iDestino.focus();
+        return false;
+    }
+	//Pega o tamanho -1 porque a última posição deve ser a opção outros
+    if(d.iDestino[d.iDestino.length - 1].selected == true){
+        if(d.inputDestinoComplementar.value == ""){
+            alert("Descreva o destino.");
+            d.inputDestinoComplementar.focus();
+            return false;
+        }
+    }
+    
     return true;
-}*/
+}
 
 function validarSenha(){
     
