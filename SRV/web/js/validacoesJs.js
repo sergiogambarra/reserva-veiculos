@@ -180,7 +180,7 @@ function habilitaVisualizarVeiculo()  {
     document.getElementById("alcool").disabled = false;
     document.getElementById("gnv").disabled = false;
     document.getElementById("diesel").disabled = false;
-    document.getElementById("flex").disabled = true;
+    document.getElementById("flex").disabled = false;
     document.getElementById("iModelo").disabled = false; 
     document.getElementById("iRenavam").disabled = false; 
     document.getElementById("iCapacidade").disabled = false; 
@@ -223,8 +223,12 @@ function naoAlterarId(){
 function trocarMotorista(checked){
     if(checked == 1){
         document.getElementById("selecaoOutroMotorista").className = "invisivel";
+        document.formInserirReserva.iCapacidade.value = 1;
+        document.formInserirReserva.iCapacidade.setAttribute("min", 1);
     }else{
         document.getElementById("selecaoOutroMotorista").className = "visivel";
+        document.formInserirReserva.iCapacidade.value = 2;
+        document.formInserirReserva.iCapacidade.setAttribute("min", 2);
     }
 }
 
