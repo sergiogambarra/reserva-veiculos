@@ -33,6 +33,7 @@
                         if (request.getSession().getAttribute("administrador") != null) {
                             servidor = (Servidor) request.getSession().getAttribute("administrador");
                         }
+                        String id_reserva = request.getAttribute("id_reserva").toString();
                     %>
                     <div class="cabecalhoUsuario">Bem vindo, <%= servidor.getNome()%></div>
 
@@ -59,31 +60,31 @@
                                 *Campos obrigatórios
                             </div>
                             <form action="veiculosdisponiveis" method="POST" id="formConsDispVeiculo" name="formConsDispVeiculo" onsubmit="return filtrarVeiculos(this);">
-                                <input type="hidden" id="id_reserva" name="id_reserva" value="${id_reserva}"/>
+                                <input type="hidden" id="id_reserva" name="id_reserva" value="<%= id_reserva%>"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel">
+                                            <div class="formCadastroLabel"> 
                                                 <label for="iDataSaida">*Data de Saída</label>
                                             </div>
-                                            <div class="formCadastroInput">
+                                            <div class="formCadastroInput"> 
                                                 <input type="date" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraSaida" >*Horário de Saída: </label>
                                                 <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel">
+                                            <div class="formCadastroLabel"> 
                                                 <label for="iDataRetorno">*Data de Retorno</label>
-                                            </div>
-                                            <div class="formCadastroInput">
+                                            </div> 
+                                            <div class="formCadastroInput"> 
                                                 <input type="date" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraRetorno" >*Horário de Retorno </label>
                                                 <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
                                             </div>
                                         </li>
                                         
-                                        <li class="formBotoes">
+                                        <li class="formBotoes"> 
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleReserva?action=listaReservas')"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar" onclick="limparTabela()"/></div>
                                             <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>

@@ -93,15 +93,42 @@
                                     String horarioSaida;
                                     String dataRetorno;
                                     String horarioRetorno;
+                                    String placa;
+                                    String modelo;
+
                                     Reserva reserv = ((Reserva) request.getAttribute("reserva"));
+                                    Veiculo veiculo =  null;
+                                    if(request.getAttribute("veiculo") != null){
+                                        veiculo = (Veiculo) request.getAttribute("veiculo");
+                                        placa = veiculo.getPlaca();
+                                        modelo = veiculo.getModelo();
+                                    }else {
+                                        placa = reserv.getVeiculo().getPlaca();
+                                        modelo = reserv.getVeiculo().getModelo();
+                                    }
+
                                     int id_destino = reserv.getDestino().getId_destino();
                                     String descricao_reserva = reserv.getDescricao_destino();
-                                    String placa = reserv.getVeiculo().getPlaca();
+
                                     String matriculaMotorista = reserv.getMatricula_siape_condutor();
-                                    dataSaida = reserv.getData_saida().toString().substring(0, 4) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(8, 10);
-                                    dataRetorno = reserv.getData_retorno().toString().substring(0, 4) + "-" + reserv.getData_retorno().toString().substring(5, 7) + "-" + reserv.getData_retorno().toString().substring(8, 10);
-                                    horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-                                    horarioRetorno = reserv.getData_retorno().toString().substring(11, 13) + ":" + reserv.getData_retorno().toString().substring(14, 16);
+
+                                    if (request.getAttribute("s_data_saida") != null && request.getAttribute("s_hora_saida") != null
+                                            && request.getAttribute("s_data_retorno") != null
+                                            && request.getAttribute("s_hora_retorno") != null) {
+                                        dataSaida = request.getAttribute("s_data_saida").toString();
+                                        horarioSaida = request.getAttribute("s_hora_saida").toString();
+                                        dataRetorno = request.getAttribute("s_data_retorno").toString();
+                                        horarioRetorno = request.getAttribute("s_hora_retorno").toString();
+                                    } else {
+                                        dataSaida = reserv.getData_saida().toString().substring(0, 4) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(8, 10);
+                                        dataRetorno = reserv.getData_retorno().toString().substring(0, 4) + "-" + reserv.getData_retorno().toString().substring(5, 7) + "-" + reserv.getData_retorno().toString().substring(8, 10);
+                                        horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
+                                        horarioRetorno = reserv.getData_retorno().toString().substring(11, 13) + ":" + reserv.getData_retorno().toString().substring(14, 16);
+                                    }
+
+
+
+
                                 %>
 
                                 <div class="formularioCadastrarServidorBox">
@@ -111,9 +138,9 @@
                                                 <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>"onKeyPress="return mascaraData(event);" maxlength="10" />
+                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="true"/>
                                                 <label for="iHoraSaida" >Horário de Saída: </label>
-                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>"/>
+                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -121,16 +148,16 @@
                                                 <label for="iDataRetorno">Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>"onKeyPress="return mascaraData(event);" maxlength="10" />
+                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
                                                 <label for="iHoraRetorno" >Horário de Retorno </label>
-                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>"/>
-                                            </div>
+                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>" readonly="true"/>
+                                            </div>                                                
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
                                             <div class="formCadastroInput">
-                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo">
-                                                    <option value="<%= reserv.getVeiculo().getPlaca()%>" selected><%= reserv.getVeiculo().getModelo()%></option>
+                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo" readonly="true">
+                                                    <option value="<%= placa%>" selected><%= modelo%></option>
                                                 </select>
                                                 <div id="consultarDispon">
                                                     <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
@@ -189,8 +216,9 @@
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
-                                                    <%
-                                                        for (int i = 0; i < listad.size(); i++) {
+                                                    <%                                                        for (int i = 0;
+                                                                i < listad.size();
+                                                                i++) {
                                                             if (i == 0) {
                                                                 continue;
                                                             }
@@ -222,11 +250,11 @@
                                         </li>
                                         <div id="complementoDestino" class="invisivel">
                                             <li class="liTextArea">
-                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Informe o Destino</label> </div>
+                                                <div class="formCadastroLabel"><label for="sInfoComplementar">*Informe o Destino</label> </div>
                                                 <div class="formCadastroInput">
                                                     <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="se não constar na lista de destino"
-                                                           <%
-                                                               if (descricao_reserva != null) {
+                                                           <%                                                            if (descricao_reserva
+                                                                       != null) {
                                                            %>
                                                            value="<%= reserv.getDescricao_destino()%>"
                                                            <% }%>
