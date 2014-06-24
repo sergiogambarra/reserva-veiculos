@@ -28,7 +28,7 @@
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>
-                <%@include file="menuAtalhos.jsp" %>
+                <%--<%@include file="menuAtalhos.jsp" %>--%>
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>

@@ -278,7 +278,16 @@ public class ControleServidor extends HttpServlet {
                         if(novaSenha.equals(confirmaSenha)){
                             InterfaceServidorDAO idao = new ServidorDAO();
                             idao.alterarSenha(matriculaSIAPE, novaSenha);
-                            session = request.getSession();
+
+                            ServidorDAO sdao = new ServidorDAO();
+                    
+                            Servidor f = (Servidor)sdao.buscarServidor(matriculaSIAPE);
+
+                            if(f.getPerfil() == 0){
+                                request.getSession().setAttribute("servidor", f);
+                            }else if(f.getPerfil() == 1){
+                                request.getSession().setAttribute("administrador", f);
+                            }
                             
                             request.setAttribute("mensagem", "Senha alterada com sucesso.");
                             request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request,response);
