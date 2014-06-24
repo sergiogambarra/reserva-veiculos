@@ -71,7 +71,7 @@ CREATE  TABLE IF NOT EXISTS `srv`.`reserva` (
   `matricula_siape` VARCHAR(7) NOT NULL ,
   `data_saida` DATETIME NOT NULL ,
   `data_retorno` DATETIME NOT NULL ,
-  `placa` VARCHAR(7) NOT NULL ,
+  `placa` VARCHAR(8) NOT NULL ,
   `condutor` TINYINT(1) NOT NULL ,
   `matricula_siape_condutor` VARCHAR(7) NOT NULL ,
   `id_destino` INT NULL ,
@@ -112,4 +112,3 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-select * from veiculo;
