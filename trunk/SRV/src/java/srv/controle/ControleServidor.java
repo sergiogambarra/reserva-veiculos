@@ -278,10 +278,8 @@ public class ControleServidor extends HttpServlet {
                         if(novaSenha.equals(confirmaSenha)){
                             InterfaceServidorDAO idao = new ServidorDAO();
                             idao.alterarSenha(matriculaSIAPE, novaSenha);
-
-                            ServidorDAO sdao = new ServidorDAO();
                     
-                            Servidor f = (Servidor)sdao.buscarServidor(matriculaSIAPE);
+                            Servidor f = (Servidor)idao.buscarServidor(matriculaSIAPE);
 
                             if(f.getPerfil() == 0){
                                 request.getSession().setAttribute("servidor", f);

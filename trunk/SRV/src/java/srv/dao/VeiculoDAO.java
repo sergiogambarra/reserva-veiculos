@@ -101,24 +101,12 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
         return list;
     }
     
-    /* Parte especifica de parametros para consulta*/
-    
-     @Override
-    public List buscarVeiculoPorAno(String ano) {
-        session = Conexao.getInstance();
-       Query query = session.createQuery("from Veiculo l where l.ano like :ano");
-       List s = query.setString("ano", "%"+ano+"%").list();
-
-        return s;
-    }
-
-    
-
     /**
      *
      * @param placa
      * @return
      */
+     
     @Override
     public Veiculo consultarPlaca(String placa) {
         session = Conexao.getInstance();
@@ -133,7 +121,70 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
         }
         return null;
     }
+    
+         @Override
+    public List buscarVeiculoPorAno(String ano) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where v.ano like :ano");
+       List s = query.setString("ano", "%"+ano+"%").list();
 
+       return s;
+    }
+    
+    @Override
+    public List buscarVeiculoPorPlaca(String placa) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where v.placa like :placa");
+       List s = query.setString("placa", "%"+placa+"%").list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarVeiculoPorRenavam(String renavam) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where v.renavam like :renavam");
+       List s = query.setString("renavam", "%"+renavam+"%").list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarVeiculoPorAnoPlaca(String ano, String placa) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where (v.ano like :ano) and (v.placa like :placa)");
+       List s = query.setString("ano", "%"+ano+"%").setString("placa", "%"+placa+"%").list();
+
+       return s;
+    }
+    
+    @Override
+    public List buscarVeiculoPorAnoRenavam(String ano, String renavam) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where (v.ano like :ano) and (v.renavam like :renavam)");
+       List s = query.setString("ano", "%"+ano+"%").setString("renavam", "%"+renavam+"%").list();
+
+       return s;
+    }
+    
+    @Override
+    public List buscarVeiculoPorPlacaRenavam(String placa, String renavam) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where (v.placa like :placa) and (v.renavam like :renavam)");
+       List s = query.setString("placa", "%"+placa+"%").setString("renavam", "%"+renavam+"%").list();
+
+       return s;
+    }
+    
+    @Override
+    public List buscarVeiculoPorAnoPlacaRenavam(String ano, String placa, String renavam) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Veiculo v where (v.ano like :ano) and (v.placa like :placa) and (v.renavam like :renavam)");
+       List s = query.setString("ano", "%"+ano+"%").setString("placa", "%"+placa+"%").setString("renavam", "%"+renavam+"%").list();
+
+       return s;
+    }
+    
     @Override
     public void visualizar(Veiculo veic) {
         throw new UnsupportedOperationException("Not supported yet.");

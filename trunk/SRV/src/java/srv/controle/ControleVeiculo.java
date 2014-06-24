@@ -149,22 +149,78 @@ public class ControleVeiculo extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }
-            /* Parte especifica de parametros para consulta*/
-            
-             else if (acao.equals("listaVeiculoPorAno")) {
+            }else if (acao.equals("consultarVeiculo")) {
                 try {
-                   InterfaceVeiculoDAO idao = new VeiculoDAO();
-                   List<Veiculo> lista = idao.buscarVeiculoPorAno(request.getParameter("ano"));
+                    
+                    String ano = request.getParameter("ano");
+                    String placa = request.getParameter("placa");
+                    String renavam = request.getParameter("renavam");
+                    InterfaceVeiculoDAO ivdao = new VeiculoDAO();
+                    
+                    if(ano.equals("") && placa.equals("") && renavam.equals("")){
+                        request.setAttribute("mensagem", "É necessário preencher um campo para realizar a consulta.");
+                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        
+                    }else if (!ano.equals("") && placa.equals("") && renavam.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAno(ano);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    
+                    }else if(ano.equals("") && !placa.equals("") && renavam.equals("")){
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorPlaca(placa);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        
+                    }else if(ano.equals("") && placa.equals("") && !renavam.equals("")){
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorRenavam(renavam);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        
+                    }else if(!ano.equals("") && !placa.equals("") && renavam.equals("")){
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlaca(ano, placa);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    }else if(!ano.equals("") && placa.equals("") && !renavam.equals("")){
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoRenavam(ano, renavam);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    }else if(ano.equals("") && !placa.equals("") && !renavam.equals("")){
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorPlacaRenavam(placa, renavam);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    }else if(!ano.equals("") && !placa.equals("") && !renavam.equals("")){
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlacaRenavam(ano, placa, renavam);
+                        request.setAttribute("listaveic", lista);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Nenhum dado encontrado");
+                        }
+                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    }
 
-                   request.setAttribute("listaveic", lista);
-                    request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                 } catch (Exception e) {
-                   request.setAttribute("mensagem", e.getMessage());
-                   request.getRequestDispatcher("erro.jsp").forward(request, response);
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-           }
-            
+            }
+
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             InterfaceVeiculoDAO idao = new VeiculoDAO();
