@@ -138,9 +138,9 @@
                                                 <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>"/>
+                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="true"/>
                                                 <label for="iHoraSaida" >Horário de Saída: </label>
-                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>"/>
+                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -148,15 +148,15 @@
                                                 <label for="iDataRetorno">Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>"/>
+                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
                                                 <label for="iHoraRetorno" >Horário de Retorno </label>
-                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>"/>
+                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>" readonly="true"/>
                                             </div>                                                
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
                                             <div class="formCadastroInput">
-                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo">
+                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo" readonly="true">
                                                     <option value="<%= placa%>" selected><%= modelo%></option>
                                                 </select>
                                                 <div id="consultarDispon">

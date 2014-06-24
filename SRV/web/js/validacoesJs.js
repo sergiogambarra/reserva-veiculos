@@ -82,11 +82,6 @@ function validarMatricula(){
 
 // HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
 function habilitaVisualizarReserva(){
-    document.getElementById("inputDataSaida").disabled = false; 
-    document.getElementById("inputHoraSaida").disabled = false; 
-    document.getElementById("inputDataRetorno").disabled = false; 
-    document.getElementById("inputHoraRetorno").disabled = false;
-    document.getElementById("inputModeloVeiculo").disabled = false; 
     document.formInserirReserva.inputMotorista[0].disabled = false;
     document.formInserirReserva.inputMotorista[1].disabled = false;
     document.getElementById("inputOutroMotorista").disabled = false; 
@@ -97,11 +92,6 @@ function habilitaVisualizarReserva(){
 
 // DESABILITA FORMULÁRIO AO CARREGAR PÁGINA DE VISUALIZAÇÃO
 function desabilitaVisualizarReserva(){
-    document.getElementById("inputDataSaida").disabled = true; 
-    document.getElementById("inputHoraSaida").disabled = true; 
-    document.getElementById("inputDataRetorno").disabled = true; 
-    document.getElementById("inputHoraRetorno").disabled = true;
-    document.getElementById("inputModeloVeiculo").disabled = true; 
     document.formInserirReserva.inputMotorista[0].disabled = true;
     document.formInserirReserva.inputMotorista[1].disabled = true;
     document.getElementById("inputOutroMotorista").disabled = true; 
