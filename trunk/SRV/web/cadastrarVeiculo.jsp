@@ -113,7 +113,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" value="5" maxlength="2">
+                                                <input type="text" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" value="5" maxlength="2">
                                             </div>
                                         </li>
                                         <li>
