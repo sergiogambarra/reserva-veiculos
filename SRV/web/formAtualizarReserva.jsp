@@ -78,7 +78,7 @@
                                 int id_reserva = (((Reserva) request.getAttribute("reserva")).getId_reserva());
                                 String placa_veiculo = (((Reserva) request.getAttribute("reserva")).getPlaca());
                             %>
-                            <form action="ControleReserva" name="formInserirReserva" method="POST">
+                            <form action="ControleReserva" name="formInserirReserva" method="POST" onsubmit="return validarReserva();">
                                 <input type="hidden" name="action" value="atualizarReserva"/>
                                 <input type="hidden" name="id_reserva" value="<%= id_reserva%>"/>
                                 <input type="hidden" name="inputPlacaVeiculo" value="<%= placa_veiculo%>"/>
@@ -156,12 +156,18 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
                                             <div class="formCadastroInput">
-                                                <select id="inputModeloVeiculo" name="inputModeloVeiculo" readonly="true">
-                                                    <option value="<%= placa%>" selected><%= modelo%></option>
-                                                </select>
+                                                <input type="text" id="inputModeloVeiculo" name="inputModeloVeiculo" value="<%= modelo %>" readonly="true">
                                                 <div id="consultarDispon">
                                                     <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
                                                 </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="formCadastroLabel">
+                                                <label for="iPlacaVeiculo">Placa</label>
+                                            </div>
+                                            <div class="formCadastroInput">
+                                                <input type="text" id="inputPlacaVeiculo" name="inputPlacaVeiculo" maxlength="7" value="<%= placa %>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
