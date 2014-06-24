@@ -97,12 +97,12 @@
                                     String modelo;
 
                                     Reserva reserv = ((Reserva) request.getAttribute("reserva"));
-                                    Veiculo veiculo =  null;
-                                    if(request.getAttribute("veiculo") != null){
+                                    Veiculo veiculo = null;
+                                    if (request.getAttribute("veiculo") != null) {
                                         veiculo = (Veiculo) request.getAttribute("veiculo");
                                         placa = veiculo.getPlaca();
                                         modelo = veiculo.getModelo();
-                                    }else {
+                                    } else {
                                         placa = reserv.getVeiculo().getPlaca();
                                         modelo = reserv.getVeiculo().getModelo();
                                     }
@@ -156,7 +156,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="inputModeloVeiculo" name="inputModeloVeiculo" value="<%= modelo %>" readonly="true">
+                                                <input type="text" id="inputModeloVeiculo" name="inputModeloVeiculo" value="<%= modelo%>" readonly="true">
                                                 <div id="consultarDispon">
                                                     <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
                                                 </div>
@@ -167,7 +167,7 @@
                                                 <label for="iPlacaVeiculo">Placa</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="inputPlacaVeiculo" name="inputPlacaVeiculo" maxlength="7" value="<%= placa %>" readonly="true"/>
+                                                <input type="text" id="inputPlacaVeiculo" name="inputPlacaVeiculo" maxlength="7" value="<%= placa%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -211,12 +211,20 @@
                                                 </div>
                                             </li>
                                         </div>
+
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">*Número de Ocupantes</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" value="${reserva.veiculo.capacidade}" min="1" max="50">
+                                                <%
+                                                    if (servidor.isMotorista()) {
+                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="1" min="1" max="${reserva.veiculo.capacidade}"><%
+                                                } else {
+                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="2" min="2" max="${reserva.veiculo.capacidade}"><%
+                                                    }
+                                                %>
                                             </div>
                                         </li>
+                                        
                                         <li>
                                             <div class="formCadastroLabel"><label for="iDestino">*Destino</label> </div>
                                             <div class="formCadastroInput">
@@ -269,7 +277,7 @@
                                             </li>
                                         </div>
                                         <li class="formBotoes">
-                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onClick="history.go(-1)"/></div>
+                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleReserva?action=listaReservas')"/></div>
                                             <div class="formCadastroInputSalvar"><input type="submit" value="Salvar"/></div>
                                         </li>
                                     </ul>
