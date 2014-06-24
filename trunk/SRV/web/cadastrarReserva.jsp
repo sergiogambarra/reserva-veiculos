@@ -241,7 +241,7 @@
                                     </li>
                                 </div>
                                 <li class="formBotoes">
-                                    <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onClick="history.go(-1)"/></div>
+                                    <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleReserva?action=listaReservas')" /></div>
                                     <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>
                                     <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" /></div>
                                 </li>
