@@ -281,7 +281,7 @@ iconeSelecionar{
 }
 
 .formCadastroInput{
-  width: 60%;
+  width: 61%;
   float: right;
 }
 
@@ -431,4 +431,10 @@ iconeSelecionar{
 
 .visivel { 
     visibility: visible; 
+}
+
+#consultarDispon{
+    width: 40%;
+    float: right;
+    margin-right: 35%;
 }

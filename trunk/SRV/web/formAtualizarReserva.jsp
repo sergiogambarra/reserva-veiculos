@@ -23,8 +23,8 @@
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
-       <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-        
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+
     </head>
     <body onload="funcoesOnloadReserva()">
         <section class="container">
@@ -84,7 +84,6 @@
                                 <input type="hidden" name="inputPlacaVeiculo" value="<%= placa_veiculo%>"/>
                                 <%
                                     List<Servidor> lista = (List<Servidor>) request.getAttribute("listaserv");
-                                    List<Veiculo> listav = (List<Veiculo>) request.getAttribute("listaveic");
                                     List<Destino> listad = (List<Destino>) request.getAttribute("listadest");
                                 %>
 
@@ -94,15 +93,42 @@
                                     String horarioSaida;
                                     String dataRetorno;
                                     String horarioRetorno;
+                                    String placa;
+                                    String modelo;
+
                                     Reserva reserv = ((Reserva) request.getAttribute("reserva"));
+                                    Veiculo veiculo =  null;
+                                    if(request.getAttribute("veiculo") != null){
+                                        veiculo = (Veiculo) request.getAttribute("veiculo");
+                                        placa = veiculo.getPlaca();
+                                        modelo = veiculo.getModelo();
+                                    }else {
+                                        placa = reserv.getVeiculo().getPlaca();
+                                        modelo = reserv.getVeiculo().getModelo();
+                                    }
+
                                     int id_destino = reserv.getDestino().getId_destino();
                                     String descricao_reserva = reserv.getDescricao_destino();
-                                    String placa = reserv.getVeiculo().getPlaca();
+
                                     String matriculaMotorista = reserv.getMatricula_siape_condutor();
-                                    dataSaida = reserv.getData_saida().toString().substring(0, 4) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(8, 10);
-                                    dataRetorno = reserv.getData_retorno().toString().substring(0, 4) + "-" + reserv.getData_retorno().toString().substring(5, 7) + "-" + reserv.getData_retorno().toString().substring(8, 10);
-                                    horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-                                    horarioRetorno = reserv.getData_retorno().toString().substring(11, 13) + ":" + reserv.getData_retorno().toString().substring(14, 16);
+
+                                    if (request.getAttribute("s_data_saida") != null && request.getAttribute("s_hora_saida") != null
+                                            && request.getAttribute("s_data_retorno") != null
+                                            && request.getAttribute("s_hora_retorno") != null) {
+                                        dataSaida = request.getAttribute("s_data_saida").toString();
+                                        horarioSaida = request.getAttribute("s_hora_saida").toString();
+                                        dataRetorno = request.getAttribute("s_data_retorno").toString();
+                                        horarioRetorno = request.getAttribute("s_hora_retorno").toString();
+                                    } else {
+                                        dataSaida = reserv.getData_saida().toString().substring(0, 4) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(8, 10);
+                                        dataRetorno = reserv.getData_retorno().toString().substring(0, 4) + "-" + reserv.getData_retorno().toString().substring(5, 7) + "-" + reserv.getData_retorno().toString().substring(8, 10);
+                                        horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
+                                        horarioRetorno = reserv.getData_retorno().toString().substring(11, 13) + ":" + reserv.getData_retorno().toString().substring(14, 16);
+                                    }
+
+
+
+
                                 %>
 
                                 <div class="formularioCadastrarServidorBox">
@@ -125,27 +151,17 @@
                                                 <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>"/>
                                                 <label for="iHoraRetorno" >Horário de Retorno </label>
                                                 <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>"/>
-                                            </div>
+                                            </div>                                                
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iModeloVeiculo">Veículo</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="inputModeloVeiculo" name="inputModeloVeiculo">
-                                                    <option value="<%= reserv.getVeiculo().getPlaca()%>" selected><%= reserv.getVeiculo().getModelo()%></option>
-                                                    <%
-                                                        for (int i = 0; i < listav.size(); i++) {
-                                                            if (placa.equals(listav.get(i).getPlaca())) {
-                                                                listav.get(i).setModelo("");
-                                                            }
-                                                            if (!listav.get(i).getModelo().equals("")) {
-                                                    %>
-                                                    <option value="<%= listav.get(i).getPlaca()%>">
-                                                        <%= listav.get(i).getModelo()%>
-                                                    </option>
-                                                    <%      }
-                                                        }
-                                                    %>
+                                                    <option value="<%= placa%>" selected><%= modelo%></option>
                                                 </select>
+                                                <div id="consultarDispon">
+                                                    <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
+                                                </div>
                                             </div>
                                         </li>
                                         <li>
@@ -174,8 +190,8 @@
                                                         %>
                                                         <option value="<%= matriculaMotorista%>" selected><%= lista.get(i).getNome()%></option>
                                                         <%
-                                                                    lista.get(i).setMatriculaSIAPE("");
-                                                                }
+                                                                lista.get(i).setMatriculaSIAPE("");
+                                                            }
                                                             if (!lista.get(i).getMatriculaSIAPE().equals("")) {
                                                         %>
                                                         <option value="<%= lista.get(i).getMatriculaSIAPE()%>">
@@ -201,12 +217,8 @@
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
                                                     <%                                                        for (int i = 0;
-
-                                                        i< listad.size ();
-                                                        i
-
-                                                        
-                                                            ++) {
+                                                                i < listad.size();
+                                                                i++) {
                                                             if (i == 0) {
                                                                 continue;
                                                             }
@@ -242,9 +254,7 @@
                                                 <div class="formCadastroInput">
                                                     <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="se não constar na lista de destino"
                                                            <%                                                            if (descricao_reserva
-
-                                                            
-                                                                   != null) {
+                                                                       != null) {
                                                            %>
                                                            value="<%= reserv.getDescricao_destino()%>"
                                                            <% }%>
