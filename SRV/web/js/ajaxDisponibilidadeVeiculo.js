@@ -30,7 +30,8 @@ function filtrarVeiculos(form) {
     var dados = "dataSaida="+form.inputDataSaida.value
                +"&horaSaida="+form.inputHoraSaida.value
                +"&dataRetorno="+form.inputDataRetorno.value
-               +"&horaRetorno="+form.inputHoraRetorno.value;
+               +"&horaRetorno="+form.inputHoraRetorno.value
+               +"&id_reserva="+form.id_reserva.value;
     
     var objetoXMLHttp = objXMLHttp();
     

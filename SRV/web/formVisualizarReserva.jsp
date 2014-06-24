@@ -25,14 +25,14 @@
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-               
+
     <body onload="funcoesOnloadReserva()" class="desabilita">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
                     <%@include file="cabecalhoNomeUsuario.jsp"%>
 
-<div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a>&nbsp;|&nbsp;<a href='ControleServidor?action=formAlterarSenha'>ALterar Senha</a></div>
+                    <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a>&nbsp;|&nbsp;<a href='ControleServidor?action=formAlterarSenha'>ALterar Senha</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>
@@ -84,7 +84,6 @@
                                 <input type="hidden" name="inputPlacaVeiculo" value="<%= placa_veiculo%>"/>
                                 <%
                                     List<Servidor> lista = (List<Servidor>) request.getAttribute("listaserv");
-                                    List<Veiculo> listav = (List<Veiculo>) request.getAttribute("listaveic");
                                     List<Destino> listad = (List<Destino>) request.getAttribute("listadest");
                                 %>
 
@@ -132,20 +131,10 @@
                                             <div class="formCadastroInput">
                                                 <select id="inputModeloVeiculo" name="inputModeloVeiculo">
                                                     <option value="<%= reserv.getVeiculo().getPlaca()%>" selected><%= reserv.getVeiculo().getModelo()%></option>
-                                                    <%
-                                                        for (int i = 0; i < listav.size(); i++) {
-                                                            if (placa.equals(listav.get(i).getPlaca())) {
-                                                                listav.get(i).setModelo("");
-                                                            }
-                                                            if (!listav.get(i).getModelo().equals("")) {
-                                                    %>
-                                                    <option value="<%= listav.get(i).getPlaca()%>">
-                                                        <%= listav.get(i).getModelo()%>
-                                                    </option>
-                                                    <%      }
-                                                        }
-                                                    %>
                                                 </select>
+                                                <div id="consultarDispon">
+                                                    <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
+                                                </div>
                                             </div>
                                         </li>
                                         <li>
@@ -174,8 +163,8 @@
                                                         %>
                                                         <option value="<%= matriculaMotorista%>" selected><%= lista.get(i).getNome()%></option>
                                                         <%
-                                                                    lista.get(i).setMatriculaSIAPE("");
-                                                                }
+                                                                lista.get(i).setMatriculaSIAPE("");
+                                                            }
                                                             if (!lista.get(i).getMatriculaSIAPE().equals("")) {
                                                         %>
                                                         <option value="<%= lista.get(i).getMatriculaSIAPE()%>">
@@ -236,12 +225,12 @@
                                                 <div class="formCadastroLabel"><label for="sInfoComplementar">Informe o Destino</label> </div>
                                                 <div class="formCadastroInput">
                                                     <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="se não constar na lista de destino"
-                                                        <%
-                                                            if (descricao_reserva != null) {
-                                                        %>
-                                                        value="<%= reserv.getDescricao_destino()%>"
-                                                        <% }%>
-                                                        />
+                                                           <%
+                                                               if (descricao_reserva != null) {
+                                                           %>
+                                                           value="<%= reserv.getDescricao_destino()%>"
+                                                           <% }%>
+                                                           />
                                                 </div>
                                             </li>
                                         </div>
