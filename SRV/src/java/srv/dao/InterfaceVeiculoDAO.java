@@ -20,4 +20,10 @@ public interface InterfaceVeiculoDAO {
     public abstract List todosVeiculo();
     public abstract List buscarVeiculoPorAno(String ano);
     public Veiculo consultarPlaca(String parameter);
+    public abstract List buscarVeiculoPorPlaca(String placa);
+    public abstract List buscarVeiculoPorRenavam(String renavam);
+    public abstract List buscarVeiculoPorAnoPlaca(String ano, String placa);
+    public abstract List buscarVeiculoPorAnoRenavam(String ano, String renavam);
+    public abstract List buscarVeiculoPorPlacaRenavam(String placa, String renavam);
+    public abstract List buscarVeiculoPorAnoPlacaRenavam(String ano, String placa, String renavam);
 }
