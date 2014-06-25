@@ -35,7 +35,7 @@
                     %>
                     <div class="cabecalhoUsuario">Bem vindo, <%= servidor.getNome()%></div>
 
-<div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a>&nbsp;|&nbsp;<a href='ControleServidor?action=formAlterarSenha'>ALterar Senha</a></div>
+<div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Sair</a>&nbsp;|&nbsp;<a href='ControleServidor?action=formAlterarSenha'>Alterar Senha</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>

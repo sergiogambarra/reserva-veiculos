@@ -586,7 +586,7 @@ function validarSenha(){
     }
     
     if(d.sNovaSenha.value.length < 6){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. A nova senha deve conter entre 6 e 8 caracteres.");
         d.sNovaSenha.focus();
         return false;
     }

@@ -16,7 +16,7 @@
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
                     <%@include file="cabecalhoNomeUsuario.jsp"%>
-                    <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a>&nbsp;|&nbsp;<a href='ControleServidor?action=formAlterarSenha'>ALterar Senha</a></div>
+                    <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Sair</a>&nbsp;|&nbsp;<a href='ControleServidor?action=formAlterarSenha'>Alterar Senha</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>
@@ -64,15 +64,15 @@
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Senha atual</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sSenhaAtual" placeholder="Senha atual" maxlength="6"/></div>
+                                            <div class="formCadastroInput"><input type="password" name="sSenhaAtual" placeholder="Senha atual" maxlength="8"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Nova senha</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sNovaSenha" placeholder="Nova senha" maxlength="6"/></div>
+                                            <div class="formCadastroInput"><input type="password" name="sNovaSenha" placeholder="Nova senha" maxlength="8"/></div>
                                         </li>      
                                         <li>
                                             <div class="formCadastroLabel"><label for="sSenha">*Confirme a senha</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sConfirmaSenha" placeholder="Digitar senha novamente" maxlength="6"/></div>
+                                            <div class="formCadastroInput"><input type="password" name="sConfirmaSenha" placeholder="Digitar senha novamente" maxlength="8"/></div>
                                         </li>      
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleReserva?action=listaReservas')" /></div>
