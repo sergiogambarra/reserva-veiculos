@@ -6,6 +6,7 @@ package srv.controle;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -249,14 +250,16 @@ public class ControleServidor extends HttpServlet {
                    request.setAttribute("mensagem", e.getMessage());
                    request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-           } /*else if (acao.equals("buscarServidor")) {
+           } else if (acao.equals("buscarServidor")) {
                 try {
                 
                     String matricula_siape = request.getParameter("MatriculaSiape");
                     
                     InterfaceServidorDAO idao = new ServidorDAO();
                     Servidor servidor = idao.consultarMatricula(matricula_siape);
-                    idao.buscarServidor(Sevidores);
+                    ArrayList<Servidor> lista = new ArrayList<Servidor>();
+                    
+                    lista.add(servidor);
 
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
@@ -264,7 +267,7 @@ public class ControleServidor extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }*/
+            }
          
          
 
