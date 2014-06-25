@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Novo Veículo</title>
+        <title>Nova Reserva</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
@@ -46,6 +46,7 @@
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
+                        <div class="barraNavegacao">
                             Você está em: 
                             <script type="text/javascript">
                                 var pagina = document.title;
