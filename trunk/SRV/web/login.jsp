@@ -19,7 +19,7 @@
       <form name="formLogin" method="post" action="ControleLogin" onsubmit="return validarMatSiap(document.forms['formLogin']['inputMatricula'].value)" >
           <input type="hidden" name="action" value="Entrar"/>
           <p><input type="text" id="inputMatricula" name="inputMatricula" onKeyPress="return mascaraMatSiap(event);" placeholder="Matricula" maxlength="7">
-          <p><input type="password" name="inputSenha"  placeholder="Password" maxlength="6"></p>
+          <p><input type="password" name="inputSenha"  placeholder="Password" maxlength="8"></p>
           <%
             if (request.getAttribute("mensagem") != null) {
           %>

@@ -11,7 +11,7 @@ USE `srv` ;
 CREATE  TABLE IF NOT EXISTS `srv`.`servidor` (
   `matricula_siape` VARCHAR(7) NOT NULL ,
   `nome` VARCHAR(50) NOT NULL ,
-  `senha` VARCHAR(6) NOT NULL ,
+  `senha` VARCHAR(8) NOT NULL ,
   `email` VARCHAR(50) NOT NULL ,
   `perfil` TINYINT(1) NOT NULL ,
   `sexo` VARCHAR(10) NOT NULL ,
