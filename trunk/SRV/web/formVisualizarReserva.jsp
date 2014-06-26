@@ -139,7 +139,7 @@
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="true"/>
-                                                <label for="iHoraSaida" >Horário de Saída: </label>
+                                                <label for="iHoraSaida" >Horário</label>
                                                 <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>" readonly="true"/>
                                             </div>
                                         </li>
@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
-                                                <label for="iHoraRetorno" >Horário de Retorno </label>
+                                                <label for="iHoraRetorno" >Horário</label>
                                                 <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>" readonly="true"/>
                                             </div>                                                
                                         </li>
