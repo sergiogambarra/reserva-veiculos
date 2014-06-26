@@ -70,25 +70,20 @@
                             -->
                             <!-- Parte especifica de parametros de pesquisa -->
                             <form name="consultaServidor" action="ControleServidor">
-                                <input type="hidden" name="action" value="listaServidorPorNome"/>    
+                                <input type="hidden" name="action" value="consultarServidor"/>    
+                                
                                 <div class="formCadastroLabel"><label for="nome">Nome</label></div>
-                                <div class="formCadastroInput"><input type="text" id="nome" name="nome" placeholder="nome" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
-                            
-                
-                            <!--<form name="buscarServidor" action="ControleServidor">-->
-                                <input type="hidden" name="action" value="buscarServidor"/>    
+                                <div class="formCadastroInput">
+                                    <input type="text" id="nome" name="nome" placeholder="nome" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
+                               
                                 <div class="formCadastroLabel"><label for="MatriculaSiape">Matricula</label> </div>
-                                <div class="formCadastroInput"><input type="text" id="MatriculaSiape" name="MatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/></div>
-                             <!--</form>-->
-
-                             <!--<form name="consultaServidorPorNomeMotorista" action="ControleServidor">-->
-                                <input type="hidden" name="action" value="listaServidorPorNomeMotorista"/>    
+                                <div class="formCadastroInput">
+                                    <input type="text" id="MatriculaSiape" name="MatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/></div>
+                                               
                                 <div class="formCadastroLabel"><label for="nomeMotorista">Nome do motorista</label></div>
-                                <div class="formCadastroInput"><input type="text" id="nomeMotorista" name="nomeMotorista" placeholder="motorista" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
-                             <!--</form>-->
-
-                             <!--<form name="consultaServidorPorStatu" action="ControleServidor">-->
-                                <input type="hidden" name="action" value="listaServidorPorStatu"/>    
+                                <div class="formCadastroInput">
+                                    <input type="text" id="nomeMotorista" name="nomeMotorista" placeholder="motorista" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
+                                
                                 <div class="formCadastroLabel">
                                    <label for="status" id="status_serv">Status</label> </div>
                                 <div class="formCadastroInput">
@@ -97,7 +92,7 @@
                                     <input type="radio" id="status_serv" name="status_serv" value="0"/>
                                     <label class="radioStatus" for="Status">Inativo</label>
                                 </div>
-                             <!--</form>-->
+                             
                             <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
                           </form>
                         </div>
