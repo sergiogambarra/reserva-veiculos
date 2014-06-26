@@ -46,16 +46,16 @@ public class ReservaDAO implements InterfaceReservaDAO {
         List<Veiculo> veiculosDisponiveis = new ArrayList<Veiculo>();
         session = Conexao.getInstance();
         StringBuilder qr = new StringBuilder();
-        
+
         qr.append("from Veiculo ")
                 .append("where placa not in(")
-                    .append("select r.placa from Reserva r where(")
-                    .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
-                    .append(" and ")
-                    .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
-                    .append(")")
+                .append("select r.placa from Reserva r where(")
+                .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
+                .append(" and ")
+                .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
+                .append(")")
                 .append(")");
-        
+
         try {
             Query query = session.createQuery(qr.toString())
                     .setTimestamp(0, dataRetorno)
@@ -68,29 +68,29 @@ public class ReservaDAO implements InterfaceReservaDAO {
         } catch (Exception e) {
             session.close();
             e.getMessage();
-        } finally{
+        } finally {
             session.close();
         }
 
         return veiculosDisponiveis;
     }
-    
+
     @Override
     public List<Veiculo> consultarDisponibilidadeVeiculo(Date dataSaida, Date dataRetorno, String idReserva) {
         List<Veiculo> veiculosDisponiveis = new ArrayList<Veiculo>();
         session = Conexao.getInstance();
         StringBuilder qr = new StringBuilder();
-        
+
         qr.append("from Veiculo ")
                 .append("where placa not in(")
-                    .append("select r.placa from Reserva r where(")
-                    .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
-                    .append(" and ")
-                    .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
-                    .append(")")
-                    .append("and r.id_reserva <> ?")
+                .append("select r.placa from Reserva r where(")
+                .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
+                .append(" and ")
+                .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
+                .append(")")
+                .append("and r.id_reserva <> ?")
                 .append(")");
-        
+
         try {
             Query query = session.createQuery(qr.toString())
                     .setTimestamp(0, dataRetorno)
@@ -104,13 +104,12 @@ public class ReservaDAO implements InterfaceReservaDAO {
         } catch (Exception e) {
             session.close();
             e.getMessage();
-        } finally{
+        } finally {
             session.close();
         }
 
         return veiculosDisponiveis;
     }
-
 
     @Override
     public List listaReservas(String matricula) {
@@ -172,23 +171,28 @@ public class ReservaDAO implements InterfaceReservaDAO {
         }
         return null;
     }
-   
-    @Override
-    public Reserva consultarID_Reserva(int id_reserva ) {
-        session = Conexao.getInstance();
-        Query query = session.createQuery("from Reserva l where l.id_reserva = :id_reserva");
-        Reserva r = (Reserva) query.setInteger("id_reserva", id_reserva).uniqueResult();
 
-        return r;
+    @Override
+    public Reserva consultarID_Reserva(int id_reserva) {
+        session = Conexao.getInstance();
+        try {
+            Query query = session.createQuery("from Reserva l where l.id_reserva = :id_reserva");
+            Reserva r = (Reserva) query.setInteger("id_reserva", id_reserva).uniqueResult();
+
+            return r;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
     }
-    
-    
+
     @Override
     public void excluirReserva(Reserva reserva) {
         session = Conexao.getInstance();
         Transaction tx = null;
-        
-    ///////////////////////////
+
         try {
             tx = session.beginTransaction();
             session.delete(reserva);
@@ -199,7 +203,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
             session.close();
         }
     }
-    
+
     @Override
     public Reserva consultarIdReserva(int id_reserva) {
         session = Conexao.getInstance();
@@ -245,7 +249,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
 
         return id;
     }
-    
+
     @Override
     public void atualizar(Reserva reserv) {
         session = Conexao.getInstance();
@@ -258,7 +262,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
                     + " where id_reserva = :id_reserva";
             Query query = session.createQuery(sql);
 
-            query.setTimestamp("data_saida",reserv.getData_saida());
+            query.setTimestamp("data_saida", reserv.getData_saida());
             query.setTimestamp("data_retorno", reserv.getData_retorno());
             query.setString("placa", reserv.getPlaca());
             query.setBoolean("condutor", reserv.getCondutor());
