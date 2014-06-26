@@ -597,8 +597,14 @@ function validarSenha(){
         return false;
     }
     
-    if(d.sConfirmaSenha.value.length <6){
+    /*if(d.sConfirmaSenha.value.length <6){
         alert("Dados inválidos.");
+        d.sConfirmaSenha.focus();
+        return false;
+    }*/
+    
+    if(d.sConfirmaSenha.value != d.sNovaSenha.value){
+        alert("Dados inválidos. Confirmação de senha diferente da nova senha.");
         d.sConfirmaSenha.focus();
         return false;
     }
