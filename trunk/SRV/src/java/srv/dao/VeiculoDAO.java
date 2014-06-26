@@ -121,7 +121,7 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
         }
         return null;
     }
-    
+     //Parte especica de consulta por determinados parametros
          @Override
     public List buscarVeiculoPorAno(String ano) {
        session = Conexao.getInstance();
@@ -184,7 +184,7 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
 
        return s;
     }
-    
+/////////////////////////////////////Fim da consulta por parametro//////////////////////////
     @Override
     public void visualizar(Veiculo veic) {
         throw new UnsupportedOperationException("Not supported yet.");

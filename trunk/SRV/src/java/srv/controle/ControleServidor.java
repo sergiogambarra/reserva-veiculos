@@ -44,10 +44,10 @@ public class ControleServidor extends HttpServlet {
 
             HttpSession session = request.getSession();
             Servidor user = new Servidor();
-            if(request.getSession().getAttribute("administrador") != null){
-                 user = (Servidor) session.getAttribute("administrador");
-            }else if(request.getSession().getAttribute("servidor") != null){
-                  user = (Servidor) session.getAttribute("servidor");
+            if (request.getSession().getAttribute("administrador") != null) {
+                user = (Servidor) session.getAttribute("administrador");
+            } else if (request.getSession().getAttribute("servidor") != null) {
+                user = (Servidor) session.getAttribute("servidor");
             }
             //Criação de uma string para trabalhar com os formularios de consuta
             //String form = request.getParameter("frm");
@@ -143,7 +143,7 @@ public class ControleServidor extends HttpServlet {
                     } else {
                         serv.setTelefone2(null);
                     }
-                    
+
                     if (!(cnh.equalsIgnoreCase(""))) {
                         serv.setCnh(cnh);
                     } else {
@@ -151,8 +151,8 @@ public class ControleServidor extends HttpServlet {
                     }
 
                     /*if (motorista.equalsIgnoreCase("1")) {
-                       serv.setCnh(cnh);
-                    }*/
+                     serv.setCnh(cnh);
+                     }*/
 
                     //PEGA DIA E ANO PARA GERAR A SENHA
                     SimpleDateFormat dataSenha = new SimpleDateFormat("ddyyyy");
@@ -235,70 +235,153 @@ public class ControleServidor extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            } else if(acao.equals("formAlterarSenha")){
-                request.getRequestDispatcher("alterarSenha.jsp").forward(request,response);
-            }
-     /* Parte especifica de parametros para consulta*/
-         else if (acao.equals("listaServidorPorNome")) {
+            } else if (acao.equals("formAlterarSenha")) {
+                request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
+            } /* Parte especifica de parametros para consulta*/ else if (acao.equals("consultarServidor")) {
                 try {
-                   InterfaceServidorDAO idao = new ServidorDAO();
-                   List<Servidor> lista = idao.buscarServidorPorNome(request.getParameter("nome"));
 
-                   request.setAttribute("listaserv", lista);
-                    request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
-                } catch (Exception e) {
-                   request.setAttribute("mensagem", e.getMessage());
-                   request.getRequestDispatcher("erro.jsp").forward(request, response);
-                }
-           } else if (acao.equals("buscarServidor")) {
-                try {
-                
+                    String nome = request.getParameter("ano");
                     String matricula_siape = request.getParameter("MatriculaSiape");
-                    
+                    String nomeMotorista = request.getParameter("nomeMotorista");
+                    String status = request.getParameter("status_serv");
+                    InterfaceServidorDAO idao = new ServidorDAO();
+
+                    if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
+                        request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
+
+                    } else if (!nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        List<Servidor> lista = idao.buscarServidorPorNome(nome);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
+                        } else {
+                            request.setAttribute("listaserv", lista);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        }
+                    } else if (nome.equals("") && !matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        Servidor servidor = idao.consultarMatricula(matricula_siape);
+                        ArrayList<Servidor> lista = new ArrayList<Servidor>();
+
+                        lista.add(servidor);
+
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        } else {
+                            request.setAttribute("listaveic", lista);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        }
+                    } /*else if (nome.equals("") && matricula_siape.equals("") && !nomeMotorista.equals("") && status.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorRenavam(renavam);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        } else {
+                            request.setAttribute("listaveic", lista);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        }
+                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlaca(ano, placa);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        } else {
+                            request.setAttribute("listaveic", lista);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        }
+                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoRenavam(ano, renavam);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        } else {
+                            request.setAttribute("listaveic", lista);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        }
+                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorPlacaRenavam(placa, renavam);
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        } else {
+                            request.setAttribute("listaveic", lista);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        }
+                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlacaRenavam(ano, placa, renavam);
+
+                        if (lista.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        } else {
+                            request.setAttribute("listaveic", lista);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        }
+                    }*/
+
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
+            } /*
+             else if (acao.equals("listaServidorPorNome")) {
+             try {
+             InterfaceServidorDAO idao = new ServidorDAO();
+             List<Servidor> lista = idao.buscarServidorPorNome(request.getParameter("nome"));
+
+             request.setAttribute("listaserv", lista);
+             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+             } catch (Exception e) {
+             request.setAttribute("mensagem", e.getMessage());
+             request.getRequestDispatcher("erro.jsp").forward(request, response);
+             }
+             }*/ else if (acao.equals("buscarServidor")) {
+                try {
+
+                    String matricula_siape = request.getParameter("MatriculaSiape");
+
                     InterfaceServidorDAO idao = new ServidorDAO();
                     Servidor servidor = idao.consultarMatricula(matricula_siape);
                     ArrayList<Servidor> lista = new ArrayList<Servidor>();
-                    
+
                     lista.add(servidor);
 
+                    /////////////////////////////////////Fim da consulta por parametro//////////////////////////
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            }
-         
-         
-
-            else if(acao.equals("alterarSenha")){
+            } else if (acao.equals("alterarSenha")) {
                 try {
                     String matriculaSIAPE = user.getMatriculaSIAPE();
                     String senhaAtual = request.getParameter("sSenhaAtual");
                     String novaSenha = request.getParameter("sNovaSenha");
                     String confirmaSenha = request.getParameter("sConfirmaSenha");
-                    if(senhaAtual.equals(user.getSenha())){
-                        if(novaSenha.equals(confirmaSenha)){
+                    if (senhaAtual.equals(user.getSenha())) {
+                        if (novaSenha.equals(confirmaSenha)) {
                             InterfaceServidorDAO idao = new ServidorDAO();
                             idao.alterarSenha(matriculaSIAPE, novaSenha);
-                    
-                            Servidor f = (Servidor)idao.buscarServidor(matriculaSIAPE);
 
-                            if(f.getPerfil() == 0){
+                            Servidor f = (Servidor) idao.buscarServidor(matriculaSIAPE);
+
+                            if (f.getPerfil() == 0) {
                                 request.getSession().setAttribute("servidor", f);
-                            }else if(f.getPerfil() == 1){
+                            } else if (f.getPerfil() == 1) {
                                 request.getSession().setAttribute("administrador", f);
                             }
-                            
+
                             request.setAttribute("mensagem", "Senha alterada com sucesso.");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request,response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
                         }
                     }
                 } catch (Exception e) {
                 }
-                
-            } 
-          
+
+            }
+
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             InterfaceServidorDAO sdao = new ServidorDAO();

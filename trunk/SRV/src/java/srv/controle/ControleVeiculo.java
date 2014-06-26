@@ -149,6 +149,7 @@ public class ControleVeiculo extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
+                //Parte especica de consulta por determinados parametros
             }else if (acao.equals("consultarVeiculo")) {
                 try {
                     
