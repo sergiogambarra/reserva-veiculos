@@ -49,6 +49,8 @@ public class Reserva implements java.io.Serializable{
     @Column(name = "reserva_datetime")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date reserva_datetime;
+    @Column(name = "ocupantes")
+    private int ocupantes;
     
     @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name="matricula_siape", 
@@ -61,7 +63,7 @@ public class Reserva implements java.io.Serializable{
     @JoinColumn(name="placa", 
     insertable=false, updatable=false) 
     @Fetch(FetchMode.SELECT) 
-    @Cascade(CascadeType.SAVE_UPDATE) 
+    @Cascade(CascadeType.ALL) 
     private Veiculo veiculo;
     
     @ManyToOne(fetch = FetchType.EAGER) 
@@ -74,7 +76,7 @@ public class Reserva implements java.io.Serializable{
     public Reserva() {
     }
     
-    public Reserva(int id_reserva, String matricula_siape, Date data_saida, Date data_retorno, String placa, boolean condutor, String matricula_siape_condutor, int id_destino, String descricao_destino, Date reserva_datetime) {
+    public Reserva(int id_reserva, String matricula_siape, Date data_saida, Date data_retorno, String placa, boolean condutor, String matricula_siape_condutor, int ocupantes, int id_destino, String descricao_destino, Date reserva_datetime) {
         this.id_reserva = id_reserva;
         this.matricula_siape = matricula_siape;
         this.data_saida = data_saida;
@@ -82,6 +84,7 @@ public class Reserva implements java.io.Serializable{
         this.placa = placa;
         this.condutor = condutor;
         this.matricula_siape_condutor = matricula_siape_condutor;
+        this.ocupantes = ocupantes;
         this.id_destino = id_destino;
         this.descricao_destino = descricao_destino;
         this.reserva_datetime = reserva_datetime;
@@ -189,5 +192,13 @@ public class Reserva implements java.io.Serializable{
 
     public void setDestino(Destino destino) {
         this.destino = destino;
+    }
+    
+    public int getOcupantes() {
+        return this.ocupantes;
+    }
+
+    public void setOcupantes(int ocupantes) {
+        this.ocupantes = ocupantes;
     }
 }

@@ -547,7 +547,7 @@ function validarReserva(){
             return false;
         }
     }
-    if(d.iDestino[0].selected == true){
+    if((d.iDestino[0].value == "") && (d.iDestino[0].selected == true)){
         alert("Selecione o destino.");
         d.iDestino.focus();
         return false;
