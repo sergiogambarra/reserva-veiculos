@@ -7,7 +7,7 @@ function validarMatSiap(mat){
 	}
 }
 
-//permite somente inserção de números
+/*permite somente inserção de números
 function mascaraMatSiap(e){
 	var digito = (window.event)?event.keyCode:e.which;
 	if((digito > 47) && (digito < 58)){
@@ -19,6 +19,16 @@ function mascaraMatSiap(e){
             else  
                 return true;  
         }  
+}*/
+
+//permite somente inserção de números (teste de backspace)
+function mascaraMatSiap(e){
+	var digito = (window.event)?event.keyCode:e.which;
+	if((digito > 47) && (digito < 58)||(digito == 8)){
+		return true;
+        }  else{
+            return false;
+        }
 }
 
 //PERMITE SOMENTE INSERÇÃO DE LETRAS (Bug corrigido no chrome)
