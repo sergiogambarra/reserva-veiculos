@@ -249,97 +249,98 @@ function validarVeiculo(){
 
 
     if(d.iPlaca.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Prencha o campo Placa!");
         d.iPlaca.focus();
         return false;
     }
     
     if(d.iPlaca.value.length != "" && d.iPlaca.value.length < 8){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preencha o campo Placa corretamente, como no exemplo: CAR-2121");
         d.iPlaca.focus();
         return false;
     }
 
     if(d.iAno.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Ano!");
         d.iAno.focus();
         return false;
     }
     
     if (d.iAno.value.length <4){
-        alert("Dados Inválidos.");
+        alert("Dados Inválidos. Preencha o campo Ano com 4 números!");
         d.iAno.focus();
         return false;
     }
     
     if(d.iMarca.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Marca!");
         d.iMarca.focus();
         return false;
     }
 
     if(d.iModelo.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Modelo!");
         d.iModelo.focus();
         return false;
     }
     
     if(d.combustivel[0].checked == false && d.combustivel[1].checked == false
         && d.combustivel[2].checked == false && d.combustivel[3].checked == false && d.combustivel[4].checked == false){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Selecione o tipo de Combustível!");
         return false;
     }
     
     if(d.iRenavam.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Renavam!");
         d.iRenavam.focus();
         return false;
     }
     
     if(d.iRenavam.value.length <11){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preencha o campo Renavam com 11 dígitos!");
         d.iRenavam.focus();
         return false;
     }
     
     if(d.iCapacidade.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Capacidade!");
         d.iCapacidade.focus();
         return false;
     }
     
     if(d.iCapacidade.value == 0){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. O campo Capacidade não pode ser igual a zero!");
         d.iCapacidade.focus();
         return false;
     }
     
     if(d.iCapacidade.value > 50){
-        alert("Dados Inválidos.")
+        alert("Dados Inválidos. O campo Capacidade não pode ser superior a 50!")
         d.iCapacidade.focus();
         return false;
     }
       
     if(d.manutencao[0].checked == true){
         if(d.sManDataInicial.value == ""){
-            alert("Dados obrigatórios não preenchidos.");
+            alert("Dados obrigatórios não preenchidos. Preencha o campo Data Inicial da Manutenção!!");
             d.sManDataInicial.focus();
-            return false;
-        }
-        if(d.sManDataFinal.value == ""){
-            alert("Dados obrigatórios não preenchidos.");
-            d.sManDataFinal.focus();
             return false;
         }
         
         if(d.sManDataInicial.value != "" && d.sManDataInicial.value.length <10){
-            alert("Dados inválidos.");
+            alert("Dados inválidos. Preencha o campo Data Inicial da Manutenção com todos os dígitos!");
             d.sManDataInicial.focus();
             return false;
         }
-    
+        
+        if(d.sManDataFinal.value == ""){
+            alert("Dados obrigatórios não preenchidos. Preencha o campo Data Final da Manutenção!");
+            d.sManDataFinal.focus();
+            return false;
+        }
+        
         if(d.sManDataFinal.value != "" && d.sManDataFinal.value.length <10){
-            alert("Dados inválidos.");
+            alert("Dados inválidos. Preencha o campo Data Final da Manutenção com todos os dígitos!");
             d.sManDataFinal.focus();
             return false;
         }
@@ -351,7 +352,7 @@ function validarVeiculo(){
         var nova_data2 = parseInt(data2.split("-")[2].toString() + data2.split("-")[1].toString() + data2.split("-")[0].toString());
  
         if (nova_data2 < nova_data1){
-            alert("Dados inválidos.");
+            alert("Dados inválidos. ");
             return false;
         }
     } 
@@ -365,42 +366,42 @@ function validarServidor(){
     var d = document.formCadastroServidor;
    
     if(d.iMatriculaSiape.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Matrícula!");
         d.iMatriculaSiape.focus();
         return false;
     }
     
     if(d.iMatriculaSiape.value.length <7){
-        alert("Dados inválidos.");
+        alert("Dados inválidos.`Preencha o campo Matrícula com 7 dígitos!");
         d.iMatriculaSiape.focus();
         return false;
     }
     
     if(d.sNomeCompleto.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Nome!");
         d.sNomeCompleto.focus();
         return false;
     }
    
     if(d.sEmail.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo E-mail!");
         d.sEmail.focus();
         return false;
     }
     
     if(d.sEmail.value.indexOf("@")==-1 || d.sEmail.value.indexOf(".")==-1){
-        alert("Dados Inválidos.");
+        alert("Dados Inválidos. Preencha o campo E-mail corretamente!");
         d.sEmail.focus();
         return false;
     }
         
     if(d.sexo[0].checked == false && d.sexo[1].checked == false){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Selecione o Sexo!");
         return false;
     }
     
     if(d.sDataNascimento.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Data de Nascimento!");
         d.sDataNascimento.focus();
         return false;
     } 
@@ -416,101 +417,101 @@ function validarServidor(){
     var yyyy = today.getFullYear();
     
     if (ano_nasc > yyyy-18 || mes_nasc > 12 || dia_nasc > 31){
-        alert("Dados Inválidos.");
+        alert("Dados Inválidos. Preencha o campo Data de Nascimento corretamente!");
         d.sDataNascimento.focus();
         return false;
     } 
     if (ano_nasc == yyyy-18){
         if (mes_nasc > mm){
-            alert("Dados Inválidos.");
+            alert("Dados Inválidos. Preencha o campo Data de Nascimento corretamente!");
             d.sDataNascimento.focus();
             return false;
         }
     }
     if (ano_nasc == yyyy-18 && mes_nasc == mm){
         if (dia_nasc >= dd){
-            alert("Dados Inválidos.");
+            alert("Dados Inválidos. Preencha o campo Data de Nascimento corretamente!");
             d.sDataNascimento.focus();
             return false;
         }
     }
   
     if(d.sDataNascimento.value.length <10){
-        alert("Dados inválidos.tamanho");
+        alert("Dados inválidos. Preencha o campo Data de Nascimento corretamente!");
         d.sDataNascimento.focus();
         return false;
     }
     
     if(d.sCpf.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo CPF!");
         d.sCpf.focus();
         return false;
     }
     
     if(d.sCpf.value.length <14){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preencha o campo CPF com 11 dígitos!");
         d.sCpf.focus();
         return false;
     }
     
     if(d.sRg.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo RG!");
         d.sRg.focus();
         return false;
     }
     
     if(d.sRg.value.length <8){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preencha o campo RG com no mínimo 7 dígitos!");
         d.sRg.focus();
         return false;
     }
     
     if(d.sOrgaoExpedidor.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Órgão Expedidor!");
         d.sOrgaoExpedidor.focus();
         return false;
     }
     
-    if(d.sOrgaoExpedidor.value.length <6){
-        alert("Dados Inválidos.");
+    if(d.sOrgaoExpedidor.value.length <7){
+        alert("Dados Inválidos. Preencha o campo Órgão Expedidor com pelo menos 5 dígitos, por exemplo: SSE/RS!");
         d.sOrgaoExpedidor.focus();
         return false;
     }
     
     if(d.sTelefone1.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha o campo Telefone1!");
         d.sTelefone1.focus();
         return false;
     }
     
     if(d.sTelefone1.value.length <14){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preecha o campo Telefone corretamente!");
         d.sTelefone1.focus();
         return false;
     }
     
     if(d.sTelefone2.value != "" && d.sTelefone2.value.length <14){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preecha o campo Telefone corretamente! ");
         d.sTelefone2.focus();
         return false;
     }
     
     if (d.bMotorista[1].checked==false && d.bMotorista[0].checked==false) {
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Selecione se o servidor é ou não motorista!");
         return false;
     }
     
     //SE FOR MOTORISTA, VERIFICA SE O CAMPO CNH FOI PREENCHIDO
     if(d.bMotorista[1].checked == false && d.bMotorista[0].checked==true){
         if(d.sCnh.value == ""){
-            alert("Dados obrigatórios não preenchidos.");
+            alert("Dados obrigatórios não preenchidos. Preencha o campo CNH!");
             d.sCnh.focus();
             return false;
         } 
     }
     
     if(d.sCnh.value != "" && d.sCnh.value.length <11){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preencha o campo CNH com 11 dígitos!");
         d.sCnh.focus();
         return false;
     }  
@@ -528,7 +529,7 @@ function exluirCadastro(){
 
 // AO CLICAR EM "EXCLUIR", MOSTRA MENSAGEM DE CONFIRMAÇÃO DE EXCLUSÃO
 function exluirReserva(){
-    if (window.confirm (' Deseja realmente excluir? ')){
+    if (window.confirm (' Deseja realmente excluir esta reserva? ')){
         return true;
     }
     return false;
@@ -568,19 +569,19 @@ function validarSenha(){
     var d = document.formAlterarSenha;
     
     if(d.sSenhaAtual.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha a sua Senha Atual!");
         d.sSenhaAtual.focus();
         return false;
     }
     
     if(d.sSenhaAtual.value.length < 6){
-        alert("Dados inválidos.");
+        alert("Dados inválidos. Preencha o campo Senha Atual com no mínimo 6 dígitos!");
         d.sSenhaAtual.focus();
         return false;
     }
     
     if(d.sNovaSenha.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Preencha a sua Nova Senha!");
         d.sNovaSenha.focus();
         return false;
     }
@@ -592,7 +593,7 @@ function validarSenha(){
     }
     
     if(d.sConfirmaSenha.value == ""){
-        alert("Dados obrigatórios não preenchidos.");
+        alert("Dados obrigatórios não preenchidos. Confirme a sua Nova Senha!");
         d.sConfirmaSenha.focus();
         return false;
     }
