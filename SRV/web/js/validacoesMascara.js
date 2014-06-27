@@ -7,55 +7,35 @@ function validarMatSiap(mat){
 	}
 }
 
-/*permite somente inserção de números
+//permite somente inserção de números 
 function mascaraMatSiap(e){
-	var digito = (window.event)?event.keyCode:e.which;
-	if((digito > 47) && (digito < 58)){
-		return true;
-	}else{
-	if (digito != 8) // backspace  
-                //event.keyCode = 0;  
-                return false;  
-            else  
-                return true;  
-        }  
-}*/
-//
-//permite somente inserção de números (teste de backspace)
-function mascaraMatSiap(e){
-	var digito = (window.event)?event.keyCode:e.which;
-	if((digito > 47) && (digito < 58)|| digito == 8 || digito == 0){
-		return true;
-        }  else{
-            return false;
+    var digito = (window.event)?event.keyCode:e.which;
+    if((digito > 47 && digito < 58)|| digito == 8 || digito == 0){
+        return true;
+    } else{
+        return false;
     }
 }
 
 //PERMITE SOMENTE INSERÇÃO DE LETRAS (Bug corrigido no chrome)
 function mascaraLetras(e){
-    var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla >= 65 && tecla <= 90)||(tecla >= 97 && tecla <= 122 || (tecla == 32))){
+    var dig=(window.event)?event.keyCode:e.which;
+    if((dig >= 65 && dig <= 90)||(dig >= 97 && dig <= 122) || dig == 32 || dig == 8 || dig == 0){
         return true;
     }    
-    else{
-        if (tecla != 8) 
-            return false;
-        else 
-            return true;
+    else{ 
+        return false;
     }
 }
 
 //Mascara Alfanumérica para PLACA (somente letra maiúscula, números e o -.
 function mascaraAlfanumerica(e){
-    var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla >= 65 && tecla <= 90)||(tecla >= 48 && tecla <= 57)||(tecla==45)){
+    var dig=(window.event)?event.keyCode:e.which;
+    if((dig >= 65 && dig <= 90)||(dig >= 48 && dig <= 57)|| dig==45 || dig == 8 || dig == 0 ){
         return true;
     }    
     else{
-        if (tecla != 8) 
             return false;
-        else 
-            return true;
     }
 }
 
