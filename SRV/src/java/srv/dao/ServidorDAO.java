@@ -159,8 +159,8 @@ public class ServidorDAO implements InterfaceServidorDAO {
      
       public List buscarServidorPorNomeconsultarMatricula(String nome,String MatriculaSiape ) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.MatriculaSiape like :matricula_siape)");
-       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", "%"+MatriculaSiape+"%").list();
+       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.MatriculaSiape = :matricula_siape)");
+       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", MatriculaSiape).list();
 
         return s;
     }
@@ -237,10 +237,10 @@ public class ServidorDAO implements InterfaceServidorDAO {
         return s;
     }
      
-     public List buscarServidorPorStatus(int status) {
+     public List buscarServidorPorStatus(String status) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where l.status like :status_serv");
-       List s = query.setString("status_serv", "%"+status+"%").list();
+       Query query = session.createQuery("from Servidor l where l.status_serv = :status_serv");
+       List s = query.setString("status_serv", status).list();
 
         return s;
     }
