@@ -20,17 +20,14 @@ function mascaraMatSiap(e){
                 return true;  
         }  
 }*/
-
+//
 //permite somente inserção de números (teste de backspace)
 function mascaraMatSiap(e){
 	var digito = (window.event)?event.keyCode:e.which;
-	if((digito > 47) && (digito < 58)||(digito == 8)||(digito==25)||(digito==29)){
+	if((digito > 47) && (digito < 58)|| digito == 8 || digito == 0){
 		return true;
-        }  else{{
-        if (tecla != 8) 
+        }  else{
             return false;
-        else 
-            return true;
     }
 }
 
