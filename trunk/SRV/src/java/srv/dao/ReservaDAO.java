@@ -257,7 +257,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
         try {
             Transaction tx = session.beginTransaction();
             String sql = "update Reserva set data_saida = :data_saida, "
-                    + "data_retorno = :data_retorno, placa = :placa, condutor = :condutor, matricula_siape_condutor = :matricula_siape_condutor, "
+                    + "data_retorno = :data_retorno, placa = :placa, condutor = :condutor, matricula_siape_condutor = :matricula_siape_condutor, ocupantes = :n_ocupantes,"
                     + "id_destino = :id_destino, descricao_destino = :descricao_destino, reserva_datetime = :reserva_datetime "
                     + " where id_reserva = :id_reserva";
             Query query = session.createQuery(sql);
@@ -267,6 +267,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
             query.setString("placa", reserv.getPlaca());
             query.setBoolean("condutor", reserv.getCondutor());
             query.setString("matricula_siape_condutor", reserv.getMatricula_siape_condutor());
+            query.setInteger("n_ocupantes", reserv.getOcupantes());
             query.setInteger("id_destino", reserv.getId_destino());
             query.setString("descricao_destino", reserv.getDescricao_destino());
             query.setTimestamp("reserva_datetime", reserv.getReserva_datetime());

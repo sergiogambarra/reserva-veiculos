@@ -168,7 +168,7 @@ public class ControleReserva extends HttpServlet {
                 //Para atualizar Reserva... continua com o mesmo ID
                 if (acao.equals("atualizarReserva")) {
                     id_reserva = (Integer.parseInt(request.getParameter("id_reserva")));
-                    placa = request.getParameter("inputModeloVeiculo");
+                    placa = request.getParameter("inputPlacaVeiculo");
                 }
 
                 String matricula_siape = user.getMatriculaSIAPE();
@@ -184,7 +184,9 @@ public class ControleReserva extends HttpServlet {
                 int iCondutor = Integer.parseInt(request.getParameter("inputMotorista"));
                 boolean condutor;
                 String matricula_siape_condutor;
-
+                
+                int ocupantes = Integer.parseInt(request.getParameter("iCapacidade"));
+                
                 if (iCondutor == 1) {
                     condutor = true;
                     matricula_siape_condutor = matricula_siape;
@@ -207,7 +209,7 @@ public class ControleReserva extends HttpServlet {
                 Timestamp timestamp_atual = new Timestamp(date_atual.getTime());
 
                 Reserva reserva = new Reserva(
-                        id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, id_destino, descricao, date_atual);
+                        id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, ocupantes, id_destino, descricao, date_atual);
 
                 if (acao.equals("inserirReserva")) {
                     rdao.inserirReserva(reserva);
