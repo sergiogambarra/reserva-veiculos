@@ -74,6 +74,7 @@ CREATE  TABLE IF NOT EXISTS `srv`.`reserva` (
   `placa` VARCHAR(8) NOT NULL ,
   `condutor` TINYINT(1) NOT NULL ,
   `matricula_siape_condutor` VARCHAR(7) NOT NULL ,
+  `ocupantes` TINYINT(1) NOT NULL ,
   `id_destino` INT NULL ,
   `descricao_destino` VARCHAR(30) NULL ,
   `reserva_datetime` DATETIME NOT NULL ,

@@ -15,8 +15,6 @@ values ('1234567', 'admin', '123456', 'admin1@gmail.com', '1',
  'nova friburgo', 'rj', 'brasileiro', 'sep', '(43) 3333-3333', '(46) 4444-4444',
  '0', null, '1', 'teste servidor 2');
 
-select * from servidor;
-
 INSERT INTO veiculo VALUES 
 ('CAR-1111', '2014', 'fiat', 'siena 1.0', 'g', 
 '12345678900', '5', '1', '2014/12/12', '2014/12/24'),
@@ -25,8 +23,6 @@ INSERT INTO veiculo VALUES
 ('CAR-3333', '2012', 'ford', 'f-100', 'c',
 '12345678902', '3', '1', '2014/10/20', '2014/10/21');
 
-select * from veiculo;
-
 INSERT INTO destino 
 values 
 	  (null, "Outro Destino")
@@ -34,5 +30,3 @@ values
 	, (null, "IFRS Campus Bento Gonçalves")
 	, (null, "IFRS Campus Rio Grande")
 	, (null, "IFRS Reitoria");
-
-select * from destino order by 1;
