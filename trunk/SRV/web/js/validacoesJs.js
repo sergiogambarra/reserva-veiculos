@@ -472,7 +472,7 @@ function validarServidor(){
         return false;
     }
     
-    if(d.sOrgaoExpedidor.value.length <7){
+    if(d.sOrgaoExpedidor.value.length <6){
         alert("Dados Inválidos. Preencha o campo Órgão Expedidor com pelo menos 5 dígitos, por exemplo: SSE/RS!");
         d.sOrgaoExpedidor.focus();
         return false;
