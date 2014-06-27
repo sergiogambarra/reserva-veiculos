@@ -237,16 +237,18 @@ public class ControleServidor extends HttpServlet {
                 }
             } else if (acao.equals("formAlterarSenha")) {
                 request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
-            } /* Parte especifica de parametros para consulta*/ else if (acao.equals("consultarServidor")) {
+                
+             /* Parte especifica de parametros para consulta*/    
+            }else if (acao.equals("consultarServidor")) {
                 try {
 
-                    String nome = request.getParameter("ano");
+                    String nome = request.getParameter("nome");
                     String matricula_siape = request.getParameter("MatriculaSiape");
                     String nomeMotorista = request.getParameter("nomeMotorista");
                     String status = request.getParameter("status_serv");
                     InterfaceServidorDAO idao = new ServidorDAO();
 
-                    if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                    if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status == null) {
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
                         request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
 
@@ -272,53 +274,53 @@ public class ControleServidor extends HttpServlet {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
-                    } /*else if (nome.equals("") && matricula_siape.equals("") && !nomeMotorista.equals("") && status.equals("")) {
-                        List<Veiculo> lista = ivdao.buscarVeiculoPorRenavam(renavam);
+                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status != null) {
+                        List<Servidor> lista = idao.buscarServidorPorStatus(status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
                         } else {
-                            request.setAttribute("listaveic", lista);
-                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                            request.setAttribute("listaserv", lista);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
-                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlaca(ano, placa);
-                        if (lista.isEmpty()) {
-                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
-                        } else {
-                            request.setAttribute("listaveic", lista);
-                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
-                        }
-                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
-                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoRenavam(ano, renavam);
-                        if (lista.isEmpty()) {
-                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
-                        } else {
-                            request.setAttribute("listaveic", lista);
-                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
-                        }
-                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
-                        List<Veiculo> lista = ivdao.buscarVeiculoPorPlacaRenavam(placa, renavam);
-                        if (lista.isEmpty()) {
-                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
-                        } else {
-                            request.setAttribute("listaveic", lista);
-                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
-                        }
-                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
-                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlacaRenavam(ano, placa, renavam);
-
-                        if (lista.isEmpty()) {
-                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
-                        } else {
-                            request.setAttribute("listaveic", lista);
-                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
-                        }
-                    }*/
+//                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+//                       List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlaca(ano, placa);
+//                        if (lista.isEmpty()) {
+//                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+//                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+//                        } else {
+//                            request.setAttribute("listaveic", lista);
+//                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+//                        }
+//                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+//                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoRenavam(ano, renavam);
+//                        if (lista.isEmpty()) {
+//                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+//                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+//                        } else {
+//                            request.setAttribute("listaveic", lista);
+//                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+//                        }
+//                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+//                        List<Veiculo> lista = ivdao.buscarVeiculoPorPlacaRenavam(placa, renavam);
+//                        if (lista.isEmpty()) {
+//                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+//                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+//                        } else {
+//                            request.setAttribute("listaveic", lista);
+//                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+//                        }
+//                    } else if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+//                        List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlacaRenavam(ano, placa, renavam);
+//
+//                        if (lista.isEmpty()) {
+//                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+//                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+//                        } else {
+//                            request.setAttribute("listaveic", lista);
+//                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+//                        }
+                    }
 
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());

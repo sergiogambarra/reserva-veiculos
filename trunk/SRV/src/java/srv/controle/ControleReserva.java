@@ -74,13 +74,13 @@ public class ControleReserva extends HttpServlet {
 
                     //Se vier da pag formConsultarDipVeiculoAlterarReserva, o id_reserva não será nulo
                     //Busca os dados da Reserva para mostrar no formulário
-                    
+
                     Reserva reserva = null;
-                    if(!id_reserva.equals("")){
+                    if (!id_reserva.equals("")) {
                         InterfaceReservaDAO idao = new ReservaDAO();
                         reserva = idao.consultarIdReserva(Integer.parseInt(id_reserva));
                     }
-                    
+
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidoresMotoristas();
 
@@ -104,15 +104,15 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("s_hora_saida", hora_saida);
                     request.setAttribute("s_data_retorno", data_retorno);
                     request.setAttribute("s_hora_retorno", hora_retorno);
-                    
-                    if(!id_reserva.equals("")){
+
+                    if (!id_reserva.equals("")) {
                         request.setAttribute("reserva", reserva);
                         request.getRequestDispatcher("formAtualizarReserva.jsp").forward(request, response);
-                    }else{
+                    } else {
                         request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
                     }
 
-                    
+
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
@@ -184,9 +184,9 @@ public class ControleReserva extends HttpServlet {
                 int iCondutor = Integer.parseInt(request.getParameter("inputMotorista"));
                 boolean condutor;
                 String matricula_siape_condutor;
-                
+
                 int ocupantes = Integer.parseInt(request.getParameter("iCapacidade"));
-                
+
                 if (iCondutor == 1) {
                     condutor = true;
                     matricula_siape_condutor = matricula_siape;
@@ -227,9 +227,12 @@ public class ControleReserva extends HttpServlet {
 
                     InterfaceReservaDAO irdao = new ReservaDAO();
                     List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE());
-
                     List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE());
 
+                    InterfaceDestinoDAO ddao = new DestinoDAO();
+                    List<Destino> listad = ddao.buscarDestinos();
+
+                    request.setAttribute("listadest", listad);
                     request.setAttribute("listaReservasOutros", listaOutros);
                     request.setAttribute("listaReservas", listar);
                     request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
@@ -274,6 +277,138 @@ public class ControleReserva extends HttpServlet {
 
                 request.setAttribute("mensagem", "Reserva excluída com sucesso.");
                 request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+
+            } else if (acao.equals("consultarReservas")) {
+                try {
+                    String matricula_siape = user.getMatriculaSIAPE();
+                    String data_saida = request.getParameter("DataSaida");
+                    String data_retorno = request.getParameter("DataRetorno");
+                    String destino = request.getParameter("destino");
+                    InterfaceReservaDAO irdao = new ReservaDAO();
+
+                    if (data_saida.equals("") && data_retorno.equals("") && destino.equals("")) {
+                        request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
+                        request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+
+                    } else if (!data_saida.equals("") && data_retorno.equals("") && destino.equals("")) {
+                        data_saida = data_saida.substring(6, 10) + "-" + data_saida.substring(3, 5) + "-" + data_saida.substring(0, 2);
+                        List<Reserva> lista = irdao.buscarReservaPorSaida(matricula_siape, data_saida);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorSaidaOutros(matricula_siape, data_saida);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    } else if (data_saida.equals("") && !data_retorno.equals("") && destino.equals("")) {
+                        data_retorno = data_retorno.substring(6, 10) + "-" + data_retorno.substring(3, 5) + "-" + data_retorno.substring(0, 2);
+                        List<Reserva> lista = irdao.buscarReservaPorRetorno(matricula_siape, data_retorno);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorRetornoOutros(matricula_siape, data_retorno);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    } else if (data_saida.equals("") && data_retorno.equals("") && !destino.equals("")) {
+                        List<Reserva> lista = irdao.buscarReservaPorDestino(matricula_siape, destino);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorDestinoOutros(matricula_siape, destino);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    } else if (!data_saida.equals("") && !data_retorno.equals("") && destino.equals("")) {
+                        data_saida = data_saida.substring(6, 10) + "-" + data_saida.substring(3, 5) + "-" + data_saida.substring(0, 2);
+                        data_retorno = data_retorno.substring(6, 10) + "-" + data_retorno.substring(3, 5) + "-" + data_retorno.substring(0, 2);
+                        List<Reserva> lista = irdao.buscarReservaPorSaidaRetorno(matricula_siape, data_saida, data_retorno);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoOutros(matricula_siape, data_saida, data_retorno);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    } else if (!data_saida.equals("") && data_retorno.equals("") && !destino.equals("")) {
+                        data_saida = data_saida.substring(6, 10) + "-" + data_saida.substring(3, 5) + "-" + data_saida.substring(0, 2);
+                        List<Reserva> lista = irdao.buscarReservaPorSaidaDestino(matricula_siape, data_saida, destino);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorSaidaDestinoOutros(matricula_siape, data_saida, destino);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    } else if (data_saida.equals("") && !data_retorno.equals("") && !destino.equals("")) {
+                        data_retorno = data_retorno.substring(6, 10) + "-" + data_retorno.substring(3, 5) + "-" + data_retorno.substring(0, 2);
+                        List<Reserva> lista = irdao.buscarReservaPorRetornoDestino(matricula_siape, data_retorno, destino);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorRetornoDestinoOutros(matricula_siape, data_retorno, destino);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    } else if (!data_saida.equals("") && !data_retorno.equals("") && !destino.equals("")) {
+                        data_saida = data_saida.substring(6, 10) + "-" + data_saida.substring(3, 5) + "-" + data_saida.substring(0, 2);
+                        data_retorno = data_retorno.substring(6, 10) + "-" + data_retorno.substring(3, 5) + "-" + data_retorno.substring(0, 2);
+                        List<Reserva> lista = irdao.buscarReservaPorSaidaRetornoDestino(matricula_siape, data_saida, data_retorno, destino);
+                        List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoDestinoOutros(matricula_siape, data_saida, data_retorno, destino);
+                        if (lista.isEmpty() && listaOutros.isEmpty()) {
+                            request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        } else {
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            request.setAttribute("listaReservas", lista);
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        }
+                    }
+
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
             }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());

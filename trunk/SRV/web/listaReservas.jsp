@@ -1,3 +1,4 @@
+<%@page import="srv.modelo.Destino"%>
 <%@page import="srv.modelo.Reserva"%>
 <%@page import="java.util.List"%>
 <%-- 
@@ -73,30 +74,47 @@
                             -->
                             <form name="consultaReserva" action="ControleReserva">
                                 
-                                <input type="hidden" name="action" value="listaReservaPorMatriculaSIAP"/>    
-                                <div class="formCadastroLabel"><label for="ano">Ano</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
-
-                                
-                                <input type="hidden" name="action" value="listaReservaPorDataSaida"/>    
+                                <input type="hidden" name="action" value="consultarReservas"/>    
+ 
                                 <div class="formCadastroLabel"><label for="DataSaida">Data de Saida</label> </div>
                                 <div class="formCadastroInput">
                                     <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/></div>
-
-                                <input type="hidden" name="action" value="listaReservaPorDataRetorno"/>    
+   
                                 <div class="formCadastroLabel"><label for="DataRetorno">Data de Retorno</label> </div>
                                 <div class="formCadastroInput">
                                     <input type="text" id="DataRetorno" name="DataRetorno" placeholder="dd/mm/aaaa" maxlength="10"/></div>
                                     
-                                    <input type="hidden" name="action" value="listaReservaPorPlaca"/>    
-                                <div class="formCadastroLabel"><label for="Placa">Placa</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="Placa" name="Placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/></div>
-                                    <!-- Aqui eu tenho que colocar uma caixa de celeção para o destino igual a do cadastro de reserva,
-                                    só que eu não to conseguindo
-                                     <input type="hidden" name="action" value="listaReservaPorDestino"/>    
-                                -->
+                                <div class="formCadastroLabel"><label for="destino">Destino</label> </div>
+                                    <div class="formCadastroInput">
+                                        <select id="destino" name="destino">
+                                            <option value="">Selecione:</option>
+                                            <%
+                                            List<Destino> listad = (List<Destino>) request.getAttribute("listadest");
+                                                for (int i = 0; i < listad.size(); i++) {
+                                                    if (i == 0) {
+                                                        continue;
+                                                    }
+                                                    if (i == (listad.size() - 1)) {
+                                            %>
+                                            <option value="<%= listad.get(i).getId_destino()%>">
+                                                <%= listad.get(i).getNome()%>
+                                            </option>
+                                            <option value="<%= listad.get(0).getId_destino()%>">
+                                                <%= listad.get(0).getNome()%>
+                                            </option>
+                                            <%
+                                                break;
+                                            } else {
+                                            %>
+                                            <option value="<%= listad.get(i).getId_destino()%>">
+                                                <%= listad.get(i).getNome()%>
+                                            </option>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </select>
+                                    </div>
                                     
                                 <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
                             </form>

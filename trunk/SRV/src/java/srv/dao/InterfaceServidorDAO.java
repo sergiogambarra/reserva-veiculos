@@ -36,7 +36,7 @@ public interface InterfaceServidorDAO {
     public abstract List buscarServidorPorNomeMotoristaStatus(String nomeMotorista, int status);
     public abstract List buscarServidorPorNomeMotoristaconsultarMatricula(String nomeMotorista, String MatriculaSiape);
     public abstract List buscarServidorPorNomeMotoristaconsultarMatriculaStatus(String nomeMotorista, String MatriculaSiape, int status);
-    public abstract List buscarServidorPorStatus(int status);
+    public abstract List buscarServidorPorStatus(String status);
     public abstract List buscarServidorPorStatusconsultarMatricula(String MatriculaSiape, int status);
     
     

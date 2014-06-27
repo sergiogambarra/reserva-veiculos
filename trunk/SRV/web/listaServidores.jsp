@@ -87,10 +87,10 @@
                                 <div class="formCadastroLabel">
                                    <label for="status" id="status_serv">Status</label> </div>
                                 <div class="formCadastroInput">
-                                    <input type="radio" id="status_serv" name="status_serv" value="1" checked/>
-                                    <label class="radioStatus" for="Status" >Ativo</label>
+                                    <input type="radio" id="status_serv" name="status_serv" value="1"/>
+                                    <label class="radioStatus" for="Status_serv" >Ativo</label>
                                     <input type="radio" id="status_serv" name="status_serv" value="0"/>
-                                    <label class="radioStatus" for="Status">Inativo</label>
+                                    <label class="radioStatus" for="Status_serv">Inativo</label>
                                 </div>
                              
                             <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
