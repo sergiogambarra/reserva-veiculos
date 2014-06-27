@@ -24,11 +24,14 @@ function mascaraMatSiap(e){
 //permite somente inserção de números (teste de backspace)
 function mascaraMatSiap(e){
 	var digito = (window.event)?event.keyCode:e.which;
-	if((digito > 47) && (digito < 58)||(digito == 8)){
+	if((digito > 47) && (digito < 58)||(digito == 8)||(digito==25)||(digito==29)){
 		return true;
-        }  else{
+        }  else{{
+        if (tecla != 8) 
             return false;
-        }
+        else 
+            return true;
+    }
 }
 
 //PERMITE SOMENTE INSERÇÃO DE LETRAS (Bug corrigido no chrome)
