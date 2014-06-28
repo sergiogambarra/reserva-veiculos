@@ -18,13 +18,13 @@
         <title>Consultar Disponibilidade de Veículo</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'>
-        <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/ajaxDisponibilidadeVeiculo.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
-        
+        <script type="text/javascript" src="js/calendarios.js"></script>
     </head>
     <body onload="init()">
         <section class="container">
@@ -69,9 +69,9 @@
                                                 <label for="iDataSaida">*Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
+                                                <input type="text" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraSaida" >*Horário de Saída: </label>
-                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
+                                                <input type="text" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
                                             </div>
                                         </li>
                                         <li>
@@ -79,43 +79,11 @@
                                                 <label for="iDataRetorno">*Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
+                                                <input type="text" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraRetorno" >*Horário de Retorno </label>
-                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
+                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
                                             </div>
-                                        </li>
-                                        
-                                        <script type="text/javascript">
-                                        jQuery(function(){
-                                            jQuery('#inputDataSaida').datetimepicker({
-                                             format:'Y/m/d',//QUANDO MUDO PARA d/m/Y não funciona a desativação da data incial maior que a final e vice-versa
-                                             onShow:function( ct ){
-                                              this.setOptions({
-                                               maxDate:jQuery('#inputDataRetorno').val()?jQuery('#inputDataRetorno').val():false
-                                              })
-                                             },
-                                             timepicker:false
-                                            });
-                                            jQuery('#inputDataRetorno').datetimepicker({
-                                             format:'Y/m/d',//QUANDO MUDO PARA d/m/Y não funciona a desativação da data incial maior que a final e vice-versa
-                                             onShow:function( ct ){
-                                              this.setOptions({
-                                               minDate:jQuery('#inputDataSaida').val()?jQuery('#inputDataSaida').val():false
-                                              })
-                                             },
-                                             timepicker:false
-                                            });
-                                                $('#inputHoraSaida').datetimepicker({
-                                                datepicker:false,
-                                                format:'H:i'
-                                                });
-                                                $('#inputHoraRetorno').datetimepicker({
-                                                  datepicker:false,
-                                                  format:'H:i'
-                                                });
-                                           });
-                                        </script>
-                                        
+                                        </li>                                        
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleReserva?action=listaReservas')"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar" onclick="limparTabela()"/></div>

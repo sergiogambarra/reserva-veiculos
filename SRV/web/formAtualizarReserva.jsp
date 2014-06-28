@@ -138,9 +138,9 @@
                                                 <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="true"/>
+                                                <input type="text" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="true"/>
                                                 <label for="iHoraSaida" >Horário</label>
-                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>" readonly="true"/>
+                                                <input type="text" id="inputHoraSaida" name="inputHoraSaida" step="1800" value="<%= horarioSaida%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -148,9 +148,9 @@
                                                 <label for="iDataRetorno">Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
+                                                <input type="text" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
                                                 <label for="iHoraRetorno" >Horário</label>
-                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>" readonly="true"/>
+                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"  value="<%= horarioRetorno%>" readonly="true"/>
                                             </div>                                                
                                         </li>
                                         <li>
