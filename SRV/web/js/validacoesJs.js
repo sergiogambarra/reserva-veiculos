@@ -409,10 +409,14 @@ function validarServidor(){
         return false;
     }
     
-    if(d.sEmail.value.indexOf("@")==-1 || d.sEmail.value.indexOf(".")==-1){
-        alert("Dados Inválidos. Preencha o campo E-mail corretamente!");
-        d.sEmail.focus();
-        return false;
+    if(d.sEmail.value != ""){
+        var str = d.sEmail.value;
+        var filter = /^([\w-]+(?:\.[\w-]+)*)+@[a-zA-Z]{8}\.[a-zA-Z]{4}\.[a-zA-Z]{3}\.[a-zA-Z]{2}/; 
+        if(!filter.test(str)){
+            alert("Dados Inválidos. Preencha o campo e-mail com @restinga.ifrs.edu.br!");
+            d.sEmail.focus();
+            return false;
+        }
     }
         
     if(d.sexo[0].checked == false && d.sexo[1].checked == false){
