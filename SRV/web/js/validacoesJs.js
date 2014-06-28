@@ -272,6 +272,25 @@ function validarVeiculo(){
         return false;
     }
     
+  if (d.iAno.value.length == 4){
+    hoje = new Date();
+    anoAtual = hoje.getFullYear();
+    barras = d.iAno.value;
+    ano = barras;
+    
+        if (ano > anoAtual){
+            alert("Dados Inválidos. O campo Ano não pode ser maior que o ano atual!");
+            d.iAno.focus();
+            return false;
+        }else if (ano < 2000){
+            alert("Dados Inválidos. Preencha o campo Ano corretamente!");
+            d.iAno.focus();
+            return false;
+        }
+  }
+        
+    
+    
     if(d.iMarca.value == ""){
         alert("Dados obrigatórios não preenchidos. Preencha o campo Marca!");
         d.iMarca.focus();
@@ -326,6 +345,7 @@ function validarVeiculo(){
             d.sManDataInicial.focus();
             return false;
         }
+        
         
         if(d.sManDataInicial.value != "" && d.sManDataInicial.value.length <10){
             alert("Dados inválidos. Preencha o campo Data Inicial da Manutenção com todos os dígitos!");
