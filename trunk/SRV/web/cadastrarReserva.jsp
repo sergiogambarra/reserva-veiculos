@@ -92,9 +92,9 @@
                                                 <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="true"/>
+                                                <input type="text" id="inputDataSaida" name="inputDataSaida" value="<%= dataSaida%>" readonly="false"/>
                                                 <label for="iHoraSaida" >Horário</label>
-                                                <input type="time" id="inputHoraSaida" name="inputHoraSaida" value="<%= horaSaida%>" readonly="true"/>
+                                                <input type="text" id="inputHoraSaida" name="inputHoraSaida" value="<%= horaSaida%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
@@ -102,9 +102,9 @@
                                                 <label for="iDataRetorno">Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="date" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
+                                                <input type="text" id="inputDataRetorno" name="inputDataRetorno" value="<%= dataRetorno%>" readonly="true"/>
                                                 <label for="iHoraRetorno" >Horário</label>
-                                                <input type="time" id="inputHoraRetorno" name="inputHoraRetorno" value="<%= horaRetorno%>" readonly="true"/>
+                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" value="<%= horaRetorno%>" readonly="true"/>
                                             </div>
                                         </li>
                                         <li>
