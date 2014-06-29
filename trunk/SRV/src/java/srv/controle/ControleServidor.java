@@ -248,11 +248,11 @@ public class ControleServidor extends HttpServlet {
                     String status = request.getParameter("status_serv");
                     InterfaceServidorDAO idao = new ServidorDAO();
 
-                    if (nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status == null) {
+                    if (nome.equals("") && matricula_siape== null && nomeMotorista== null && status == null) {
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
                         request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
 
-                    } else if (!nome.equals("") && matricula_siape.equals("") && nomeMotorista.equals("") && status.equals("")) {
+                    } else if (!nome.equals("") && matricula_siape == null && nomeMotorista == null && status == null) {
                         List<Servidor> lista = idao.buscarServidorPorNome(nome);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
