@@ -1,4 +1,5 @@
 jQuery(function(){
+    
     jQuery('#inputDataSaida').datetimepicker({
         format:'d/m/Y',
         minDate: "today",
@@ -12,6 +13,7 @@ jQuery(function(){
         ,*/
         timepicker:false
     });
+    
     jQuery('#inputDataRetorno').datetimepicker({
         format:'d/m/Y',
         minDate: "today",

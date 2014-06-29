@@ -172,11 +172,24 @@ public class ControleReserva extends HttpServlet {
                 }
 
                 String matricula_siape = user.getMatriculaSIAPE();
-                String data_saida = request.getParameter("inputDataSaida");
+                Date data_saida_br = null;
+                Date data_retorno_br = null;
+                String data_saida = null;
+                String data_retorno = null;
+                
+                try {
+                    data_saida_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataSaida"));
+                    data_saida = new SimpleDateFormat("yyyy-MM-dd").format(data_saida_br);
+                    
+                    data_retorno_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataRetorno"));
+                    data_retorno = new SimpleDateFormat("yyyy-MM-dd").format(data_retorno_br);
+                } catch (java.text.ParseException e) {
+                    e.getMessage();
+                }
+
                 String hora_saida = request.getParameter("inputHoraSaida");
                 String datetime_saida = data_saida + " " + hora_saida + ":00";
 
-                String data_retorno = request.getParameter("inputDataRetorno");
                 String hora_retorno = request.getParameter("inputHoraRetorno");
                 String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
 
