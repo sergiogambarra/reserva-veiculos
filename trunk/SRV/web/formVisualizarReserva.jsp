@@ -97,12 +97,12 @@
                                     String modelo;
 
                                     Reserva reserv = ((Reserva) request.getAttribute("reserva"));
-                                    Veiculo veiculo =  null;
-                                    if(request.getAttribute("veiculo") != null){
+                                    Veiculo veiculo = null;
+                                    if (request.getAttribute("veiculo") != null) {
                                         veiculo = (Veiculo) request.getAttribute("veiculo");
                                         placa = veiculo.getPlaca();
                                         modelo = veiculo.getModelo();
-                                    }else {
+                                    } else {
                                         placa = reserv.getVeiculo().getPlaca();
                                         modelo = reserv.getVeiculo().getModelo();
                                     }
@@ -263,9 +263,14 @@
                                             </li>
                                         </div>
                                         <li class="formBotoes">
-                                            <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onClick="history.go(-1)"/></div>
+                                            <div class="formCadastroInputCancelar"><input type="button" value="Voltar" onClick="history.go(-1)"/></div>
+                                                <%
+                                                    if (request.getSession().getAttribute("administrador") != null) {
+                                                %>  
                                             <div id="btnEditHidden" class="formCadastroInputSalvar"><input type="button" value="Editar" onclick="funcoesOnloadReserva()"/></div>
                                             <div id="btnSaveHidden" class="formCadastroInputSalvar"><input type="submit" value="Salvar"  onclick="return validarReserva()"/></div>
+                                                <%                            }
+                                                %>
                                         </li>
                                     </ul>
                                 </div>

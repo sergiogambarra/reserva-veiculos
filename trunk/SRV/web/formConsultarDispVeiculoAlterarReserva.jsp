@@ -9,7 +9,7 @@
 <%@page import="srv.modelo.Servidor"%>
 <%@page import="java.util.List"%>
 <%@page import="srv.modelo.Reserva"%>
-<%@include file="ValidarLoginAdministrador.jsp" %>
+<%@include file="ValidarLogin.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html lang="pt-br">

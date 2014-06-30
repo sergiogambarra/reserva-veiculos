@@ -362,6 +362,7 @@ public class ControleServidor extends HttpServlet {
                     String senhaAtual = request.getParameter("sSenhaAtual");
                     String novaSenha = request.getParameter("sNovaSenha");
                     String confirmaSenha = request.getParameter("sConfirmaSenha");
+                    //VALIDAÇÃO SENHA ATUAL == NOVA SENHA
                     if (senhaAtual.equals(user.getSenha())) {
                         if (novaSenha.equals(confirmaSenha)) {
                             InterfaceServidorDAO idao = new ServidorDAO();
@@ -378,8 +379,14 @@ public class ControleServidor extends HttpServlet {
                             request.setAttribute("mensagem", "Senha alterada com sucesso.");
                             request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
                         }
+                    //VALIDAÇÃO SENHA ATUAL != NOVA SENHA
+                    }else{
+                        request.setAttribute("mensagem", "Não foi possível efetuar a operação. Senha atual incorreta.");
+                        request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
                     }
                 } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
                 }
 
             }
