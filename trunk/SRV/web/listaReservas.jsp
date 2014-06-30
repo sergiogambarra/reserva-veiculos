@@ -76,17 +76,18 @@
                                 
                                 <input type="hidden" name="action" value="consultarReservas"/>    
  
-                                <div class="formCadastroLabel"><label for="DataSaida">Data de Saida</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/></div>
-   
-                                <div class="formCadastroLabel"><label for="DataRetorno">Data de Retorno</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="DataRetorno" name="DataRetorno" placeholder="dd/mm/aaaa" maxlength="10"/></div>
-                                    
-                                <div class="formCadastroLabel"><label for="destino">Destino</label> </div>
-                                    <div class="formCadastroInput">
-                                        <select id="destino" name="destino">
+                                <div class="formFiltro">
+                                    <label for="DataSaida">Data de Saida</label>
+                                    <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/>
+                                </div>
+                                
+                                <div class="formFiltro">
+                                    <label for="DataRetorno">Data de Retorno</label>
+                                    <input type="text" id="DataRetorno" name="DataRetorno" placeholder="dd/mm/aaaa" maxlength="10"/>
+                                </div>
+                                <div class="formFiltro">
+                                    <label for="destino">Destino</label>
+                                    <select id="destino" name="destino">
                                             <option value="">Selecione:</option>
                                             <%
                                             List<Destino> listad = (List<Destino>) request.getAttribute("listadest");
@@ -114,9 +115,8 @@
                                                 }
                                             %>
                                         </select>
-                                    </div>
-                                    
-                                <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
+                                </div>
+                                <div class="formFiltroConsultar"><input type="submit" value="Consultar"/></div>
                             </form>
 
                         </div>

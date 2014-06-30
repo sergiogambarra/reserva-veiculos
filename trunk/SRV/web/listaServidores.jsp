@@ -71,30 +71,30 @@
                             <!-- Parte especifica de parametros de pesquisa -->
                             <form name="consultaServidor" action="ControleServidor">
                                 <input type="hidden" name="action" value="consultarServidor"/>    
-                                
-                                <div class="formCadastroLabel"><label for="nome">Nome</label></div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="nome" name="nome" placeholder="nome" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
-                               
-                                <div class="formCadastroLabel"><label for="MatriculaSiape">Matricula</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="MatriculaSiape" name="MatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/></div>
-                                               
-                                <div class="formCadastroLabel"><label for="nomeMotorista">Nome do motorista</label></div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="nomeMotorista" name="nomeMotorista" placeholder="motorista" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
-                                
-                                <div class="formCadastroLabel">
-                                   <label for="status" id="status_serv">Status</label> </div>
-                                <div class="formCadastroInput">
+
+                                <div class="formFiltro">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" id="nome" name="nome" placeholder="nome" onKeyPress="return mascaraLetras(event);" maxlength="50"/>
+                                </div>
+                                <div class="formFiltro">
+                                    <label for="MatriculaSiape">Matricula</label>
+                                    <input type="text" id="MatriculaSiape" name="MatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/>
+                                </div>
+                                <div class="formFiltro">
+                                    <label for="nomeMotorista">Nome do motorista</label>
+                                    <input type="text" id="nomeMotorista" name="nomeMotorista" placeholder="motorista" onKeyPress="return mascaraLetras(event);" maxlength="50"/>
+                                </div>
+                                <div class="formFiltro">
+                                    <label for="status" id="status_serv">Status</label>
                                     <input type="radio" id="status_serv" name="status_serv" value="1"/>
                                     <label class="radioStatus" for="Status_serv" >Ativo</label>
                                     <input type="radio" id="status_serv" name="status_serv" value="0"/>
                                     <label class="radioStatus" for="Status_serv">Inativo</label>
                                 </div>
-                             
-                            <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
-                          </form>
+                                <div class="formFiltroConsultar">
+                                    <input type="submit" value="Consultar"/>
+                                </div>
+                            </form>
                         </div>
 
                         <table class="tabelaListaVeiculos">

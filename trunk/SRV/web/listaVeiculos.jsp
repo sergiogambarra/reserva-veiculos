@@ -77,20 +77,21 @@
                             <form name="consultaVeiculo" action="ControleVeiculo"> 
                                 <input type="hidden" name="action" value="consultarVeiculo"/>    
                                 
-                                <div class="formCadastroLabel"><label for="ano">Ano</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
- 
-                                <div class="formCadastroLabel"><label for="placa">Placa</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="placa" name="placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/></div>
-   
-                                <div class="formCadastroLabel"><label for="renavam">Renavam</label> </div>
-                                <div class="formCadastroInput">
-                                    <input type="text" id="renavam" name="renavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
-
-                                
-                                <div class="formCadastroInputSalvar"><input type="submit" value="Consultar"/></div>
+                                <div class="formFiltro">
+                                    <label for="ano">Ano</label>
+                                    <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/>
+                                </div>
+                                <div class="formFiltro">
+                                    <label for="placa">Placa</label>
+                                    <input type="text" id="placa" name="placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/>
+                                </div>
+                                <div class="formFiltro">
+                                    <label for="renavam">Renavam</label>
+                                    <input type="text" id="renavam" name="renavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/>
+                                </div>
+                                <div class="formFiltroConsultar">
+                                    <input type="submit" value="Consultar"/>
+                                </div>
                             </form>
 
                         </div>
