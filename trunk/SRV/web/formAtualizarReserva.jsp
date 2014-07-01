@@ -120,14 +120,30 @@
                                         dataRetorno = request.getAttribute("s_data_retorno").toString();
                                         horarioRetorno = request.getAttribute("s_hora_retorno").toString();
                                     } else {
-                                        dataSaida = reserv.getData_saida().toString().substring(0, 4) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(8, 10);
-                                        dataRetorno = reserv.getData_retorno().toString().substring(0, 4) + "-" + reserv.getData_retorno().toString().substring(5, 7) + "-" + reserv.getData_retorno().toString().substring(8, 10);
+                                        dataSaida = reserv.getData_saida().toString().substring(8, 10) 
+                                                    + "/" + reserv.getData_saida().toString().substring(5, 7) 
+                                                    + "/" + reserv.getData_saida().toString().substring(0, 4);
+                                        dataRetorno = reserv.getData_retorno().toString().substring(8, 10)
+                                                    + "/" + reserv.getData_retorno().toString().substring(5, 7) 
+                                                    + "/" + reserv.getData_retorno().toString().substring(0, 4) ;
                                         horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
                                         horarioRetorno = reserv.getData_retorno().toString().substring(11, 13) + ":" + reserv.getData_retorno().toString().substring(14, 16);
                                     }
 
+                                    Date data_saida_br = null;
+                                    Date data_retorno_br = null;
+                                    String data_saida = null;
+                                    String data_retorno = null;
 
+                                    try {
+                                        data_saida_br = new SimpleDateFormat("dd/MM/yyyy").parse(dataSaida);
+                                        data_saida = new SimpleDateFormat("yyyy-MM-dd").format(data_saida_br);
 
+                                        data_retorno_br = new SimpleDateFormat("dd/MM/yyyy").parse(dataRetorno);
+                                        data_retorno = new SimpleDateFormat("yyyy-MM-dd").format(data_retorno_br);
+                                    } catch (java.text.ParseException e) {
+                                        e.getMessage();
+                                    }
 
                                 %>
 
@@ -190,6 +206,9 @@
                                                 <div class="formCadastroLabel"><label for="inputOutroMotorista">*Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
+                                                        <option value="">
+                                                            Selecione
+                                                        </option>
                                                         <%
                                                             for (int i = 0; i < lista.size(); i++) {
                                                                 if (matriculaMotorista.equals(lista.get(i).getMatriculaSIAPE())) {
@@ -217,14 +236,12 @@
                                             <div class="formCadastroInput">
                                                 <%
                                                     if (servidor.isMotorista()) {
-                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="1" min="1" max="${reserva.veiculo.capacidade}"><%
-                                                } else {
-                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="2" min="2" max="${reserva.veiculo.capacidade}"><%
-                                                    }
+                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="1" min="1" max="${reserva.veiculo.capacidade}"><%                                                } else {
+                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="2" min="2" max="${reserva.veiculo.capacidade}"><%                                                    }
                                                 %>
                                             </div>
                                         </li>
-                                        
+
                                         <li>
                                             <div class="formCadastroLabel"><label for="iDestino">*Destino</label> </div>
                                             <div class="formCadastroInput">

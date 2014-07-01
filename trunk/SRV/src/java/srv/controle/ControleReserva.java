@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -176,14 +177,15 @@ public class ControleReserva extends HttpServlet {
                 Date data_retorno_br = null;
                 String data_saida = null;
                 String data_retorno = null;
-                
+                String data = request.getParameter("inputDataSaida");
+                System.out.println("Teste data: "+data);
                 try {
                     data_saida_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataSaida"));
                     data_saida = new SimpleDateFormat("yyyy-MM-dd").format(data_saida_br);
                     
                     data_retorno_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataRetorno"));
                     data_retorno = new SimpleDateFormat("yyyy-MM-dd").format(data_retorno_br);
-                } catch (java.text.ParseException e) {
+                } catch (Exception e) {
                     e.getMessage();
                 }
 
@@ -257,7 +259,7 @@ public class ControleReserva extends HttpServlet {
             if (acao.equals("editarReserva") || acao.equals("visualizarReserva")) {
                 InterfaceReservaDAO idao = new ReservaDAO();
                 Reserva r = idao.consultarIdReserva(Integer.parseInt(request.getParameter("id_reserva")));
-                request.setAttribute("reserva", r);
+                request.setAttribute("reserva", r);                
 
                 InterfaceServidorDAO sdao = new ServidorDAO();
                 List<Servidor> lista = sdao.todosServidoresMotoristas();
