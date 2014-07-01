@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import srv.dao.InterfaceServidorDAO;
 import srv.dao.ServidorDAO;
 import srv.modelo.Servidor;
 import srv.util.Validacoes;
@@ -49,7 +50,7 @@ public class ControleLogin extends HttpServlet {
                     String senha = request.getParameter("inputSenha");
                     
                     if (!Validacoes.ValidarLogin(matriculaSIAPE, senha)) throw new Exception(Validacoes.getMensagemErro());
-                    ServidorDAO sdao = new ServidorDAO();
+                    InterfaceServidorDAO sdao = new ServidorDAO();
                     
                     Servidor f = (Servidor)sdao.buscarServidor(matriculaSIAPE);
 
