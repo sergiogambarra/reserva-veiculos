@@ -23,21 +23,21 @@ public interface InterfaceServidorDAO {
     public abstract Servidor consultarMatricula(String parameter);
     public abstract List<String> editarServidorSelecionarEstado(String ufAtual);
     public abstract List<String> editarEstadoCivil(String ecAtual);
-    public void alterarSenha(String matriculaSIAPE, String novaSenha);
+    public abstract void alterarSenha(String matriculaSIAPE, String novaSenha);
     public abstract List buscarServidorPorNome(String nome);
-    public abstract List buscarServidorPorNomeconsultarMatricula(String nome,String MatriculaSiape );
-    public abstract List buscarServidorPorNomeStatus(String nome, String atatus);
-    public abstract List buscarServidorPorNomeNomeMotorista(String nome, String nomeMotorista);
-    public abstract List buscarServidorPorNomeconsultarMatriculaStatus(String nome, String MatriculaSiape, String status );
-    public abstract List buscarServidorPorNomeNomeMotoristaStatus(String nome, String nomeMotorista, String status);
-    public abstract List buscarServidorPorNomeNomeMotoristaconsultarMatricula(String nome, String nomeMotorista, String MatriculaSiape);
-    public abstract List buscarServidorPorNomeNomeMotoristaconsultarMatriculaStatus(String nome, String nomeMotorista, String MatriculaSiape, String status);
-    public abstract List buscarServidorPorNomeMotorista(String nomeMotorista);
-    public abstract List buscarServidorPorNomeMotoristaStatus(String nomeMotorista, String status);
-    public abstract List buscarServidorPorNomeMotoristaconsultarMatricula(String nomeMotorista, String MatriculaSiape);
-    public abstract List buscarServidorPorNomeMotoristaconsultarMatriculaStatus(String nomeMotorista, String MatriculaSiape, String status);
+    public abstract List buscarServidorPorMatricula(String matricula_siape);
+    public abstract List buscarServidorPorMotorista(String motorista);
     public abstract List buscarServidorPorStatus(String status);
-    public abstract List buscarServidorPorStatusconsultarMatricula(String MatriculaSiape, String status);
-    
+    public abstract List buscarServidorPorNomeMatricula(String nome, String matricula_siape);
+    public abstract List buscarServidorPorNomeMotorista(String nome, String motorista);
+    public abstract List buscarServidorPorNomeStatus(String nome, String status);
+    public abstract List buscarServidorPorMatriculaMotorista(String matricula_siape, String motorista);
+    public abstract List buscarServidorPorMatriculaStatus(String matricula_siape, String status);
+    public abstract List buscarServidorPorMotoristaStatus(String motorista, String status);
+    public abstract List buscarServidorPorNomeMatriculaMotorista(String nome, String matricula_siape, String motorista);
+    public abstract List buscarServidorPorNomeMatriculaStatus(String nome, String matricula_siape, String status);
+    public abstract List buscarServidorPorNomeMotoristaStatus(String nome, String motorista, String status);
+    public abstract List buscarServidorPorMatriculaMotoristaStatus(String matricula_siape, String motorista, String status);
+    public List buscarServidorPorNomeMatriculaMotoristaStatus(String nome, String matricula_siape, String motorista, String status);
     
 }

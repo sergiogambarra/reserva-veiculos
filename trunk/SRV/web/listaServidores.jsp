@@ -81,8 +81,11 @@
                                     <input type="text" id="MatriculaSiape" name="MatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/>
                                 </div>
                                 <div class="formFiltro">
-                                    <label for="nomeMotorista">Nome do motorista</label>
-                                    <input type="text" id="nomeMotorista" name="nomeMotorista" placeholder="motorista" onKeyPress="return mascaraLetras(event);" maxlength="50"/>
+                                    <label for="status" id="motorista">Motorista</label>
+                                    <input type="radio" id="motorista" name="motorista" value="1"/>
+                                    <label class="radioStatus" for="motorista" >Sim</label>
+                                    <input type="radio" id="motorista" name="motorista" value="0"/>
+                                    <label class="motorista" for="motorista">Não</label>
                                 </div>
                                 <div class="formFiltro">
                                     <label for="status" id="status_serv">Status</label>

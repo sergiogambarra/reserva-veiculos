@@ -27,7 +27,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
     @Override
     public Servidor buscarServidor(String matriculaSIAPE) {
         session = Conexao.getInstance();
-        Query query = session.createQuery("from Servidor l where l.matriculaSIAPE = :matricula_siape");
+        Query query = session.createQuery("from Servidor s where s.matriculaSIAPE = :matricula_siape");
         Servidor s = (Servidor) query.setString("matricula_siape", matriculaSIAPE).uniqueResult();
 
         return s;
@@ -150,119 +150,139 @@ public class ServidorDAO implements InterfaceServidorDAO {
      @Override
     public List buscarServidorPorNome(String nome) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where l.nome like :nome");
+       Query query = session.createQuery("from Servidor s where s.nome like :nome");
        List s = query.setString("nome", "%"+nome+"%").list();
 
         return s;
     }
      
-     
-      public List buscarServidorPorNomeconsultarMatricula(String nome,String MatriculaSiape ) {
+     @Override
+    public List buscarServidorPorMatricula(String matricula_siape) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.MatriculaSiape = :matricula_siape)");
-       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", MatriculaSiape).list();
-
-        return s;
-    }
-      
-      public List buscarServidorPorNomeStatus(String nome, String status) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.status = :status_serv)");
-       List s = query.setString("nome", "%"+nome+"%").setString("status_serv", status).list();
-
-        return s;
-    }
-       public List buscarServidorPorNomeNomeMotorista(String nome,String nomeMotorista) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where l.nomeMotorista = :motorista");
-       List s = query.setString("motorista", nomeMotorista).list();
-
-        return s;
-    }
-      
-     
-      public List buscarServidorPorNomeconsultarMatriculaStatus(String nome, String MatriculaSiape, String status ) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.MatriculaSiape = :matricula_siape) and (l.status = :status_serv)");
-       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", MatriculaSiape).setString("status_serv", status).list();
+    Query query = session.createQuery("from Servidor s where s.matriculaSIAPE = :matricula_siape");
+       List s = query.setString("matricula_siape", matricula_siape).list();
 
         return s;
     }
      
-      public List buscarServidorPorNomeNomeMotoristaStatus(String nome, String nomeMotorista, String status) {
+    @Override
+     public List buscarServidorPorMotorista(String motorista) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.nomeMotorista like :motorista) and (l.status like :status_serv)");
-       List s = query.setString("nome", "%"+nome+"%").setString("motorista", nomeMotorista).setString("status_serv", status).list();
-
-
-        return s;
-    }
-      
-      public List buscarServidorPorNomeNomeMotoristaconsultarMatricula(String nome, String nomeMotorista, String MatriculaSiape) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.nomeMotorista = :motorista) and (l.MatriculaSiape = :matricula_siape)");
-       List s = query.setString("nome", "%"+nome+"%").setString("motorista", nomeMotorista).setString("matricula_siape", MatriculaSiape).list();
-        return s;
-    }
-     
-      public List buscarServidorPorNomeNomeMotoristaconsultarMatriculaStatus(String nome, String nomeMotorista, String MatriculaSiape, String status) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nome like :nome) and (l.nomeMotorista = :motorista) and (l.MatriculaSiape = :matricula_siape) and (l.status = :status_serv)");
-       List s = query.setString("nome", "%"+nome+"%").setString("motorista", nomeMotorista).setString("matricula_siape", MatriculaSiape).setString("status_serv", status).list();
+       Query query = session.createQuery("from Servidor s where s.motorista = :motorista");
+       List s = query.setString("motorista", motorista).list();
 
         return s;
     }
-    
-     public List buscarServidorPorNomeMotoristaStatus(String nomeMotorista, String status) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nomeMotorista = :motorista) and (l.status = :status_serv)");
-       List s = query.setString("motorista", nomeMotorista).setString("status_serv", status).list();
 
-        return s;
-    }
-     
-     public List buscarServidorPorNomeMotorista(String nomeMotorista) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where l.nomeMotorista = :motorista");
-       List s = query.setString("motorista", nomeMotorista).list();
-
-        return s;
-    }
-     
-     public List buscarServidorPorNomeMotoristaconsultarMatricula(String nomeMotorista, String MatriculaSiape) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nomeMotorista = :motorista) and (l.MatriculaSiape = :matricula_siape)");
-       List s = query.setString("motorista", nomeMotorista).setString("matricula_siape", MatriculaSiape).list();
-
-        return s;
-    }
-     
-     public List buscarServidorPorNomeMotoristaconsultarMatriculaStatus(String nomeMotorista, String MatriculaSiape, String status) {
-       session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.nomeMotorista = :motorista) and (l.MatriculaSiape = :matricula_siape) and (l.status = :status_serv)");
-       List s = query.setString("motorista", nomeMotorista).setString("matricula_siape", MatriculaSiape).setString("status_serv", status).list();
-
-        return s;
-    }
-     
+    @Override
      public List buscarServidorPorStatus(String status) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where l.status_serv = :status_serv");
+       Query query = session.createQuery("from Servidor s where s.status_serv = :status_serv");
        List s = query.setString("status_serv", status).list();
 
         return s;
     }
-     
-     public List buscarServidorPorStatusconsultarMatricula(String MatriculaSiape, String status) {
+    
+    @Override
+    public List buscarServidorPorNomeMatricula(String nome, String matricula_siape) {
        session = Conexao.getInstance();
-       Query query = session.createQuery("from Servidor l where (l.MatriculaSiape = :matricula_siape) and (l.status = :status_serv)");
-       List s = query.setString("matricula_siape", MatriculaSiape).setString("status_serv", status).list();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.matriculaSIAPE = :matricula_siape)");
+       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", matricula_siape).list();
 
         return s;
     }
     
+    @Override
+    public List buscarServidorPorNomeMotorista(String nome, String motorista) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.motorista = :motorista)");
+       List s = query.setString("nome", "%"+nome+"%").setString("motorista", motorista).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorNomeStatus(String nome, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.status_serv = :status_serv)");
+       List s = query.setString("nome", "%"+nome+"%").setString("status_serv", status).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorMatriculaMotorista(String matricula_siape, String motorista) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.matriculaSIAPE = :matricula_siape) and (s.motorista = :motorista)");
+       List s = query.setString("matricula_siape", matricula_siape).setString("motorista", motorista).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorMatriculaStatus(String matricula_siape, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.matriculaSIAPE = :matricula_siape) and (s.status_serv = :status_serv)");
+       List s = query.setString("matricula_siape", matricula_siape).setString("status_serv", status).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorMotoristaStatus(String motorista, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.motorista = :motorista) and (s.status_serv = :status_serv)");
+       List s = query.setString("motorista", motorista).setString("status_serv", status).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorNomeMatriculaMotorista(String nome, String matricula_siape, String motorista) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.matriculaSIAPE = :matricula_siape) and (s.motorista = :motorista)");
+       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", matricula_siape).setString("motorista", motorista).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorNomeMatriculaStatus(String nome, String matricula_siape, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.matriculaSIAPE = :matricula_siape) and (s.status_serv = :status_serv)");
+       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", matricula_siape).setString("status_serv", status).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorNomeMotoristaStatus(String nome, String motorista, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.motorista = :motorista) and (s.status_serv = :status_serv)");
+       List s = query.setString("nome", "%"+nome+"%").setString("motorista", motorista).setString("status_serv", status).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorMatriculaMotoristaStatus(String matricula_siape, String motorista, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.matriculaSIAPE = :matricula_siape) and (s.motorista = :motorista) and (s.status_serv = :status_serv)");
+       List s = query.setString("matricula_siape", matricula_siape).setString("motorista", motorista).setString("status_serv", status).list();
+
+        return s;
+    }
+    
+    @Override
+    public List buscarServidorPorNomeMatriculaMotoristaStatus(String nome, String matricula_siape, String motorista, String status) {
+       session = Conexao.getInstance();
+       Query query = session.createQuery("from Servidor s where (s.nome like :nome) and (s.matriculaSIAPE = :matricula_siape) and (s.motorista = :motorista) and (s.status_serv = :status_serv)");
+       List s = query.setString("nome", "%"+nome+"%").setString("matricula_siape", matricula_siape).setString("motorista", motorista).setString("status_serv", status).list();
+
+        return s;
+    }
      
-    //tem 14 if só que no total são 15, mas tem um que foi aproveitado e está a baixo. 
+    //tem 15 if no total, mas tem um que foi aproveitado e está a baixo. 
 
 
     @Override
@@ -280,7 +300,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
         return null;
     }
     
-         /////////////////////////////////////Fim da consulta por parametro//////////////////////////
+
 
     @Override
     public List<String> editarServidorSelecionarEstado(String ufAtual) {
