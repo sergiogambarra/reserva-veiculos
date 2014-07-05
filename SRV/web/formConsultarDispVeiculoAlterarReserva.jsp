@@ -73,7 +73,7 @@
                                             <div class="formCadastroInput"> 
                                                 <input type="text" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraSaida" >*Horário de Saída: </label>
-                                                <input type="text" id="inputHoraSaida" name="inputHoraSaida" step="1800"/>
+                                                <input type="text" id="inputHoraSaida" name="inputHoraSaida" />
                                             </div>
                                         </li>
                                         <li>
@@ -83,7 +83,7 @@
                                             <div class="formCadastroInput"> 
                                                 <input type="text" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraRetorno" >*Horário de Retorno </label>
-                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" step="1800"/>
+                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" />
                                             </div>
                                         </li>
                                         <li class="formBotoes"> 
