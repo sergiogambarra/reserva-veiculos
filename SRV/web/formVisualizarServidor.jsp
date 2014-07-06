@@ -60,28 +60,28 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Visualizar Servidor</h2>
-                            <div class="camposObrigatorios">
+<!--                            <div class="camposObrigatorios">
                                 *Campos obrigatórios
-                            </div>
+                            </div>-->
                             <form action="ControleServidor" name="formCadastroServidor">
                                 <input type="hidden" name="action" value="atualizarServidor"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMatriculaSiape">*Matricula SIAPE</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMatriculaSiape">Matricula SIAPE</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="id" name="iMatriculaSiape" placeholder="SIAPE" value="${matricula.matriculaSIAPE}" maxlength="7" readonly="readonly" onclick="naoAlterarId()" /></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sNomeCompleto">*Nome</label> </div>
+                                            <div class="formCadastroLabel"><label for="sNomeCompleto">Nome</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sNomeCompleto" value="${matricula.nome}" name="sNomeCompleto" placeholder="Nome completo" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sEmail">*Email</label> </div>
+                                            <div class="formCadastroLabel"><label for="sEmail">Email</label> </div>
                                             <div class="formCadastroInput"><input type="text" value="${matricula.email}" id="sEmail" name="sEmail" placeholder="Email institucional" maxlength="50"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="sexo">*Sexo</label>
+                                                <label for="sexo">Sexo</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="sexom" name="sexo" value="m" 
@@ -99,19 +99,19 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sDataNascimento">*Data Nascimento</label> </div>
+                                            <div class="formCadastroLabel"><label for="sDataNascimento">Data Nascimento</label> </div>
                                             <div class="formCadastroInput"><input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" placeholder="aaaa-mm-dd" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sCpf">*CPF</label> </div>
+                                            <div class="formCadastroLabel"><label for="sCpf">CPF</label> </div>
                                             <div class="formCadastroInput"><input type="text" value="${matricula.cpf}" id="sCpf" name="sCpf" placeholder="CPF" onKeyPress="return mascaraCpf(event)" onKeyPress="return mascaraMatSiap(event);" maxlength="14"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sRg">*RG</label> </div>
+                                            <div class="formCadastroLabel"><label for="sRg">RG</label> </div>
                                             <div class="formCadastroInput"><input type="text" value="${matricula.rg}" id="sRg" name="sRg" placeholder="Identidade" maxlength="15" /></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sOrgaoExpedidor">*Orgão Expedidor</label> </div>
+                                            <div class="formCadastroLabel"><label for="sOrgaoExpedidor">Orgão Expedidor</label> </div>
                                             <div class="formCadastroInput"><input type="text" value="${matricula.orgao_expedidor}" id="sOrgaoExpedidor" name="sOrgaoExpedidor" placeholder="Orgão expedidor" maxlength="10" /></div>
                                         </li>
                                         <li>
@@ -152,7 +152,7 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sTelefone1">*Telefone 1</label> </div>
+                                            <div class="formCadastroLabel"><label for="sTelefone1">Telefone 1</label> </div>
                                             <div class="formCadastroInput"><input type="text" value="${matricula.telefone1}" id="sTelefone1" name="sTelefone1" placeholder="(xx)xxxx-xxxx" onKeyPress="return mascaraTelefone(event);" maxlength="14"/> </div>
                                         </li>
                                         <li>
@@ -161,7 +161,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="bMotorista">*Motorista</label>
+                                                <label for="bMotorista">Motorista</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="bMotorista" name="bMotorista" value="1"
@@ -180,7 +180,7 @@
                                             </li>
                                             <li>
                                                 <div class="formCadastroLabel">
-                                                    <label for="status" id="status_serv" value="${matricula.status_serv}">*Status</label>
+                                                    <label for="status" id="status_serv" value="${matricula.status_serv}">Status</label>
                                                 </div>
                                                 <div class="formCadastroInput">
                                                     <input type="radio" id="status_serv" value="1" name="status_serv"

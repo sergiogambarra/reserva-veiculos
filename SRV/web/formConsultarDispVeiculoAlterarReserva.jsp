@@ -59,30 +59,30 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Consultar Disponibilidade de Veículos</h2>
-                            <div class="camposObrigatorios">
+<!--                            <div class="camposObrigatorios">
                                 *Campos obrigatórios
-                            </div>
+                            </div>-->
                             <form action="veiculosdisponiveis" method="POST" id="formConsDispVeiculo" name="formConsDispVeiculo" onsubmit="return filtrarVeiculos(this);">
                                 <input type="hidden" id="id_reserva" name="id_reserva" value="<%= id_reserva%>"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"> 
-                                                <label for="iDataSaida">*Data de Saída</label>
+                                                <label for="iDataSaida">Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput"> 
                                                 <input type="text" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                <label for="iHoraSaida" >*Horário de Saída: </label>
+                                                <label for="iHoraSaida" >Horário de Saída: </label>
                                                 <input type="text" id="inputHoraSaida" name="inputHoraSaida" />
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"> 
-                                                <label for="iDataRetorno">*Data de Retorno</label>
+                                                <label for="iDataRetorno">Data de Retorno</label>
                                             </div> 
                                             <div class="formCadastroInput"> 
                                                 <input type="text" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                <label for="iHoraRetorno" >*Horário de Retorno </label>
+                                                <label for="iHoraRetorno" >Horário de Retorno </label>
                                                 <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" />
                                             </div>
                                         </li>

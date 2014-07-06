@@ -66,21 +66,21 @@
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="iDataSaida">*Data de Saída</label>
+                                                <label for="iDataSaida"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                <label for="iHoraSaida" >*Horário de Saída: </label>
+                                                <label for="iHoraSaida" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Horário de Saída: </label>
                                                 <input type="text" id="inputHoraSaida" name="inputHoraSaida" />
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="iDataRetorno">*Data de Retorno</label>
+                                                <label for="iDataRetorno"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data de Retorno</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                <label for="iHoraRetorno" >*Horário de Retorno </label>
+                                                <label for="iHoraRetorno" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Horário de Retorno </label>
                                                 <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" />
                                             </div>
                                         </li>                                        
