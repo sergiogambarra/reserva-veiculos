@@ -71,9 +71,9 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Alterar Reserva</h2>
-                            <div class="camposObrigatorios">
+<!--                            <div class="camposObrigatorios">
                                 *Campos obrigatórios
-                            </div>
+                            </div>-->
                             <%
                                 int id_reserva = (((Reserva) request.getAttribute("reserva")).getId_reserva());
                                 String placa_veiculo = (((Reserva) request.getAttribute("reserva")).getPlaca());
@@ -188,7 +188,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="inputMotorista">*Sou o Motorista</label> 
+                                                <label for="inputMotorista">Sou o Motorista</label> 
                                             </div>
                                             <div class="formCadastroInput">
                                                 <label class="radioMotorista" for="inputMotorista" >Sim</label>
@@ -232,7 +232,7 @@
                                         </div>
 
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">*Número de Ocupantes</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">Número de Ocupantes</label> </div>
                                             <div class="formCadastroInput">
                                                 <%
                                                     if (servidor.isMotorista()) {
@@ -243,7 +243,7 @@
                                         </li>
 
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iDestino">*Destino</label> </div>
+                                            <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
@@ -281,7 +281,7 @@
                                         </li>
                                         <div id="complementoDestino" class="invisivel">
                                             <li class="liTextArea">
-                                                <div class="formCadastroLabel"><label for="sInfoComplementar">*Informe o Destino</label> </div>
+                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Informe o Destino</label> </div>
                                                 <div class="formCadastroInput">
                                                     <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="se não constar na lista de destino"
                                                            <%                                                            if (descricao_reserva

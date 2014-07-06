@@ -71,9 +71,9 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Visualizar Reserva</h2>
-                            <div class="camposObrigatorios">
+<!--                            <div class="camposObrigatorios">
                                 *Campos obrigatórios
-                            </div>
+                            </div>-->
                             <%
                                 int id_reserva = (((Reserva) request.getAttribute("reserva")).getId_reserva());
                                 String placa_veiculo = (((Reserva) request.getAttribute("reserva")).getPlaca());
@@ -180,7 +180,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="inputMotorista">*Sou o Motorista</label> 
+                                                <label for="inputMotorista">Sou o Motorista</label> 
                                             </div>
                                             <div class="formCadastroInput">
                                                 <label class="radioMotorista" for="inputMotorista" >Sim</label>
@@ -195,7 +195,7 @@
                                         </li>
                                         <div id="selecaoOutroMotorista" class="invisivel">
                                             <li >
-                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">*Motorista</label> </div>
+                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
                                                         <%
@@ -220,13 +220,13 @@
                                             </li>
                                         </div>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="number" id="iCapacidade" name="iCapacidade" value="${reserva.veiculo.capacidade}" min="1" max="50">
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iDestino">*Destino</label> </div>
+                                            <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
@@ -264,7 +264,7 @@
                                         </li>
                                         <div id="complementoDestino" class="invisivel">
                                             <li class="liTextArea">
-                                                <div class="formCadastroLabel"><label for="sInfoComplementar">*Informe o Destino</label> </div>
+                                                <div class="formCadastroLabel"><label for="sInfoComplementar">Informe o Destino</label> </div>
                                                 <div class="formCadastroInput">
                                                     <input type="text" name="inputDestinoComplementar" id="inputDestinoComplementar" maxlength="45" size="55" placeholder="se não constar na lista de destino"
                                                            <%                                                            if (descricao_reserva

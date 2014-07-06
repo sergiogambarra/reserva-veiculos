@@ -70,28 +70,28 @@
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iPlaca">*Placa</label> </div>
+                                            <div class="formCadastroLabel"><label for="iPlaca"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Placa</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iPlaca" name="iPlaca" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iAno">*Ano</label> </div>
+                                            <div class="formCadastroLabel"><label for="iAno"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Ano</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iAno" name="iAno" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMarca">*Marca</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMarca"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Marca</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" onKeyPress="return mascaraLetras(event);" maxlength="15"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iModelo">*Modelo</label> </div>
+                                            <div class="formCadastroLabel"><label for="iModelo"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Modelo</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="sCombustivel">*Combustível</label> </div>
+                                                <label for="sCombustivel"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Combustível</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="gasolina" name="combustivel" value="g"/>
                                                 <label class="radioManutencao" for="sCombustivel">Gasolina</label>
@@ -106,19 +106,19 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iRenavam">*Renavam</label> </div>
+                                            <div class="formCadastroLabel"><label for="iRenavam"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Renavam</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">*Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Capacidade</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" value="5" maxlength="2">
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="Manutencao" >*Manutenção</label>
+                                                <label for="Manutencao" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Manutenção</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t" onClick="validarManutencao(this.value);"/>
