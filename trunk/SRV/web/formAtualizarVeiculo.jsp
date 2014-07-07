@@ -54,36 +54,36 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Editar Veículo</h2>
-<!--                            <div class="camposObrigatorios">
+                            <div class="camposObrigatorios">
                                 *Campos obrigatórios
-                            </div>-->
+                            </div>
                             <form action="ControleVeiculo" name="formCadastroVeiculo">
                                 <input type="hidden" name="action" value="atualizarVeiculo"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iPlaca">Placa</label> </div>
+                                            <div class="formCadastroLabel"><label for="iPlaca"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Placa</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="id" name="iPlaca" value="${placa.placa}" readonly="readonly" onclick="naoAlterarId()"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iAno">Ano</label> </div>
+                                            <div class="formCadastroLabel"><label for="iAno"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Ano</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iAno" name="iAno" placeholder="ANO" value="${placa.ano}" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMarca">Marca</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMarca"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Marca</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iMarca" name="iMarca" placeholder="MARCA" onKeyPress="return mascaraLetras(event);" maxlength="15" value="${placa.marca}"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iModelo">Modelo</label> </div>
+                                            <div class="formCadastroLabel"><label for="iModelo"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Modelo</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iModelo" name="iModelo" placeholder="MODELO" maxlength="25" value="${placa.modelo}"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="sCombustivel">Combustível</label> </div>
+                                                <label for="sCombustivel"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Combustível</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="gasolina" name="combustivel" value="g"
                                                        <% if (((Veiculo) request.getAttribute("placa")).getCombustivel().equals("g")) {%>checked<% }%>
@@ -108,18 +108,18 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iRenavam">Renavam</label> </div>
+                                            <div class="formCadastroLabel"><label for="iRenavam"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Renavam</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iRenavam" name="iRenavam" placeholder="RENAVAM" maxlength="11" value="${placa.renavam}" onKeyPress="return mascaraMatSiap(event);"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Capacidade</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Capacidade</label> </div>
                                             <div class="formCadastroInput">
                                                 <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" maxlength="2"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="Manutencao">Manutenção</label>
+                                                <label for="Manutencao"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Manutenção</label>
                                             </div>
                                             <div class="formCadastroInput">
                                                 <input type="radio" id="manutencaoS" name="manutencao" value="t"

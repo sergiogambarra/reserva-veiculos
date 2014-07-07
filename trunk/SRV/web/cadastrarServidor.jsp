@@ -58,7 +58,7 @@
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iMatriculaSiape"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Matricula</label> </div>
+                                            <div class="formCadastroLabel"><label for="iMatriculaSiape"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Matrícula SIAPE</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="iMatriculaSiape" name="iMatriculaSiape" placeholder="SIAPE" onKeyPress="return mascaraMatSiap(event);" maxlength="7"/></div>
                                         </li>
                                         <li>
