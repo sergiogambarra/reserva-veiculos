@@ -12,7 +12,7 @@
 }
 .cabecalhoCentral{
     height: 40px;
-    width: 600px;
+    width: 650px;
     margin-left: 100px;
 
 
@@ -49,10 +49,8 @@
 
 .filtroData{
     padding-top: 10px;
-}
-
-.filtroData input[type=date]{
-    background-color: rgba(100, 167, 100, .1);
+    width: 1200px;
+    position: relative;
 }
 
 .containerLogadoMenu{
@@ -447,7 +445,7 @@ iconeSelecionar{
 
 .formFiltroConsultar input[type=submit]{
     display: inline;
-    padding: 0 18px;
+    margin-left: 50px;
     margin-top: -3px;
     margin-right: 35px;
     height: 29px;
@@ -464,4 +462,8 @@ iconeSelecionar{
     @include box-sizing(content-box); // Firefox sets this to border-box by default
     @include linear-gradient(top, #edf5f8, #cde5ef);
     @include box-shadow(inset 0 1px white, 0 1px 2px rgba(black, .15));
+}
+
+.formFiltro input[type=text]{
+  width:  100px;
 }
