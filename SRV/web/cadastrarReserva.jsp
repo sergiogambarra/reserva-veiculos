@@ -17,8 +17,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Novo Veículo</title>
-        <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
-        <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
+        <link rel="stylesheet" type="text/css" href="css/styleLogin.css" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleLogin.css" title="default" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleLoginContraste.css" title="contraste" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
+        <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
     </head>
@@ -33,6 +38,7 @@
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>
+                    <%@include file="menuAtalhos.jsp" %>
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>
