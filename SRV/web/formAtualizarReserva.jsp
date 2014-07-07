@@ -182,7 +182,7 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel">
-                                                <label for="inputMotorista">Sou o Motorista</label> 
+                                                <label for="inputMotorista"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Sou o Motorista</label> 
                                             </div>
                                             <div class="formCadastroInput">
                                                 <label class="radioMotorista" for="inputMotorista" >Sim</label>
@@ -197,7 +197,7 @@
                                         </li>
                                         <div id="selecaoOutroMotorista" class="invisivel">
                                             <li >
-                                                <div class="formCadastroLabel"><label for="inputOutroMotorista">*Motorista</label> </div>
+                                                <div class="formCadastroLabel"><label for="inputOutroMotorista"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
                                                         <option value="">
@@ -226,7 +226,7 @@
                                         </div>
 
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Número de Ocupantes</label> </div>
+                                            <div class="formCadastroLabel"><label for="iCapacidade"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Número de Ocupantes</label> </div>
                                             <div class="formCadastroInput">
                                                 <%
                                                     if (servidor.isMotorista()) {
@@ -237,7 +237,7 @@
                                         </li>
 
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iDestino">Destino</label> </div>
+                                            <div class="formCadastroLabel"><label for="iDestino"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
