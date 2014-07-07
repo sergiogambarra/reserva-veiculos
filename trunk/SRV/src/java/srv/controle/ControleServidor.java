@@ -174,6 +174,7 @@ public class ControleServidor extends HttpServlet {
                         InterfaceServidorDAO idao = new ServidorDAO();
                         List<Servidor> lista = idao.todosServidores();
 
+                        BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores", null, null);
                         request.setAttribute("mensagem", "Cadastro efetuado com Sucesso.");
                         request.setAttribute("listaserv", lista);
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
@@ -183,6 +184,7 @@ public class ControleServidor extends HttpServlet {
                         InterfaceServidorDAO idao = new ServidorDAO();
                         List<Servidor> lista = idao.todosServidores();
 
+                        BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores", null, null);
                         request.setAttribute("mensagem", "Cadastro alterado com sucesso.");
                         request.setAttribute("listaserv", lista);
                         request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
@@ -193,13 +195,16 @@ public class ControleServidor extends HttpServlet {
                 }
             } else if (acao.equalsIgnoreCase("editarServidor") || acao.equalsIgnoreCase("visualizarServidor")) {
                 InterfaceServidorDAO idao = new ServidorDAO();
-                Servidor s = idao.consultarMatricula(request.getParameter("matricula"));
+                String matricula = request.getParameter("matricula");;
+                Servidor s = idao.consultarMatricula(matricula);
                 request.setAttribute("matricula", s);
                 request.setAttribute("dao", idao);
 
                 if (acao.equalsIgnoreCase("editarServidor")) {
+                    BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores", "Editar Servidor", "ControleServidor?action=editarServidor&matricula=" + matricula);
                     request.getRequestDispatcher("/formAtualizarServidor.jsp").forward(request, response);
                 } else {
+                    BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores", "Visualizar Servidor", "ControleServidor?action=visualizarServidor&matricula=" + matricula);
                     request.getRequestDispatcher("/formVisualizarServidor.jsp").forward(request, response);
                 }
             } else if (acao.equals("excluirServidor")) {
@@ -229,6 +234,7 @@ public class ControleServidor extends HttpServlet {
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidores();
 
+                    BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores", null, null);
                     request.setAttribute("listaserv", lista);
                     request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                 } catch (Exception e) {
@@ -236,10 +242,11 @@ public class ControleServidor extends HttpServlet {
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
             } else if (acao.equals("formAlterarSenha")) {
+                BarraNavegacao.setarNavegacao(request, "Alterar Senha", "ControleServidor?action=formAlterarSenha", null, null);
                 request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
-                
-             /* Parte especifica de parametros para consulta*/    
-            }else if (acao.equals("consultarServidor")) {
+
+                /* Parte especifica de parametros para consulta*/
+            } else if (acao.equals("consultarServidor")) {
                 try {
 
                     String nome = request.getParameter("nome");
@@ -251,153 +258,153 @@ public class ControleServidor extends HttpServlet {
                     if (nome.equals("") && matricula_siape.equals("") && motorista == null && status == null) {
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
                         request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        
-                    }else if (!nome.equals("") && matricula_siape.equals("") && motorista == null && status == null) {
+
+                    } else if (!nome.equals("") && matricula_siape.equals("") && motorista == null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNome(nome);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                        
-                    }else if (nome.equals("") && !matricula_siape.equals("") && motorista == null && status == null) {
+
+                    } else if (nome.equals("") && !matricula_siape.equals("") && motorista == null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatricula(matricula_siape);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                        
-                    }else if (nome.equals("") && matricula_siape.equals("") && motorista != null && status == null) {
+
+                    } else if (nome.equals("") && matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorMotorista(motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                        
-                    }else if (nome.equals("") && matricula_siape.equals("") && motorista == null && status != null) {
+
+                    } else if (nome.equals("") && matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorStatus(status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && !matricula_siape.equals("") && motorista == null && status == null) {
+                    } else if (!nome.equals("") && !matricula_siape.equals("") && motorista == null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatricula(nome, matricula_siape);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && matricula_siape.equals("") && motorista != null && status == null) {
+                    } else if (!nome.equals("") && matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMotorista(nome, motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && matricula_siape.equals("") && motorista == null && status != null) {
+                    } else if (!nome.equals("") && matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeStatus(nome, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (nome.equals("") && !matricula_siape.equals("") && motorista != null && status == null) {
+                    } else if (nome.equals("") && !matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatriculaMotorista(matricula_siape, motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (nome.equals("") && !matricula_siape.equals("") && motorista == null && status != null) {
+                    } else if (nome.equals("") && !matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatriculaStatus(matricula_siape, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (nome.equals("") && matricula_siape.equals("") && motorista != null && status != null) {
+                    } else if (nome.equals("") && matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorMotoristaStatus(motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && !matricula_siape.equals("") && motorista != null && status == null) {
+                    } else if (!nome.equals("") && !matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatriculaMotorista(nome, matricula_siape, motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && !matricula_siape.equals("") && motorista == null && status != null) {
+                    } else if (!nome.equals("") && !matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatriculaStatus(nome, matricula_siape, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && matricula_siape.equals("") && motorista != null && status != null) {
+                    } else if (!nome.equals("") && matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMotoristaStatus(nome, motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (nome.equals("") && !matricula_siape.equals("") && motorista != null && status != null) {
+                    } else if (nome.equals("") && !matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatriculaMotoristaStatus(matricula_siape, motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
-                    }else if (!nome.equals("") && !matricula_siape.equals("") && motorista != null && status != null) {
+                    } else if (!nome.equals("") && !matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatriculaMotoristaStatus(nome, matricula_siape, motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
                             request.getRequestDispatcher("ControleServidor?action=listaServidores").forward(request, response);
-                        }else{
+                        } else {
                             request.setAttribute("listaserv", lista);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     }
-                    
-                    
+
+
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);
                 }
-            
+
             } else if (acao.equals("alterarSenha")) {
                 try {
                     String matriculaSIAPE = user.getMatriculaSIAPE();
@@ -421,8 +428,8 @@ public class ControleServidor extends HttpServlet {
                             request.setAttribute("mensagem", "Senha alterada com sucesso.");
                             request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
                         }
-                    //VALIDAÇÃO SENHA ATUAL != NOVA SENHA
-                    }else{
+                        //VALIDAÇÃO SENHA ATUAL != NOVA SENHA
+                    } else {
                         request.setAttribute("mensagem", "Não foi possível efetuar a operação. Senha atual incorreta.");
                         request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
                     }
@@ -431,8 +438,15 @@ public class ControleServidor extends HttpServlet {
                     request.getRequestDispatcher("alterarSenha.jsp").forward(request, response);
                 }
 
+            } else if (acao.equals("novoServidor")) {
+                try {
+                     BarraNavegacao.setarNavegacao(request, "Novo Servidor", "ControleServidor?action=novoServidor", null, null);
+                     request.getRequestDispatcher("cadastrarServidor.jsp").forward(request, response);
+                } catch (Exception e) {
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("erro.jsp").forward(request, response);
+                }
             }
-
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             InterfaceServidorDAO sdao = new ServidorDAO();

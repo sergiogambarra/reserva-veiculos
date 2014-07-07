@@ -44,12 +44,7 @@
                                 <thead>
                                 <td>
                                     <div class="barraNavegacao">
-                                        <p>Você está em: 
-                                            <script type="text/javascript">
-                                                var pagina = document.title;
-                                                document.write(pagina);
-                                            </script>
-                                        </p>
+                                        <%@include file="barraNavegacao.jsp" %>
                                     </div>
                                 </td>
                                 <td>

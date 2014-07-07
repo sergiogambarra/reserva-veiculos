@@ -15,8 +15,8 @@
             <%
                 if (request.getSession().getAttribute("administrador") != null) {
             %>  
-            <li><a href="cadastrarServidor.jsp">Novo Servidor</a></li>
-            <li><a href="cadastrarVeiculo.jsp">Novo Veículo</a></li>
+            <li><a href="ControleServidor?action=novoServidor">Novo Servidor</a></li>
+            <li><a href="ControleVeiculo?action=novoVeiculo">Novo Veículo</a></li>
             <%
                     }
             %>

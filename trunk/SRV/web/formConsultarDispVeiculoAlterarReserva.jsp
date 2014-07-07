@@ -47,15 +47,29 @@
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>
-                <!-- A próxima div poderia servir para controle de permissões? -->
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
-                            Você está em: 
-                            <script type="text/javascript">
-                                var pagina = document.title;
-                                document.write(pagina);
-                            </script>
+                            <table class="tabelaMensagem">
+                                <thead>
+                                <td>
+                                    <div class="barraNavegacao">
+                                        <%@include file="barraNavegacao.jsp" %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mensagem">
+                                        <%
+                                            if (request.getAttribute("mensagem") != null) {
+                                        %>
+                                        <p><%= request.getAttribute("mensagem")%> </p>
+                                        <%
+                                            }
+                                        %>
+                                    </div>
+                                </td>
+                                </thead>
+                            </table>
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Consultar Disponibilidade de Veículos</h2>

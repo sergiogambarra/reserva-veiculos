@@ -107,9 +107,11 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("s_hora_retorno", hora_retorno);
 
                     if (!id_reserva.equals("")) {
+                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo="+id_reserva, "Editar Reserva", "#");
                         request.setAttribute("reserva", reserva);
                         request.getRequestDispatcher("formAtualizarReserva.jsp").forward(request, response);
                     } else {
+                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo", "Editar Reserva", "#");
                         request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
                     }
 
@@ -146,9 +148,10 @@ public class ControleReserva extends HttpServlet {
                     if (request.getParameter("id_reserva") != null) {
                         int id_reserva = Integer.parseInt(request.getParameter("id_reserva"));
                         request.setAttribute("id_reserva", id_reserva);
+                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo&id_reserva="+id_reserva, null, null);
                         request.getRequestDispatcher("formConsultarDispVeiculoAlterarReserva.jsp").forward(request, response);
                     } else {
-                        //request.getRequestDispatcher("cadastrarReserva.jsp").forward(request, response);
+                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo", null, null);
                         request.getRequestDispatcher("formConsultarDispVeiculo.jsp").forward(request, response);
                     }
                 } catch (Exception e) {
@@ -178,11 +181,11 @@ public class ControleReserva extends HttpServlet {
                 String data_saida = null;
                 String data_retorno = null;
                 String data = request.getParameter("inputDataSaida");
-                System.out.println("Teste data: "+data);
+                System.out.println("Teste data: " + data);
                 try {
                     data_saida_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataSaida"));
                     data_saida = new SimpleDateFormat("yyyy-MM-dd").format(data_saida_br);
-                    
+
                     data_retorno_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataRetorno"));
                     data_retorno = new SimpleDateFormat("yyyy-MM-dd").format(data_retorno_br);
                 } catch (Exception e) {
@@ -250,6 +253,7 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("listadest", listad);
                     request.setAttribute("listaReservasOutros", listaOutros);
                     request.setAttribute("listaReservas", listar);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas", null, null);
                     request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
@@ -258,8 +262,9 @@ public class ControleReserva extends HttpServlet {
             }
             if (acao.equals("editarReserva") || acao.equals("visualizarReserva")) {
                 InterfaceReservaDAO idao = new ReservaDAO();
-                Reserva r = idao.consultarIdReserva(Integer.parseInt(request.getParameter("id_reserva")));
-                request.setAttribute("reserva", r);                
+                int id_reserva = Integer.parseInt(request.getParameter("id_reserva"));
+                Reserva r = idao.consultarIdReserva(id_reserva);
+                request.setAttribute("reserva", r);
 
                 InterfaceServidorDAO sdao = new ServidorDAO();
                 List<Servidor> lista = sdao.todosServidoresMotoristas();
@@ -278,8 +283,10 @@ public class ControleReserva extends HttpServlet {
                 request.setAttribute("usuario", user);
 
                 if (acao.equalsIgnoreCase("editarReserva")) {
+                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas", "Editar Reserva", "ControleReserva?action=editarReserva&id_reserva=" + id_reserva);
                     request.getRequestDispatcher("/formAtualizarReserva.jsp").forward(request, response);
                 } else {
+                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas", "Visualizar Reserva", "ControleReserva?action=visualizarReserva&id_reserva=" + id_reserva);
                     request.getRequestDispatcher("/formVisualizarReserva.jsp").forward(request, response);
                 }
             } else if (acao.equals("excluirReserva")) {
