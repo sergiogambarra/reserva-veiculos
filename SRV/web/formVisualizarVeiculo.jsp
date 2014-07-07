@@ -28,7 +28,6 @@
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>
-                <!-- A próxima div poderia servir para controle de permissões? -->
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
@@ -36,11 +35,7 @@
                                 <thead>
                                   <td>
                                       <div class="barraNavegacao">
-                                          <p>Você está em: 
-                                            <script type="text/javascript">
-                                                var pagina = document.title;
-                                                document.write(pagina);
-                                            </script>
+                                          <%@include file="barraNavegacao.jsp" %>
                                           </p>
                                       </div>
                                         </td>

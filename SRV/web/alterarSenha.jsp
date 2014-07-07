@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Novo Servidor</title>
+        <title>Alterar Senha</title>
         <link rel="stylesheet" href="css/styleLogin.css" type='text/css'>
         <link rel="stylesheet" href="css/styleContent.css" type='text/css'> 
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
@@ -23,7 +23,6 @@
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>
-                <!-- A próxima div poderia servir para controle de permissões? -->
                 <div class="containerLogadoBorda">
                     <div class="containerLogadoDados">
                         <div class="paginaAtual">
@@ -31,12 +30,7 @@
                                 <thead>
                                   <td>
                                       <div class="barraNavegacao">
-                                          <p>Você está em: 
-                                            <script type="text/javascript">
-                                                var pagina = document.title;
-                                                document.write(pagina);
-                                            </script>
-                                          </p>
+                                          <%@include file="barraNavegacao.jsp" %>
                                       </div>
                                         </td>
                                         <td>
