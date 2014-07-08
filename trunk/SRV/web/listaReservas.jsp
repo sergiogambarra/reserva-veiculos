@@ -16,7 +16,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Lista de Reservas</title>
-                <link rel="stylesheet" type="text/css" href="css/styleLogin.css" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleLogin.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleLogin.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleLoginContraste.css" title="contraste" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
@@ -24,8 +24,9 @@
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
-    <body>
+    <body id="corpo" onload="pegarCookies()">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
@@ -75,12 +76,12 @@
                                 
                                 <input type="hidden" name="action" value="consultarReservas"/>    
  
-                                <div class="formFiltro">
+                                <div class="formFiltroDate">
                                     <label for="DataSaida">Data de Saida</label>
                                     <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/>
                                 </div>
                                 
-                                <div class="formFiltro">
+                                <div class="formFiltroDate">
                                     <label for="DataRetorno">Data de Retorno</label>
                                     <input type="text" id="DataRetorno" name="DataRetorno" placeholder="dd/mm/aaaa" maxlength="10"/>
                                 </div>
@@ -119,8 +120,7 @@
                             </form>
 
                         </div>
-
-                        <table class="tabelaListaVeiculos">
+                        <table summary="Tabela com a lista das minhas reservas." class="tabelaListaVeiculos">
                             <thead>
                             <p>Minhas Reservas</p>
                             <td id="Responsavel" class="colunaDuzentos">Responsável</td>
@@ -170,9 +170,8 @@
                                 <%
                                     }
                                 %>
-                            <table class="tabelaListaVeiculos">
+                            <table class="tabelaListaVeiculos" summary="Tabela com a lista das outras reservas.">
                                 <thead>
-
                                 <br><br><p>Outras Reservas</p>
                                 <td id="Responsavel" class="colunaDuzentos">Responsável</td>
                                 <td id="DataSaida" class="colunaDuzentos">Data de saída</td>

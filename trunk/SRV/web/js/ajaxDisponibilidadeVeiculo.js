@@ -5,6 +5,7 @@ var completeTable;
 var autoRow;
 
 function init() {
+    pegarCookies();
     completeField = document.getElementById("complete-field");
     completeTable = document.getElementById("idTabelaListaVeiculos");
     autoRow = document.getElementById("auto-row");

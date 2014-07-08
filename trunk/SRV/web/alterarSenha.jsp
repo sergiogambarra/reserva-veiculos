@@ -15,8 +15,9 @@
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
-    <body>
+    <body id="corpo" onload="pegarCookies()">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">

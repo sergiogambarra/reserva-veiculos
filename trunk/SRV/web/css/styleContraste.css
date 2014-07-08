@@ -14,9 +14,8 @@
     height: 40px;
     width: 600px;
     margin-left: 100px;
-
-
 }
+
 .cabecalhoLateral{
     height: 40px;
     width: 350px;
@@ -49,6 +48,8 @@
 
 .filtroData{
     padding-top: 10px;
+    width: 1200px;
+    position: relative;
 }
 
 .filtroData input[type=date]{

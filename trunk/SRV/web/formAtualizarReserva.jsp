@@ -29,9 +29,9 @@
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
-    <body onload="funcoesOnloadReserva()">
+    <body id="corpo" onload="funcoesOnloadReserva()">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
