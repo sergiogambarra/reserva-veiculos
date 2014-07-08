@@ -69,7 +69,7 @@
 
 .filtroData{
     padding-top: 10px;
-    width: 1300px;
+    width: 1400px;
     position: relative;
 }
 
@@ -463,7 +463,7 @@ iconeSelecionar{
 }
 
 .formFiltro, .formFiltroDate{
-    width: 250px;
+    width: 300px;
     float:left;
 }
 
