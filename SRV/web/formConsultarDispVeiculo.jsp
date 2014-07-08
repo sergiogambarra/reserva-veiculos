@@ -22,16 +22,18 @@
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
-        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/ajaxDisponibilidadeVeiculo.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
         <script type="text/javascript" src="js/calendarios.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
-    <body onload="init()">
+    <body id="corpo" onload="init()">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">

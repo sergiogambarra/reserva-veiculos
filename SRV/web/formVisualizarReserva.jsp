@@ -30,8 +30,9 @@
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
-
-    <body onload="funcoesOnloadReserva()" class="desabilita">
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
+    </head>
+    <body id="corpo" onload="funcoesOnloadReserva();" class="desabilita" >
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">

@@ -1,5 +1,6 @@
 // <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadServidor(){
+    pegarCookies();
     if(document.body.className == "") {
         desabilitaVisualizarServidor();
         document.body.className = "habilita";
@@ -15,6 +16,7 @@ function funcoesOnloadServidor(){
 
 // <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadVeiculo(){
+    pegarCookies();
     if(document.body.className == "") {
         desabilitaVisualizarVeiculo();
         document.body.className = "habilita";
@@ -32,6 +34,7 @@ function funcoesOnloadVeiculo(){
 
 // <<<< AO CARREGAR PÁGINA   >>> ///
 function funcoesOnloadReserva(){
+    pegarCookies();
     //Verifica qual check está marcado e chama função passando o valor
     if(document.formInserirReserva.inputMotorista[0].checked == true){
         trocarMotorista(document.formInserirReserva.inputMotorista[0].value);

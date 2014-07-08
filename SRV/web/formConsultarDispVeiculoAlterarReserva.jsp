@@ -31,13 +31,20 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
         <script type="text/javascript" src="js/calendarios.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
-    <body onload="init()">
+    <body id="corpo" onload="init();">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
                     <%@include file="cabecalhoNomeUsuario.jsp"%>
-
+                    <%
+                        Servidor serv = new Servidor();
+                        if (request.getSession().getAttribute("administrador") != null) {
+                            serv = (Servidor) request.getSession().getAttribute("administrador");
+                        }
+                        String id_reserva = request.getAttribute("id_reserva").toString();
+                    %>
                     <div class="cabecalhoLogout" id="desl"><a href='ControleLogin?action=deslogar'>Logout</a></div>
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
@@ -72,11 +79,8 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Consultar Disponibilidade de Veículos</h2>
-<!--                            <div class="camposObrigatorios">
-                                *Campos obrigatórios
-                            </div>-->
                             <form action="veiculosdisponiveis" method="POST" id="formConsDispVeiculo" name="formConsDispVeiculo" onsubmit="return filtrarVeiculos(this);">
-                                <input type="hidden" id="id_reserva" name="id_reserva" value="<%= id_reserva%>"/>
+                                <input type="hidden" id="id_reserva" name="id_reserva" value="<%= id_reserva %>"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
