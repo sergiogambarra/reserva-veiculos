@@ -6,14 +6,34 @@
     height: 40px;
     width: 100%;
 }
+ 
+.cabecalhoUsuario{
+    color: #ffffff;
+}
 
 .cabecalhoCentral ul li{
     display: inline-block;
 }
+
 .cabecalhoCentral{
     height: 40px;
     width: 600px;
     margin-left: 100px;
+}
+
+.cabecalhoCentral a{
+    padding: 0px 4px;
+    background-color: #006400;
+    color: white;
+    text-decoration: none;
+}
+
+.cabecalhoLogout{
+    color: white;
+}
+
+.cabecalhoLogout a{
+    color: white;
 }
 
 .cabecalhoLateral{
@@ -45,6 +65,13 @@
     color: #006400;
     width: 100%;
 }
+
+.paginaAtual .barraNavegacao a:visited{
+    font-size: 10px;
+    color: #006400;
+    width: 100%;
+}
+
 
 .filtroData{
     padding-top: 10px;
@@ -228,6 +255,7 @@ iconeSelecionar{
 
 /*Style para formulário*/
 .formularioCadastrarServidor, .formularioCadastrarVeiculo{
+    border: 1px solid black;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding-bottom: 15px;
@@ -247,6 +275,7 @@ iconeSelecionar{
     position: relative;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    border: 1px solid #000000;
     margin: 0px;
     padding: 0px;
     padding-top: 5px;
