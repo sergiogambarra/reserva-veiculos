@@ -463,14 +463,14 @@ iconeSelecionar{
 }
 
 .formFiltro, .formFiltroDate{
-    width: 300px;
+    width: 250px;
     float:left;
 }
 
 .formFiltroConsultar input[type=submit]{
     display: inline;
     margin-left: 25px;
-    margin-top: 5px;
+    margin-top: -5px;
     margin-right: 35px;
     height: 29px;
     width: 100px;
