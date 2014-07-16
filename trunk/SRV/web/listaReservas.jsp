@@ -73,7 +73,8 @@
                                 </form>
                             -->
                             <form name="consultaReserva" action="ControleReserva">
-                                
+                                <fieldset class="fil">
+                                <legend>Pesquisar por:</legend>
                                 <input type="hidden" name="action" value="consultarReservas"/>    
  
                                 <div class="formFiltroDate">
@@ -117,6 +118,7 @@
                                         </select>
                                 </div>
                                 <div class="formFiltroConsultar"><input type="submit" value="Consultar"/></div>
+                                </fieldset>
                             </form>
 
                         </div>
