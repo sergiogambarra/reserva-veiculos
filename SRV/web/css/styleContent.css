@@ -463,13 +463,14 @@ iconeSelecionar{
 }
 
 .formFiltro, .formFiltroDate{
-    width: 300px;
-    float:left;
+    width: 270px;
+    float:left; 
+    
 }
 
 .formFiltroConsultar input[type=submit]{
     display: inline;
-    margin-left: 25px;
+    margin-left: 10px;
     margin-top: -5px;
     margin-right: 35px;
     height: 29px;
@@ -491,3 +492,27 @@ iconeSelecionar{
 .formFiltroDate input[type=text]{
   width:  100px;
 }
+
+/*Style para <fieldset> e <legend> para <formulário> de consultas "pesquisar por:"*/
+
+.fil{
+  border: 1px solid green;
+  /*font-weight: bold;*/
+  height:50px;
+  width:980px;
+  }
+  
+  .fil legend{
+  font-weight: bold;
+  }
+  
+  .filser{
+  border: 1px solid green;
+  /*font-weight: bold;*/
+  height:50px;
+  width:1225px;
+  }
+  
+  .filser legend{
+  font-weight: bold;
+  }

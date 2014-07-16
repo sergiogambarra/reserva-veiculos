@@ -76,6 +76,8 @@
 
                             <!-- Parte especifica de parametros de pesquisa -->
                             <form name="consultaVeiculo" action="ControleVeiculo"> 
+                                <fieldset class="fil">
+                                <legend>Pesquisar por:</legend>
                                 <input type="hidden" name="action" value="consultarVeiculo"/>    
                                 
                                 <div class="formFiltro">
@@ -93,6 +95,7 @@
                                 <div class="formFiltroConsultar">
                                     <input type="submit" value="Consultar"/>
                                 </div>
+                                </fieldset>
                             </form>
 
                         </div>

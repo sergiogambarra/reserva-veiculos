@@ -71,6 +71,8 @@
                             -->
                             <!-- Parte especifica de parametros de pesquisa -->
                             <form name="consultaServidor" action="ControleServidor">
+                                <fieldset class="filser">
+                                <legend>Pesquisar por:</legend>
                                 <input type="hidden" name="action" value="consultarServidor"/>    
 
                                 <div class="formFiltro">
@@ -98,6 +100,7 @@
                                 <div class="formFiltroConsultar">
                                     <input type="submit" value="Consultar"/>
                                 </div>
+                               </fieldset>
                             </form>
                         </div>
 
