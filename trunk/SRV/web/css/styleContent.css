@@ -45,7 +45,7 @@
     float: left;
     margin-left: 10px;
     margin-top: 5px;
-    background: url("../imagens/srv.png") no-repeat transparent scroll;
+    background: url("../imagens/logoSRV.png") no-repeat transparent scroll;
     background-size: 100% 100%;
 }
 
@@ -134,7 +134,7 @@
 .containerLogadoBorda, .containerLogadoCadastrarServidor{
     width: 100%;
     height: auto; 
-    padding-bottom: 10px;
+    padding-bottom: 40px;
     background-color: rgba(86, 167, 62, .2);
 
 }
@@ -465,7 +465,7 @@ iconeSelecionar{
 .formFiltro, .formFiltroDate{
     width: 270px;
     float:left; 
-    
+
 }
 
 .formFiltroConsultar input[type=submit]{
@@ -490,29 +490,44 @@ iconeSelecionar{
 }
 
 .formFiltroDate input[type=text]{
-  width:  100px;
+    width:  100px;
 }
 
 /*Style para <fieldset> e <legend> para <formulário> de consultas "pesquisar por:"*/
 
 .fil{
-  border: 1px solid green;
-  /*font-weight: bold;*/
-  height:50px;
-  width:980px;
-  }
-  
-  .fil legend{
-  font-weight: bold;
-  }
-  
-  .filser{
-  border: 1px solid green;
-  /*font-weight: bold;*/
-  height:50px;
-  width:1225px;
-  }
-  
-  .filser legend{
-  font-weight: bold;
-  }
+    border: 1px solid green;
+    /*font-weight: bold;*/
+    height:50px;
+    width:980px;
+}
+
+.fil legend{
+    font-weight: bold;
+}
+
+.filser{
+    border: 1px solid green;
+    /*font-weight: bold;*/
+    height:50px;
+    width:1225px;
+}
+
+.filser legend{
+    font-weight: bold;
+}
+
+.totalRegistros{
+    float: right;
+}
+
+.totalRegistros p{
+    margin: 0;
+    font-weight: bold;
+}
+
+.totalPaginas{
+    float: left;
+    text-align: center;
+    width: 1160px;
+}

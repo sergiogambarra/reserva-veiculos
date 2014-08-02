@@ -16,10 +16,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Consultar Disponibilidade de Veículo</title>
-        <link rel="stylesheet" type="text/css" href="css/styleLogin.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleLogin.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleLoginContraste.css" title="contraste" media="all"  />
-        <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
         <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
@@ -30,7 +28,6 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
         <script type="text/javascript" src="js/calendarios.js"></script>
-        <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
     <body id="corpo" onload="init()">

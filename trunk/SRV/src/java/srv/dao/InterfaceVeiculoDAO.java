@@ -17,7 +17,8 @@ public interface InterfaceVeiculoDAO {
     public abstract void excluir(Veiculo veic) throws Exception;;
     public abstract void atualizar(Veiculo veic);
     public abstract void visualizar(Veiculo veic);
-    public abstract List todosVeiculo();
+    public abstract List todosVeiculo(String numPagina);
+    public abstract int todosVeiculoCount();
     public abstract List buscarVeiculoPorAno(String ano);
     public Veiculo consultarPlaca(String parameter);
     public abstract List buscarVeiculoPorPlaca(String placa);

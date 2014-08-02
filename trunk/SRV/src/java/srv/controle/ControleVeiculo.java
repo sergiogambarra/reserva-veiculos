@@ -90,20 +90,13 @@ public class ControleVeiculo extends HttpServlet {
                         }
 
                         vdao.salvar(veic);
-                        InterfaceVeiculoDAO idao = new VeiculoDAO();
-                        List<Veiculo> lista = idao.todosVeiculo();
-
                         request.setAttribute("mensagem", "Cadastro efetuado com Sucesso.");
-                        request.setAttribute("listaveic", lista);
-                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
                     } else if (acao.equals("atualizarVeiculo")) {
                         vdao.atualizar(veic);
-                        InterfaceVeiculoDAO idao = new VeiculoDAO();
-                        List<Veiculo> lista = idao.todosVeiculo();
-
+                        
                         request.setAttribute("mensagem", "Cadastro alterado com sucesso.");
-                        request.setAttribute("listaveic", lista);
-                        request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
                     }
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
@@ -129,24 +122,30 @@ public class ControleVeiculo extends HttpServlet {
                     Veiculo veiculo = idao.consultarPlaca(request.getParameter("placa"));
                     idao.excluir(veiculo);
 
-                    List<Veiculo> lista = idao.todosVeiculo();
-
                     request.setAttribute("mensagem", "Cadastro excluído com sucesso.");
-                    request.setAttribute("listaveic", lista);
-                    request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
                 } catch (ConstraintViolationException e) {
                     request.setAttribute("mensagem", "Não foi possível excluir. Há reservas associadas.");
-                    InterfaceVeiculoDAO idao = new VeiculoDAO();
-                    List<Veiculo> lista = idao.todosVeiculo();
-                    request.setAttribute("listaveic", lista);
-                    request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                    request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
                 }
             } else if (acao.equals("listaVeiculos")) {// Parte de consulta ###############################
                 try {
+                    String numPagina = request.getParameter("pagina");
+                    
                     InterfaceVeiculoDAO sdao = new VeiculoDAO();
-                    List<Veiculo> lista = sdao.todosVeiculo();
-
+                    List<Veiculo> lista = sdao.todosVeiculo(numPagina);
+                    
+                    //Início Paginação
+                    int totalRegistros = sdao.todosVeiculoCount();
+                    int totalPaginas = totalRegistros / 10;
+                    if(totalRegistros % 10 != 0){
+                        totalPaginas++;
+                    }
+                    //Fim Paginação
+                    
                     BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos", null, null);
+                    request.setAttribute("totalRegistros", totalRegistros);
+                    request.setAttribute("totalPaginas", totalPaginas);
                     request.setAttribute("listaveic", lista);
                     request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                 } catch (Exception e) {
@@ -247,10 +246,7 @@ public class ControleVeiculo extends HttpServlet {
             }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
-            InterfaceVeiculoDAO idao = new VeiculoDAO();
-            List<Veiculo> lista = idao.todosVeiculo();
-            request.setAttribute("listaveic", lista);
-            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
         }
     }
 
