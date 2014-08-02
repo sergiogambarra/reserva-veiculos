@@ -124,24 +124,25 @@ public class ControleReserva extends HttpServlet {
             if (acao.equals("consultarDispVeiculo")) {
                 try {
 
-                    InterfaceServidorDAO sdao = new ServidorDAO();
-                    List<Servidor> lista = sdao.todosServidoresMotoristas();
-
-                    for (int i = 0; i < lista.size(); i++) {
-                        if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
-                            lista.remove(i);
-                        }
-                    }
-
-                    InterfaceVeiculoDAO vdao = new VeiculoDAO();
-                    List<Veiculo> listav = vdao.todosVeiculo();
-
-                    InterfaceDestinoDAO ddao = new DestinoDAO();
-                    List<Destino> listad = ddao.buscarDestinos();
-
-                    request.setAttribute("listaserv", lista);
-                    request.setAttribute("listaveic", listav);
-                    request.setAttribute("listadest", listad);
+//                    InterfaceServidorDAO sdao = new ServidorDAO();
+//                    List<Servidor> lista = sdao.todosServidoresMotoristas();
+//
+//                    for (int i = 0; i < lista.size(); i++) {
+//                        if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
+//                            lista.remove(i);
+//                        }
+//                    }
+//
+//                    String nnn = "";
+//                    InterfaceVeiculoDAO vdao = new VeiculoDAO();
+//                    List<Veiculo> listav = vdao.todosVeiculo(nnn);
+//
+//                    InterfaceDestinoDAO ddao = new DestinoDAO();
+//                    List<Destino> listad = ddao.buscarDestinos();
+//
+//                    request.setAttribute("listaserv", lista);
+//                    request.setAttribute("listaveic", listav);
+//                    request.setAttribute("listadest", listad);
                     request.setAttribute("usuario", user);
 
 

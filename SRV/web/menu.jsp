@@ -6,7 +6,7 @@
             <%
                 if (request.getSession().getAttribute("administrador") != null) {
             %>  
-            <li><a href="ControleVeiculo?action=listaVeiculos">Lista de Veículos</a></li>
+            <li><a href="ControleVeiculo?action=listaVeiculos&pagina=1">Lista de Veículos</a></li>
             <li><a href="ControleServidor?action=listaServidores">Lista de Servidores</a></li>
             <%
                     }

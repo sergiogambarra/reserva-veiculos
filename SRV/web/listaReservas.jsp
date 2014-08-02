@@ -64,14 +64,6 @@
                             </table>
                         </div>
                         <div class="filtroData">
-                            <!--
-                                <form action="#" class="filtroDataFormulario">
-                                      <label name="filtroLabelDataInicio">De</label>
-                                      <input type="date" name="filtroDataInicio" class="inputDataInicio"/>
-                                      <label name="filtroLabelDataRetorno">Até</label>
-                                      <input type="date" name="dataInicio" class="inputDataInicio"/>
-                                </form>
-                            -->
                             <form name="consultaReserva" action="ControleReserva">
                                 <fieldset class="fil">
                                 <legend>Pesquisar por:</legend>

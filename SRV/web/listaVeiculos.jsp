@@ -18,7 +18,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Lista de Veículos</title>
-                <link rel="stylesheet" type="text/css" href="css/styleLogin.css" media="all"  />
+        <link rel="stylesheet" type="text/css" href="css/styleLogin.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleLogin.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleLoginContraste.css" title="contraste" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
@@ -37,7 +37,7 @@
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>
-                    <%@include file="menuAtalhos.jsp" %>
+                <%@include file="menuAtalhos.jsp" %>
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>
@@ -66,40 +66,31 @@
                             </table>
                         </div>
                         <div class="filtroData">
-                            <!--    <form action="#" class="filtroDataFormulario">
-                                  <label name="filtroLabelDataInicio">De</label>
-                                  <input type="date" name="filtroDataInicio" class="inputDataInicio"/>
-                                  <label name="filtroLabelDataRetorno">Até</label>
-                                  <input type="date" name="dataInicio" class="inputDataInicio"/>
-                                </form>
-                            -->
-
                             <!-- Parte especifica de parametros de pesquisa -->
                             <form name="consultaVeiculo" action="ControleVeiculo"> 
                                 <fieldset class="fil">
-                                <legend>Pesquisar por:</legend>
-                                <input type="hidden" name="action" value="consultarVeiculo"/>    
-                                
-                                <div class="formFiltro">
-                                    <label for="ano">Ano</label>
-                                    <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/>
-                                </div>
-                                <div class="formFiltro">
-                                    <label for="placa">Placa</label>
-                                    <input type="text" id="placa" name="placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/>
-                                </div>
-                                <div class="formFiltro">
-                                    <label for="renavam">Renavam</label>
-                                    <input type="text" id="renavam" name="renavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/>
-                                </div>
-                                <div class="formFiltroConsultar">
-                                    <input type="submit" value="Consultar"/>
-                                </div>
+                                    <legend>Pesquisar por:</legend>
+                                    <input type="hidden" name="action" value="consultarVeiculo"/>    
+
+                                    <div class="formFiltro">
+                                        <label for="ano">Ano</label>
+                                        <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/>
+                                    </div>
+                                    <div class="formFiltro">
+                                        <label for="placa">Placa</label>
+                                        <input type="text" id="placa" name="placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/>
+                                    </div>
+                                    <div class="formFiltro">
+                                        <label for="renavam">Renavam</label>
+                                        <input type="text" id="renavam" name="renavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/>
+                                    </div>
+                                    <div class="formFiltroConsultar">
+                                        <input type="submit" value="Consultar"/>
+                                    </div>
                                 </fieldset>
                             </form>
 
                         </div>
-
                         <table class="tabelaListaVeiculos">
                             <thead>
                             <td id="Placa" class="colunaDuzentos">Placa</td>
@@ -134,6 +125,26 @@
                                 %>
                             </tbody>
                         </table>
+                         <!-- INÍCIO PAGINAÇÃO -->
+                        <%
+                            int totalRegistros = Integer.parseInt(request.getAttribute("totalRegistros").toString());
+                            int totalPaginas = Integer.parseInt(request.getAttribute("totalPaginas").toString());
+                        %>
+                        <div id="paginacao" class="paginacao">
+                            <div id="totalRegistros" class="totalRegistros">
+                                <p>Total encontrado: <%= totalRegistros%></p>
+                            </div>
+                            <div id="totalPaginas" class="totalPaginas">
+                                <%
+                                    for (int i = 1; i <= totalPaginas; i++) {
+                                %>
+                                <a href="ControleVeiculo?action=listaVeiculos&pagina=<%=i%>"><%=i%></a>
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </div>
+                        <!-- FIM DA PAGINAÇÃO --> 
                     </div>
                 </div>
 
