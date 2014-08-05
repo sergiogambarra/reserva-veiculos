@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -60,7 +59,6 @@ public class ControleReserva extends HttpServlet {
                 user = (Servidor) session.getAttribute("servidor");
             }
 
-//            Servidor user = (Servidor) session.getAttribute("administrador");
             String acao = request.getParameter("action");
 
             if (acao.equals("formularioReserva")) {
@@ -107,7 +105,7 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("s_hora_retorno", hora_retorno);
 
                     if (!id_reserva.equals("")) {
-                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo="+id_reserva, "Editar Reserva", "#");
+                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo=" + id_reserva, "Editar Reserva", "#");
                         request.setAttribute("reserva", reserva);
                         request.getRequestDispatcher("formAtualizarReserva.jsp").forward(request, response);
                     } else {
@@ -123,33 +121,12 @@ public class ControleReserva extends HttpServlet {
             }
             if (acao.equals("consultarDispVeiculo")) {
                 try {
-
-//                    InterfaceServidorDAO sdao = new ServidorDAO();
-//                    List<Servidor> lista = sdao.todosServidoresMotoristas();
-//
-//                    for (int i = 0; i < lista.size(); i++) {
-//                        if (lista.get(i).getMatriculaSIAPE().equals(user.getMatriculaSIAPE())) {
-//                            lista.remove(i);
-//                        }
-//                    }
-//
-//                    String nnn = "";
-//                    InterfaceVeiculoDAO vdao = new VeiculoDAO();
-//                    List<Veiculo> listav = vdao.todosVeiculo(nnn);
-//
-//                    InterfaceDestinoDAO ddao = new DestinoDAO();
-//                    List<Destino> listad = ddao.buscarDestinos();
-//
-//                    request.setAttribute("listaserv", lista);
-//                    request.setAttribute("listaveic", listav);
-//                    request.setAttribute("listadest", listad);
                     request.setAttribute("usuario", user);
-
 
                     if (request.getParameter("id_reserva") != null) {
                         int id_reserva = Integer.parseInt(request.getParameter("id_reserva"));
                         request.setAttribute("id_reserva", id_reserva);
-                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo&id_reserva="+id_reserva, null, null);
+                        BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo&id_reserva=" + id_reserva, null, null);
                         request.getRequestDispatcher("formConsultarDispVeiculoAlterarReserva.jsp").forward(request, response);
                     } else {
                         BarraNavegacao.setarNavegacao(request, "Consultar Disponibilidade", "ControleReserva?action=consultarDispVeiculo", null, null);
@@ -238,23 +215,54 @@ public class ControleReserva extends HttpServlet {
                     request.setAttribute("mensagem", "Reserva atualizada com sucesso.");
                 }
 
-                request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
             }
 
             if (acao.equals("listaReservas")) {
                 try {
 
+                    String numPagina = request.getParameter("pagina");
+                    String numPaginaOutros = request.getParameter("paginaOutros");
+
+                    if (numPagina == null) {
+                        numPagina = "1";
+                    }
+
+                    if (numPaginaOutros == null) {
+                        numPaginaOutros = "1";
+                    }
+
                     InterfaceReservaDAO irdao = new ReservaDAO();
-                    List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE());
-                    List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE());
+                    List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE(), numPagina);
+                    List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE(), numPaginaOutros);
+
+                    //Início Paginação
+                    int totalRegistros = irdao.todasReservasCount(user.getMatriculaSIAPE());
+                    int totalPaginas = totalRegistros / 10;
+                    if (totalRegistros % 10 != 0) {
+                        totalPaginas++;
+                    }
+
+                    //Início Paginação
+                    int totalRegistrosOutros = irdao.todasReservasOutrosCount(user.getMatriculaSIAPE());
+                    int totalPaginasOutros = totalRegistrosOutros / 10;
+                    if (totalRegistrosOutros % 10 != 0) {
+                        totalPaginasOutros++;
+                    }
+                    //Fim Paginação
+
 
                     InterfaceDestinoDAO ddao = new DestinoDAO();
                     List<Destino> listad = ddao.buscarDestinos();
 
                     request.setAttribute("listadest", listad);
-                    request.setAttribute("listaReservasOutros", listaOutros);
+                    request.setAttribute("totalRegistros", totalRegistros);
+                    request.setAttribute("totalPaginas", totalPaginas);
                     request.setAttribute("listaReservas", listar);
-                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas", null, null);
+                    request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                    request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                    request.setAttribute("listaReservasOutros", listaOutros);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                     request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
@@ -284,22 +292,21 @@ public class ControleReserva extends HttpServlet {
                 request.setAttribute("usuario", user);
 
                 if (acao.equalsIgnoreCase("editarReserva")) {
-                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas", "Editar Reserva", "ControleReserva?action=editarReserva&id_reserva=" + id_reserva);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", "Editar Reserva", "ControleReserva?action=editarReserva&id_reserva=" + id_reserva);
                     request.getRequestDispatcher("/formAtualizarReserva.jsp").forward(request, response);
                 } else {
-                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas", "Visualizar Reserva", "ControleReserva?action=visualizarReserva&id_reserva=" + id_reserva);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", "Visualizar Reserva", "ControleReserva?action=visualizarReserva&id_reserva=" + id_reserva);
                     request.getRequestDispatcher("/formVisualizarReserva.jsp").forward(request, response);
                 }
             } else if (acao.equals("excluirReserva")) {
                 int id_reserva = Integer.parseInt(request.getParameter("reserva"));
-                //if (!Validacoes.ValidarQualUsuarioLogado(user.getMatriculaSIAPE(), matricula)) {
-                //throw new Exception(Validacoes.getMensagemErro());
+                
                 InterfaceReservaDAO idao = new ReservaDAO();
                 Reserva reserva = idao.consultarID_Reserva(id_reserva);
                 idao.excluirReserva(reserva);
 
                 request.setAttribute("mensagem", "Reserva excluída com sucesso.");
-                request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
 
             } else if (acao.equals("consultarReservas")) {
                 try {
@@ -311,7 +318,7 @@ public class ControleReserva extends HttpServlet {
 
                     if (data_saida.equals("") && data_retorno.equals("") && destino.equals("")) {
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
-                        request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                        request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
 
                     } else if (!data_saida.equals("") && data_retorno.equals("") && destino.equals("")) {
                         data_saida = data_saida.substring(6, 10) + "-" + data_saida.substring(3, 5) + "-" + data_saida.substring(0, 2);
@@ -319,7 +326,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaOutros(matricula_siape, data_saida);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -335,7 +342,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoOutros(matricula_siape, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -350,7 +357,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorDestinoOutros(matricula_siape, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -367,7 +374,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoOutros(matricula_siape, data_saida, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -383,7 +390,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaDestinoOutros(matricula_siape, data_saida, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -399,7 +406,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoDestinoOutros(matricula_siape, data_retorno, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -416,7 +423,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoDestinoOutros(matricula_siape, data_saida, data_retorno, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas").forward(request, response);
+                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
                         } else {
                             request.setAttribute("listaReservasOutros", listaOutros);
                             request.setAttribute("listaReservas", lista);
@@ -427,7 +434,6 @@ public class ControleReserva extends HttpServlet {
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     }
-
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);

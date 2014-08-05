@@ -18,7 +18,7 @@ public interface InterfaceServidorDAO {
     public abstract void excluir(Servidor serv) throws Exception;
     public abstract void atualizar(Servidor serv);
     public abstract void visualizar(Servidor serv);
-    public abstract List todosServidores();
+    public abstract List todosServidores(String numPagina);
     public abstract List todosServidoresMotoristas();
     public abstract Servidor consultarMatricula(String parameter);
     public abstract List<String> editarServidorSelecionarEstado(String ufAtual);
@@ -39,5 +39,5 @@ public interface InterfaceServidorDAO {
     public abstract List buscarServidorPorNomeMotoristaStatus(String nome, String motorista, String status);
     public abstract List buscarServidorPorMatriculaMotoristaStatus(String matricula_siape, String motorista, String status);
     public List buscarServidorPorNomeMatriculaMotoristaStatus(String nome, String matricula_siape, String motorista, String status);
-    
+    public int todosServidoresCount();
 }
