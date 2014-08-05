@@ -72,7 +72,7 @@
                                         <li>
                                             <div class="formCadastroLabel"><label for="iPlaca"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Placa</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/></div>
+                                                <input type="text" id="iPlaca" name="iPlaca" placeholder="XXX-0000"  pattern="[A-Z]{3}-[0-9]{4}" maxlength="8" style="text-transform: uppercase"/></div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="iAno"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Ano</label> </div>
