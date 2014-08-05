@@ -133,8 +133,6 @@
                                 List<Reserva> lista = (List<Reserva>) request.getAttribute("listaReservas");
                                 for (int i = 0; i < lista.size(); i++) {
                                     Reserva reserv = lista.get(i);
-
-//                                        data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
                                     dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
                                     horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
                                     if(reserv.getDescricao_destino() == null){                                      
@@ -164,69 +162,105 @@
                                 <%
                                     }
                                 %>
-                            <table class="tabelaListaVeiculos" summary="Tabela com a lista das outras reservas.">
-                                <thead>
-                                <br><br><p>Outras Reservas</p>
-                                <td id="Responsavel" class="colunaDuzentos">Responsável</td>
-                                <td id="DataSaida" class="colunaDuzentos">Data de saída</td>
-                                <td id="HorarioSaida" class="colunaDuzentos">Horário de saída</td>
-                                <td id="Destino" class="colunaDuzentos">Destino</td>
-                                <td id="Placa" class="colunaDuzentos">Placa</td>
-                                <td id="Modelo" class="colunaDuzentos">Modelo</td>
-                                <td id="Acoes" class="colunaAcoesHead" >Ações</td>
-                                </thead>
-                                <%
-                    //                                    String nome;
-                    //                                    String z;
-                                    List<Reserva> listaOutros = (List<Reserva>) request.getAttribute("listaReservasOutros");
-                                    for (int i = 0; i < listaOutros.size(); i++) {
-                                        Reserva reserv = listaOutros.get(i);
-                    //                                        data = new SimpleDateFormat("yyyy-MM-dd HH:").parse(reserv.getData_saida());
-                                        dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
-                                        horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
-                                        if(reserv.getDescricao_destino() == null){                                      
-                                            nomeDestino = reserv.getDestino().getNome(); 
-                                        }else{
-                                            nomeDestino = reserv.getDescricao_destino();
-                                        }
-                                %>
-                                <tbody>
-                                    <tr>
-                                        <td headers="Responsavel"><%= reserv.getServidor().getNome()%></td>
-                                    <td headers="DataSaida"><%= dataSaida%></td>
-                                    <td headers="HorarioSaida"><%= horarioSaida%></td>
-                                    <td headers="Destino"><%= nomeDestino%></td>
-                                    <td headers="Placa"><%= reserv.getVeiculo().getPlaca()%></td>
-                                    <td headers="Modelo"><%= reserv.getVeiculo().getModelo()%></td>
-                                        <td headers="Acoes" class="colunaAcoes">
-                                            <div class="divColunaAcoes">
-                                                <ul>
-                                                    <%
-                                                        if (request.getSession().getAttribute("administrador") != null) {
-                                                    %>  
-                                                    <li><a href="ControleReserva?action=editarReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
-                                                    <%                            }
-                                                    %>
-                                                    <li><a href="ControleReserva?action=visualizarReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
-                                                    <%
-                                                        if (request.getSession().getAttribute("administrador") != null) {
-                                                    %>  
-                                                    <li><a href="ControleReserva?action=excluirReserva&reserva=<%= reserv.getId_reserva() %>"><div class="iconeDeletar" alt="Deletar Reserva." title="Deletar Reserva" onclick="return exluirReserva()"></div></a></li>
-                                                    <%                            }
-                                                    %>
-
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <%
-                                        }
-                                    %>
-                                </tbody>
-                            </table>
-
                             </tbody>
                         </table>
+                        <!-- INÍCIO PAGINAÇÃO -->
+                        <%
+                            int totalRegistros = Integer.parseInt(request.getAttribute("totalRegistros").toString());
+                            int totalPaginas = Integer.parseInt(request.getAttribute("totalPaginas").toString());
+                        %>
+                        <div id="paginacao" class="paginacao">
+                            <div id="totalRegistros" class="totalRegistros">
+                                <p>Total encontrado: <%= totalRegistros%></p>
+                            </div>
+                            <div id="totalPaginas" class="totalPaginas">
+                                <%
+                                    for (int i = 1; i <= totalPaginas; i++) {
+                                %>
+                                <a href="ControleReserva?action=listaReservas&pagina=<%=i%>"><%=i%></a>
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </div>
+                        <!-- FIM DA PAGINAÇÃO --> 
+                        <table class="tabelaListaVeiculos" summary="Tabela com a lista das outras reservas.">
+                            <thead>
+                            <br><br><p>Outras Reservas</p>
+                            <td id="Responsavel" class="colunaDuzentos">Responsável</td>
+                            <td id="DataSaida" class="colunaDuzentos">Data de saída</td>
+                            <td id="HorarioSaida" class="colunaDuzentos">Horário de saída</td>
+                            <td id="Destino" class="colunaDuzentos">Destino</td>
+                            <td id="Placa" class="colunaDuzentos">Placa</td>
+                            <td id="Modelo" class="colunaDuzentos">Modelo</td>
+                            <td id="Acoes" class="colunaAcoesHead" >Ações</td>
+                            </thead>
+                            <%
+                                List<Reserva> listaOutros = (List<Reserva>) request.getAttribute("listaReservasOutros");
+                                for (int i = 0; i < listaOutros.size(); i++) {
+                                    Reserva reserv = listaOutros.get(i);
+                                    dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
+                                    horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
+                                    if(reserv.getDescricao_destino() == null){                                      
+                                        nomeDestino = reserv.getDestino().getNome(); 
+                                    }else{
+                                        nomeDestino = reserv.getDescricao_destino();
+                                    }
+                            %>
+                            <tbody>
+                                <tr>
+                                    <td headers="Responsavel"><%= reserv.getServidor().getNome()%></td>
+                                <td headers="DataSaida"><%= dataSaida%></td>
+                                <td headers="HorarioSaida"><%= horarioSaida%></td>
+                                <td headers="Destino"><%= nomeDestino%></td>
+                                <td headers="Placa"><%= reserv.getVeiculo().getPlaca()%></td>
+                                <td headers="Modelo"><%= reserv.getVeiculo().getModelo()%></td>
+                                    <td headers="Acoes" class="colunaAcoes">
+                                        <div class="divColunaAcoes">
+                                            <ul>
+                                                <%
+                                                    if (request.getSession().getAttribute("administrador") != null) {
+                                                %>  
+                                                <li><a href="ControleReserva?action=editarReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeEditar" alt="Editar informações da reserva." title="Editar reserva"></div></a></li>
+                                                <%                            }
+                                                %>
+                                                <li><a href="ControleReserva?action=visualizarReserva&id_reserva=<%= reserv.getId_reserva() %>"><div class="iconeVisualizar" alt="Visualizar informações da reserva." title="Visualizar reserva"></div></a></li>
+                                                <%
+                                                    if (request.getSession().getAttribute("administrador") != null) {
+                                                %>  
+                                                <li><a href="ControleReserva?action=excluirReserva&reserva=<%= reserv.getId_reserva() %>"><div class="iconeDeletar" alt="Deletar Reserva." title="Deletar Reserva" onclick="return exluirReserva()"></div></a></li>
+                                                <%                            }
+                                                %>
+
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                        <!-- INÍCIO PAGINAÇÃO OUTROS-->
+                        <%
+                            int totalRegistrosOutros = Integer.parseInt(request.getAttribute("totalRegistrosOutros").toString());
+                            int totalPaginasOutros = Integer.parseInt(request.getAttribute("totalPaginasOutros").toString());
+                        %>
+                        <div id="paginacao" class="paginacao">
+                            <div id="totalRegistros" class="totalRegistros">
+                                <p>Total encontrado: <%= totalRegistrosOutros%></p>
+                            </div>
+                            <div id="totalPaginas" class="totalPaginas">
+                                <%
+                                    for (int i = 1; i <= totalPaginasOutros; i++) {
+                                %>
+                                <a href="ControleReserva?action=listaReservas&paginaOutros=<%=i%>"><%=i%></a>
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </div>
+                        <!-- FIM DA PAGINAÇÃO OUTROS--> 
                     </div>
                 </div>
 

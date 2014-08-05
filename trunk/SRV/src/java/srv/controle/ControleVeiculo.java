@@ -91,12 +91,12 @@ public class ControleVeiculo extends HttpServlet {
 
                         vdao.salvar(veic);
                         request.setAttribute("mensagem", "Cadastro efetuado com Sucesso.");
-                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
+                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);;
                     } else if (acao.equals("atualizarVeiculo")) {
                         vdao.atualizar(veic);
                         
                         request.setAttribute("mensagem", "Cadastro alterado com sucesso.");
-                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
+                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);;
                     }
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
@@ -110,10 +110,10 @@ public class ControleVeiculo extends HttpServlet {
                 request.setAttribute("dao", idao);
 
                 if (acao.equalsIgnoreCase("editarVeiculo")) {
-                    BarraNavegacao.setarNavegacao(request, "Lista de Veiculos", "ControleVeiculo?action=listaVeiculos", "Editar Veículo", "ControleVeiculo?action=editarVeiculo&placa=" + placa);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Veiculos", "ControleVeiculo?action=listaVeiculos&pagina=1", "Editar Veículo", "ControleVeiculo?action=editarVeiculo&placa=" + placa);
                     request.getRequestDispatcher("/formAtualizarVeiculo.jsp").forward(request, response);
                 } else {
-                    BarraNavegacao.setarNavegacao(request, "Lista de Veiculos", "ControleVeiculo?action=listaVeiculos", "Visualizar Veículo", "ControleVeiculo?action=visualizarVeiculo&placa=" + placa);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Veiculos", "ControleVeiculo?action=listaVeiculos&pagina=1", "Visualizar Veículo", "ControleVeiculo?action=visualizarVeiculo&placa=" + placa);
                     request.getRequestDispatcher("/formVisualizarVeiculo.jsp").forward(request, response);
                 }
             } else if (acao.equals("excluirVeiculo")) {
@@ -123,10 +123,10 @@ public class ControleVeiculo extends HttpServlet {
                     idao.excluir(veiculo);
 
                     request.setAttribute("mensagem", "Cadastro excluído com sucesso.");
-                    request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
+                    request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);;
                 } catch (ConstraintViolationException e) {
                     request.setAttribute("mensagem", "Não foi possível excluir. Há reservas associadas.");
-                    request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
+                    request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);;
                 }
             } else if (acao.equals("listaVeiculos")) {// Parte de consulta ###############################
                 try {
@@ -136,14 +136,14 @@ public class ControleVeiculo extends HttpServlet {
                     List<Veiculo> lista = sdao.todosVeiculo(numPagina);
                     
                     //Início Paginação
-                    int totalRegistros = sdao.todosVeiculoCount();
+                    int totalRegistros = sdao.todosVeiculosCount();
                     int totalPaginas = totalRegistros / 10;
                     if(totalRegistros % 10 != 0){
                         totalPaginas++;
                     }
                     //Fim Paginação
                     
-                    BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos", null, null);
+                    BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                     request.setAttribute("totalRegistros", totalRegistros);
                     request.setAttribute("totalPaginas", totalPaginas);
                     request.setAttribute("listaveic", lista);
@@ -163,13 +163,13 @@ public class ControleVeiculo extends HttpServlet {
 
                     if (ano.equals("") && placa.equals("") && renavam.equals("")) {
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
-                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
 
                     } else if (!ano.equals("") && placa.equals("") && renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorAno(ano);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -178,7 +178,7 @@ public class ControleVeiculo extends HttpServlet {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorPlaca(placa);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -187,7 +187,7 @@ public class ControleVeiculo extends HttpServlet {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorRenavam(renavam);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -196,7 +196,7 @@ public class ControleVeiculo extends HttpServlet {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlaca(ano, placa);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -205,7 +205,7 @@ public class ControleVeiculo extends HttpServlet {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorAnoRenavam(ano, renavam);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -214,7 +214,7 @@ public class ControleVeiculo extends HttpServlet {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorPlacaRenavam(placa, renavam);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -224,7 +224,7 @@ public class ControleVeiculo extends HttpServlet {
 
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);
+                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
                         } else {
                             request.setAttribute("listaveic", lista);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
@@ -246,7 +246,7 @@ public class ControleVeiculo extends HttpServlet {
             }
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
-            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos").forward(request, response);;
+            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);;
         }
     }
 

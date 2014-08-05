@@ -101,15 +101,15 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
         int offset = (Integer.parseInt(numPagina) * limite) - limite;
 
         Query query = session.createQuery("from Veiculo");
-        query.setFirstResult(offset);
-        query.setMaxResults(limite);
+        query.setFirstResult(offset);//Equivale ao OFFSET sql
+        query.setMaxResults(limite);//Equivale ao LIMIT sql
 
         List list = query.list();
         return list;
     }
     
     @Override
-    public int todosVeiculoCount(){
+    public int todosVeiculosCount(){
         int totalRegistros = 0;
         
         session = Conexao.getInstance();

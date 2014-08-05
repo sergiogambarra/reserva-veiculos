@@ -112,8 +112,52 @@ public class ReservaDAO implements InterfaceReservaDAO {
     }
 
     @Override
-    public List listaReservas(String matricula) {
+    public List listaReservas(String matricula, String numPagina) {
         session = Conexao.getInstance();
+        int limite = 10;
+        int offset = (Integer.parseInt(numPagina) * limite) - limite;
+
+        try {
+            Transaction tx = session.beginTransaction();
+            List list;
+            if (null != matricula) {
+
+                String sql = "from Reserva r"
+                        + " where r.matricula_siape = :matriculaSIAPE";
+
+                Query query = session.createQuery(sql);
+                query.setString("matriculaSIAPE", matricula);
+                query.setFirstResult(offset);//Equivale ao OFFSET sql
+                query.setMaxResults(limite);//Equivale ao LIMIT sql
+
+                list = query.list();
+                tx.commit();
+            } else {
+                String sql = "from Reserva r"
+                        + " where r.matricula_siape <> :matriculaSIAPE";
+
+                Query query = session.createQuery(sql);
+                query.setString("matriculaSIAPE", matricula);
+                query.setFirstResult(offset);//Equivale ao OFFSET sql
+                query.setMaxResults(limite);//Equivale ao LIMIT sql
+
+                list = query.list();
+                tx.commit();
+            }
+
+            session.close();
+            return list;
+
+        } catch (HibernateException ex) {
+            ex.getMessage();
+        }
+        return null;
+    }
+
+    @Override
+    public int todasReservasCount(String matricula) {
+        session = Conexao.getInstance();
+        int totalRegistros = 0;
         try {
             Transaction tx = session.beginTransaction();
             List list;
@@ -139,6 +183,255 @@ public class ReservaDAO implements InterfaceReservaDAO {
             }
 
             session.close();
+
+            totalRegistros = list.size();
+            return totalRegistros;
+
+        } catch (HibernateException ex) {
+            ex.getMessage();
+        }
+        return totalRegistros;
+    }
+
+    @Override
+    public List buscarReservaPorSaida(String matricula_siape, String data_saida) {
+        session = Conexao.getInstance();
+
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaOutros(String matricula_siape, String data_saida) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorRetorno(String matricula_siape, String data_retorno) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_retorno like :data_retorno)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorRetornoOutros(String matricula_siape, String data_retorno) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_retorno like :data_retorno)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorDestino(String matricula_siape, String destino) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorDestinoOutros(String matricula_siape, String destino) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaRetorno(String matricula_siape, String data_saida, String data_retorno) {
+        session = Conexao.getInstance();
+
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaRetornoOutros(String matricula_siape, String data_saida, String data_retorno) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaDestino(String matricula_siape, String data_saida, String destino) {
+        session = Conexao.getInstance();
+
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaDestinoOutros(String matricula_siape, String data_saida, String destino) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorRetornoDestino(String matricula_siape, String data_retorno, String destino) {
+        session = Conexao.getInstance();
+
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorRetornoDestinoOutros(String matricula_siape, String data_retorno, String destino) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaRetornoDestino(String matricula_siape, String data_saida, String data_retorno, String destino) {
+        session = Conexao.getInstance();
+
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+        return list;
+    }
+
+    @Override
+    public List buscarReservaPorSaidaRetornoDestinoOutros(String matricula_siape, String data_saida, String data_retorno, String destino) {
+        session = Conexao.getInstance();
+        List list;
+        String sql = "from Reserva r"
+                + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
+
+        Query query = session.createQuery(sql);
+        query.setString("matriculaSIAPE", matricula_siape);
+        query.setString("data_saida", "%" + data_saida + "%");
+        query.setString("data_retorno", "%" + data_retorno + "%");
+        query.setString("destino", "%" + destino + "%");
+        list = query.list();
+
+        return list;
+    }
+
+    @Override
+    public List listaReservasOutros(String matricula, String numPaginaOutros) {
+        session = Conexao.getInstance();
+        int limite = 10;
+        int offset = (Integer.parseInt(numPaginaOutros) * limite) - limite;
+        try {
+            Transaction tx = session.beginTransaction();
+            List list;
+
+            String sql = "from Reserva r"
+                    + " where r.matricula_siape <> :matriculaSIAPE";
+
+            Query query = session.createQuery(sql);
+            query.setString("matriculaSIAPE", matricula);
+            query.setFirstResult(offset);//Equivale ao OFFSET sql
+            query.setMaxResults(limite);//Equivale ao LIMIT sql
+
+            list = query.list();
+            tx.commit();
+
+            session.close();
             return list;
 
         } catch (HibernateException ex) {
@@ -146,229 +439,14 @@ public class ReservaDAO implements InterfaceReservaDAO {
         }
         return null;
     }
-    
-    @Override
-    public List buscarReservaPorSaida(String matricula_siape, String data_saida) {
-       session = Conexao.getInstance();
-
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorSaidaOutros(String matricula_siape, String data_saida) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                list = query.list();
-        
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorRetorno(String matricula_siape, String data_retorno) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_retorno like :data_retorno)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorRetornoOutros(String matricula_siape, String data_retorno) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_retorno like :data_retorno)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                list = query.list();
-        
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorDestino(String matricula_siape, String destino) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorDestinoOutros(String matricula_siape, String destino) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorSaidaRetorno(String matricula_siape, String data_saida, String data_retorno) {
-       session = Conexao.getInstance();
-
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorSaidaRetornoOutros(String matricula_siape, String data_saida, String data_retorno) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                list = query.list();
-        
-        return list;
-    }
 
     @Override
-    public List buscarReservaPorSaidaDestino(String matricula_siape, String data_saida, String destino) {
-       session = Conexao.getInstance();
-
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorSaidaDestinoOutros(String matricula_siape, String data_saida, String destino) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorRetornoDestino(String matricula_siape, String data_retorno, String destino) {
-       session = Conexao.getInstance();
-
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorRetornoDestinoOutros(String matricula_siape, String data_retorno, String destino) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorSaidaRetornoDestino(String matricula_siape, String data_saida, String data_retorno, String destino) {
-       session = Conexao.getInstance();
-
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape = :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        return list;
-    }
-    
-    @Override
-    public List buscarReservaPorSaidaRetornoDestinoOutros(String matricula_siape, String data_saida, String data_retorno, String destino) {
-       session = Conexao.getInstance();
-       List list;
-       String sql = "from Reserva r"
-                        + " where (r.matricula_siape <> :matriculaSIAPE) and (r.data_saida like :data_saida) and (r.data_retorno like :data_retorno) and (r.destino like :destino)";
-
-                Query query = session.createQuery(sql);
-                query.setString("matriculaSIAPE", matricula_siape);
-                query.setString("data_saida", "%"+data_saida+"%");
-                query.setString("data_retorno", "%"+data_retorno+"%");
-                query.setString("destino", "%"+destino+"%");
-                list = query.list();
-        
-        return list;
-    }
-    
-    @Override
-    public List listaReservasOutros(String matricula) {
+    public int todasReservasOutrosCount(String matricula) {
         session = Conexao.getInstance();
+        int totalRegistros = 0;
         try {
+
+
             Transaction tx = session.beginTransaction();
             List list;
 
@@ -382,12 +460,15 @@ public class ReservaDAO implements InterfaceReservaDAO {
             tx.commit();
 
             session.close();
-            return list;
+
+            totalRegistros = list.size();
+
+            return totalRegistros;
 
         } catch (HibernateException ex) {
             ex.getMessage();
         }
-        return null;
+        return totalRegistros;
     }
 
     @Override
@@ -498,5 +579,5 @@ public class ReservaDAO implements InterfaceReservaDAO {
         } catch (HibernateException ex) {
             ex.getMessage();
         }
-    }   
+    }
 }

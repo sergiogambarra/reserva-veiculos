@@ -2,12 +2,12 @@
     <nav class="menuAcoes">
         <ul>
             
-            <li><a href="ControleReserva?action=listaReservas">Lista de Reservas</a></li>
+            <li><a href="ControleReserva?action=listaReservas&pagina=1&paginaOutros=1">Lista de Reservas</a></li>
             <%
                 if (request.getSession().getAttribute("administrador") != null) {
             %>  
             <li><a href="ControleVeiculo?action=listaVeiculos&pagina=1">Lista de Veículos</a></li>
-            <li><a href="ControleServidor?action=listaServidores">Lista de Servidores</a></li>
+            <li><a href="ControleServidor?action=listaServidores&pagina=1">Lista de Servidores</a></li>
             <%
                     }
             %>

@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import srv.dao.InterfaceReservaDAO;
 import srv.dao.ReservaDAO;
-import srv.modelo.Reserva;
 import srv.modelo.Veiculo;
 
 /**

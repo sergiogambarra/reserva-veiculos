@@ -135,6 +135,26 @@
                                 %>
                             </tbody>
                         </table>
+                        <!-- INÍCIO PAGINAÇÃO -->
+                        <%
+                            int totalRegistros = Integer.parseInt(request.getAttribute("totalRegistros").toString());
+                            int totalPaginas = Integer.parseInt(request.getAttribute("totalPaginas").toString());
+                        %>
+                        <div id="paginacao" class="paginacao">
+                            <div id="totalRegistros" class="totalRegistros">
+                                <p>Total encontrado: <%= totalRegistros%></p>
+                            </div>
+                            <div id="totalPaginas" class="totalPaginas">
+                                <%
+                                    for (int i = 1; i <= totalPaginas; i++) {
+                                %>
+                                <a href="ControleServidor?action=listaServidores&pagina=<%=i%>"><%=i%></a>
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </div>
+                        <!-- FIM DA PAGINAÇÃO -->     
                     </div>
                 </div>
 

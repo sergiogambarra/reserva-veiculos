@@ -457,13 +457,13 @@ iconeSelecionar{
 }
 
 #consultarDispon{
-    width: 40%;
+    width: 32%;
     float: right;
     margin-right: 35%;
 }
 
 .formFiltro, .formFiltroDate{
-    width: 270px;
+    width: 271px;
     float:left; 
 
 }
@@ -510,7 +510,7 @@ iconeSelecionar{
     border: 1px solid green;
     /*font-weight: bold;*/
     height:50px;
-    width:1225px;
+    width:1235px;
 }
 
 .filser legend{

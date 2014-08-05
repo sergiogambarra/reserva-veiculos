@@ -4,10 +4,6 @@
     Author     : Paula
 --%>
 
-<%
-
-
-%>
 <%@page import="srv.modelo.Veiculo"%>
 <%@page import="java.util.List"%>
 <%@include file="ValidarLoginAdministrador.jsp" %>
@@ -125,7 +121,7 @@
                                 %>
                             </tbody>
                         </table>
-                         <!-- INÍCIO PAGINAÇÃO -->
+                        <!-- INÍCIO PAGINAÇÃO -->
                         <%
                             int totalRegistros = Integer.parseInt(request.getAttribute("totalRegistros").toString());
                             int totalPaginas = Integer.parseInt(request.getAttribute("totalPaginas").toString());
