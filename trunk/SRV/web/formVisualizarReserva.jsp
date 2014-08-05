@@ -175,7 +175,15 @@
                                             <div class="formCadastroInput">
                                                 <input type="text" id="inputModeloVeiculo" name="inputModeloVeiculo" value="<%= modelo%>" readonly="true">
                                                 <div id="consultarDispon">
+                                                    <%
+                                                    if (request.getSession().getAttribute("administrador") != null){
+                                                    %>
                                                     <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
+                                                    <%
+                                                    }else if (servidor.getMatriculaSIAPE().equals(reserv.getMatricula_siape())) {
+                                                    %> 
+                                                    <a href="ControleReserva?action=consultarDispVeiculo&id_reserva=<%= id_reserva%>">Consultar Novo Veículo</a>
+                                                    <% }%>
                                                 </div>
                                             </div>
                                         </li>
@@ -280,12 +288,16 @@
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Voltar" onClick="history.go(-1)"/></div>
                                                 <%
-                                                    if (request.getSession().getAttribute("administrador") != null) {
+                                                if (request.getSession().getAttribute("administrador") != null) {
                                                 %>  
-                                            <div id="btnEditHidden" class="formCadastroInputSalvar"><input type="button" value="Editar" onclick="funcoesOnloadReserva()"/></div>
-                                            <div id="btnSaveHidden" class="formCadastroInputSalvar"><input type="submit" value="Salvar"  onclick="return validarReserva()"/></div>
-                                                <%                            }
-                                                %>
+                                                <div id="btnEditHidden" class="formCadastroInputSalvar"><input type="button" value="Editar" onclick="funcoesOnloadReserva()"/></div>
+                                                <div id="btnSaveHidden" class="formCadastroInputSalvar"><input type="submit" value="Salvar"  onclick="return validarReserva()"/></div>
+                                                <%
+                                                }else if (servidor.getMatriculaSIAPE().equals(reserv.getMatricula_siape())) {
+                                                %> 
+                                                <div id="btnEditHidden" class="formCadastroInputSalvar"><input type="button" value="Editar" onclick="funcoesOnloadReserva()"/></div>
+                                                <div id="btnSaveHidden" class="formCadastroInputSalvar"><input type="submit" value="Salvar"  onclick="return validarReserva()"/></div>
+                                                <% }%>
                                         </li>
                                     </ul>
                                 </div>
