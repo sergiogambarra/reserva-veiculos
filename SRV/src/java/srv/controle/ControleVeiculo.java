@@ -162,61 +162,186 @@ public class ControleVeiculo extends HttpServlet {
                     InterfaceVeiculoDAO ivdao = new VeiculoDAO();
 
                     if (ano.equals("") && placa.equals("") && renavam.equals("")) {
+                        List<Veiculo> lista = ivdao.buscarVeiculoPorPlaca(placa);
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
-                        request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
+                        int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
 
                     } else if (!ano.equals("") && placa.equals("") && renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorAno(ano);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                            
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     } else if (ano.equals("") && !placa.equals("") && renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorPlaca(placa);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     } else if (ano.equals("") && placa.equals("") && !renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorRenavam(renavam);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     } else if (!ano.equals("") && !placa.equals("") && renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorAnoPlaca(ano, placa);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     } else if (!ano.equals("") && placa.equals("") && !renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorAnoRenavam(ano, renavam);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     } else if (ano.equals("") && !placa.equals("") && !renavam.equals("")) {
                         List<Veiculo> lista = ivdao.buscarVeiculoPorPlacaRenavam(placa, renavam);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     } else if (!ano.equals("") && !placa.equals("") && !renavam.equals("")) {
@@ -224,9 +349,28 @@ public class ControleVeiculo extends HttpServlet {
 
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleVeiculo?action=listaVeiculos&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
+                            request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaveic", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Veículos", "ControleVeiculo?action=listaVeiculos&pagina=1", null, null);
                             request.getRequestDispatcher("listaVeiculos.jsp").forward(request, response);
                         }
                     }

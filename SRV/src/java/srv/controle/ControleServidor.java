@@ -255,15 +255,45 @@ public class ControleServidor extends HttpServlet {
 
                     if (nome.equals("") && matricula_siape.equals("") && motorista == null && status == null) {
                         request.setAttribute("mensagem", "Não foram informados dados para a consulta.");
-                        request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
+                        List<Servidor> lista = isdao.buscarServidorPorNome(nome);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
 
                     } else if (!nome.equals("") && matricula_siape.equals("") && motorista == null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNome(nome);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
 
@@ -271,9 +301,28 @@ public class ControleServidor extends HttpServlet {
                         List<Servidor> lista = isdao.buscarServidorPorMatricula(matricula_siape);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
 
@@ -281,9 +330,28 @@ public class ControleServidor extends HttpServlet {
                         List<Servidor> lista = isdao.buscarServidorPorMotorista(motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
 
@@ -291,108 +359,336 @@ public class ControleServidor extends HttpServlet {
                         List<Servidor> lista = isdao.buscarServidorPorStatus(status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && !matricula_siape.equals("") && motorista == null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatricula(nome, matricula_siape);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMotorista(nome, motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeStatus(nome, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (nome.equals("") && !matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatriculaMotorista(matricula_siape, motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (nome.equals("") && !matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatriculaStatus(matricula_siape, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (nome.equals("") && matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorMotoristaStatus(motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && !matricula_siape.equals("") && motorista != null && status == null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatriculaMotorista(nome, matricula_siape, motorista);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && !matricula_siape.equals("") && motorista == null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatriculaStatus(nome, matricula_siape, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMotoristaStatus(nome, motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (nome.equals("") && !matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorMatriculaMotoristaStatus(matricula_siape, motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     } else if (!nome.equals("") && !matricula_siape.equals("") && motorista != null && status != null) {
                         List<Servidor> lista = isdao.buscarServidorPorNomeMatriculaMotoristaStatus(nome, matricula_siape, motorista, status);
                         if (lista.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);
-                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
                             request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
+                            request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if(totalRegistros % 10 != 0){
+                                totalPaginas++;
+                            }
+                    
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaserv", lista);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                             request.getRequestDispatcher("listaServidores.jsp").forward(request, response);
                         }
                     }

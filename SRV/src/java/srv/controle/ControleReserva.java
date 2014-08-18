@@ -300,7 +300,7 @@ public class ControleReserva extends HttpServlet {
                 }
             } else if (acao.equals("excluirReserva")) {
                 int id_reserva = Integer.parseInt(request.getParameter("reserva"));
-                
+
                 InterfaceReservaDAO idao = new ReservaDAO();
                 Reserva reserva = idao.consultarID_Reserva(id_reserva);
                 idao.excluirReserva(reserva);
@@ -326,14 +326,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaOutros(matricula_siape, data_saida);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     } else if (data_saida.equals("") && !data_retorno.equals("") && destino.equals("")) {
@@ -342,14 +382,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoOutros(matricula_siape, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     } else if (data_saida.equals("") && data_retorno.equals("") && !destino.equals("")) {
@@ -357,14 +437,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorDestinoOutros(matricula_siape, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     } else if (!data_saida.equals("") && !data_retorno.equals("") && destino.equals("")) {
@@ -374,14 +494,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoOutros(matricula_siape, data_saida, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     } else if (!data_saida.equals("") && data_retorno.equals("") && !destino.equals("")) {
@@ -390,14 +550,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaDestinoOutros(matricula_siape, data_saida, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     } else if (data_saida.equals("") && !data_retorno.equals("") && !destino.equals("")) {
@@ -406,14 +606,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoDestinoOutros(matricula_siape, data_retorno, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     } else if (!data_saida.equals("") && !data_retorno.equals("") && !destino.equals("")) {
@@ -423,14 +663,54 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoDestinoOutros(matricula_siape, data_saida, data_retorno, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
-                        } else {
-                            request.setAttribute("listaReservasOutros", listaOutros);
-                            request.setAttribute("listaReservas", lista);
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
                             request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
+                            request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
+                        } else {
+                            int totalRegistros = lista.size();
+                            int totalPaginas = totalRegistros / 10;
+                            if (totalRegistros % 10 != 0) {
+                                totalPaginas++;
+                            }
+
+                            int totalRegistrosOutros = listaOutros.size();
+                            int totalPaginasOutros = totalRegistrosOutros / 10;
+                            if (totalRegistrosOutros % 10 != 0) {
+                                totalPaginasOutros++;
+                            }
+
+                            InterfaceDestinoDAO ddao = new DestinoDAO();
+                            List<Destino> listad = ddao.buscarDestinos();
+
+                            request.setAttribute("listadest", listad);
+                            request.setAttribute("totalRegistros", totalRegistros);
+                            request.setAttribute("totalPaginas", totalPaginas);
+                            request.setAttribute("listaReservas", lista);
+                            request.setAttribute("totalRegistrosOutros", totalRegistrosOutros);
+                            request.setAttribute("totalPaginasOutros", totalPaginasOutros);
+                            request.setAttribute("listaReservasOutros", listaOutros);
+                            BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         }
                     }
