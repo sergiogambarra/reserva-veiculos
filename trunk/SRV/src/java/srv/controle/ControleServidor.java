@@ -61,6 +61,13 @@ public class ControleServidor extends HttpServlet {
                     String email = request.getParameter("sEmail");
                     String sexo = request.getParameter("sexo");
                     String data_nascimento = request.getParameter("sDataNascimento");
+
+                    /*
+                     Datepicker vem no formato dd/mm/yyyy e o MySql é yyyy-MM-dd
+                     */                    
+                    Date data_saida_br = null;
+                    String data_nascimento_mysql = Validacoes.validarDataEntradaMysql(data_nascimento);
+
                     String cpf = request.getParameter("sCpf");
                     String rg = request.getParameter("sRg");
                     String orgao_expedidor = request.getParameter("sOrgaoExpedidor");
@@ -85,7 +92,7 @@ public class ControleServidor extends HttpServlet {
 
                     //A DATA SERÁ A SENHA INICIAL
                     Date date;
-                    date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento);
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(data_nascimento_mysql);
                     serv.setData_nascimento(date);
                     serv.setCpf(cpf);
                     serv.setRg(rg);
@@ -176,7 +183,7 @@ public class ControleServidor extends HttpServlet {
                     } else if (acao.equals("atualizarServidor")) {
 
                         sdao.atualizar(serv);
-                        
+
                         BarraNavegacao.setarNavegacao(request, "Lista de Servidores", "ControleServidor?action=listaServidores&pagina=1", null, null);
                         request.setAttribute("mensagem", "Cadastro alterado com sucesso.");
                         request.getRequestDispatcher("ControleServidor?action=listaServidores&pagina=1").forward(request, response);;
@@ -189,6 +196,7 @@ public class ControleServidor extends HttpServlet {
                 InterfaceServidorDAO idao = new ServidorDAO();
                 String matricula = request.getParameter("matricula");;
                 Servidor s = idao.consultarMatricula(matricula);
+                System.out.println("DN: " + s.getData_nascimento());
                 request.setAttribute("matricula", s);
                 request.setAttribute("dao", idao);
 
@@ -218,14 +226,14 @@ public class ControleServidor extends HttpServlet {
             } else if (acao.equals("listaServidores")) {// Parte de consulta ###################################################
                 try {
                     String numPagina = request.getParameter("pagina");
-                    
+
                     InterfaceServidorDAO sdao = new ServidorDAO();
                     List<Servidor> lista = sdao.todosServidores(numPagina);
-                    
+
                     //Início Paginação
                     int totalRegistros = sdao.todosServidoresCount();
                     int totalPaginas = totalRegistros / 10;
-                    if(totalRegistros % 10 != 0){
+                    if (totalRegistros % 10 != 0) {
                         totalPaginas++;
                     }
                     //Fim Paginação
@@ -734,8 +742,8 @@ public class ControleServidor extends HttpServlet {
 
             } else if (acao.equals("novoServidor")) {
                 try {
-                     BarraNavegacao.setarNavegacao(request, "Novo Servidor", "ControleServidor?action=novoServidor", null, null);
-                     request.getRequestDispatcher("cadastrarServidor.jsp").forward(request, response);
+                    BarraNavegacao.setarNavegacao(request, "Novo Servidor", "ControleServidor?action=novoServidor", null, null);
+                    request.getRequestDispatcher("cadastrarServidor.jsp").forward(request, response);
                 } catch (Exception e) {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("erro.jsp").forward(request, response);

@@ -12,11 +12,17 @@
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
+
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+        
+        <script type="text/javascript" src="js/calendarios.js"></script>
     </head>
     <body id="corpo" onload="pegarCookies();">
         <section class="container">
@@ -72,10 +78,6 @@
                                             <div class="formCadastroLabel"><label for="sNomeCompleto"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Nome</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sNomeCompleto" name="sNomeCompleto" placeholder="Nome completo" onKeyPress="return mascaraLetras(event);" maxlength="50"/></div>
                                         </li>
-                                        <!--<li>
-                                            <div class="formCadastroLabel"><label for="sSenha">*Senha</label> </div>
-                                            <div class="formCadastroInput"><input type="password" name="sSenha" placeholder="Senha"/></div>
-                                        </li>-->
                                         <li>
                                             <div class="formCadastroLabel"><label for="sEmail"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Email</label> </div>
                                             <div class="formCadastroInput"><input type="text" id="sEmail" name="sEmail" placeholder="Email institucional" maxlength="50"/></div>
@@ -90,8 +92,12 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sDataNascimento"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data Nascimento</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sDataNascimento" placeholder="aaaa-mm-dd" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
+                                            <div class="formCadastroLabel">
+                                                <label for="sDataNascimento"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data Nascimento</label> 
+                                            </div>
+                                            <div class="formCadastroInput">
+                                                <input type="text" id="sDataNascimento" name="sDataNascimento"  maxlength="10" onKeyPress="return mascaraData(event);"/>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>CPF</label> </div>

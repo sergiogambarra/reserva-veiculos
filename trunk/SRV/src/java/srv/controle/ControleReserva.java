@@ -28,6 +28,7 @@ import srv.modelo.Destino;
 import srv.modelo.Reserva;
 import srv.modelo.Servidor;
 import srv.modelo.Veiculo;
+import srv.util.Validacoes;
 
 /**
  *
@@ -157,18 +158,10 @@ public class ControleReserva extends HttpServlet {
                 Date data_saida_br = null;
                 Date data_retorno_br = null;
                 String data_saida = null;
-                String data_retorno = null;
-                String data = request.getParameter("inputDataSaida");
-                System.out.println("Teste data: " + data);
-                try {
-                    data_saida_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataSaida"));
-                    data_saida = new SimpleDateFormat("yyyy-MM-dd").format(data_saida_br);
+                String data_retorno = null;                
 
-                    data_retorno_br = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("inputDataRetorno"));
-                    data_retorno = new SimpleDateFormat("yyyy-MM-dd").format(data_retorno_br);
-                } catch (Exception e) {
-                    e.getMessage();
-                }
+                data_saida = Validacoes.validarDataEntradaMysql(request.getParameter("inputDataSaida"));
+                data_retorno = Validacoes.validarDataEntradaMysql(request.getParameter("inputDataRetorno"));
 
                 String hora_saida = request.getParameter("inputHoraSaida");
                 String datetime_saida = data_saida + " " + hora_saida + ":00";
@@ -197,10 +190,9 @@ public class ControleReserva extends HttpServlet {
                     descricao = request.getParameter("inputDestinoComplementar");
                 }
 
-                Date date_saida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_saida);
-                Date date_retorno = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_retorno);
+                Date date_saida = Validacoes.formatarDatetimeParaDate(datetime_saida);
+                Date date_retorno = Validacoes.formatarDatetimeParaDate(datetime_retorno);
 
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 Date date_atual = new Date();
                 Timestamp timestamp_atual = new Timestamp(date_atual.getTime());
 

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import srv.dao.InterfaceReservaDAO;
 import srv.dao.ReservaDAO;
 import srv.modelo.Veiculo;
+import srv.util.Validacoes;
 
 /**
  *
@@ -87,11 +88,12 @@ public class ControleReservaAjax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String data_saida = request.getParameter("dataSaida");
+        String data_saida = Validacoes.validarDataEntradaMysql(request.getParameter("dataSaida"));
+        
         String hora_saida = request.getParameter("horaSaida");
         String datetime_saida = data_saida + " " + hora_saida + ":00";
 
-        String data_retorno = request.getParameter("dataRetorno");
+        String data_retorno = Validacoes.validarDataEntradaMysql(request.getParameter("dataRetorno"));
         String hora_retorno = request.getParameter("horaRetorno");
         String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
 
@@ -108,10 +110,14 @@ public class ControleReservaAjax extends HttpServlet {
         } catch (ParseException ex) {
             ex.getMessage();
         }
-
+        
+        data_saida = Validacoes.validarDataSaidaMysqlString(data_saida);
+        data_retorno = Validacoes.validarDataSaidaMysqlString(data_retorno);
+        
         InterfaceReservaDAO iReservaDao = new ReservaDAO();
         List<Veiculo> listaVeiculosDisp = new ArrayList<Veiculo>();
-        
+        // @@@
+
         if(id_reserva.equals("")){
             listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
         }else{
