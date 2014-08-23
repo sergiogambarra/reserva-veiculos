@@ -1,4 +1,5 @@
 
+<%@page import="srv.util.Validacoes"%>
 <%@page import="srv.dao.InterfaceServidorDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="srv.modelo.Servidor"%>
@@ -16,11 +17,17 @@
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
+        
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="cidades-estados-1.0"></script>
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+        <script type="text/javascript" src="js/calendarios.js"></script>
+        
     </head>
     <body id="corpo" onload="funcoesOnloadServidor();">
         <section class="container">
@@ -101,7 +108,15 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sDataNascimento">Data Nascimento</label> </div>
-                                            <div class="formCadastroInput"><input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" placeholder="aaaa-mm-dd" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
+                                            <%
+                                                Servidor s = (Servidor)request.getAttribute("matricula");
+                                                System.out.println("DN: " + s.getData_nascimento());
+                                                String sDataNascimento = Validacoes.extrairDateParaString(s.getData_nascimento());
+                                                System.out.println("DN: " + sDataNascimento);
+                                            %>
+                                            <div class="formCadastroInput">
+                                                <input type="text" id="sDataNascimento" name="sDataNascimento"  maxlength="10" value ="<%= sDataNascimento %>" onKeyPress="return mascaraData(event);"/>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sCpf">CPF</label> </div>

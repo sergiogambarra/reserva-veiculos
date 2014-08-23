@@ -93,7 +93,7 @@
                                             <div class="formCadastroInput">
                                                 <input type="text" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
                                                 <label for="iHoraRetorno" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Horário de Retorno </label>
-                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" />
+                                                <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" onclick="getHoraRetorno()" />
                                             </div>
                                         </li>                                        
                                         <li class="formBotoes">

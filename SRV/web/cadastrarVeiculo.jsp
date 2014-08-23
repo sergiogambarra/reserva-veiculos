@@ -18,10 +18,16 @@
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
+        
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+        <script type="text/javascript" src="js/calendarios.js"></script>
+
     </head>
     <body id="corpo" onload="pegarCookies();">
         <section class="container">
@@ -129,11 +135,15 @@
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled onKeyPress="return mascaraData(event);" maxlength="10"/></div>
+                                            <div class="formCadastroInput">
+                                                <input type="text" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled onKeyPress="return mascaraData(event);" maxlength="10"/>
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"><label for="sManDataFinal">Data Final</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled onKeyPress="return mascaraData(event);" maxlength="10"/></div>
+                                            <div class="formCadastroInput">
+                                                <input type="text" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled onKeyPress="return mascaraData(event);" maxlength="10"/>
+                                            </div>
                                         </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')"/></div>

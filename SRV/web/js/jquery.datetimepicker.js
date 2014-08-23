@@ -247,7 +247,7 @@
 		timeHeightInTimePicker:25,
 		timepickerScrollbar:true,
 		
-		todayButton:true, // 2.1.0
+		todayButton:false, // 2.1.0
 		defaultSelect:true, // 2.1.0
 		
 		scrollMonth:true,
@@ -257,7 +257,7 @@
 		lazyInit:false,
 		
 		mask:false,
-		validateOnBlur:true,
+		validateOnBlur:false,
 		allowBlank:true,
 		
 		yearStart:1950,

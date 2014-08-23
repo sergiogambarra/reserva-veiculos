@@ -1,3 +1,4 @@
+<%@page import="srv.util.Validacoes"%>
 <%@page import="srv.modelo.Destino"%>
 <%@page import="srv.modelo.Reserva"%>
 <%@page import="java.util.List"%>
@@ -133,8 +134,8 @@
                                 List<Reserva> lista = (List<Reserva>) request.getAttribute("listaReservas");
                                 for (int i = 0; i < lista.size(); i++) {
                                     Reserva reserv = lista.get(i);
-                                    dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
-                                    horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
+                                    dataSaida = Validacoes.extrairDateParaString(reserv.getData_saida());
+                                    horarioSaida = Validacoes.extrairHoraDeDateMysqlParaString(reserv.getData_saida());
                                     if(reserv.getDescricao_destino() == null){                                      
                                         nomeDestino = reserv.getDestino().getNome(); 
                                     }else{
