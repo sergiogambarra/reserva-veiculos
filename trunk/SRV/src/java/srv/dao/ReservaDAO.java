@@ -55,6 +55,16 @@ public class ReservaDAO implements InterfaceReservaDAO {
                 .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
                 .append(")")
                 .append(")");
+        /*
+        qr.append("from Veiculo ")
+                .append("where placa not in(")
+                .append("select r.placa from Reserva r where(")
+                .append("((r.data_saida < r.data_retorno) and (r.data_saida < ?) and ((r.data_saida >= ?) or (r.data_saida < ?)))")
+                .append(" and ")
+                .append("((r.data_retorno > ?) and ((r.data_retorno <= ?) or (r.data_retorno > ?)))")
+                .append(")")
+                .append(")");
+        */
 
         try {
             Query query = session.createQuery(qr.toString())
