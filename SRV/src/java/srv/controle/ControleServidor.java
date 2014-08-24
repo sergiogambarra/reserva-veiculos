@@ -196,7 +196,7 @@ public class ControleServidor extends HttpServlet {
                 InterfaceServidorDAO idao = new ServidorDAO();
                 String matricula = request.getParameter("matricula");;
                 Servidor s = idao.consultarMatricula(matricula);
-                System.out.println("DN: " + s.getData_nascimento());
+                
                 request.setAttribute("matricula", s);
                 request.setAttribute("dao", idao);
 
