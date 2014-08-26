@@ -62,7 +62,7 @@ public class Reserva implements java.io.Serializable{
     @JoinColumn(name="placa", 
     insertable=false, updatable=false) 
     @Fetch(FetchMode.SELECT) 
-    @Cascade(CascadeType.ALL) 
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Veiculo veiculo;
     
     @ManyToOne(fetch = FetchType.EAGER) 
