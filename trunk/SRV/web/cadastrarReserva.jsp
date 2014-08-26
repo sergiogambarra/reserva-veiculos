@@ -193,13 +193,7 @@
                                 <li>
                                     <div class="formCadastroLabel"><label for="iOcupantes"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Número de Ocupantes</label> </div>
                                     <div class="formCadastroInput">
-                                        <%
-                                            if (usuario.isMotorista()) {
-                                        %><input type="number" id="iOcupantes" name="iOcupantes" value="1" min="1" max="<%= veiculo.getCapacidade()%>"><%
-                                        } else {
-                                        %><input type="number" id="iOcupantes" name="iOcupantes" value="2" min="2" max="<%= veiculo.getCapacidade()%>"><%
-                                            }
-                                        %>
+                                        <input type="number" id="iOcupantes" name="iOcupantes" value="1" min="1" max="<%= veiculo.getCapacidade()%>">          
                                     </div>
                                 </li>
                                 <li>
