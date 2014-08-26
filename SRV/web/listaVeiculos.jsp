@@ -81,7 +81,7 @@
                                         <input type="text" id="renavam" name="renavam" placeholder="RENAVAM" onKeyPress="return mascaraMatSiap(event);" maxlength="11"/>
                                     </div>
                                     <div class="formFiltroConsultar">
-                                        <input type="submit" value="Consultar"/>
+                                        <input type="submit" value="Consultar" onclick="return validarConsultaVeiculo()"/>
                                     </div>
                                 </fieldset>
                             </form>

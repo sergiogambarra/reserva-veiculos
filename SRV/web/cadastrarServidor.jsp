@@ -21,7 +21,6 @@
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
-        
         <script type="text/javascript" src="js/calendarios.js"></script>
     </head>
     <body id="corpo" onload="pegarCookies();">

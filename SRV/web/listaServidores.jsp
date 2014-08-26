@@ -91,7 +91,7 @@
                                     <label class="radioStatus" for="Status_serv">Inativo</label>
                                 </div>
                                 <div class="formFiltroConsultar">
-                                    <input type="submit" value="Consultar"/>
+                                    <input type="submit" value="Consultar" onclick="return validarConsultaServidor()"/>
                                 </div>
                                </fieldset>
                             </form>
