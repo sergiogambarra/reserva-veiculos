@@ -232,13 +232,9 @@
                                         </div>
 
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Número de Ocupantes</label> </div>
+                                            <div class="formCadastroLabel"><label for="iOcupantes"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Número de Ocupantes</label> </div>
                                             <div class="formCadastroInput">
-                                                <%
-                                                    if (servidor.isMotorista()) {
-                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="1" min="1" max="${reserva.veiculo.capacidade}"><%                                                } else {
-                                                %><input type="number" id="iCapacidade" name="iCapacidade" value="2" min="2" max="${reserva.veiculo.capacidade}"><%                                                    }
-                                                %>
+                                                <input type="number" id="iOcupantes" name="iOcupantes" value="${reserva.ocupantes}" min="1" max="${reserva.veiculo.capacidade}">
                                             </div>
                                         </li>
 

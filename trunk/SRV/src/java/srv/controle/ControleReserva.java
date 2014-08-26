@@ -174,7 +174,7 @@ public class ControleReserva extends HttpServlet {
                 boolean condutor;
                 String matricula_siape_condutor;
 
-                int ocupantes = Integer.parseInt(request.getParameter("iCapacidade"));
+                int ocupantes = Integer.parseInt(request.getParameter("iOcupantes"));
 
                 if (iCondutor == 1) {
                     condutor = true;
