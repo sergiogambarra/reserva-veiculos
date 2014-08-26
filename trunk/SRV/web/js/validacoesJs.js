@@ -28,8 +28,6 @@ function funcoesOnloadVeiculo(){
         document.getElementById("btnSaveHidden").style.display = "block";
         document.getElementById("btnEditHidden").style.display = "none";  
     }
-//validarManutencao(valor);
-//desabilitaVisualizarVeiculo();
 }
 
 // <<<< AO CARREGAR PÁGINA   >>> ///
@@ -68,20 +66,6 @@ function validarMatricula(){
         return false;
     }
 }
-
-//function visualizarServidor(MatriculaSIAPE){
-//    var matricula = MatriculaSIAPE;
-//    window.open("ControleServidor?action=visualizarServidor&matricula="+matricula,
-//        "janela","width=700, height=900, \n\
-//scrollbars=yes, menubar=no, resizable=no, fullscreen=no//");
-//}
-
-//function visualizarVeiculo(Placa){
-//    var placa = Placa;
-//    window.open("ControleVeiculo?action=visualizarVeiculo&placa="+placa,
-//        "janela","width=700, height=900, \n\
-//scrollbars=yes, menubar=no, resizable=no, fullscreen=no//");
-//}
 
 // HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
 function habilitaVisualizarReserva(){
@@ -204,14 +188,6 @@ function validarManutencao(valor){
     }
 }
 
-/* SE FOR MOTORISTA, HABILITA CAMPO DA CNH
-function validarMotorista(valor){
-    if(valor == "1"){
-        document.getElementById("sCnh").disabled = false; 
-    }else{
-        document.getElementById("sCnh").disabled = true;
-    }
-}*/
 // QUANDO CLICAR NO CAMPO ID(PLACA OU MATRÍCULA) EXIBE MENSAGEM
 function naoAlterarId(){
     var id = document.getElementById("id").getAttribute('name')
@@ -244,7 +220,6 @@ function exibirDescricaoDestino(selected){
     }
 }
 
-
 // AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES 
 function validarVeiculo(){
     
@@ -275,11 +250,11 @@ function validarVeiculo(){
         return false;
     }
     
-  if (d.iAno.value.length == 4){
-    hoje = new Date();
-    anoAtual = hoje.getFullYear();
-    barras = d.iAno.value;
-    ano = barras;
+    if (d.iAno.value.length == 4){
+        hoje = new Date();
+        anoAtual = hoje.getFullYear();
+        barras = d.iAno.value;
+        ano = barras;
     
         if (ano > anoAtual){
             alert("Dados Inválidos. O campo Ano não pode ser maior que o ano atual!");
@@ -290,9 +265,8 @@ function validarVeiculo(){
             d.iAno.focus();
             return false;
         }
-  }
+    }
         
-    
     
     if(d.iMarca.value == ""){
         alert("Dados obrigatórios não preenchidos. Preencha o campo Marca!");
@@ -579,7 +553,7 @@ function validarReserva(){
         d.iDestino.focus();
         return false;
     }
-	//Pega o tamanho -1 porque a última posição deve ser a opção outros
+    //Pega o tamanho -1 porque a última posição deve ser a opção outros
     if(d.iDestino[d.iDestino.length - 1].selected == true){
         if(d.inputDestinoComplementar.value == ""){
             alert("Descreva o destino.");
@@ -638,4 +612,35 @@ function validarSenha(){
     }
     
     return true;    
+}
+
+function validarConsultaReserva(){
+    var d = document.consultaReserva;
+
+    if(d.DataSaida.value == "" && d.DataRetorno.value == "" && d.destino.value == ""){
+        alert("É preciso informar dados para consulta.");
+        return false;
+    }
+    return true;
+}
+
+function validarConsultaServidor(){
+    var d = document.consultaServidor;
+
+    if(d.nome.value == "" && d.MatriculaSiape.value == "" && d.motorista[0].checked == false && d.motorista[1].checked == false
+            && d.status_serv[0].checked == false && d.status_serv[1].checked == false){
+        alert("É preciso informar dados para consulta.");
+        return false;
+    }
+    return true;
+}
+
+function validarConsultaVeiculo(){
+    var d = document.consultaVeiculo;
+
+    if(d.ano.value == "" && d.placa.value == "" && d.renavam.value == ""){
+        alert("É preciso informar dados para consulta.");
+        return false;
+    }
+    return true;
 }

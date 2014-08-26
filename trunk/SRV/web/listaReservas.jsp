@@ -26,6 +26,11 @@
         <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" src="js/calendarios.js"></script>
+        <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
     </head>
     <body id="corpo" onload="pegarCookies()">
         <section class="container">
@@ -72,7 +77,8 @@
  
                                 <div class="formFiltroDate">
                                     <label for="DataSaida">Data de Saida</label>
-                                    <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/>
+                                    <input type="text" id="DataSaida" name="DataSaida"  maxlength="10" onKeyPress="return mascaraData(event);"/>
+<!--                                    <input type="text" id="DataSaida" name="DataSaida" placeholder="dd/mm/aaaa" maxlength="10"/>-->
                                 </div>
                                 
                                 <div class="formFiltroDate">
@@ -110,7 +116,7 @@
                                             %>
                                         </select>
                                 </div>
-                                <div class="formFiltroConsultar"><input type="submit" value="Consultar"/></div>
+                                <div class="formFiltroConsultar"><input type="submit" value="Consultar" onclick="return validarConsultaReserva()"/></div>
                                 </fieldset>
                             </form>
 
@@ -200,7 +206,7 @@
                                 List<Reserva> listaOutros = (List<Reserva>) request.getAttribute("listaReservasOutros");
                                 for (int i = 0; i < listaOutros.size(); i++) {
                                     Reserva reserv = listaOutros.get(i);
-                                    dataSaida = reserv.getData_saida().toString().substring(8, 10) + "-" + reserv.getData_saida().toString().substring(5, 7) + "-" + reserv.getData_saida().toString().substring(0, 4);
+                                    dataSaida = reserv.getData_saida().toString().substring(8, 10) + "/" + reserv.getData_saida().toString().substring(5, 7) + "/" + reserv.getData_saida().toString().substring(0, 4);
                                     horarioSaida = reserv.getData_saida().toString().substring(11, 13) + ":" + reserv.getData_saida().toString().substring(14, 16);
                                     if(reserv.getDescricao_destino() == null){                                      
                                         nomeDestino = reserv.getDestino().getNome(); 

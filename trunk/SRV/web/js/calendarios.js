@@ -71,6 +71,17 @@ jQuery(function(){
         timepicker:false
     });
     
+    jQuery('#DataSaida').datetimepicker({
+        format:'d/m/Y',
+        mask: true,
+        timepicker:false
+    });
+    
+    jQuery('#DataRetorno').datetimepicker({
+        format:'d/m/Y',
+        mask: true,
+        timepicker:false
+    });
 });
 
 function calcularMenorIdade(){
