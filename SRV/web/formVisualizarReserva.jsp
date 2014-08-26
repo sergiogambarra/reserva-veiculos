@@ -229,9 +229,9 @@
                                             </li>
                                         </div>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="iCapacidade">Número de ocupantes</label> </div>
+                                            <div class="formCadastroLabel"><label for="iOcupantes">Número de ocupantes</label> </div>
                                             <div class="formCadastroInput">
-                                                <input type="number" id="iCapacidade" name="iCapacidade" value="${reserva.veiculo.capacidade}" min="1" max="50">
+                                                <input type="number" id="iOcupantes" name="iOcupantes" value="${reserva.ocupantes}" min="1" max="${reserva.veiculo.capacidade}">
                                             </div>
                                         </li>
                                         <li>
