@@ -1,4 +1,5 @@
 
+<%@page import="srv.util.Validacoes"%>
 <%@page import="srv.dao.InterfaceServidorDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="srv.modelo.Servidor"%>
@@ -105,12 +106,15 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel"><label for="sDataNascimento"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data Nascimento</label> </div>
+                                            <div class="formCadastroLabel"><label for="sDataNascimento">Data Nascimento</label> </div>
+                                            <%
+                                                Servidor s = (Servidor)request.getAttribute("matricula");
+                                                System.out.println("DN: " + s.getData_nascimento());
+                                                String sDataNascimento = Validacoes.extrairDateParaString(s.getData_nascimento());
+                                                System.out.println("DN: " + sDataNascimento);
+                                            %>
                                             <div class="formCadastroInput">
-                                                <!--
-                                                <input value="${matricula.data_nascimento}" type="date" name="sDataNascimento" placeholder="aaaa-mm-dd" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                -->
-                                                <input value="${matricula.data_nascimento}" type="text" id="sDataNascimento" name="sDataNascimento"  maxlength="10" onKeyPress="return mascaraData(event);"/>
+                                                <input type="text" id="sDataNascimento" name="sDataNascimento"  maxlength="10" value ="<%= sDataNascimento %>" onKeyPress="return mascaraData(event);"/>
                                             </div>
                                         </li>
                                         <li>

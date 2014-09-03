@@ -95,7 +95,7 @@
                                                 <label for="sDataNascimento"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data Nascimento</label> 
                                             </div>
                                             <div class="formCadastroInput">
-                                                <input type="text" id="sDataNascimento" name="sDataNascimento"  maxlength="10" onKeyPress="return mascaraData(event);"/>
+                                                <input type="text" id="sDataNascimento" name="sDataNascimento"  maxlength="10" onKeyPress="return mascaraData(event);""/>
                                             </div>
                                         </li>
                                         <li>

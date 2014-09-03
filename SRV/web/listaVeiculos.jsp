@@ -70,11 +70,11 @@
 
                                     <div class="formFiltro">
                                         <label for="ano">Ano</label>
-                                        <input type="text" id="ano" name="ano" placeholder="ANO" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/>
+                                        <input type="text" id="ano" name="ano" placeholder="0000" onKeyPress="return mascaraMatSiap(event);" maxlength="4"/>
                                     </div>
                                     <div class="formFiltro">
                                         <label for="placa">Placa</label>
-                                        <input type="text" id="placa" name="placa" placeholder="XXX0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/>
+                                        <input type="text" id="placa" name="placa" placeholder="XXX-0000" onKeyPress="return mascaraAlfanumerica(event)" pattern="[A-Z]{3}-[0-9]{4}" maxlength="8"/>
                                     </div>
                                     <div class="formFiltro">
                                         <label for="renavam">Renavam</label>
