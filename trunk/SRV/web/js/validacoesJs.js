@@ -341,7 +341,7 @@ function validarVeiculo(){
             d.sManDataFinal.focus();
             return false;
         }
-        
+        /*
         var data1 = document.getElementById("sManDataInicial").value;
         var data2 = document.getElementById("sManDataFinal").value;
 
@@ -351,7 +351,7 @@ function validarVeiculo(){
         if (nova_data2 < nova_data1){
             alert("Dados inválidos. ");
             return false;
-        }
+        }*/
     } 
  
     return true;
@@ -400,7 +400,7 @@ function validarServidor(){
         alert("Dados obrigatórios não preenchidos. Selecione o Sexo!");
         return false;
     }
-    
+    /*
     if(d.sDataNascimento.value == ""){
         alert("Dados obrigatórios não preenchidos. Preencha o campo Data de Nascimento!");
         d.sDataNascimento.focus();
@@ -437,12 +437,12 @@ function validarServidor(){
         }
     }
   
-    if(d.sDataNascimento.value.length <10){
+    if(d.sDataNascimento.value.length <8){
         alert("Dados inválidos. Preencha o campo Data de Nascimento corretamente!");
         d.sDataNascimento.focus();
         return false;
     }
-    
+    */
     if(d.sCpf.value == ""){
         alert("Dados obrigatórios não preenchidos. Preencha o campo CPF!");
         d.sCpf.focus();
