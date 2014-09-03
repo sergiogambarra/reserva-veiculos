@@ -151,7 +151,7 @@
                                         <li>
                                             <div id="btnEditHidden" class="formCadastroLabel"><input type="button" value="Editar" onclick="funcoesOnloadVeiculo()"/></div>
                                                 <div id="btnSaveHidden" class="formCadastroLabel"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
-                                                <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos')" /></div>
+                                                <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos&pagina=1')" /></div>
                                         </li>
                                     </ul>
                                 </div>

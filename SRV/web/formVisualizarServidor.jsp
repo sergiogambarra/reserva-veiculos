@@ -216,7 +216,7 @@
                                             <li>
                                                 <div id="btnEditHidden" class="formCadastroLabel"><input type="button" value="Editar" onclick="funcoesOnloadServidor()"/></div>
                                                 <div id="btnSaveHidden" class="formCadastroLabel"><input type="submit" value="Salvar" onclick="return validarServidor()"/></div>
-                                                <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleServidor?action=listaServidores')" /></div>
+                                                <div class="formCadastroInput"><input type="button" value="Cancelar" onclick="window.location = ('ControleServidor?action=listaServidores&pagina=1')" /></div>
                                             </li>                                
                                         </ul>
                                     </div>
