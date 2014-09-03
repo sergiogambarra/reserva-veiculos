@@ -541,14 +541,6 @@ function exluirReserva(){
 function validarReserva(){
     var d = document.formInserirReserva;
     
-    /*if((d[8].value == '0') && (d[8].checked==true)){
-        if(d.inputOutroMotorista.value == ""){
-            alert("Selecione o motorista.");
-            d.inputOutroMotorista.focus();
-            return false;
-        }
-    }*/
-    
   if(d.inputMotorista[1].checked == true && d.inputMotorista[0].checked==false)
         if((d.inputOutroMotorista.value== "")){
             alert("Selecione o motorista.");
