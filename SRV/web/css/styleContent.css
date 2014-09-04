@@ -87,6 +87,10 @@
     background-image: -ms-linear-gradient(right, #7ACC83 36%, #8A8A8A 83%);
     background-image: linear-gradient(to right, #7ACC83 36%, #8A8A8A 83%);
 }
+::-webkit-input-placeholder { color:#8A8A8A; }
+::-moz-placeholder { color:#8A8A8A; } /* firefox 19+ */
+:-ms-input-placeholder { color:#8A8A8A; } /* ie */
+input:-moz-placeholder { color:#8A8A8A; }
 
 .colunaDuzentos{
     width: 200px;
