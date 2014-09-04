@@ -207,6 +207,7 @@
                                                 <div class="formCadastroLabel"><label for="inputOutroMotorista">Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
+                                                        <option value="">Selecione:</option>
                                                         <%
                                                             for (int i = 0; i < lista.size(); i++) {
                                                                 if (matriculaMotorista.equals(lista.get(i).getMatriculaSIAPE())) {

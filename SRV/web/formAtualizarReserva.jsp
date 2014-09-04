@@ -31,7 +31,7 @@
         <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/jsAcessibilidade.js"></script>
     </head>
-    <body id="corpo" onload="funcoesOnloadReserva()">
+    <body id="corpo" onload="funcoesOnloadReserva();">
         <section class="container">
             <div class="cabecalho">
                 <div class="cabecalhoLateral">
@@ -206,9 +206,7 @@
                                                 <div class="formCadastroLabel"><label for="inputOutroMotorista"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Motorista</label> </div>
                                                 <div class="formCadastroInput">
                                                     <select id="inputOutroMotorista" name="inputOutroMotorista">
-                                                        <option value="">
-                                                            Selecione
-                                                        </option>
+                                                        <option value="">Selecione</option>
                                                         <%
                                                             for (int i = 0; i < lista.size(); i++) {
                                                                 if (matriculaMotorista.equals(lista.get(i).getMatriculaSIAPE())) {
