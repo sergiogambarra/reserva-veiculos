@@ -36,11 +36,9 @@ function funcoesOnloadReserva(){
     //Verifica qual check está marcado e chama função passando o valor
     if(document.formInserirReserva.inputMotorista[0].checked == true){
         trocarMotorista(document.formInserirReserva.inputMotorista[0].value);
-    }else{
+    }else if(document.formInserirReserva.inputMotorista[1].checked == true){
         trocarMotorista(document.formInserirReserva.inputMotorista[1].value);
     }
-    //Verifica qual option está selecionado e chama função passando o valor
-    exibirDescricaoDestino(document.formInserirReserva.inputDestino.value);
     
     if(document.body.className == "desabilita") {
         desabilitaVisualizarReserva();
@@ -53,6 +51,9 @@ function funcoesOnloadReserva(){
         document.getElementById("btnEditHidden").style.display = "none";
         document.getElementById("btnSaveHidden").style.display = "block";
     }
+    
+    //Verifica qual option está selecionado e chama função passando o valor
+   // exibirDescricaoDestino(document.formInserirReserva.iDestino.value);
 }
 
 function validarMatricula(){
@@ -72,7 +73,7 @@ function habilitaVisualizarReserva(){
     document.formInserirReserva.inputMotorista[0].disabled = false;
     document.formInserirReserva.inputMotorista[1].disabled = false;
     document.getElementById("inputOutroMotorista").disabled = false; 
-    document.getElementById("iCapacidade").disabled = false;
+    document.getElementById("iOcupantes").disabled = false;
     document.getElementById("iDestino").disabled = false;
     document.getElementById("inputDestinoComplementar").disabled = false;
 }
@@ -82,7 +83,7 @@ function desabilitaVisualizarReserva(){
     document.formInserirReserva.inputMotorista[0].disabled = true;
     document.formInserirReserva.inputMotorista[1].disabled = true;
     document.getElementById("inputOutroMotorista").disabled = true; 
-    document.getElementById("iCapacidade").disabled = true;
+    document.getElementById("iOcupantes").disabled = true;
     document.getElementById("iDestino").disabled = true;
     document.getElementById("inputDestinoComplementar").disabled = true;
 }
@@ -202,12 +203,8 @@ function naoAlterarId(){
 function trocarMotorista(checked){
     if(checked == 1){
         document.getElementById("selecaoOutroMotorista").className = "invisivel";
-        document.formInserirReserva.iCapacidade.value = 1;
-        document.formInserirReserva.iCapacidade.setAttribute("min", 1);
     }else{
         document.getElementById("selecaoOutroMotorista").className = "visivel";
-        document.formInserirReserva.iCapacidade.value = 2;
-        document.formInserirReserva.iCapacidade.setAttribute("min", 2);
     }
 }
 
