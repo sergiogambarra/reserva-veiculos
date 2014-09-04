@@ -38,8 +38,10 @@ function funcoesOnloadReserva(){
         trocarMotorista(document.formInserirReserva.inputMotorista[0].value);
     }else if(document.formInserirReserva.inputMotorista[1].checked == true){
         trocarMotorista(document.formInserirReserva.inputMotorista[1].value);
+        
     }
-    
+        //Verifica qual option está selecionado e chama função passando o valor
+   exibirDescricaoDestino(document.formInserirReserva.iDestino.value);
     if(document.body.className == "desabilita") {
         desabilitaVisualizarReserva();
         document.body.className = "habilita";
@@ -51,9 +53,8 @@ function funcoesOnloadReserva(){
         document.getElementById("btnEditHidden").style.display = "none";
         document.getElementById("btnSaveHidden").style.display = "block";
     }
+
     
-    //Verifica qual option está selecionado e chama função passando o valor
-   // exibirDescricaoDestino(document.formInserirReserva.iDestino.value);
 }
 
 function validarMatricula(){
