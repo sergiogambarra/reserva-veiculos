@@ -76,12 +76,10 @@
                             </div>-->
                             <%
                                 int id_reserva = (((Reserva) request.getAttribute("reserva")).getId_reserva());
-                                String placa_veiculo = (((Reserva) request.getAttribute("reserva")).getPlaca());
                             %>
                             <form action="ControleReserva" name="formInserirReserva" method="POST" onsubmit="return validarReserva();">
                                 <input type="hidden" name="action" value="atualizarReserva"/>
                                 <input type="hidden" name="id_reserva" value="<%= id_reserva%>"/>
-                                <input type="hidden" name="inputPlacaVeiculo" value="<%= placa_veiculo%>"/>
                                 <%
                                     List<Servidor> lista = (List<Servidor>) request.getAttribute("listaserv");
                                     List<Destino> listad = (List<Destino>) request.getAttribute("listadest");

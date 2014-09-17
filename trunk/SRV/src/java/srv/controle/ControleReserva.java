@@ -228,14 +228,14 @@ public class ControleReserva extends HttpServlet {
                     List<Reserva> listar = irdao.listaReservas(user.getMatriculaSIAPE(), numPagina);
                     List<Reserva> listaOutros = irdao.listaReservasOutros(user.getMatriculaSIAPE(), numPaginaOutros);
 
-                    //Início Paginação
+                    //Início Paginação Minhas Reservas
                     int totalRegistros = irdao.todasReservasCount(user.getMatriculaSIAPE());
                     int totalPaginas = totalRegistros / 10;
                     if (totalRegistros % 10 != 0) {
                         totalPaginas++;
                     }
 
-                    //Início Paginação
+                    //Início Paginação Outras Reservas
                     int totalRegistrosOutros = irdao.todasReservasOutrosCount(user.getMatriculaSIAPE());
                     int totalPaginasOutros = totalRegistrosOutros / 10;
                     if (totalRegistrosOutros % 10 != 0) {
@@ -318,18 +318,22 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaOutros(matricula_siape, data_saida);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
 
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
                                 totalPaginasOutros++;
                             }
-
+                            // Fim Paginação
+                            
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
@@ -343,18 +347,21 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
 
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
                                 totalPaginasOutros++;
                             }
-
+                            // Fim Paginação
+                            
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
@@ -374,12 +381,15 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoOutros(matricula_siape, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
 
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -399,18 +409,20 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
                                 totalPaginasOutros++;
                             }
-
+                            //Fim Paginação
+                            
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
@@ -429,12 +441,13 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorDestinoOutros(matricula_siape, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -454,12 +467,13 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -486,12 +500,13 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoOutros(matricula_siape, data_saida, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -511,12 +526,14 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -542,12 +559,13 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaDestinoOutros(matricula_siape, data_saida, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -567,12 +585,13 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -598,12 +617,13 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoDestinoOutros(matricula_siape, data_retorno, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -623,12 +643,13 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -655,12 +676,13 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaRetornoDestinoOutros(matricula_siape, data_saida, data_retorno, destino);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
@@ -680,12 +702,13 @@ public class ControleReserva extends HttpServlet {
                             BarraNavegacao.setarNavegacao(request, "Lista de Reservas", "ControleReserva?action=listaReservas&pagina=1&paginaOutros=1", null, null);
                             request.getRequestDispatcher("listaReservas.jsp").forward(request, response);
                         } else {
+                            //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-
+                            //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;
                             if (totalRegistrosOutros % 10 != 0) {
