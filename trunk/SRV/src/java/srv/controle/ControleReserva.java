@@ -158,7 +158,7 @@ public class ControleReserva extends HttpServlet {
                 Date data_saida_br = null;
                 Date data_retorno_br = null;
                 String data_saida = null;
-                String data_retorno = null;                
+                String data_retorno = null;
 
                 data_saida = Validacoes.validarDataEntradaMysql(request.getParameter("inputDataSaida"));
                 data_retorno = Validacoes.validarDataEntradaMysql(request.getParameter("inputDataRetorno"));
@@ -196,21 +196,75 @@ public class ControleReserva extends HttpServlet {
                 Date date_atual = new Date();
                 Timestamp timestamp_atual = new Timestamp(date_atual.getTime());
 
-                Reserva reserva = new Reserva(
-                        id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, ocupantes, id_destino, descricao, date_atual);
 
-                if (acao.equals("inserirReserva")) {
-                    rdao.inserirReserva(reserva);
-                    request.setAttribute("mensagem", "Reserva efetuada com sucesso.");
+                if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) > 0) {
+                    //data de saída maior que retorno
+                    StringBuilder msgErro = new StringBuilder();
+                    msgErro.append("<span style=\"font-weight:bold\">");
+                    msgErro.append("Erro no período: data de saída maior que a data de retorno.");
+                    msgErro.append("</span>");
+                    msgErro.append("<br>");
+                    msgErro.append("<span>");
+                    msgErro.append("Para o período ser correto, as seguintes regras devem ser respeitadas:");
+                    msgErro.append("<br>");
+                    msgErro.append("<ul>");
+                    msgErro.append("<li>");
+                    msgErro.append("Saída (data e horário) não podem ser igual ao retorno (data e horário).");
+                    msgErro.append("</li>");
+                    msgErro.append("<li>");
+                    msgErro.append("Saída não pode ser maior que o retorno.");
+                    msgErro.append("</li>");
+                    msgErro.append("<li>");
+                    msgErro.append("Retorno não pode ser menor que a saída.");
+                    msgErro.append("</li>");
+                    msgErro.append("</ul>");
+                    msgErro.append("Refaça seu consulta com um período correto.");
+                    msgErro.append("</span>");
+                    request.setAttribute("mensagem", msgErro.toString());
+                    request.getRequestDispatcher("formConsultarDispVeiculoAlterarReserva.jsp").forward(request, response);
+                } else if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) == 0) {
+                    //datas iguais
+                    StringBuilder msgErro = new StringBuilder();
+                    msgErro.append("<span style=\"font-weight:bold\">");
+                    msgErro.append("Erro no período: data de saída igual à data de retorno.");
+                    msgErro.append("</span>");
+                    msgErro.append("<br>");
+                    msgErro.append("<span>");
+                    msgErro.append("Para o período ser correto, as seguintes regras devem ser respeitadas:");
+                    msgErro.append("<br>");
+                    msgErro.append("<ul>");
+                    msgErro.append("<li>");
+                    msgErro.append("Saída (data e horário) não podem ser igual ao retorno (data e horário).");
+                    msgErro.append("</li>");
+                    msgErro.append("<li>");
+                    msgErro.append("Saída não pode ser maior que o retorno.");
+                    msgErro.append("</li>");
+                    msgErro.append("<li>");
+                    msgErro.append("Retorno não pode ser menor que a saída.");
+                    msgErro.append("</li>");
+                    msgErro.append("</ul>");
+                    msgErro.append("Refaça seu consulta com um período correto.");
+                    msgErro.append("</span>");
+                    request.setAttribute("mensagem", msgErro.toString());
+                    request.getRequestDispatcher("formConsultarDispVeiculoAlterarReserva.jsp").forward(request, response);
                 } else {
-                    rdao.atualizar(reserva);
-                    request.setAttribute("mensagem", "Reserva atualizada com sucesso.");
-                }
+                    Reserva reserva = new Reserva(
+                            id_reserva, matricula_siape, date_saida, date_retorno, placa, condutor, matricula_siape_condutor, ocupantes, id_destino, descricao, date_atual);
 
-                request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
+                    if (acao.equals("inserirReserva")) {
+                        rdao.inserirReserva(reserva);
+                        request.setAttribute("mensagem", "Reserva efetuada com sucesso.");
+                    } else {
+                        rdao.atualizar(reserva);
+                        request.setAttribute("mensagem", "Reserva atualizada com sucesso.");
+                    }
+
+                    request.getRequestDispatcher("ControleReserva?action=listaReservas&pagina=1&paginaOutros=1").forward(request, response);
+                }
             }
 
             if (acao.equals("listaReservas")) {
+
                 try {
 
                     String numPagina = request.getParameter("pagina");
@@ -318,7 +372,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorSaidaOutros(matricula_siape, data_saida);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            
+
                             //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
@@ -333,7 +387,7 @@ public class ControleReserva extends HttpServlet {
                                 totalPaginasOutros++;
                             }
                             // Fim Paginação
-                            
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
@@ -361,7 +415,7 @@ public class ControleReserva extends HttpServlet {
                                 totalPaginasOutros++;
                             }
                             // Fim Paginação
-                            
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
@@ -381,7 +435,7 @@ public class ControleReserva extends HttpServlet {
                         List<Reserva> listaOutros = irdao.buscarReservaPorRetornoOutros(matricula_siape, data_retorno);
                         if (lista.isEmpty() && listaOutros.isEmpty()) {
                             request.setAttribute("mensagem", "Não foram encontrados resultados para esta consulta");
-                            
+
                             //Início Paginação Minhas Reservas
                             int totalRegistros = lista.size();
                             int totalPaginas = totalRegistros / 10;
@@ -422,7 +476,7 @@ public class ControleReserva extends HttpServlet {
                                 totalPaginasOutros++;
                             }
                             //Fim Paginação
-                            
+
                             InterfaceDestinoDAO ddao = new DestinoDAO();
                             List<Destino> listad = ddao.buscarDestinos();
 
@@ -532,7 +586,7 @@ public class ControleReserva extends HttpServlet {
                             if (totalRegistros % 10 != 0) {
                                 totalPaginas++;
                             }
-                            
+
                             //Início Paginação Outras Reservas
                             int totalRegistrosOutros = listaOutros.size();
                             int totalPaginasOutros = totalRegistrosOutros / 10;

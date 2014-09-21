@@ -29,8 +29,7 @@ jQuery(function(){
     $('#inputHoraSaida').datetimepicker({
         datepicker:false,
         format:'H:i',
-        mask: true,
-        minTime: 0
+        mask: true
     });
     $('#inputHoraRetorno').datetimepicker({
         datepicker:false,
