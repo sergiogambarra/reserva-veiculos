@@ -21,10 +21,10 @@
         <link rel="stylesheet" type="text/css" href="css/styleLoginContraste.css" title="contraste" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContent.css" title="default" media="all"  />
         <link rel="stylesheet" type="text/css" href="css/styleContraste.css" title="contraste" media="all"  />
-        <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" />
-        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/contraste.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/validacoesJs.js"></script>
+        <script type="text/javascript" type="text/javascript" src="js/validacoesMascara.js"></script>
         <script type="text/javascript" type="text/javascript" src="js/ajaxDisponibilidadeVeiculo.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="cabecalhoImagem" alt="SRV: Sistema de Reserva de Veículos para controle de frota." title="SRV: Sistema de Reserva de Veículos.">      
                 </div>
-                    <%@include file="menuAtalhos.jsp" %>
+                <%@include file="menuAtalhos.jsp" %>
             </div>
             <div class="containerLogado">
                 <%@include file="menu.jsp" %>
@@ -77,27 +77,30 @@
                         </div>
                         <div class="formularioCadastrarServidor">            
                             <h2>Consultar Disponibilidade de Veículos</h2>
+                            <div class="camposObrigatorios">
+                                *Campos obrigatórios
+                            </div>
                             <form action="veiculosdisponiveis" method="POST" id="formConsDispVeiculo" name="formConsDispVeiculo" onsubmit="return filtrarVeiculos(this);">
-                                <input type="hidden" id="id_reserva" name="id_reserva" value="<%= id_reserva %>"/>
+                                <input type="hidden" id="id_reserva" name="id_reserva" value="<%= id_reserva%>"/>
                                 <div class="formularioCadastrarServidorBox">
                                     <ul>
                                         <li>
                                             <div class="formCadastroLabel"> 
-                                                <label for="iDataSaida">Data de Saída</label>
+                                                <label for="iDataSaida"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data de Saída</label>
                                             </div>
                                             <div class="formCadastroInput"> 
                                                 <input type="text" id="inputDataSaida" name="inputDataSaida" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                <label for="iHoraSaida" >Horário de Saída: </label>
+                                                <label for="iHoraSaida" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Horário de Saída: </label>
                                                 <input type="text" id="inputHoraSaida" name="inputHoraSaida" />
                                             </div>
                                         </li>
                                         <li>
                                             <div class="formCadastroLabel"> 
-                                                <label for="iDataRetorno">Data de Retorno</label>
+                                                <label for="iDataRetorno"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Data de Retorno</label>
                                             </div> 
                                             <div class="formCadastroInput"> 
                                                 <input type="text" id="inputDataRetorno" name="inputDataRetorno" onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                                <label for="iHoraRetorno" >Horário de Retorno </label>
+                                                <label for="iHoraRetorno" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Horário de Retorno </label>
                                                 <input type="text" id="inputHoraRetorno" name="inputHoraRetorno" />
                                             </div>
                                         </li>

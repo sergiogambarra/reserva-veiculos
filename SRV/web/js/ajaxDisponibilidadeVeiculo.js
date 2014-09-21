@@ -19,9 +19,25 @@ function limparTabela() {
     objetoXMLHttp.open("POST", "veiculosdisponiveis", true);
     objetoXMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     
-    completeTable = document.getElementById("idTabelaListaVeiculos");
-    if(completeTable != null){
-       clearTable(); 
+    if(document.getElementById("idTabelaListaVeiculos") == null){
+        completeTable = document.getElementById("idListaErros");
+        if(completeTable != null){
+            clearTable(); 
+        }
+    }else if(document.getElementById("idListaErros") == null){
+        completeTable = document.getElementById("idTabelaListaVeiculos");
+        if(completeTable != null){
+            clearTable(); 
+        }
+    }else{
+        completeTable = document.getElementById("idListaErros");
+        if(completeTable != null){
+            clearTable(); 
+        }
+        completeTable = document.getElementById("idTabelaListaVeiculos");
+        if(completeTable != null){
+            clearTable(); 
+        }
     }
 
 }
@@ -29,10 +45,10 @@ function limparTabela() {
 function filtrarVeiculos(form) {
     
     var dados = "dataSaida="+form.inputDataSaida.value
-               +"&horaSaida="+form.inputHoraSaida.value
-               +"&dataRetorno="+form.inputDataRetorno.value
-               +"&horaRetorno="+form.inputHoraRetorno.value
-               +"&id_reserva="+form.id_reserva.value;
+    +"&horaSaida="+form.inputHoraSaida.value
+    +"&dataRetorno="+form.inputDataRetorno.value
+    +"&horaRetorno="+form.inputHoraRetorno.value
+    +"&id_reserva="+form.id_reserva.value;
     
     var objetoXMLHttp = objXMLHttp();
     
@@ -45,14 +61,14 @@ function filtrarVeiculos(form) {
                 mensagem(objetoXMLHttp.responseText);
             }
         }else{
-            mensagem("Ocorreu um erro: "+objetoXMLHttp.statusText);
+            mensagem("<table id=\"idListaErros\"><tr><td>Todos os campos são de preenchimento obrigatório. Revise este formulário.</td></tr></table>");
         }
     };
     //tem tabela?
     
     completeTable = document.getElementById("idTabelaListaVeiculos");
     if(completeTable != null){
-       clearTable(); 
+        clearTable(); 
     }
     objetoXMLHttp.send(dados);
 
@@ -62,12 +78,12 @@ function filtrarVeiculos(form) {
 function callback() {
     clearTable();
     if(objetoXMLHttp.readyState == 4){
-            if(objetoXMLHttp.status == 200){
-                mensagem(objetoXMLHttp.responseText);
-            }
-        }else{
-            mensagem("Ocorreu um erro: "+objetoXMLHttp.statusText);
+        if(objetoXMLHttp.status == 200){
+            mensagem(objetoXMLHttp.responseText);
         }
+    }else{
+        mensagem("Ocorreu um erro: "+objetoXMLHttp.statusText);
+    }
 //    if (req.readyState == 4) {
 //        if (req.status == 200) {
 //            parseMessages(req.responseXML);

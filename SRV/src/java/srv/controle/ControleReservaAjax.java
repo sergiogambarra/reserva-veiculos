@@ -87,9 +87,9 @@ public class ControleReservaAjax extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
         String data_saida = Validacoes.validarDataEntradaMysql(request.getParameter("dataSaida"));
-        
+
         String hora_saida = request.getParameter("horaSaida");
         String datetime_saida = data_saida + " " + hora_saida + ":00";
 
@@ -98,83 +98,142 @@ public class ControleReservaAjax extends HttpServlet {
         String datetime_retorno = data_retorno + " " + hora_retorno + ":00";
 
         String id_reserva = "";
-        if(!request.getParameter("id_reserva").equals("")){
+        if (!request.getParameter("id_reserva").equals("")) {
             id_reserva = request.getParameter("id_reserva");
         }
-        
+
         Date dateSaida = new Date();
         Date dateRetorno = new Date();
         try {
             dateSaida = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_saida);
             dateRetorno = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime_retorno);
-        } catch (ParseException ex) {
-            ex.getMessage();
-        }
-        
-        data_saida = Validacoes.validarDataSaidaMysqlString(data_saida);
-        data_retorno = Validacoes.validarDataSaidaMysqlString(data_retorno);
-        
-        InterfaceReservaDAO iReservaDao = new ReservaDAO();
-        List<Veiculo> listaVeiculosDisp = new ArrayList<Veiculo>();
-        // @@@
 
-        if(id_reserva.equals("")){
-            listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
-        }else{
-            listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno, id_reserva);
-        }
-        
-        
+            data_saida = Validacoes.validarDataSaidaMysqlString(data_saida);
+            data_retorno = Validacoes.validarDataSaidaMysqlString(data_retorno);
 
-        response.setContentType("text/xml");
-        response.setHeader("Cache-Control", "no-cache");
+            StringBuilder msgErro = new StringBuilder();
+            msgErro.append("<tr><td>Para o período ser correto, as seguintes regras devem ser respeitadas:</tr></td>");
+            msgErro.append("<tr><td>- Ou a data de saída ou a data de retorno (data e horário) não pode ser menor que a data atual (data e horário).</tr></td>");
+            msgErro.append("<tr><td>- Saída (data e horário) não podem ser igual ao retorno (data e horário).</tr></td>");
+            msgErro.append("<tr><td>- Saída não pode ser maior que o retorno.</tr></td>");
+            msgErro.append("<tr><td>- Retorno não pode ser menor que a saída.</tr></td>");
+            msgErro.append("<tr><td>&nbsp</tr></td>");
+            msgErro.append("<tr><td>Refaça a sua consulta com um período correto.</tr></td>");
+            msgErro.append("</table>");
 
-        StringBuilder tabela = new StringBuilder();
+            if (Validacoes.validarPeriodoComDataHoje(datetime_saida) < 0) {
+                //data de saída maior que retorno
+            /*
+                 * 1)Datetime não podem ser menores que o atual;
+                 * 2)Se datas forem iguais, horário retorno deve ser maior que o de saída
+                 * 3)Data de retorno não pode ser menor que data de saída
+                 */
+                StringBuilder msgErroFinal = new StringBuilder();
+                msgErroFinal.append("<table id=\"idListaErros\">");
+                msgErroFinal.append("<tr><td>Erro no período: data de saída menor que a data atual.</tr></td>");
+                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                msgErroFinal.append(msgErro);
+                response.getWriter().write(msgErroFinal.toString());
 
-        if (listaVeiculosDisp.size() == 0) {
-            tabela.append("Não há veículos disponíveis para esta data/hora.");
-        } else {
-            tabela.append("<table id=\"idTabelaListaVeiculos\" class=\"tabelaListaVeiculos\">")
-                    .append("<thead>")
-                    .append("<td id=\"Placa\" class=\"colunaDuzentos\">Placa</td>")
-                    .append("<td id=\"Modelo\">Modelo</td>")
-                    .append("<td id=\"Marca\" class=\"colunaDuzentos\">Marca</td>")
-                    .append("<td id=\"Renavam\" class=\"colunaDuzentos\">Renavam</td>")
-                    .append("<td id=\"Acao\" class=\"colunaAcoesHead\" >Ação</td>")
-                    .append("</thead>")
-                    .append("<tbody>");
-            for (int i = 0; i < listaVeiculosDisp.size(); i++) {
-                                tabela.append("<tr>")
-                        .append("<td headers=\"Placa\">")
-                        .append(listaVeiculosDisp.get(i).getPlaca())
-                        .append("</td>")
-                        .append("<td headers=\"Modelo\">")
-                        .append(listaVeiculosDisp.get(i).getModelo())
-                        .append("</td>")
-                        .append("<td headers=\"Marca\">")
-                        .append(listaVeiculosDisp.get(i).getMarca())
-                        .append("</td>")
-                        .append("<td headers=\"Renavam\">")
-                        .append(listaVeiculosDisp.get(i).getRenavam())
-                        .append("</td>")
-                        .append("<td headers=\"Acao\" class=\"colunaAcoes\">")
-                        .append("<div class=\"divColunaAcoes\">")
-                        .append("<ul><li>")
-                        .append("<a href=\"ControleReserva?action=formularioReserva&placa=").append(listaVeiculosDisp.get(i).getPlaca())
-                            .append("&inputDataSaida=").append(data_saida)
-                            .append("&inputHoraSaida=").append(hora_saida)
-                            .append("&inputDataRetorno=").append(data_retorno)
-                            .append("&inputHoraRetorno=").append(hora_retorno)
-                            .append("&id_reserva=").append(id_reserva)
-                            .append("\"><div class=\"iconeSelecionar\" alt=\"Visualizar informações do Servidor.\" title=\"Visualizar Servidor\"></div>selecionar</a>")
-                        .append("</li></ul>")
-                        .append("</div>")
-                        .append("</td></tr>");
+            } else if (Validacoes.validarPeriodoComDataHoje(datetime_retorno) < 0) {
+                StringBuilder msgErroFinal = new StringBuilder();
+                msgErroFinal.append("<table id=\"idListaErros\">");
+                msgErroFinal.append("<tr><td>Erro no período: data de retorno menor que a data atual.</tr></td>");
+                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                msgErroFinal.append(msgErro);
+                response.getWriter().write(msgErroFinal.toString());
+
+            } else if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) > 0) {
+
+                StringBuilder msgErroFinal = new StringBuilder();
+                msgErroFinal.append("<table id=\"idListaErros\">");
+                msgErroFinal.append("<tr><td>Erro no período: data de saída maior que a data de retorno.</tr></td>");
+                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                msgErroFinal.append(msgErro);
+                response.getWriter().write(msgErroFinal.toString());
+
+            } else if (Validacoes.validarPeriodoReserva(
+                    datetime_saida, datetime_retorno) == 0) {
+                //datas iguais
+                StringBuilder msgErroFinal = new StringBuilder();
+                msgErroFinal.append("<table id=\"idListaErros\">");
+                msgErroFinal.append("<tr><td>Erro no período: data de saída igual à data de retorno.</tr></td>");
+                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                msgErroFinal.append(msgErro);
+                response.getWriter().write(msgErroFinal.toString());
+
+            } else {
+                InterfaceReservaDAO iReservaDao = new ReservaDAO();
+                List<Veiculo> listaVeiculosDisp = new ArrayList<Veiculo>();
+                // @@@
+
+                if (id_reserva.equals("")) {
+                    listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno);
+                } else {
+                    listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno, id_reserva);
+                }
+
+
+
+                response.setContentType("text/xml");
+                response.setHeader("Cache-Control", "no-cache");
+
+                StringBuilder tabela = new StringBuilder();
+
+                if (listaVeiculosDisp.size() == 0) {
+                    tabela.append("Não há veículos disponíveis para esta data/hora.");
+                } else {
+                    tabela.append("<table id=\"idTabelaListaVeiculos\" class=\"tabelaListaVeiculos\">")
+                            .append("<thead>")
+                            .append("<td id=\"Placa\" class=\"colunaDuzentos\">Placa</td>")
+                            .append("<td id=\"Modelo\">Modelo</td>")
+                            .append("<td id=\"Marca\" class=\"colunaDuzentos\">Marca</td>")
+                            .append("<td id=\"Renavam\" class=\"colunaDuzentos\">Renavam</td>")
+                            .append("<td id=\"Acao\" class=\"colunaAcoesHead\" >Ação</td>")
+                            .append("</thead>")
+                            .append("<tbody>");
+                    for (int i = 0; i < listaVeiculosDisp.size(); i++) {
+                        tabela.append("<tr>")
+                                .append("<td headers=\"Placa\">")
+                                .append(listaVeiculosDisp.get(i).getPlaca())
+                                .append("</td>")
+                                .append("<td headers=\"Modelo\">")
+                                .append(listaVeiculosDisp.get(i).getModelo())
+                                .append("</td>")
+                                .append("<td headers=\"Marca\">")
+                                .append(listaVeiculosDisp.get(i).getMarca())
+                                .append("</td>")
+                                .append("<td headers=\"Renavam\">")
+                                .append(listaVeiculosDisp.get(i).getRenavam())
+                                .append("</td>")
+                                .append("<td headers=\"Acao\" class=\"colunaAcoes\">")
+                                .append("<div class=\"divColunaAcoes\">")
+                                .append("<ul><li>")
+                                .append("<a href=\"ControleReserva?action=formularioReserva&placa=").append(listaVeiculosDisp.get(i).getPlaca())
+                                .append("&inputDataSaida=").append(data_saida)
+                                .append("&inputHoraSaida=").append(hora_saida)
+                                .append("&inputDataRetorno=").append(data_retorno)
+                                .append("&inputHoraRetorno=").append(hora_retorno)
+                                .append("&id_reserva=").append(id_reserva)
+                                .append("\"><div class=\"iconeSelecionar\" alt=\"Visualizar informações do Servidor.\" title=\"Visualizar Servidor\"></div>selecionar</a>")
+                                .append("</li></ul>")
+                                .append("</div>")
+                                .append("</td></tr>");
+                    }
+                    tabela.append("</tbody></table>");
+                }
+
+                response.getWriter().write(tabela.toString());
             }
-            tabela.append("</tbody></table>");
+
+        } catch (Exception ex) {
+            StringBuilder msgErroFinal = new StringBuilder();
+            msgErroFinal.append("<table id=\"idListaErros\">");
+            msgErroFinal.append("<tr><td>Todos os campos são de preenchimento obrigatório.</td></tr>");
+            msgErroFinal.append("</table>");
+            response.getWriter().write(msgErroFinal.toString());
         }
 
-        response.getWriter().write(tabela.toString());
     }
 
     /**
