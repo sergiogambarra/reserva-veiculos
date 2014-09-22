@@ -113,7 +113,7 @@ public class ControleReservaAjax extends HttpServlet {
 
             StringBuilder msgErro = new StringBuilder();
             msgErro.append("<tr><td>Para o período ser correto, as seguintes regras devem ser respeitadas:</tr></td>");
-            msgErro.append("<tr><td>- Ou a data de saída ou a data de retorno (data e horário) não pode ser menor que a data atual (data e horário).</tr></td>");
+            msgErro.append("<tr><td>- A data de saída e a data de retorno (data e horário) não podem ser menores que a data atual (data e horário).</tr></td>");
             msgErro.append("<tr><td>- Saída (data e horário) não podem ser igual ao retorno (data e horário).</tr></td>");
             msgErro.append("<tr><td>- Saída não pode ser maior que o retorno.</tr></td>");
             msgErro.append("<tr><td>- Retorno não pode ser menor que a saída.</tr></td>");
