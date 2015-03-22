@@ -133,7 +133,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
             if (null != matricula) {
 
                 String sql = "from Reserva r"
-                        + " where r.matricula_siape = :matriculaSIAPE";
+                        + " where r.matricula_siape = :matriculaSIAPE order by data_saida";
 
                 Query query = session.createQuery(sql);
                 query.setString("matriculaSIAPE", matricula);
@@ -144,7 +144,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
                 tx.commit();
             } else {
                 String sql = "from Reserva r"
-                        + " where r.matricula_siape <> :matriculaSIAPE";
+                        + " where r.matricula_siape <> :matriculaSIAPE order by data_saida";
 
                 Query query = session.createQuery(sql);
                 query.setString("matriculaSIAPE", matricula);
@@ -431,7 +431,7 @@ public class ReservaDAO implements InterfaceReservaDAO {
             List list;
 
             String sql = "from Reserva r"
-                    + " where r.matricula_siape <> :matriculaSIAPE";
+                    + " where r.matricula_siape <> :matriculaSIAPE order by data_saida";
 
             Query query = session.createQuery(sql);
             query.setString("matriculaSIAPE", matricula);

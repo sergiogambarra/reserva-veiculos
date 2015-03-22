@@ -130,7 +130,7 @@ public class ServidorDAO implements InterfaceServidorDAO {
         int limite = 10;
         int offset = (Integer.parseInt(numPagina) * limite) - limite;
 
-        Query query = session.createQuery("from Servidor");
+        Query query = session.createQuery("from Servidor order by nome");
         query.setFirstResult(offset);//Equivale ao OFFSET sql
         query.setMaxResults(limite);//Equivale ao LIMIT sql
 
