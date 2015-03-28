@@ -122,29 +122,6 @@
                                                 <input type="text" id="iCapacidade" name="iCapacidade" onKeyPress="return mascaraMatSiap(event);" value="5" maxlength="2">
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="formCadastroLabel">
-                                                <label for="Manutencao" ><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Manutenção</label>
-                                            </div>
-                                            <div class="formCadastroInput">
-                                                <input type="radio" id="manutencaoS" name="manutencao" value="t" onClick="validarManutencao(this.value);"/>
-                                                <label class="radioManutencao" for="manutencao" >Sim</label>
-                                                <input type="radio" id="manutencaoN" checked name="manutencao" value="f" onClick="validarManutencao(this.value);"/>
-                                                <label class="radioManutencao" for="Manutencao" >Não</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial</label> </div>
-                                            <div class="formCadastroInput">
-                                                <input type="text" name="sManDataInicial" placeholder="aaaa-mm-dd" id="sManDataInicial" disabled onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sManDataFinal">Data Final</label> </div>
-                                            <div class="formCadastroInput">
-                                                <input type="text" name="sManDataFinal" placeholder="aaaa-mm-dd" id="sManDataFinal" disabled onKeyPress="return mascaraData(event);" maxlength="10"/>
-                                            </div>
-                                        </li>
                                         <li class="formBotoes">
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos&pagina=1')"/></div>
                                             <div class="formCadastroInputLimpar"><input type="reset" value="Limpar"/></div>

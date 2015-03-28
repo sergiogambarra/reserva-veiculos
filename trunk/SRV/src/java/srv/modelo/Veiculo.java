@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import java.util.Collection;
 import javax.persistence.*;
 import org.hibernate.annotations.Cascade;
@@ -31,9 +30,6 @@ public class Veiculo implements java.io.Serializable {
     private String combustivel;
     private int capacidade;
     private String renavam;
-    private boolean manutencao;
-    private Date manutencao_data_inicial;
-    private Date manutencao_data_final;
     @Cascade(CascadeType.ALL)
     private Collection<Reserva> reservas;
 
@@ -49,9 +45,6 @@ public class Veiculo implements java.io.Serializable {
         this.combustivel = combustivel;
         this.capacidade = capacidade;
         this.renavam = renavam;
-        this.manutencao = manutencao;
-        this.manutencao_data_inicial = manutencao_data_inicial;
-        this.manutencao_data_final = manutencao_data_final;
     }
 
     @Column(name = "ano")
@@ -106,35 +99,6 @@ public class Veiculo implements java.io.Serializable {
 
     public void setRenavam(String renavam) {
         this.renavam = renavam;
-    }
-
-    @Column(name = "manutencao")
-    public boolean isManutencao() {
-        return manutencao;
-    }
-
-    public void setManutencao(boolean manutencao) {
-        this.manutencao = manutencao;
-    }
-
-    @Column(name = "manutencao_data_inicial")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    public Date getManutencao_data_inicial() {
-        return manutencao_data_inicial;
-    }
-
-    public void setManutencao_data_inicial(Date manutencao_data_inicial) {
-        this.manutencao_data_inicial = manutencao_data_inicial;
-    }
-
-    @Column(name = "manutencao_data_final")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    public Date getManutencao_data_final() {
-        return manutencao_data_final;
-    }
-
-    public void setManutencao_data_final(Date manutencao_data_final) {
-        this.manutencao_data_final = manutencao_data_final;
     }
 
     @Id

@@ -90,7 +90,7 @@
                         <table class="tabelaListaVeiculos">
                             <thead>
                             <td id="Placa" class="colunaDuzentos">Placa</td>
-                            <td id="Modelo">Modelo</td>
+                            <td id="Modelo" class="colunaDuzentos">Modelo</td>
                             <td id="Marca" class="colunaDuzentos">Marca</td>
                             <td id="Renavam" class="colunaDuzentos">Renavam</td>
                             <td id="Acoes" class="colunaAcoesHead" >Ações</td>

@@ -68,8 +68,6 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
             Transaction tx = session.beginTransaction();
             String sql = "update Veiculo set ano = :ano, "
                     + "marca = :marca, modelo = :modelo, combustivel = :combustivel, renavam = :renavam, capacidade = :capacidade, "
-                    + "manutencao = :manutencao, manutencao_data_inicial = :manutencao_data_inicial, "
-                    + "manutencao_data_final = :manutencao_data_final "
                     + " where placa = :placa";
             Query query = session.createQuery(sql);
 
@@ -79,9 +77,6 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
             query.setString("combustivel", veic.getCombustivel());
             query.setString("renavam", veic.getRenavam());
             query.setInteger("capacidade", veic.getCapacidade());
-            query.setBoolean("manutencao", veic.isManutencao());
-            query.setDate("manutencao_data_inicial", veic.getManutencao_data_inicial());
-            query.setDate("manutencao_data_final", veic.getManutencao_data_final());
             query.setString("placa", veic.getPlaca());
 
             rowCount = query.executeUpdate();
