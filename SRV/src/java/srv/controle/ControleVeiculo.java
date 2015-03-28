@@ -49,12 +49,7 @@ public class ControleVeiculo extends HttpServlet {
                     int capacidade = Integer.parseInt(request.getParameter("iCapacidade"));
                     String modelo = request.getParameter("iModelo");
                     String renavam = request.getParameter("iRenavam");
-                    String manutencao = request.getParameter("manutencao");
                     String combustivel = request.getParameter("combustivel");
-
-                    //CAMPOS NÃO OBRIGATÓRIOS (SE NÃO ESTIVER EM MANUTENÇÃO)
-                    String manutencao_data_inicial = request.getParameter("sManDataInicial");
-                    String manutencao_data_final = request.getParameter("sManDataFinal");
 
                     Veiculo veic = new Veiculo();
                     veic.setPlaca(placa);
@@ -64,22 +59,6 @@ public class ControleVeiculo extends HttpServlet {
                     veic.setModelo(modelo);
                     veic.setRenavam(renavam);
                     veic.setCombustivel(combustivel);
-
-                    if (manutencao.equals("t")) {
-                        veic.setManutencao(true);
-                        // SETANDO CAMPOS NÃO OBRIGATÓRIOS
-                        Date date1;
-                        date1 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_inicial);
-                        veic.setManutencao_data_inicial(date1);
-
-                        Date date2;
-                        date2 = new SimpleDateFormat("yyyy-MM-dd").parse(manutencao_data_final);
-                        veic.setManutencao_data_final(date2);
-                    } else {
-                        veic.setManutencao(false);
-                        veic.setManutencao_data_inicial(null);
-                        veic.setManutencao_data_final(null);
-                    }
 
                     VeiculoDAO vdao = new VeiculoDAO();
 

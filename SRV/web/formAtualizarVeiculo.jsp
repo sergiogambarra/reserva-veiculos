@@ -125,29 +125,6 @@
                                                 <input type="text" id="iCapacidade" name="iCapacidade" placeholder="CAPACIDADE" value="${placa.capacidade}" onKeyPress="return mascaraMatSiap(event);" maxlength="2"/></div>
                                         </li>
                                         <li>
-                                            <div class="formCadastroLabel">
-                                                <label for="Manutencao"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Manutenção</label>
-                                            </div>
-                                            <div class="formCadastroInput">
-                                                <input type="radio" id="manutencaoS" name="manutencao" value="t"
-                                                       <% if (((Veiculo) request.getAttribute("placa")).isManutencao()) {%>checked<% }%>          
-                                                       />
-                                                <label class="radioManutencao" for="manutencao" >Sim</label>
-                                                <input type="radio" id="manutencaoN" name="manutencao" value="f"
-                                                       <% if (!((Veiculo) request.getAttribute("placa")).isManutencao()) {%>checked<% }%>          
-                                                       />
-                                                <label class="radioManutencao" for="Manutencao">Não</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sManDataInicial">Data Inicial</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataInicial" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_inicial}" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
-                                        </li>
-                                        <li>
-                                            <div class="formCadastroLabel"><label for="sManDataFinal">Data Final</label> </div>
-                                            <div class="formCadastroInput"><input type="date" name="sManDataFinal" placeholder="aaaa-mm-dd" value="${placa.manutencao_data_final}" onKeyPress="return mascaraData(event);" maxlength="10"/></div>
-                                        </li>
-                                        <li>
                                             <div class="formCadastroInputCancelar"><input type="button" value="Cancelar" onclick="window.location = ('ControleVeiculo?action=listaVeiculos&pagina=1')"/></div>
                                             <div class="formCadastroInputSalvar"><input type="submit" value="Salvar" onclick="return validarVeiculo()"/></div>
                                         </li>

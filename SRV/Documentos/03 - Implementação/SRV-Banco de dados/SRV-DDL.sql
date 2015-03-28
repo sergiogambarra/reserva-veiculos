@@ -39,15 +39,12 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `srv`.`veiculo` (
   `placa` VARCHAR(8) NOT NULL ,
-  `ano` VARCHAR(9) NOT NULL ,
+  `ano` VARCHAR(4) NOT NULL ,
   `marca` VARCHAR(15) NOT NULL ,
   `modelo` VARCHAR(30) NOT NULL ,
   `combustivel` VARCHAR(50) NOT NULL ,
   `renavam` VARCHAR(11) NOT NULL ,
   `capacidade` INT(2) NOT NULL ,
-  `manutencao` TINYINT(1) NOT NULL ,
-  `manutencao_data_inicial` DATE NULL DEFAULT NULL ,
-  `manutencao_data_final` DATE NULL DEFAULT NULL ,
   PRIMARY KEY (`placa`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -90,7 +87,7 @@ CREATE  TABLE IF NOT EXISTS `srv`.`reserva` (
     REFERENCES `srv`.`servidor` (`matricula_siape` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserva_veiculo1`
+  CONSTRAINT `fk_reserva_veiculo`
     FOREIGN KEY (`placa` )
     REFERENCES `srv`.`veiculo` (`placa` )
     ON DELETE NO ACTION
@@ -100,7 +97,7 @@ CREATE  TABLE IF NOT EXISTS `srv`.`reserva` (
     REFERENCES `srv`.`servidor` (`matricula_siape` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserva_destino1`
+  CONSTRAINT `fk_reserva_destino`
     FOREIGN KEY (`id_destino` )
     REFERENCES `srv`.`destino` (`id_destino` )
     ON DELETE NO ACTION

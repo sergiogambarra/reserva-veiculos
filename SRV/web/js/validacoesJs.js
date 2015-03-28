@@ -154,10 +154,6 @@ function desabilitaVisualizarVeiculo()  {
     document.getElementById("iModelo").disabled = true; 
     document.getElementById("iRenavam").disabled = true; 
     document.getElementById("iCapacidade").disabled = true; 
-    document.getElementById("manutencaoS").disabled = true; 
-    document.getElementById("manutencaoN").disabled = true; 
-    document.getElementById("sManDataInicial").disabled = true; 
-    document.getElementById("sManDataFinal").disabled = true; 
 }
 
 // HABILITA OS CAMPOS DO FORMULÁRIO AO CLICAR NO BOTÃO "EDITAR"
@@ -172,22 +168,7 @@ function habilitaVisualizarVeiculo()  {
     document.getElementById("flex").disabled = false;
     document.getElementById("iModelo").disabled = false; 
     document.getElementById("iRenavam").disabled = false; 
-    document.getElementById("iCapacidade").disabled = false; 
-    document.getElementById("manutencaoS").disabled = false; 
-    document.getElementById("manutencaoN").disabled = false; 
-    document.getElementById("sManDataInicial").disabled = false; 
-    document.getElementById("sManDataFinal").disabled = false;    
-}
-
-// SE VEÍCULO ESTIVER EM MANUTENÇÃO MOSTRA CAMPOS DE DATA INICIAL E DATA FINAL
-function validarManutencao(valor){
-    if(valor == "t"){
-        document.formCadastroVeiculo.sManDataInicial.disabled= false;
-        document.formCadastroVeiculo.sManDataFinal.disabled= false;
-    }else{
-        document.formCadastroVeiculo.sManDataInicial.disabled= true;
-        document.formCadastroVeiculo.sManDataFinal.disabled= true;   
-    }
+    document.getElementById("iCapacidade").disabled = false;     
 }
 
 // QUANDO CLICAR NO CAMPO ID(PLACA OU MATRÍCULA) EXIBE MENSAGEM
@@ -313,46 +294,6 @@ function validarVeiculo(){
         d.iCapacidade.focus();
         return false;
     }
-      
-    if(d.manutencao[0].checked == true){
-        if(d.sManDataInicial.value == ""){
-            alert("Dados obrigatórios não preenchidos. Preencha o campo Data Inicial da Manutenção!!");
-            d.sManDataInicial.focus();
-            return false;
-        }
-        
-        
-        if(d.sManDataInicial.value != "" && d.sManDataInicial.value.length <10){
-            alert("Dados inválidos. Preencha o campo Data Inicial da Manutenção com todos os dígitos!");
-            d.sManDataInicial.focus();
-            return false;
-        }
-        
-        if(d.sManDataFinal.value == ""){
-            alert("Dados obrigatórios não preenchidos. Preencha o campo Data Final da Manutenção!");
-            d.sManDataFinal.focus();
-            return false;
-        }
-        
-        if(d.sManDataFinal.value != "" && d.sManDataFinal.value.length <10){
-            alert("Dados inválidos. Preencha o campo Data Final da Manutenção com todos os dígitos!");
-            d.sManDataFinal.focus();
-            return false;
-        }
-        /*
-        var data1 = document.getElementById("sManDataInicial").value;
-        var data2 = document.getElementById("sManDataFinal").value;
-
-        var nova_data1 = parseInt(data1.split("-")[2].toString() + data1.split("-")[1].toString() + data1.split("-")[0].toString());
-        var nova_data2 = parseInt(data2.split("-")[2].toString() + data2.split("-")[1].toString() + data2.split("-")[0].toString());
- 
-        if (nova_data2 < nova_data1){
-            alert("Dados inválidos. ");
-            return false;
-        }*/
-    } 
- 
-    return true;
 }
 
 // AO CLICAR NO BOTÃO "SALVAR" FAZ VALIDAÇÕES DOS CAMPOS OBRIGATÓRIOS
