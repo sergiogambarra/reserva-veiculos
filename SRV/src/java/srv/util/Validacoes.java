@@ -167,6 +167,17 @@ public class Validacoes {
         }
         return output;
     }
+    
+    public static Date converterStringParaDate(String sDate) {
+        Date output = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            output = sdf.parse(sDate);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return output;
+    }
 
     public static String extrairDateParaString(Date dtDate) {
         String output = null;
@@ -204,6 +215,27 @@ public class Validacoes {
         return dSaida.compareTo(dRetorno);
         
     }
+    public static int validarPeriodoReservaDate(Date dSaida, Date dRetorno) {
+        return dSaida.compareTo(dRetorno);
+        
+    }
+    
+    public static int validarPeriodoReservaDatasIguais(String sSaida, String sRetorno) {
+        /*
+         * Regras:
+         * 1)Datetime não podem ser menores que o atual;
+         * 2)Se datas forem iguais, horário retorno deve ser maior que o de saída
+         * 3)Data de retorno não pode ser menor que data de saída
+         * Instruções:
+         * the value 0 if the argument Date is equal to this Date; 
+         * a value less than 0 if this Date is before the Date argument; 
+         * and a value greater than 0 if this Date is after the Date argument.
+         */
+        Date dSaida = formatarDatetimeParaDate(sSaida);
+        Date dRetorno = formatarDatetimeParaDate(sRetorno);
+        return dSaida.compareTo(dRetorno);
+        
+    }    
     
     public static int validarPeriodoComDataHoje(String sEntrada) {
         /*
