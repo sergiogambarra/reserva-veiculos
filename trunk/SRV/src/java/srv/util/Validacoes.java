@@ -59,14 +59,13 @@ public class Validacoes {
             setMensagemErro("Você não digitou a matricula");
             return false;
         }
-
         return true;
     }
 
     public static boolean ValidarUsuarioEnviarSenha(String matriculaSIAPE) {
         ServidorDAO fdao = new ServidorDAO();
         Servidor s = fdao.buscarServidor(matriculaSIAPE);
-        if (s != null) {
+        if (s == null) {
             setMensagemErro("Matricula incorreta");
             return false;
         }
