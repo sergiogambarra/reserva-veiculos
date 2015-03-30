@@ -91,10 +91,10 @@ public class Servidor implements Serializable {
                 simplemail.setDebug(true);
                 simplemail.setSmtpPort(465);
                 simplemail.setHostName("smtp.gmail.com");
-                simplemail.setAuthentication("email@email", "senha");
+                simplemail.setAuthentication("email", "senha");//insira seu email e senha do gmail 
                 simplemail.setSSL(true);
-                simplemail.addTo(serv.getEmail()); //pode ser qualquer um email  
-                simplemail.setFrom("email@email.com"); //aqui necessita ser o email que voce fara a autenticacao  
+                simplemail.addTo(serv.getEmail());  
+                simplemail.setFrom("email"); //insira seu email  
                 simplemail.setSubject("Senha do SRV");
                 simplemail.setMsg("Sua senha é: " + serv.getSenha());
                 simplemail.send();
