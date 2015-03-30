@@ -88,6 +88,7 @@ public class ControleReservaAjax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        boolean validaoPeriodo = false;
         String data_saida = Validacoes.validarDataEntradaMysql(request.getParameter("dataSaida"));
 
         String hora_saida = request.getParameter("horaSaida");
@@ -121,48 +122,86 @@ public class ControleReservaAjax extends HttpServlet {
             msgErro.append("<tr><td>Refaça a sua consulta com um período correto.</tr></td>");
             msgErro.append("</table>");
 
-            if (Validacoes.validarPeriodoComDataHoje(datetime_saida) < 0) {
-                //data de saída maior que retorno
+            if (Validacoes.validarPeriodoReservaDate(dateSaida, dateRetorno) == 0) {
+
+                if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) > 0) {
+                    validaoPeriodo = true;
+                    StringBuilder msgErroFinal = new StringBuilder();
+                    msgErroFinal.append("<table id=\"idListaErros\">");
+                    //msgErroFinal.append("<tr><td>Erro no período: data de saída maior que a data de retorno.</tr></td>");
+                    msgErroFinal.append("<tr><td>O horário de saída não pode ser maior que o horário de retorno.</tr></td>");
+                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+//                    msgErroFinal.append(msgErro);
+                    request.setAttribute("mensagem", "O horário de saída não pode ser maior que o horário de retorno");
+                    response.getWriter().write(msgErroFinal.toString());
+
+
+                } else if (Validacoes.validarPeriodoReserva(
+                        datetime_saida, datetime_retorno) == 0) {
+                    validaoPeriodo = true;
+                    //datas iguais
+                    StringBuilder msgErroFinal = new StringBuilder();
+                    msgErroFinal.append("<table id=\"idListaErros\">");
+                    //msgErroFinal.append("<tr><td>Erro no período: data de saída igual à data de retorno.</tr></td>");
+                    msgErroFinal.append("<tr><td>O horário de retorno deve ser maior que o horário de saída.</tr></td>");
+                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                    request.setAttribute("mensagem", "O horário de retorno deve ser maior que o horário de saída");
+                    //msgErroFinal.append(msgErro);
+                    response.getWriter().write(msgErroFinal.toString());
+                }
+
+            }
+
+            if (validaoPeriodo == false) {
+                if (Validacoes.validarPeriodoComDataHoje(datetime_saida) < 0) {
+                    validaoPeriodo = true;
+                    //data de saída maior que retorno
             /*
-                 * 1)Datetime não podem ser menores que o atual;
-                 * 2)Se datas forem iguais, horário retorno deve ser maior que o de saída
-                 * 3)Data de retorno não pode ser menor que data de saída
-                 */
-                StringBuilder msgErroFinal = new StringBuilder();
-                msgErroFinal.append("<table id=\"idListaErros\">");
-                msgErroFinal.append("<tr><td>Erro no período: data de saída menor que a data atual.</tr></td>");
-                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
-                msgErroFinal.append(msgErro);
-                response.getWriter().write(msgErroFinal.toString());
+                     * 1)Datetime não podem ser menores que o atual;
+                     * 2)Se datas forem iguais, horário retorno deve ser maior que o de saída
+                     * 3)Data de retorno não pode ser menor que data de saída
+                     */
+                    StringBuilder msgErroFinal = new StringBuilder();
+                    msgErroFinal.append("<table id=\"idListaErros\">");
+                    msgErroFinal.append("<tr><td>A data e o horário de saída não podem ser menores que a data e o horário atual.</tr></td>");
+                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                    response.getWriter().write(msgErroFinal.toString());
 
-            } else if (Validacoes.validarPeriodoComDataHoje(datetime_retorno) < 0) {
-                StringBuilder msgErroFinal = new StringBuilder();
-                msgErroFinal.append("<table id=\"idListaErros\">");
-                msgErroFinal.append("<tr><td>Erro no período: data de retorno menor que a data atual.</tr></td>");
-                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
-                msgErroFinal.append(msgErro);
-                response.getWriter().write(msgErroFinal.toString());
+                } else if (Validacoes.validarPeriodoComDataHoje(datetime_retorno) < 0) {
+                    validaoPeriodo = true;
+                    StringBuilder msgErroFinal = new StringBuilder();
+                    msgErroFinal.append("<table id=\"idListaErros\">");
+                    msgErroFinal.append("<tr><td>A data e o horário de retorno não podem ser menores que a data e o horário atual.</tr></td>");
+                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+//                    msgErroFinal.append(msgErro);
+                    response.getWriter().write(msgErroFinal.toString());
 
-            } else if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) > 0) {
+                } else if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) > 0) {
+                    validaoPeriodo = true;
+                    StringBuilder msgErroFinal = new StringBuilder();
+                    msgErroFinal.append("<table id=\"idListaErros\">");
+//                msgErroFinal.append("<tr><td>Erro no período: data de saída maior que a data de retorno.</tr></td>");
+                    msgErroFinal.append("<tr><td>A data de saída não pode ser maior que a data de retorno.</tr></td>");
+                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+//                    msgErroFinal.append(msgErro);
+                    response.getWriter().write(msgErroFinal.toString());
 
-                StringBuilder msgErroFinal = new StringBuilder();
-                msgErroFinal.append("<table id=\"idListaErros\">");
-                msgErroFinal.append("<tr><td>Erro no período: data de saída maior que a data de retorno.</tr></td>");
-                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
-                msgErroFinal.append(msgErro);
-                response.getWriter().write(msgErroFinal.toString());
+                } else if (Validacoes.validarPeriodoReserva(
+                        datetime_saida, datetime_retorno) == 0) {
+                    validaoPeriodo = true;
+                    //datas iguais
+                    StringBuilder msgErroFinal = new StringBuilder();
+                    msgErroFinal.append("<table id=\"idListaErros\">");
+//                msgErroFinal.append("<tr><td>Erro no período: data de saída igual à data de retorno.</tr></td>");
+                    msgErroFinal.append("<tr><td>A data de retorno deve ser maior que a data de saída.</tr></td>");
+                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+//                msgErroFinal.append(msgErro);
+                    response.getWriter().write(msgErroFinal.toString());
+                }
+            }
 
-            } else if (Validacoes.validarPeriodoReserva(
-                    datetime_saida, datetime_retorno) == 0) {
-                //datas iguais
-                StringBuilder msgErroFinal = new StringBuilder();
-                msgErroFinal.append("<table id=\"idListaErros\">");
-                msgErroFinal.append("<tr><td>Erro no período: data de saída igual à data de retorno.</tr></td>");
-                msgErroFinal.append("<tr><td>&nbsp</tr></td>");
-                msgErroFinal.append(msgErro);
-                response.getWriter().write(msgErroFinal.toString());
+            if (validaoPeriodo == false) {
 
-            } else {
                 InterfaceReservaDAO iReservaDao = new ReservaDAO();
                 List<Veiculo> listaVeiculosDisp = new ArrayList<Veiculo>();
                 // @@@
@@ -172,8 +211,6 @@ public class ControleReservaAjax extends HttpServlet {
                 } else {
                     listaVeiculosDisp = iReservaDao.consultarDisponibilidadeVeiculo(dateSaida, dateRetorno, id_reserva);
                 }
-
-
 
                 response.setContentType("text/xml");
                 response.setHeader("Cache-Control", "no-cache");
@@ -222,7 +259,6 @@ public class ControleReservaAjax extends HttpServlet {
                     }
                     tabela.append("</tbody></table>");
                 }
-
                 response.getWriter().write(tabela.toString());
             }
 
