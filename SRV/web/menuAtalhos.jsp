@@ -1,7 +1,5 @@
 <div class="cabecalhoCentral">
     <ul class="listaCabecalhoCentral">  
-        <li><a href="#menuAtalho">Menu [alt + 1]</a></li>
-        <li><a href="#conteudoAtalho">Conteúdo [alt + 2]</a></li>  
         <li><a href="ControleReserva?action=listaReservas&pagina=1&paginaOutros=1">Home [alt + 3]</a></li>  
         <li><a href="#" onclick="setActiveStyleSheet('default'); return false;">Estilo padrão</a></li>
         <li><a href="#" onclick="setActiveStyleSheet('contraste'); return false;">Contraste</a></li>

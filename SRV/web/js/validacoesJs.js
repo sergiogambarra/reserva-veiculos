@@ -339,49 +339,7 @@ function validarServidor(){
         alert("Dados obrigatórios não preenchidos. Selecione o Sexo!");
         return false;
     }
-    /*
-    if(d.sDataNascimento.value == ""){
-        alert("Dados obrigatórios não preenchidos. Preencha o campo Data de Nascimento!");
-        d.sDataNascimento.focus();
-        return false;
-    } 
     
-    var data1 = d.sDataNascimento.value;
-    var ano_nasc = parseInt(data1.split("-")[0].toString());
-    var mes_nasc = parseInt(data1.split("-")[1].toString());
-    var dia_nasc = parseInt(data1.split("-")[2].toString());
-    var today = new Date();
-    
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    
-    if (ano_nasc > yyyy-18 || mes_nasc > 12 || dia_nasc > 31){
-        alert("Dados Inválidos. Preencha o campo Data de Nascimento corretamente!");
-        d.sDataNascimento.focus();
-        return false;
-    } 
-    if (ano_nasc == yyyy-18){
-        if (mes_nasc > mm){
-            alert("Dados Inválidos. Preencha o campo Data de Nascimento corretamente!");
-            d.sDataNascimento.focus();
-            return false;
-        }
-    }
-    if (ano_nasc == yyyy-18 && mes_nasc == mm){
-        if (dia_nasc >= dd){
-            alert("Dados Inválidos. Preencha o campo Data de Nascimento corretamente!");
-            d.sDataNascimento.focus();
-            return false;
-        }
-    }
-  
-    if(d.sDataNascimento.value.length <8){
-        alert("Dados inválidos. Preencha o campo Data de Nascimento corretamente!");
-        d.sDataNascimento.focus();
-        return false;
-    }
-    */
     if(d.sCpf.value == ""){
         alert("Dados obrigatórios não preenchidos. Preencha o campo CPF!");
         d.sCpf.focus();

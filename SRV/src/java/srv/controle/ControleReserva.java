@@ -226,7 +226,7 @@ public class ControleReserva extends HttpServlet {
                     //datas iguais
                     StringBuilder msgErro = new StringBuilder();
                     msgErro.append("<span style=\"font-weight:bold\">");
-                    msgErro.append("Erro no período: data de saída igual à data de retorno.");
+                    msgErro.append("Erro no período: horário de saída maior que o horário de retorno.");
                     msgErro.append("</span>");
                     msgErro.append("<br>");
                     msgErro.append("<span>");
