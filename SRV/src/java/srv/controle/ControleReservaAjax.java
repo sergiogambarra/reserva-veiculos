@@ -113,14 +113,6 @@ public class ControleReservaAjax extends HttpServlet {
             data_retorno = Validacoes.validarDataSaidaMysqlString(data_retorno);
 
             StringBuilder msgErro = new StringBuilder();
-            msgErro.append("<tr><td>Para o período ser correto, as seguintes regras devem ser respeitadas:</tr></td>");
-            msgErro.append("<tr><td>- A data de saída e a data de retorno (data e horário) não podem ser menores que a data atual (data e horário).</tr></td>");
-            msgErro.append("<tr><td>- Saída (data e horário) não podem ser igual ao retorno (data e horário).</tr></td>");
-            msgErro.append("<tr><td>- Saída não pode ser maior que o retorno.</tr></td>");
-            msgErro.append("<tr><td>- Retorno não pode ser menor que a saída.</tr></td>");
-            msgErro.append("<tr><td>&nbsp</tr></td>");
-            msgErro.append("<tr><td>Refaça a sua consulta com um período correto.</tr></td>");
-            msgErro.append("</table>");
 
             if (Validacoes.validarPeriodoReservaDate(dateSaida, dateRetorno) == 0) {
 
@@ -179,11 +171,16 @@ public class ControleReservaAjax extends HttpServlet {
                 } else if (Validacoes.validarPeriodoReserva(datetime_saida, datetime_retorno) > 0) {
                     validaoPeriodo = true;
                     StringBuilder msgErroFinal = new StringBuilder();
-                    msgErroFinal.append("<table id=\"idListaErros\">");
-//                msgErroFinal.append("<tr><td>Erro no período: data de saída maior que a data de retorno.</tr></td>");
-                    msgErroFinal.append("<tr><td>A data de saída não pode ser maior que a data de retorno.</tr></td>");
-                    msgErroFinal.append("<tr><td>&nbsp</tr></td>");
-//                    msgErroFinal.append(msgErro);
+                    if (data_saida.equals(data_retorno)) {
+                        msgErroFinal.append("<table id=\"idListaErros\">");
+                        msgErroFinal.append("<tr><td>A hora de saída não pode ser maior que a hora de retorno.</tr></td>");
+                        msgErroFinal.append("<tr><td>&nbsp</tr></td>");                        
+                    } else {
+                        msgErroFinal.append("<table id=\"idListaErros\">");
+                        msgErroFinal.append("<tr><td>A data de saída não pode ser maior que a data de retorno.</tr></td>");
+                        msgErroFinal.append("<tr><td>&nbsp</tr></td>");
+                    }
+
                     response.getWriter().write(msgErroFinal.toString());
 
                 } else if (Validacoes.validarPeriodoReserva(
@@ -263,6 +260,7 @@ public class ControleReservaAjax extends HttpServlet {
             }
 
         } catch (Exception ex) {
+            System.out.println("Ex: " + ex.getMessage());
             StringBuilder msgErroFinal = new StringBuilder();
             msgErroFinal.append("<table id=\"idListaErros\">");
             msgErroFinal.append("<tr><td>Todos os campos são de preenchimento obrigatório.</td></tr>");
