@@ -91,10 +91,10 @@ public class Servidor implements Serializable {
                 simplemail.setDebug(true);
                 simplemail.setSmtpPort(465);
                 simplemail.setHostName("smtp.gmail.com");
-                simplemail.setAuthentication("eliana.pereira@restinga.ifrs.edu.br", "roliat@1");//insira seu email e senha do gmail 
+                simplemail.setAuthentication("email@restinga.ifrs.edu.br", "senha");//email e senha do setorVeículos
                 simplemail.setSSL(true);
                 simplemail.addTo(serv.getEmail());  
-                simplemail.setFrom("eliana.pereira@restinga.ifrs.edu.br"); //insira seu email  
+                simplemail.setFrom("email@restinga.ifrs.edu.br"); //repita o email aqui (email irá enviar  a senha ao email cadastrado do servidor)
                 simplemail.setSubject("Senha do SRV");
                 simplemail.setMsg("Sua senha é: " + serv.getSenha());
                 simplemail.send();
