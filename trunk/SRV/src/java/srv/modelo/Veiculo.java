@@ -37,7 +37,7 @@ public class Veiculo implements java.io.Serializable {
         this.placa = placa;
     }
 
-    public Veiculo(String placa, String ano, String marca, String modelo, String combustivel, int capacidade, String renavam, boolean manutencao, Date manutencao_data_inicial, Date manutencao_data_final) {
+    public Veiculo(String placa, String ano, String marca, String modelo, String combustivel, int capacidade, String renavam) {
         this.placa = placa;
         this.ano = ano;
         this.marca = marca;

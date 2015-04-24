@@ -67,7 +67,7 @@ public class VeiculoDAO implements InterfaceVeiculoDAO {
         try {
             Transaction tx = session.beginTransaction();
             String sql = "update Veiculo set ano = :ano, "
-                    + "marca = :marca, modelo = :modelo, combustivel = :combustivel, renavam = :renavam, capacidade = :capacidade, "
+                    + "marca = :marca, modelo = :modelo, combustivel = :combustivel, renavam = :renavam, capacidade = :capacidade "
                     + " where placa = :placa";
             Query query = session.createQuery(sql);
 
