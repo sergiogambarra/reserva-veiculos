@@ -203,6 +203,9 @@
                                             <option value="">Selecione:</option>
                                             <%
                                                 for (int i = 0; i < listad.size(); i++) {
+                                                    if(usuario.getPerfil() != 1 && listad.get(i).getNome().equals("Em Manutenção")){
+                                                        continue;
+                                                    }                                                    
                                                     if (i == 0) {
                                                         continue;
                                                     }
