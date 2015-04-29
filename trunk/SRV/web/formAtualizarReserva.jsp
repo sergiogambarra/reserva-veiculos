@@ -234,15 +234,21 @@
                                             </div>
                                         </li>
 
+                                        <%
+                                        Servidor usuario = (Servidor) request.getAttribute("usuario");
+                                        %>
+                                        
                                         <li>
                                             <div class="formCadastroLabel"><label for="iDestino"><img src="imagens/asterisco.png" alt="Campo obrigatório"/>Destino</label> </div>
                                             <div class="formCadastroInput">
                                                 <select id="iDestino" name="inputDestino" onchange="exibirDescricaoDestino(this.value);">
                                                     <option value="<%= id_destino%>" selected><%= reserv.getDestino().getNome()%></option>
-                                                    <%                                                        for (int i = 0;
-                                                                i < listad.size();
-                                                                i++) {
+                                                    <%                                                        
+                                                    for (int i = 0;i < listad.size();i++) {
                                                             if (i == 0) {
+                                                                continue;
+                                                            }
+                                                            if(usuario.getPerfil() != 1 && listad.get(i).getNome().equals("Em Manutenção")){
                                                                 continue;
                                                             }
                                                             if (i == (listad.size() - 1)) {
